@@ -285,6 +285,10 @@
     }
   },
   "sections": {
+    "custom_homepage_hero": {
+      "subscription_legend": "Choose a purchase option"
+    },
+
     "header": {
       "announcement": "Anunț",
       "menu": "Meniu",

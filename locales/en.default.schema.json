@@ -681,6 +681,148 @@
         }
       }
     },
+    "custom-homepage-hero": {
+      "name": "Homepage Hero",
+      "settings": {
+        "enable_gradient_overlay": {
+          "label": "Enable gradient overlay"
+        }
+      },
+      "blocks": {
+        "slide": {
+          "name": "Slide",
+          "settings": {
+            "image": {
+              "label": "Image"
+            }
+          }
+        },
+        "heading": {
+          "name": "Heading",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "Soft energy with"
+            }
+          }
+        },
+        "cycle_word": {
+          "name": "Cycling word",
+          "settings": {
+            "text": {
+              "label": "Text",
+              "default": "Steady momentum"
+            }
+          }
+        },
+        "content": {
+          "name": "Content",
+          "settings": {
+            "eyebrow": {
+              "label": "Eyebrow",
+              "default": "Energy You Stay in Control Of"
+            },
+            "text": {
+              "label": "Text",
+              "default": "A drink powder <em>built around paraxanthine</em>, what your body already turns caffeine into. The alertness, without the edge."
+            }
+          }
+        },
+        "buttons": {
+          "name": "Buttons",
+          "settings": {
+            "header_1": {
+              "content": "Button 1"
+            },
+            "button_label_1": {
+              "label": "Label",
+              "info": "Leave blank to hide",
+              "default": "Shop controlled energy"
+            },
+            "button_link_1": {
+              "label": "Link"
+            },
+            "button_style_secondary_1": {
+              "label": "Outline style"
+            },
+            "header_2": {
+              "content": "Button 2"
+            },
+            "button_label_2": {
+              "label": "Label",
+              "info": "Leave blank to hide",
+              "default": "What is paraxanthine?"
+            },
+            "button_link_2": {
+              "label": "Link"
+            },
+            "button_style_secondary_2": {
+              "label": "Outline style"
+            }
+          }
+        },
+        "flavor": {
+          "name": "Flavor",
+          "settings": {
+            "label": {
+              "label": "Label",
+              "default": "Flavor"
+            },
+            "video": {
+              "label": "Video"
+            },
+            "poster_image": {
+              "label": "Poster image",
+              "info": "Shown until the video loads, or if no video is set"
+            }
+          }
+        },
+        "product_info": {
+          "name": "Product info",
+          "settings": {
+            "title": {
+              "label": "Title",
+              "default": "Controlled Energy"
+            },
+            "subtitle": {
+              "label": "Subtitle",
+              "default": "with Paraxanthine <em>for Daily Momentum</em>"
+            }
+          }
+        },
+        "subscription": {
+          "name": "Subscription",
+          "settings": {
+            "paragraph": {
+              "content": "Pricing shown here is placeholder text until this is connected to a real product."
+            },
+            "monthly_label": {
+              "label": "Monthly option label",
+              "default": "Monthly Subscription"
+            },
+            "monthly_price": {
+              "label": "Monthly price",
+              "default": "$49.00 per month"
+            },
+            "onetime_label": {
+              "label": "One-time option label",
+              "default": "One-Time Purchase"
+            },
+            "onetime_price": {
+              "label": "One-time price",
+              "default": "$54.00 one-time"
+            },
+            "cta_label": {
+              "label": "Add to cart button label",
+              "default": "Add to Cart"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Homepage Hero"
+      }
+    },
     "custom-liquid": {
       "name": "Custom Liquid",
       "settings": {

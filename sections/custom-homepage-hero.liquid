@@ -1,0 +1,458 @@
+{{ 'section-custom-homepage-hero.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'homepage-hero.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign slides = section.blocks | where: 'type', 'slide'
+  assign cycle_words = section.blocks | where: 'type', 'cycle_word'
+  assign flavors = section.blocks | where: 'type', 'flavor'
+  assign heading_block = section.blocks | where: 'type', 'heading' | first
+  assign content_block = section.blocks | where: 'type', 'content' | first
+  assign buttons_block = section.blocks | where: 'type', 'buttons' | first
+  assign product_info_block = section.blocks | where: 'type', 'product_info' | first
+  assign subscription_block = section.blocks | where: 'type', 'subscription' | first
+-%}
+
+<homepage-hero class="hero-showcase color-{{ section.settings.color_scheme }}">
+  <div class="hero-showcase__grid">
+    <div class="hero-showcase__gallery">
+      {%- for block in slides -%}
+        {%- liquid
+          assign loading = 'lazy'
+          assign fetch_priority = 'auto'
+          if forloop.first
+            assign loading = 'eager'
+            assign fetch_priority = 'high'
+          endif
+
+          assign placeholder_index = forloop.index0 | modulo: 3 | plus: 1
+          assign placeholder_name = 'hero-apparel-' | append: placeholder_index
+        -%}
+        <div class="hero-showcase__slide{% if forloop.first %} is-active{% endif %}" data-slide {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 1600
+              | image_tag:
+                loading: loading,
+                fetchpriority: fetch_priority,
+                widths: '375, 550, 750, 1100, 1500, 1600',
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                class: 'hero-showcase__slide-image'
+            }}
+          {%- else -%}
+            {{ placeholder_name | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+
+      {%- if section.settings.enable_gradient_overlay -%}
+        <div class="hero-showcase__gradient" aria-hidden="true"></div>
+      {%- endif -%}
+
+      {%- if heading_block != blank -%}
+        <div class="hero-showcase__heading-wrap" {{ heading_block.shopify_attributes }}>
+          <p class="hero-showcase__heading inline-richtext">{{ heading_block.settings.heading }}</p>
+          {%- if cycle_words.size > 0 -%}
+            <span class="hero-showcase__cycle">
+              {%- for block in cycle_words -%}
+                <span class="hero-showcase__cycle-word{% if forloop.first %} is-active{% endif %}" data-cycle-word {{ block.shopify_attributes }}>
+                  {{- block.settings.text | escape -}}
+                </span>
+              {%- endfor -%}
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if content_block != blank -%}
+        <div class="hero-showcase__content" {{ content_block.shopify_attributes }}>
+          {%- if content_block.settings.eyebrow != blank -%}
+            <p class="hero-showcase__eyebrow">{{ content_block.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          {%- if content_block.settings.text != blank -%}
+            <div class="hero-showcase__text rte">{{ content_block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if buttons_block != blank -%}
+        <div
+          class="hero-showcase__buttons{% if buttons_block.settings.button_label_1 != blank and buttons_block.settings.button_label_2 != blank %} hero-showcase__buttons--multiple{% endif %}"
+          {{ buttons_block.shopify_attributes }}
+        >
+          {%- if buttons_block.settings.button_label_1 != blank -%}
+            <a
+              {% if buttons_block.settings.button_link_1 == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ buttons_block.settings.button_link_1 }}"
+              {% endif %}
+              class="button{% if buttons_block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{- buttons_block.settings.button_label_1 | escape -}}
+            </a>
+          {%- endif -%}
+          {%- if buttons_block.settings.button_label_2 != blank -%}
+            <a
+              {% if buttons_block.settings.button_link_2 == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ buttons_block.settings.button_link_2 }}"
+              {% endif %}
+              class="button{% if buttons_block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{- buttons_block.settings.button_label_2 | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="hero-showcase__product">
+      {%- if flavors.size > 0 -%}
+        <div class="hero-showcase__video-wrap">
+          {%- for block in flavors -%}
+            <div class="hero-showcase__video{% if forloop.first %} is-active{% endif %}" data-flavor-video="{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.video != blank -%}
+                {{
+                  block.settings.video
+                  | video_tag:
+                    image_size: '800x',
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    controls: false,
+                    class: 'hero-showcase__video-el'
+                }}
+              {%- elsif block.settings.poster_image != blank -%}
+                {{
+                  block.settings.poster_image
+                  | image_url: width: 800
+                  | image_tag: loading: 'lazy', class: 'hero-showcase__video-image'
+                }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="hero-showcase__flavors" role="group">
+          {%- for block in flavors -%}
+            <button
+              type="button"
+              class="hero-showcase__flavor-btn{% if forloop.first %} is-active{% endif %}"
+              data-flavor-target="{{ block.id }}"
+              aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{- block.settings.label | escape -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if product_info_block != blank -%}
+        <div {{ product_info_block.shopify_attributes }}>
+          {%- if product_info_block.settings.title != blank -%}
+            <p class="hero-showcase__product-title">{{ product_info_block.settings.title | escape }}</p>
+          {%- endif -%}
+          {%- if product_info_block.settings.subtitle != blank -%}
+            <div class="hero-showcase__product-subtitle inline-richtext">{{ product_info_block.settings.subtitle }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if subscription_block != blank -%}
+        <div {{ subscription_block.shopify_attributes }}>
+          <fieldset class="hero-showcase__subscription">
+            <legend class="visually-hidden">{{ 'sections.custom_homepage_hero.subscription_legend' | t }}</legend>
+            <label class="hero-showcase__subscription-option">
+              <input
+                type="radio"
+                name="Subscription-{{ section.id }}"
+                data-subscription-option
+                data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price }}"
+                checked
+              >
+              {{- subscription_block.settings.monthly_label | escape -}}
+            </label>
+            <label class="hero-showcase__subscription-option">
+              <input
+                type="radio"
+                name="Subscription-{{ section.id }}"
+                data-subscription-option
+                data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.onetime_price }}"
+              >
+              {{- subscription_block.settings.onetime_label | escape -}}
+            </label>
+          </fieldset>
+
+          <button type="button" class="button button--primary hero-showcase__cta" data-cta>
+            {{- subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price -}}
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</homepage-hero>
+
+{% schema %}
+{
+  "name": "t:sections.custom-homepage-hero.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_gradient_overlay",
+      "default": true,
+      "label": "t:sections.custom-homepage-hero.settings.enable_gradient_overlay.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.custom-homepage-hero.blocks.slide.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.custom-homepage-hero.blocks.slide.settings.image.label"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.custom-homepage-hero.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.custom-homepage-hero.blocks.heading.settings.heading.default",
+          "label": "t:sections.custom-homepage-hero.blocks.heading.settings.heading.label"
+        }
+      ]
+    },
+    {
+      "type": "cycle_word",
+      "name": "t:sections.custom-homepage-hero.blocks.cycle_word.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "t:sections.custom-homepage-hero.blocks.cycle_word.settings.text.default",
+          "label": "t:sections.custom-homepage-hero.blocks.cycle_word.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.custom-homepage-hero.blocks.content.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "default": "t:sections.custom-homepage-hero.blocks.content.settings.eyebrow.default",
+          "label": "t:sections.custom-homepage-hero.blocks.content.settings.eyebrow.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "t:sections.custom-homepage-hero.blocks.content.settings.text.default",
+          "label": "t:sections.custom-homepage-hero.blocks.content.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "t:sections.custom-homepage-hero.blocks.buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.custom-homepage-hero.blocks.buttons.settings.header_1.content"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "default": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1.default",
+          "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1.label",
+          "info": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "default": false,
+          "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_style_secondary_1.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.custom-homepage-hero.blocks.buttons.settings.header_2.content"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "default": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_2.default",
+          "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_2.label",
+          "info": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_2.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_link_2.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "default": false,
+          "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_style_secondary_2.label"
+        }
+      ]
+    },
+    {
+      "type": "flavor",
+      "name": "t:sections.custom-homepage-hero.blocks.flavor.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "default": "t:sections.custom-homepage-hero.blocks.flavor.settings.label.default",
+          "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.label.label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.video.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.poster_image.label",
+          "info": "t:sections.custom-homepage-hero.blocks.flavor.settings.poster_image.info"
+        }
+      ]
+    },
+    {
+      "type": "product_info",
+      "name": "t:sections.custom-homepage-hero.blocks.product_info.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "default": "t:sections.custom-homepage-hero.blocks.product_info.settings.title.default",
+          "label": "t:sections.custom-homepage-hero.blocks.product_info.settings.title.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subtitle",
+          "default": "t:sections.custom-homepage-hero.blocks.product_info.settings.subtitle.default",
+          "label": "t:sections.custom-homepage-hero.blocks.product_info.settings.subtitle.label"
+        }
+      ]
+    },
+    {
+      "type": "subscription",
+      "name": "t:sections.custom-homepage-hero.blocks.subscription.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.custom-homepage-hero.blocks.subscription.settings.paragraph.content"
+        },
+        {
+          "type": "text",
+          "id": "monthly_label",
+          "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.monthly_label.default",
+          "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.monthly_label.label"
+        },
+        {
+          "type": "text",
+          "id": "monthly_price",
+          "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.monthly_price.default",
+          "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.monthly_price.label"
+        },
+        {
+          "type": "text",
+          "id": "onetime_label",
+          "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_label.default",
+          "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_label.label"
+        },
+        {
+          "type": "text",
+          "id": "onetime_price",
+          "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_price.default",
+          "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_price.label"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.cta_label.default",
+          "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.cta_label.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-homepage-hero.presets.name",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "slide" },
+        { "type": "heading" },
+        {
+          "type": "cycle_word",
+          "settings": { "text": "Steady momentum" }
+        },
+        {
+          "type": "cycle_word",
+          "settings": { "text": "Focused control" }
+        },
+        {
+          "type": "cycle_word",
+          "settings": { "text": "Clear intention" }
+        },
+        { "type": "content" },
+        {
+          "type": "buttons",
+          "settings": {
+            "button_style_secondary_2": true
+          }
+        },
+        {
+          "type": "flavor",
+          "settings": { "label": "Yuzu Citrus" }
+        },
+        {
+          "type": "flavor",
+          "settings": { "label": "Tropical Mango" }
+        },
+        {
+          "type": "flavor",
+          "settings": { "label": "Strawberry Watermelon" }
+        },
+        { "type": "product_info" },
+        { "type": "subscription" }
+      ]
+    }
+  ]
+}
+{% endschema %}

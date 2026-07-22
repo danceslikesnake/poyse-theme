@@ -284,6 +284,10 @@
       "announcement_bar": "Announcement bar"
     },
 
+    "custom_homepage_hero": {
+      "subscription_legend": "Choose a purchase option"
+    },
+
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",

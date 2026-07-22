@@ -9,6 +9,91 @@
  */
 {
   "sections": {
+    "homepage_hero": {
+      "type": "custom-homepage-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide"
+        },
+        "slide_2": {
+          "type": "slide"
+        },
+        "slide_3": {
+          "type": "slide"
+        },
+        "heading": {
+          "type": "heading"
+        },
+        "cycle_word_1": {
+          "type": "cycle_word",
+          "settings": {
+            "text": "Steady momentum"
+          }
+        },
+        "cycle_word_2": {
+          "type": "cycle_word",
+          "settings": {
+            "text": "Focused control"
+          }
+        },
+        "cycle_word_3": {
+          "type": "cycle_word",
+          "settings": {
+            "text": "Clear intention"
+          }
+        },
+        "content": {
+          "type": "content"
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_style_secondary_2": true
+          }
+        },
+        "flavor_1": {
+          "type": "flavor",
+          "settings": {
+            "label": "Yuzu Citrus"
+          }
+        },
+        "flavor_2": {
+          "type": "flavor",
+          "settings": {
+            "label": "Tropical Mango"
+          }
+        },
+        "flavor_3": {
+          "type": "flavor",
+          "settings": {
+            "label": "Strawberry Watermelon"
+          }
+        },
+        "product_info": {
+          "type": "product_info"
+        },
+        "subscription": {
+          "type": "subscription"
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3",
+        "heading",
+        "cycle_word_1",
+        "cycle_word_2",
+        "cycle_word_3",
+        "content",
+        "buttons",
+        "flavor_1",
+        "flavor_2",
+        "flavor_3",
+        "product_info",
+        "subscription"
+      ],
+      "settings": {}
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -78,6 +163,7 @@
     }
   },
   "order": [
+    "homepage_hero",
     "image_banner",
     "featured_collection"
   ]
