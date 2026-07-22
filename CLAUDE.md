@@ -30,3 +30,7 @@
 - NEVER commit changes from the online code editor without pulling first
 - Flag any `{% assign %}` inside a loop — potential performance issue
 - Always run `shopify theme check` after multi-file changes
+
+After editing any {% schema %} block, run shopify theme check and fix every error before stopping. Treat schema validation as a gate.
+
+Preserve all existing schema settings unless I call one out by name. Adding new settings is fine; removing them is not.
