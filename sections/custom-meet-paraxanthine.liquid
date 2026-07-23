@@ -3,7 +3,6 @@
 {%- liquid
   assign content_block = section.blocks | where: 'type', 'content' | first
   assign button_block = section.blocks | where: 'type', 'button' | first
-  assign stat_rows = section.blocks | where: 'type', 'stat_row'
 -%}
 
 {%- style -%}
@@ -43,30 +42,16 @@
     </a>
   {%- endif -%}
 
-  {%- if content_block != blank or stat_rows.size > 0 -%}
+  {%- if content_block != blank -%}
     <div class="meet-paraxanthine__card">
-      {%- if content_block != blank -%}
-        <div class="meet-paraxanthine__content" {{ content_block.shopify_attributes }}>
-          {%- if content_block.settings.heading != blank -%}
-            <p class="meet-paraxanthine__heading inline-richtext">{{ content_block.settings.heading }}</p>
-          {%- endif -%}
-          {%- if content_block.settings.text != blank -%}
-            <div class="meet-paraxanthine__text rte">{{ content_block.settings.text }}</div>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
-
-      {%- if stat_rows.size > 0 -%}
-        <div class="meet-paraxanthine__stats">
-          {%- for block in stat_rows -%}
-            <div class="meet-paraxanthine__stat-row" {{ block.shopify_attributes }}>
-              <span class="meet-paraxanthine__stat-label">{{ block.settings.label | escape }}</span>
-              <span class="meet-paraxanthine__stat-description">{{ block.settings.description | escape }}</span>
-              <span class="meet-paraxanthine__stat-value">{{ block.settings.value | escape }}</span>
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
+      <div class="meet-paraxanthine__content" {{ content_block.shopify_attributes }}>
+        {%- if content_block.settings.heading != blank -%}
+          <p class="meet-paraxanthine__heading inline-richtext">{{ content_block.settings.heading }}</p>
+        {%- endif -%}
+        {%- if content_block.settings.text != blank -%}
+          <div class="meet-paraxanthine__text rte">{{ content_block.settings.text }}</div>
+        {%- endif -%}
+      </div>
     </div>
   {%- endif -%}
 </div>
@@ -128,30 +113,6 @@
           "label": "t:sections.custom-meet-paraxanthine.blocks.button.settings.link.label"
         }
       ]
-    },
-    {
-      "type": "stat_row",
-      "name": "t:sections.custom-meet-paraxanthine.blocks.stat_row.name",
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "default": "t:sections.custom-meet-paraxanthine.blocks.stat_row.settings.label.default",
-          "label": "t:sections.custom-meet-paraxanthine.blocks.stat_row.settings.label.label"
-        },
-        {
-          "type": "text",
-          "id": "description",
-          "default": "t:sections.custom-meet-paraxanthine.blocks.stat_row.settings.description.default",
-          "label": "t:sections.custom-meet-paraxanthine.blocks.stat_row.settings.description.label"
-        },
-        {
-          "type": "text",
-          "id": "value",
-          "default": "t:sections.custom-meet-paraxanthine.blocks.stat_row.settings.value.default",
-          "label": "t:sections.custom-meet-paraxanthine.blocks.stat_row.settings.value.label"
-        }
-      ]
     }
   ],
   "presets": [
@@ -159,31 +120,7 @@
       "name": "t:sections.custom-meet-paraxanthine.presets.name",
       "blocks": [
         { "type": "content" },
-        { "type": "button" },
-        {
-          "type": "stat_row",
-          "settings": {
-            "label": "Adenosine Antagonism",
-            "description": "Equivalent to Caffeine",
-            "value": "92%"
-          }
-        },
-        {
-          "type": "stat_row",
-          "settings": {
-            "label": "Cortisol Elevation",
-            "description": "Vs. Caffeine at Equivalent Dose",
-            "value": "-34%"
-          }
-        },
-        {
-          "type": "stat_row",
-          "settings": {
-            "label": "Half-Life Duration",
-            "description": "Smooth Curve, No Hard Exit",
-            "value": "6-8h"
-          }
-        }
+        { "type": "button" }
       ]
     }
   ]

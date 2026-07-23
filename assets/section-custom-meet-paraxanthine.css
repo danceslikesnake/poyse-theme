@@ -54,35 +54,6 @@
   line-height: 1.55;
 }
 
-.meet-paraxanthine__stats {
-  margin-top: 2rem;
-  border-top: 1px solid rgb(255 255 255 / 0.25);
-}
-
-.meet-paraxanthine__stat-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto;
-  align-items: center;
-  gap: 1.6rem;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid rgb(255 255 255 / 0.25);
-  font-size: 1.3rem;
-}
-
-.meet-paraxanthine__stat-label {
-  font-weight: 600;
-}
-
-.meet-paraxanthine__stat-description {
-  opacity: 0.75;
-}
-
-.meet-paraxanthine__stat-value {
-  font-weight: 600;
-  text-align: right;
-  white-space: nowrap;
-}
-
 @media screen and (max-width: 749px) {
   .meet-paraxanthine__media {
     aspect-ratio: auto;
@@ -99,15 +70,5 @@
   .meet-paraxanthine__button {
     top: 1.2rem;
     right: 1.2rem;
-  }
-
-  .meet-paraxanthine__stat-row {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
-    text-align: left;
-  }
-
-  .meet-paraxanthine__stat-value {
-    text-align: left;
   }
 }

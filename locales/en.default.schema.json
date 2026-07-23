@@ -823,6 +823,52 @@
         "name": "Homepage Hero"
       }
     },
+    "custom-community": {
+      "name": "Community",
+      "settings": {
+        "border_color": {
+          "label": "Container border color"
+        }
+      },
+      "blocks": {
+        "content": {
+          "name": "Content",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "Poyse, in Real Life."
+            },
+            "eyebrow": {
+              "label": "Eyebrow",
+              "default": "Our Community"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Join the countless individuals who have transformed their afternoons with Poyse. As you savor each sip, feel the revitalizing energy wash over you, sharpening your focus and lifting your spirits.</p>"
+            }
+          }
+        },
+        "gallery_item": {
+          "name": "Gallery image",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "tag_text": {
+              "label": "Tag text",
+              "default": "@janedoe"
+            },
+            "product": {
+              "label": "Product",
+              "info": "Shown as a linked thumbnail on the image"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Community"
+      }
+    },
     "custom-footer": {
       "name": "Footer",
       "settings": {
@@ -1002,7 +1048,7 @@
             },
             "text": {
               "label": "Text",
-              "default": "<p>When your body processes caffeine, paraxanthine is what it becomes. It is responsible for the alertness — delivered directly, without the metabolic detour. The curve is smoother. The exit is gradual. There is no hard drop, no rebound, no anxious edge waiting on the other side.</p>"
+              "default": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and the compound responsible for its energy effects. By using paraxanthine directly, you get the energy, alertness, and focus people want from caffeine without the same anxious, jittery, or restless feel often associated with it.</p><p>No harsh edge. No hard crash. Just a cleaner, more controlled energy experience.</p>"
             }
           }
         },
@@ -1015,23 +1061,6 @@
             },
             "link": {
               "label": "Link"
-            }
-          }
-        },
-        "stat_row": {
-          "name": "Stat row",
-          "settings": {
-            "label": {
-              "label": "Label",
-              "default": "Adenosine Antagonism"
-            },
-            "description": {
-              "label": "Description",
-              "default": "Equivalent to Caffeine"
-            },
-            "value": {
-              "label": "Value",
-              "default": "92%"
             }
           }
         }

@@ -1,0 +1,166 @@
+{{ 'section-custom-community.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'community-gallery.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign content_block = section.blocks | where: 'type', 'content' | first
+  assign gallery_items = section.blocks | where: 'type', 'gallery_item'
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-border {
+    border-color: {{ section.settings.border_color | default: 'rgba(0,0,0,0.12)' }};
+  }
+{%- endstyle -%}
+
+<community-gallery class="community-gallery color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-border">
+  <div class="community-gallery__layout">
+    {%- if content_block != blank -%}
+      <div class="community-gallery__intro" {{ content_block.shopify_attributes }}>
+        {%- if content_block.settings.heading != blank -%}
+          <p class="community-gallery__heading inline-richtext">{{ content_block.settings.heading }}</p>
+        {%- endif -%}
+        {%- if content_block.settings.eyebrow != blank -%}
+          <p class="community-gallery__eyebrow">{{ content_block.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if content_block.settings.text != blank -%}
+          <div class="community-gallery__text rte">{{ content_block.settings.text }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if gallery_items.size > 0 -%}
+      <div class="community-gallery__gallery-wrap">
+        <div class="community-gallery__track" data-gallery-track>
+          {%- for block in gallery_items -%}
+            <div class="community-gallery__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.tag_text != blank -%}
+                <span class="community-gallery__tag">{{ block.settings.tag_text | escape }}</span>
+              {%- endif -%}
+
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1000
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '375, 550, 750, 1000',
+                    sizes: '(min-width: 750px) 32vw, 80vw',
+                    class: 'community-gallery__image',
+                    draggable: 'false'
+                }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg community-gallery__image' }}
+              {%- endif -%}
+
+              {%- if block.settings.product != blank -%}
+                <a href="{{ block.settings.product.url }}" class="community-gallery__product" aria-label="{{ block.settings.product.title | escape }}">
+                  {%- if block.settings.product.featured_image -%}
+                    {{
+                      block.settings.product.featured_image
+                      | image_url: width: 160
+                      | image_tag: loading: 'lazy', class: 'community-gallery__product-image'
+                    }}
+                  {%- endif -%}
+                  <span class="community-gallery__product-plus" aria-hidden="true">
+                    {{- 'icon-plus.svg' | inline_asset_content -}}
+                  </span>
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="community-gallery__scrollbar" data-gallery-scrollbar>
+          <div class="community-gallery__scrollbar-thumb" data-gallery-thumb>&#8203;</div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</community-gallery>
+
+{% schema %}
+{
+  "name": "t:sections.custom-community.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:sections.custom-community.settings.border_color.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "t:sections.custom-community.blocks.content.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.custom-community.blocks.content.settings.heading.default",
+          "label": "t:sections.custom-community.blocks.content.settings.heading.label"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "default": "t:sections.custom-community.blocks.content.settings.eyebrow.default",
+          "label": "t:sections.custom-community.blocks.content.settings.eyebrow.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-community.blocks.content.settings.text.default",
+          "label": "t:sections.custom-community.blocks.content.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "gallery_item",
+      "name": "t:sections.custom-community.blocks.gallery_item.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.custom-community.blocks.gallery_item.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "tag_text",
+          "default": "t:sections.custom-community.blocks.gallery_item.settings.tag_text.default",
+          "label": "t:sections.custom-community.blocks.gallery_item.settings.tag_text.label"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.custom-community.blocks.gallery_item.settings.product.label",
+          "info": "t:sections.custom-community.blocks.gallery_item.settings.product.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-community.presets.name",
+      "blocks": [
+        { "type": "content" },
+        { "type": "gallery_item" },
+        { "type": "gallery_item" },
+        { "type": "gallery_item" },
+        { "type": "gallery_item" },
+        { "type": "gallery_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

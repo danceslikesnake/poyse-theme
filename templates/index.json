@@ -180,38 +180,59 @@
         "button": {
           "type": "button",
           "settings": {}
+        }
+      },
+      "block_order": [
+        "content",
+        "button"
+      ],
+      "settings": {}
+    },
+    "homepage_community": {
+      "type": "custom-community",
+      "blocks": {
+        "content": {
+          "type": "content",
+          "settings": {}
         },
-        "stat_row_1": {
-          "type": "stat_row",
+        "gallery_item_1": {
+          "type": "gallery_item",
           "settings": {
-            "label": "Adenosine Antagonism",
-            "description": "Equivalent to Caffeine",
-            "value": "92%"
+            "product": "the-collection-snowboard-liquid"
           }
         },
-        "stat_row_2": {
-          "type": "stat_row",
+        "gallery_item_2": {
+          "type": "gallery_item",
           "settings": {
-            "label": "Cortisol Elevation",
-            "description": "Vs. Caffeine at Equivalent Dose",
-            "value": "-34%"
+            "product": "the-collection-snowboard-liquid"
           }
         },
-        "stat_row_3": {
-          "type": "stat_row",
+        "gallery_item_3": {
+          "type": "gallery_item",
           "settings": {
-            "label": "Half-Life Duration",
-            "description": "Smooth Curve, No Hard Exit",
-            "value": "6-8h"
+            "product": "the-collection-snowboard-liquid"
+          }
+        },
+        "gallery_item_4": {
+          "type": "gallery_item",
+          "settings": {
+            "product": "the-collection-snowboard-liquid"
+          }
+        },
+        "gallery_item_5": {
+          "type": "gallery_item",
+          "settings": {
+            "product": "the-collection-snowboard-liquid"
           }
         }
       },
       "block_order": [
         "content",
-        "button",
-        "stat_row_1",
-        "stat_row_2",
-        "stat_row_3"
+        "gallery_item_1",
+        "gallery_item_2",
+        "gallery_item_3",
+        "gallery_item_4",
+        "gallery_item_5"
       ],
       "settings": {}
     }
@@ -220,6 +241,7 @@
     "homepage_hero",
     "homepage_tagline",
     "homepage_featured_items",
-    "homepage_meet_paraxanthine"
+    "homepage_meet_paraxanthine",
+    "homepage_community"
   ]
 }
