@@ -1,0 +1,105 @@
+.site-header {
+  /* Brand tokens pulled directly from the Figma nav frame (node 4666:1230). */
+  --poyse-white: #ffffff;
+  --poyse-bare-form: #dbcec4;
+  --poyse-evening-fig: #392c2d;
+
+  --wordmark-size-large: clamp(6rem, 19vw, 44rem);
+  --wordmark-size-small: clamp(1.6rem, 2.6vw, 2.2rem);
+  --header-progress: 1;
+
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 400;
+}
+
+.site-header--animated {
+  --header-progress: 0;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem 3rem;
+}
+
+@media screen and (min-width: 990px) {
+  .site-header__inner {
+    padding: 2.4rem 6rem;
+  }
+}
+
+.site-header__wordmark {
+  max-width: 60%;
+  font-size: calc(var(--wordmark-size-small) + (var(--wordmark-size-large) - var(--wordmark-size-small)) * (1 - var(--header-progress)));
+  line-height: 1;
+  color: var(--poyse-evening-fig);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+.site-header--animated:not(.is-past-hero) .site-header__wordmark {
+  color: var(--poyse-white);
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.2rem;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background-color: var(--poyse-white);
+  box-shadow: 0 0.2rem 1.2rem rgb(0 0 0 / 8%);
+}
+
+.site-header__nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.9rem;
+  padding: 0 1.6rem;
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--poyse-evening-fig);
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.site-header__nav-link:hover,
+.site-header__nav-link.is-active {
+  background-color: var(--poyse-bare-form);
+}
+
+.site-header__cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  background-color: var(--poyse-evening-fig);
+  color: var(--poyse-bare-form);
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+/* The header is fixed/overlaid, so every page except the homepage (whose hero
+   is designed to sit behind it) needs top padding to clear it. */
+main[data-template]:not([data-template='index']) {
+  padding-top: 6.2rem;
+}
+
+@media screen and (min-width: 990px) {
+  main[data-template]:not([data-template='index']) {
+    padding-top: 7rem;
+  }
+}

@@ -1,0 +1,185 @@
+{{ 'section-custom-homepage-tagline.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign heading_block = section.blocks | where: 'type', 'heading' | first
+  assign ticker_items = section.blocks | where: 'type', 'ticker_item'
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="tagline-banner color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="tagline-banner__content page-width">
+    {%- if section.settings.show_ornament -%}
+      <div class="tagline-banner__ornament" aria-hidden="true">
+        <img
+          src="{{ 'ornament.svg' | asset_url }}"
+          alt=""
+          width="163"
+          height="50"
+          loading="lazy"
+          class="tagline-banner__ornament-image"
+        >
+      </div>
+    {%- endif -%}
+
+    {%- if heading_block != blank -%}
+      <div class="tagline-banner__heading" {{ heading_block.shopify_attributes }}>
+        {%- if heading_block.settings.line_one != blank -%}
+          <p class="tagline-banner__line tagline-banner__line--primary">{{ heading_block.settings.line_one | escape }}</p>
+        {%- endif -%}
+        {%- if heading_block.settings.line_two != blank -%}
+          <p class="tagline-banner__line tagline-banner__line--emphasis">{{ heading_block.settings.line_two | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if ticker_items.size > 0 -%}
+    <div class="tagline-banner__divider" role="presentation"></div>
+
+    <ul class="tagline-banner__ticker-list visually-hidden">
+      {%- for block in ticker_items -%}
+        <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+      {%- endfor -%}
+    </ul>
+
+    <div class="tagline-banner__ticker" style="--tagline-banner-ticker-duration: {{ section.settings.ticker_speed }}s;">
+      <div class="tagline-banner__ticker-track" aria-hidden="true">
+        {%- comment -%} Each half repeats the phrase set enough times to outrun any viewport width, so the -50% loop never reveals empty space. {%- endcomment -%}
+        {%- for half in (1..2) -%}
+          <div class="tagline-banner__ticker-group">
+            {%- for repeat in (1..8) -%}
+              {%- for block in ticker_items -%}
+                <span class="tagline-banner__ticker-item">{{- block.settings.text | escape -}}</span>
+              {%- endfor -%}
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-homepage-tagline.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ornament",
+      "default": true,
+      "label": "t:sections.custom-homepage-tagline.settings.show_ornament.label"
+    },
+    {
+      "type": "range",
+      "id": "ticker_speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "t:sections.custom-homepage-tagline.settings.ticker_speed.label",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.custom-homepage-tagline.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "line_one",
+          "default": "t:sections.custom-homepage-tagline.blocks.heading.settings.line_one.default",
+          "label": "t:sections.custom-homepage-tagline.blocks.heading.settings.line_one.label"
+        },
+        {
+          "type": "text",
+          "id": "line_two",
+          "default": "t:sections.custom-homepage-tagline.blocks.heading.settings.line_two.default",
+          "label": "t:sections.custom-homepage-tagline.blocks.heading.settings.line_two.label"
+        }
+      ]
+    },
+    {
+      "type": "ticker_item",
+      "name": "t:sections.custom-homepage-tagline.blocks.ticker_item.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "t:sections.custom-homepage-tagline.blocks.ticker_item.settings.text.default",
+          "label": "t:sections.custom-homepage-tagline.blocks.ticker_item.settings.text.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-homepage-tagline.presets.name",
+      "blocks": [
+        { "type": "heading" },
+        {
+          "type": "ticker_item",
+          "settings": { "text": "Smooth, Sustained Energy" }
+        },
+        {
+          "type": "ticker_item",
+          "settings": { "text": "No Jitters. No Crash." }
+        },
+        {
+          "type": "ticker_item",
+          "settings": { "text": "Electrolytes for Balance" }
+        },
+        {
+          "type": "ticker_item",
+          "settings": { "text": "Calm, Directed Focus" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -12,22 +12,27 @@
   "type": "header",
   "sections": {
     "header": {
-      "type": "header",
+      "type": "custom-site-header",
+      "blocks": {
+        "shop": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "link": "shopify://collections/all"
+          }
+        },
+        "science": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Science",
+            "link": "shopify://pages/science"
+          }
+        }
+      },
+      "block_order": ["shop", "science"],
       "settings": {
-        "logo_position": "middle-left",
-        "mobile_logo_position": "center",
-        "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "enable_customer_avatar": true,
-        "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "wordmark_text": "POYSE",
+        "color_scheme": "scheme-3"
       }
     }
   },

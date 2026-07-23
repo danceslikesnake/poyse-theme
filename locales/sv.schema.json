@@ -812,6 +812,44 @@
         "name": "Homepage Hero"
       }
     },
+    "custom-homepage-tagline": {
+      "name": "Homepage Tagline",
+      "settings": {
+        "show_ornament": {
+          "label": "Show ornament icon"
+        },
+        "ticker_speed": {
+          "label": "Ticker scroll speed"
+        }
+      },
+      "blocks": {
+        "heading": {
+          "name": "Heading",
+          "settings": {
+            "line_one": {
+              "label": "Line one",
+              "default": "The goal is not to feel more wired."
+            },
+            "line_two": {
+              "label": "Line two",
+              "default": "It is to feel more capable."
+            }
+          }
+        },
+        "ticker_item": {
+          "name": "Ticker item",
+          "settings": {
+            "text": {
+              "label": "Text",
+              "default": "Smooth, Sustained Energy"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Homepage Tagline"
+      }
+    },
     "custom-liquid": {
       "name": "Anpassa Liquid",
       "settings": {
@@ -822,6 +860,28 @@
       },
       "presets": {
         "name": "Anpassa Liquid"
+      }
+    },
+    "custom-site-header": {
+      "name": "Site header",
+      "settings": {
+        "wordmark_text": {
+          "label": "Wordmark text"
+        }
+      },
+      "blocks": {
+        "nav_link": {
+          "name": "Navigation link",
+          "settings": {
+            "label": {
+              "label": "Label",
+              "default": "Link"
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
       }
     },
     "featured-blog": {
