@@ -279,6 +279,18 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
+        "custom_footer": {
+      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    },
+
+    "custom_featured_items": {
+      "subscription_legend": "Choose a purchase option",
+      "default_title": "Product",
+      "badges": {
+        "new_arrival": "New Arrival",
+        "best_seller": "Best Seller"
+      }
+    },
 
     "header": {
       "announcement": "告知",

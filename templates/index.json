@@ -142,78 +142,84 @@
       ],
       "settings": {}
     },
-    "image_banner": {
-      "type": "image-banner",
+    "homepage_featured_items": {
+      "type": "custom-featured-items",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "feature_item_1": {
+          "type": "feature_item",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "show_new_arrival_badge": true
           }
         },
-        "button": {
-          "type": "buttons",
+        "feature_item_2": {
+          "type": "feature_item",
+          "settings": {}
+        },
+        "feature_item_3": {
+          "type": "feature_item",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "show_new_arrival_badge": true,
+            "show_best_seller_badge": true
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "feature_item_1",
+        "feature_item_2",
+        "feature_item_3"
       ],
-      "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
+      "settings": {}
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
+    "homepage_meet_paraxanthine": {
+      "type": "custom-meet-paraxanthine",
+      "blocks": {
+        "content": {
+          "type": "content",
+          "settings": {}
+        },
+        "button": {
+          "type": "button",
+          "settings": {}
+        },
+        "stat_row_1": {
+          "type": "stat_row",
+          "settings": {
+            "label": "Adenosine Antagonism",
+            "description": "Equivalent to Caffeine",
+            "value": "92%"
+          }
+        },
+        "stat_row_2": {
+          "type": "stat_row",
+          "settings": {
+            "label": "Cortisol Elevation",
+            "description": "Vs. Caffeine at Equivalent Dose",
+            "value": "-34%"
+          }
+        },
+        "stat_row_3": {
+          "type": "stat_row",
+          "settings": {
+            "label": "Half-Life Duration",
+            "description": "Smooth Curve, No Hard Exit",
+            "value": "6-8h"
+          }
+        }
+      },
+      "block_order": [
+        "content",
+        "button",
+        "stat_row_1",
+        "stat_row_2",
+        "stat_row_3"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "homepage_hero",
     "homepage_tagline",
-    "image_banner",
-    "featured_collection"
+    "homepage_featured_items",
+    "homepage_meet_paraxanthine"
   ]
 }

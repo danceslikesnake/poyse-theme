@@ -1,0 +1,189 @@
+{{ 'section-custom-featured-items.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'feature-item.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign feature_items = section.blocks | where: 'type', 'feature_item'
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-border {
+    border-color: {{ section.settings.border_color | default: 'rgba(0,0,0,0.12)' }};
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="featured-items__outer page-width">
+  <div class="featured-items color-{{ section.settings.color_scheme }} section-{{ section.id }}-border section-{{ section.id }}-padding">
+    <div class="featured-items__grid">
+      {%- for block in feature_items -%}
+        {%- render 'custom-feature-item',
+          product: block.settings.product,
+          subtitle: block.settings.subtitle,
+          show_new_arrival_badge: block.settings.show_new_arrival_badge,
+          show_best_seller_badge: block.settings.show_best_seller_badge,
+          monthly_label: block.settings.monthly_label,
+          monthly_price: block.settings.monthly_price,
+          onetime_label: block.settings.onetime_label,
+          onetime_price: block.settings.onetime_price,
+          cta_label: block.settings.cta_label,
+          card_color_scheme: section.settings.card_color_scheme,
+          unique_key: block.id,
+          shopify_attributes: block.shopify_attributes
+        -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-featured-items.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "card_color_scheme",
+      "label": "t:sections.custom-featured-items.settings.card_color_scheme.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:sections.custom-featured-items.settings.border_color.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_item",
+      "name": "t:sections.custom-featured-items.blocks.feature_item.name",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.product.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subtitle",
+          "default": "t:sections.custom-featured-items.blocks.feature_item.settings.subtitle.default",
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.subtitle.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.custom-featured-items.blocks.feature_item.settings.header_badges.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_new_arrival_badge",
+          "default": false,
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.show_new_arrival_badge.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_best_seller_badge",
+          "default": false,
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.show_best_seller_badge.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.custom-featured-items.blocks.feature_item.settings.header_subscription.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.custom-featured-items.blocks.feature_item.settings.paragraph.content"
+        },
+        {
+          "type": "text",
+          "id": "monthly_label",
+          "default": "t:sections.custom-featured-items.blocks.feature_item.settings.monthly_label.default",
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.monthly_label.label"
+        },
+        {
+          "type": "text",
+          "id": "monthly_price",
+          "default": "t:sections.custom-featured-items.blocks.feature_item.settings.monthly_price.default",
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.monthly_price.label"
+        },
+        {
+          "type": "text",
+          "id": "onetime_label",
+          "default": "t:sections.custom-featured-items.blocks.feature_item.settings.onetime_label.default",
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.onetime_label.label"
+        },
+        {
+          "type": "text",
+          "id": "onetime_price",
+          "default": "t:sections.custom-featured-items.blocks.feature_item.settings.onetime_price.default",
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.onetime_price.label"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "default": "t:sections.custom-featured-items.blocks.feature_item.settings.cta_label.default",
+          "label": "t:sections.custom-featured-items.blocks.feature_item.settings.cta_label.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-featured-items.presets.name",
+      "blocks": [
+        {
+          "type": "feature_item",
+          "settings": { "show_new_arrival_badge": true }
+        },
+        {
+          "type": "feature_item"
+        },
+        {
+          "type": "feature_item",
+          "settings": { "show_new_arrival_badge": true, "show_best_seller_badge": true }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

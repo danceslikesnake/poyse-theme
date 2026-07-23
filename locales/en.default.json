@@ -288,6 +288,19 @@
       "subscription_legend": "Choose a purchase option"
     },
 
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
+    },
+
+    "custom_featured_items": {
+      "subscription_legend": "Choose a purchase option",
+      "default_title": "Product",
+      "badges": {
+        "new_arrival": "New Arrival",
+        "best_seller": "Best Seller"
+      }
+    },
+
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",

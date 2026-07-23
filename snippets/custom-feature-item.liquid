@@ -1,0 +1,90 @@
+{%- comment -%}
+  Renders a single featured-product card (image, title, subtitle, purchase-option
+  toggle, CTA). Self-contained and reusable outside of custom-featured-items.liquid.
+
+  Accepts:
+  - product: {Object} product resource (image/title/url source)
+  - subtitle: {String} rich text subtitle, e.g. "with Paraxanthine <em>for Daily Momentum</em>"
+  - show_new_arrival_badge: {Boolean}
+  - show_best_seller_badge: {Boolean}
+  - monthly_label: {String}
+  - monthly_price: {String}
+  - onetime_label: {String}
+  - onetime_price: {String}
+  - cta_label: {String}
+  - card_color_scheme: {String} color scheme id for the image tile, e.g. "scheme-2"
+  - unique_key: {String} unique id fragment for radio input names/ids
+  - shopify_attributes: {String} optional, pass block.shopify_attributes when called from a block loop
+{%- endcomment -%}
+
+<feature-item class="feature-item" {{ shopify_attributes }}>
+  <div class="feature-item__media color-{{ card_color_scheme }}">
+    {%- if show_new_arrival_badge or show_best_seller_badge -%}
+      <div class="feature-item__badges">
+        {%- if show_new_arrival_badge -%}
+          <span class="feature-item__badge">{{ 'sections.custom_featured_items.badges.new_arrival' | t }}</span>
+        {%- endif -%}
+        {%- if show_best_seller_badge -%}
+          <span class="feature-item__badge">{{ 'sections.custom_featured_items.badges.best_seller' | t }}</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <a href="{% if product %}{{ product.url }}{% else %}#{% endif %}" class="feature-item__media-link" tabindex="-1" aria-hidden="true">
+      {%- if product.featured_image -%}
+        {{
+          product.featured_image
+          | image_url: width: 800
+          | image_tag:
+            loading: 'lazy',
+            widths: '375, 550, 750, 800',
+            sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+            class: 'feature-item__image',
+            alt: product.featured_image.alt | default: product.title
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+  </div>
+
+  <div class="feature-item__info">
+    <a href="{% if product %}{{ product.url }}{% else %}#{% endif %}" class="feature-item__title">
+      {%- if product -%}
+        {{- product.title | escape -}}
+      {%- else -%}
+        {{- 'sections.custom_featured_items.default_title' | t -}}
+      {%- endif -%}
+    </a>
+    {%- if subtitle != blank -%}
+      <div class="feature-item__subtitle inline-richtext">{{ subtitle }}</div>
+    {%- endif -%}
+
+    <fieldset class="feature-item__subscription">
+      <legend class="visually-hidden">{{ 'sections.custom_featured_items.subscription_legend' | t }}</legend>
+      <label class="feature-item__subscription-option">
+        <input
+          type="radio"
+          name="Subscription-{{ unique_key }}"
+          data-subscription-option
+          data-cta-text="{{ cta_label | append: ' - ' | append: monthly_price }}"
+          checked
+        >
+        {{- monthly_label | escape -}}
+      </label>
+      <label class="feature-item__subscription-option">
+        <input
+          type="radio"
+          name="Subscription-{{ unique_key }}"
+          data-subscription-option
+          data-cta-text="{{ cta_label | append: ' - ' | append: onetime_price }}"
+        >
+        {{- onetime_label | escape -}}
+      </label>
+    </fieldset>
+
+    <button type="button" class="button button--primary feature-item__cta" data-cta>
+      {{- cta_label | append: ' - ' | append: monthly_price -}}
+    </button>
+  </div>
+</feature-item>

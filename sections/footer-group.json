@@ -11,25 +11,80 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "email_footer": {
+      "type": "custom-email-footer",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {}
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {}
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
+      "settings": {}
+    },
     "footer": {
-      "type": "footer",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "type": "custom-footer",
+      "blocks": {
+        "nav_link_1": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop"
+          }
+        },
+        "nav_link_2": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Science"
+          }
+        },
+        "policy_link_1": {
+          "type": "policy_link",
+          "settings": {
+            "label": "Terms of Service"
+          }
+        },
+        "policy_link_2": {
+          "type": "policy_link",
+          "settings": {
+            "label": "Cookie Preferences"
+          }
+        },
+        "policy_link_3": {
+          "type": "policy_link",
+          "settings": {
+            "label": "Privacy Policy"
+          }
+        },
+        "disclaimer": {
+          "type": "disclaimer",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "nav_link_1",
+        "nav_link_2",
+        "policy_link_1",
+        "policy_link_2",
+        "policy_link_3",
+        "disclaimer"
+      ],
+      "settings": {}
     }
   },
   "order": [
+    "email_footer",
     "footer"
   ]
 }
