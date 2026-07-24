@@ -188,6 +188,84 @@
       ],
       "settings": {}
     },
+    "homepage_benefits": {
+      "type": "custom-benefits",
+      "blocks": {
+        "content": {
+          "type": "content",
+          "settings": {}
+        },
+        "stack_image_1": {
+          "type": "stack_image",
+          "settings": {}
+        },
+        "stack_image_2": {
+          "type": "stack_image",
+          "settings": {}
+        },
+        "stack_image_3": {
+          "type": "stack_image",
+          "settings": {}
+        },
+        "stack_image_4": {
+          "type": "stack_image",
+          "settings": {}
+        },
+        "stack_image_5": {
+          "type": "stack_image",
+          "settings": {}
+        },
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Smooth, Sustained Energy",
+            "meta": "200mg per serving",
+            "heading": "Paraxanthine",
+            "text": "<p>The primary active metabolite of caffeine, isolated. Same alertness signal. Smoother rise. More measured exit. No metabolic guesswork.</p>"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Calm, Directed Focus",
+            "meta": "500mg L-Tyrosine · 200mg L-Theanine",
+            "heading": "L-Tyrosine + L-Theanine",
+            "text": "<p>L-Tyrosine supports the neurotransmitters behind mental drive. L-Theanine softens the edge without dulling the clarity. Together, they keep focus pointed rather than scattered.</p>"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Hydration that Holds",
+            "meta": "Balanced electrolyte complex",
+            "heading": "Electrolytes",
+            "text": "<p>Sodium, potassium, and magnesium to maintain fluid balance throughout the day. Energy that does not account for hydration is energy that does not last.</p>"
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Performance Support",
+            "meta": "2000mg L-Citrulline",
+            "heading": "L-Citrulline",
+            "text": "<p>Helps support blood flow and performance your day calls for movement or sustained output. Giving energy a physical side, so it is not just about feeling alert, but also feeling ready to perform.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "content",
+        "stack_image_1",
+        "stack_image_2",
+        "stack_image_3",
+        "stack_image_4",
+        "stack_image_5",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ],
+      "settings": {}
+    },
     "homepage_community": {
       "type": "custom-community",
       "blocks": {
@@ -242,6 +320,7 @@
     "homepage_tagline",
     "homepage_featured_items",
     "homepage_meet_paraxanthine",
+    "homepage_benefits",
     "homepage_community"
   ]
 }

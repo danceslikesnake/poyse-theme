@@ -812,6 +812,52 @@
         "name": "Homepage Hero"
       }
     },
+    "custom-benefits": {
+      "name": "Benefits",
+      "blocks": {
+        "content": {
+          "name": "Content",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "Clarity over noise. <em>In everything.</em>"
+            }
+          }
+        },
+        "stack_image": {
+          "name": "Stack image",
+          "settings": {
+            "image": {
+              "label": "Image"
+            }
+          }
+        },
+        "benefit": {
+          "name": "Benefit",
+          "settings": {
+            "eyebrow": {
+              "label": "Eyebrow",
+              "default": "Benefit"
+            },
+            "meta": {
+              "label": "Meta text",
+              "default": "Meta detail"
+            },
+            "heading": {
+              "label": "Heading",
+              "default": "Ingredient"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Describe this ingredient and the benefit it provides.</p>"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Benefits"
+      }
+    },
     "custom-community": {
       "name": "Community",
       "settings": {

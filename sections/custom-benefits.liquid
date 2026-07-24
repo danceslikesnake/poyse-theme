@@ -1,0 +1,203 @@
+{{ 'section-custom-benefits.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'benefits-progress.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign content_block = section.blocks | where: 'type', 'content' | first
+  assign stack_images = section.blocks | where: 'type', 'stack_image'
+  assign benefit_blocks = section.blocks | where: 'type', 'benefit'
+-%}
+
+<benefits-progress class="benefits color-{{ section.settings.color_scheme }} gradient">
+  <div class="benefits__grid" data-benefits-grid>
+    <div class="benefits__left" data-benefits-left>
+      {%- if content_block != blank and content_block.settings.heading != blank -%}
+        <p class="benefits__heading inline-richtext" {{ content_block.shopify_attributes }}>
+          {{- content_block.settings.heading -}}
+        </p>
+      {%- endif -%}
+
+      {%- if stack_images.size > 0 -%}
+        <div class="benefits__body">
+          <div class="benefits__progress" data-benefits-progress hidden>
+            <div class="benefits__progress-track" data-benefits-progress-track>
+              <div class="benefits__progress-thumb" data-benefits-progress-thumb>&#8203;</div>
+            </div>
+          </div>
+
+          <div class="benefits__stack" aria-hidden="true">
+            <div class="benefits__stack-track">
+              {%- for repeat in (1..2) -%}
+                <div class="benefits__stack-group">
+                  {%- for block in stack_images -%}
+                    <div class="benefits__stack-item">
+                      {%- if block.settings.image != blank -%}
+                        {{
+                          block.settings.image
+                          | image_url: width: 700
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '300, 500, 700',
+                            sizes: '20vw',
+                            class: 'benefits__stack-image'
+                        }}
+                      {%- else -%}
+                        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg benefits__stack-image' }}
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if benefit_blocks.size > 0 -%}
+      <div class="benefits__right">
+        {%- for block in benefit_blocks -%}
+          <div class="benefits__card" {{ block.shopify_attributes }}>
+            <div class="benefits__card-top">
+              {%- if block.settings.eyebrow != blank -%}
+                <span class="benefits__card-eyebrow">{{ block.settings.eyebrow | escape }}</span>
+              {%- endif -%}
+              {%- if block.settings.meta != blank -%}
+                <span class="benefits__card-meta">{{ block.settings.meta | escape }}</span>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.heading != blank -%}
+              <p class="benefits__card-heading">{{ block.settings.heading | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="benefits__card-text rte">{{ block.settings.text }}</div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</benefits-progress>
+
+{% schema %}
+{
+  "name": "t:sections.custom-benefits.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "t:sections.custom-benefits.blocks.content.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.custom-benefits.blocks.content.settings.heading.default",
+          "label": "t:sections.custom-benefits.blocks.content.settings.heading.label"
+        }
+      ]
+    },
+    {
+      "type": "stack_image",
+      "name": "t:sections.custom-benefits.blocks.stack_image.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.custom-benefits.blocks.stack_image.settings.image.label"
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "t:sections.custom-benefits.blocks.benefit.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "default": "t:sections.custom-benefits.blocks.benefit.settings.eyebrow.default",
+          "label": "t:sections.custom-benefits.blocks.benefit.settings.eyebrow.label"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "default": "t:sections.custom-benefits.blocks.benefit.settings.meta.default",
+          "label": "t:sections.custom-benefits.blocks.benefit.settings.meta.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-benefits.blocks.benefit.settings.heading.default",
+          "label": "t:sections.custom-benefits.blocks.benefit.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-benefits.blocks.benefit.settings.text.default",
+          "label": "t:sections.custom-benefits.blocks.benefit.settings.text.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-benefits.presets.name",
+      "blocks": [
+        { "type": "content" },
+        { "type": "stack_image" },
+        { "type": "stack_image" },
+        { "type": "stack_image" },
+        { "type": "stack_image" },
+        { "type": "stack_image" },
+        {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Smooth, Sustained Energy",
+            "meta": "200mg per serving",
+            "heading": "Paraxanthine",
+            "text": "<p>The primary active metabolite of caffeine, isolated. Same alertness signal. Smoother rise. More measured exit. No metabolic guesswork.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Calm, Directed Focus",
+            "meta": "500mg L-Tyrosine · 200mg L-Theanine",
+            "heading": "L-Tyrosine + L-Theanine",
+            "text": "<p>L-Tyrosine supports the neurotransmitters behind mental drive. L-Theanine softens the edge without dulling the clarity. Together, they keep focus pointed rather than scattered.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Hydration that Holds",
+            "meta": "Balanced electrolyte complex",
+            "heading": "Electrolytes",
+            "text": "<p>Sodium, potassium, and magnesium to maintain fluid balance throughout the day. Energy that does not account for hydration is energy that does not last.</p>"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "eyebrow": "Performance Support",
+            "meta": "2000mg L-Citrulline",
+            "heading": "L-Citrulline",
+            "text": "<p>Helps support blood flow and performance your day calls for movement or sustained output. Giving energy a physical side, so it is not just about feeling alert, but also feeling ready to perform.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
