@@ -11,7 +11,21 @@
 >
   <div class="site-header__inner">
     <a href="{{ routes.root_url }}" class="site-header__wordmark">
-      {{- section.settings.wordmark_text | escape -}}
+      <img
+        src="{{ 'poyse-logo-white.svg' | asset_url }}"
+        alt="{{ section.settings.wordmark_text | escape }}"
+        class="site-header__wordmark-logo site-header__wordmark-logo--white"
+        width="663"
+        height="175"
+      >
+      <img
+        src="{{ 'poyse-logo-black.svg' | asset_url }}"
+        alt=""
+        aria-hidden="true"
+        class="site-header__wordmark-logo site-header__wordmark-logo--black"
+        width="663"
+        height="175"
+      >
     </a>
 
     <nav class="site-header__nav">

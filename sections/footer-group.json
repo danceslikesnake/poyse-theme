@@ -32,7 +32,9 @@
         "paragraph",
         "email_form"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-poyse-1"
+      }
     },
     "footer": {
       "type": "custom-footer",
@@ -80,7 +82,9 @@
         "policy_link_3",
         "disclaimer"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-poyse-3"
+      }
     }
   },
   "order": [

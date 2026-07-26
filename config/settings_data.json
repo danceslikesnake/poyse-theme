@@ -67,6 +67,50 @@
             "secondary_button_label": "#FFFFFF",
             "shadow": "#121212"
           }
+        },
+        "scheme-poyse-1": {
+          "settings": {
+            "background": "#692830",
+            "background_gradient": "",
+            "text": "#FFFFFF",
+            "button": "#392C2D",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#FFFFFF",
+            "shadow": "#121212"
+          }
+        },
+        "scheme-poyse-2": {
+          "settings": {
+            "background": "#DBCEC4",
+            "background_gradient": "",
+            "text": "#392C2D",
+            "button": "#392C2D",
+            "button_label": "#DBCEC4",
+            "secondary_button_label": "#392C2D",
+            "shadow": "#121212"
+          }
+        },
+        "scheme-poyse-3": {
+          "settings": {
+            "background": "#392C2D",
+            "background_gradient": "",
+            "text": "#DBCEC4",
+            "button": "#DBCEC4",
+            "button_label": "#392C2D",
+            "secondary_button_label": "#DBCEC4",
+            "shadow": "#121212"
+          }
+        },
+        "scheme-poyse-4": {
+          "settings": {
+            "background": "#FFFFFF",
+            "background_gradient": "",
+            "text": "#392C2D",
+            "button": "#DBCEC4",
+            "button_label": "#392C2D",
+            "secondary_button_label": "#DBCEC4",
+            "shadow": "#121212"
+          }
         }
       },
       "type_header_font": "assistant_n4",

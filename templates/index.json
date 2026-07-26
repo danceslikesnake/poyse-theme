@@ -99,7 +99,9 @@
         "product_info",
         "subscription"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-poyse-1"
+      }
     },
     "homepage_tagline": {
       "type": "custom-homepage-tagline",
@@ -140,7 +142,9 @@
         "ticker_item_3",
         "ticker_item_4"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-poyse-1"
+      }
     },
     "homepage_featured_items": {
       "type": "custom-featured-items",
@@ -264,7 +268,9 @@
         "benefit_3",
         "benefit_4"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-poyse-1"
+      }
     },
     "homepage_community": {
       "type": "custom-community",
@@ -312,7 +318,9 @@
         "gallery_item_4",
         "gallery_item_5"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-poyse-2"
+      }
     }
   },
   "order": [

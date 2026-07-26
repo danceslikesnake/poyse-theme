@@ -4,8 +4,9 @@
   --poyse-bare-form: #dbcec4;
   --poyse-evening-fig: #392c2d;
 
-  --wordmark-size-large: clamp(6rem, 19vw, 44rem);
-  --wordmark-size-small: clamp(1.6rem, 2.6vw, 2.2rem);
+  /* Widths derived from the old text-based sizes (font-size * logo aspect ratio 663:175) so the scroll animation keeps the same feel now that a logo image replaces the wordmark text. */
+  --wordmark-size-large: clamp(22.7rem, 72vw, 166rem);
+  --wordmark-size-small: clamp(6rem, 9.8vw, 8.3rem);
   --header-progress: 1;
 
   position: fixed;
@@ -32,19 +33,51 @@
 }
 
 .site-header__wordmark {
+  position: relative;
+  display: block;
   max-width: 60%;
-  font-size: calc(var(--wordmark-size-small) + (var(--wordmark-size-large) - var(--wordmark-size-small)) * (1 - var(--header-progress)));
-  line-height: 1;
-  color: var(--poyse-evening-fig);
+  width: calc(var(--wordmark-size-small) + (var(--wordmark-size-large) - var(--wordmark-size-small)) * (1 - var(--header-progress)));
   text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: color 0.2s ease;
 }
 
-.site-header--animated:not(.is-past-hero) .site-header__wordmark {
-  color: var(--poyse-white);
+/* The homepage hero splits into a 50/50 grid at 750px (see .hero-showcase__grid),
+   so the pre-scroll logo width is capped to the left column's edge (50vw minus
+   the header's own left padding) instead of the page-wide 72vw default above. */
+@media screen and (min-width: 750px) {
+  .site-header {
+    --wordmark-size-large: clamp(22.7rem, calc(50vw - 5rem), 83rem);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .site-header {
+    --wordmark-size-large: clamp(22.7rem, calc(50vw - 8rem), 83rem);
+  }
+}
+
+.site-header__wordmark-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.2s ease;
+}
+
+.site-header__wordmark-logo--white {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.site-header__wordmark-logo--black {
+  opacity: 1;
+}
+
+.site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--white {
+  opacity: 1;
+}
+
+.site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--black {
+  opacity: 0;
 }
 
 .site-header__nav {
