@@ -32,26 +32,29 @@
   }
 }
 
+/* Below 1024px the nav swaps to its mobile layout, so the wordmark stays at its
+   normal (small) size always — no scroll-driven grow/shrink effect there. */
 .site-header__wordmark {
   position: relative;
   display: block;
   max-width: 60%;
-  width: calc(var(--wordmark-size-small) + (var(--wordmark-size-large) - var(--wordmark-size-small)) * (1 - var(--header-progress)));
+  width: var(--wordmark-size-small);
   text-decoration: none;
 }
 
-/* The homepage hero splits into a 50/50 grid at 750px (see .hero-showcase__grid),
-   so the pre-scroll logo width is capped to the left column's edge (50vw minus
-   the header's own left padding) instead of the page-wide 72vw default above. */
-@media screen and (min-width: 750px) {
-  .site-header {
-    --wordmark-size-large: clamp(22.7rem, calc(50vw - 5rem), 83rem);
+@media screen and (min-width: 1024px) {
+  .site-header__wordmark {
+    width: calc(var(--wordmark-size-small) + (var(--wordmark-size-large) - var(--wordmark-size-small)) * (1 - var(--header-progress)));
   }
-}
 
-@media screen and (min-width: 990px) {
+  /* The homepage hero splits into a 50/50 grid (see .hero-showcase__grid, whose
+     only offset from the viewport is .hero-showcase's 0.8rem padding), so the
+     pre-scroll logo is sized as a fixed proportion of that column's real width —
+     scaling continuously with it at any viewport size, always a bit smaller, with
+     no upper bound. The floor only guards the lower end of this range, where 85%
+     of the column would otherwise dip below a legible minimum. */
   .site-header {
-    --wordmark-size-large: clamp(22.7rem, calc(50vw - 8rem), 83rem);
+    --wordmark-size-large: max(22.7rem, calc((50vw - 0.8rem) * 0.85));
   }
 }
 
