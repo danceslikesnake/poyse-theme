@@ -10,6 +10,11 @@
   position: relative;
   aspect-ratio: 21 / 9;
   min-height: 42rem;
+
+  @media screen and (max-width: 767px) {
+    aspect-ratio: auto;
+    min-height: 56rem;
+  }
 }
 
 .meet-paraxanthine__image,
@@ -26,6 +31,11 @@
   top: 2rem;
   right: 2rem;
   z-index: 2;
+
+  @media screen and (max-width: 767px) {
+    top: 1.2rem;
+    right: 1.2rem;
+  }
 }
 
 .meet-paraxanthine__card {
@@ -41,6 +51,13 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   color: rgb(255, 255, 255);
+
+  @media screen and (max-width: 767px) {
+    position: static;
+    max-width: none;
+    width: auto;
+    margin: 1.6rem;
+  }
 }
 
 .meet-paraxanthine__heading {
@@ -52,23 +69,4 @@
 .meet-paraxanthine__text {
   font-size: 1.4rem;
   line-height: 1.55;
-}
-
-@media screen and (max-width: 767px) {
-  .meet-paraxanthine__media {
-    aspect-ratio: auto;
-    min-height: 56rem;
-  }
-
-  .meet-paraxanthine__card {
-    position: static;
-    max-width: none;
-    width: auto;
-    margin: 1.6rem;
-  }
-
-  .meet-paraxanthine__button {
-    top: 1.2rem;
-    right: 1.2rem;
-  }
 }

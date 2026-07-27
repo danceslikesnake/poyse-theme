@@ -6,6 +6,10 @@
   display: grid;
   grid-template-columns: minmax(26rem, 45%) 1fr;
   align-items: start;
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .benefits__left {
@@ -17,6 +21,10 @@
   flex-direction: column;
   gap: 3.2rem;
   padding: 4rem;
+
+  @media screen and (max-width: 767px) {
+    padding: 3.2rem 2.4rem 2.4rem;
+  }
 }
 
 .benefits__heading {
@@ -38,6 +46,10 @@
   flex-shrink: 0;
   width: 1px;
   background: rgb(255 255 255 / 0.25);
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 }
 
 .benefits__progress-track {
@@ -71,10 +83,8 @@
   flex-direction: column;
   width: 100%;
   animation: benefits-stack-scroll 24s linear infinite;
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .benefits__stack-track {
+  @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
 }
@@ -120,6 +130,10 @@
   flex-direction: column;
   gap: 2rem;
   padding: 4rem;
+
+  @media screen and (max-width: 767px) {
+    padding: 0 2.4rem 3.2rem;
+  }
 }
 
 .benefits__card {
@@ -150,22 +164,4 @@
   font-size: 1.4rem;
   line-height: 1.55;
   opacity: 0.8;
-}
-
-@media screen and (max-width: 767px) {
-  .benefits__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .benefits__left {
-    padding: 3.2rem 2.4rem 2.4rem;
-  }
-
-  .benefits__progress {
-    display: none;
-  }
-
-  .benefits__right {
-    padding: 0 2.4rem 3.2rem;
-  }
 }

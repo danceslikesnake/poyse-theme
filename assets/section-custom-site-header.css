@@ -12,6 +12,13 @@
   position: fixed;
   inset: 0 0 auto 0;
   z-index: 400;
+
+  /* Pre-scroll (large) size is the wordmark's calc(50vw - 44px) desktop width;
+     --header-progress (set by site-header.js on scroll) shrinks it down to
+     --wordmark-size-small. */
+  @media screen and (min-width: 1024px) {
+    --wordmark-size-large: calc(50vw - 44px);
+  }
 }
 
 .site-header--animated {
@@ -26,10 +33,8 @@
   margin: 18px 22px;
   background: white;
   border-radius: 36px;
-}
 
-@media screen and (min-width: 1024px) {
-  .site-header__inner {
+  @media screen and (min-width: 1024px) {
     background: none;
     border-radius: 0;
     align-items: flex-start;
@@ -42,19 +47,11 @@
   max-width: 60%;
   width: 60px;
   text-decoration: none;
-  margin-left: 12px
-}
+  margin-left: 12px;
 
-@media screen and (min-width: 1024px) {
-  .site-header__wordmark {
+  @media screen and (min-width: 1024px) {
     width: calc(var(--wordmark-size-small) + (var(--wordmark-size-large) - var(--wordmark-size-small)) * (1 - var(--header-progress)));
     margin-left: 0;
-  }
-
-  /* Pre-scroll (large) size is your new calc(50vw - 44px) value; --header-progress
-     (set by site-header.js on scroll) shrinks it down to --wordmark-size-small. */
-  .site-header {
-    --wordmark-size-large: calc(50vw - 44px);
   }
 }
 
@@ -77,21 +74,19 @@
 
 .site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--white {
   opacity: 1;
+
+  /* Below desktop the wordmark is a static width and the header always has its
+     white background (see .site-header__inner above), so the white logo variant
+     has no hero image to sit over and would be invisible against that background. */
+  @media screen and (max-width: 1023px) {
+    opacity: 0;
+  }
 }
 
 .site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--black {
   opacity: 0;
-}
 
-/* Below desktop the wordmark is a static width and the header always has its
-   white background (see .site-header__inner above), so the white logo variant
-   has no hero image to sit over and would be invisible against that background. */
-@media screen and (max-width: 1023px) {
-  .site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--white {
-    opacity: 0;
-  }
-
-  .site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--black {
+  @media screen and (max-width: 1023px) {
     opacity: 1;
   }
 }
@@ -146,10 +141,8 @@
    is designed to sit behind it) needs top padding to clear it. */
 main[data-template]:not([data-template='index']) {
   padding-top: 6.2rem;
-}
 
-@media screen and (min-width: 1024px) {
-  main[data-template]:not([data-template='index']) {
+  @media screen and (min-width: 1024px) {
     padding-top: 7rem;
   }
 }

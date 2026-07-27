@@ -60,10 +60,8 @@
   display: flex;
   width: max-content;
   animation: tagline-banner-scroll var(--tagline-banner-ticker-duration, 30s) linear infinite;
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .tagline-banner__ticker-track {
+  @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
 }

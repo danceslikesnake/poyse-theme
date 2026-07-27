@@ -69,7 +69,9 @@
           {%- endif -%}
         </div>
       {%- endif -%}
+    </div>
 
+    <div class="hero-showcase__contentPosition">
       {%- if content_block != blank -%}
         <div class="hero-showcase__content" {{ content_block.shopify_attributes }}>
           {%- if content_block.settings.eyebrow != blank -%}
@@ -83,29 +85,29 @@
 
       {%- if buttons_block != blank -%}
         <div
-          class="hero-showcase__buttons{% if buttons_block.settings.button_label_1 != blank and buttons_block.settings.button_label_2 != blank %} hero-showcase__buttons--multiple{% endif %}"
-          {{ buttons_block.shopify_attributes }}
+                class="hero-showcase__buttons{% if buttons_block.settings.button_label_1 != blank and buttons_block.settings.button_label_2 != blank %} hero-showcase__buttons--multiple{% endif %}"
+                {{ buttons_block.shopify_attributes }}
         >
           {%- if buttons_block.settings.button_label_1 != blank -%}
             <a
-              {% if buttons_block.settings.button_link_1 == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ buttons_block.settings.button_link_1 }}"
-              {% endif %}
-              class="button{% if buttons_block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                    {% if buttons_block.settings.button_link_1 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ buttons_block.settings.button_link_1 }}"
+                    {% endif %}
+                    class="button{% if buttons_block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
             >
               {{- buttons_block.settings.button_label_1 | escape -}}
             </a>
           {%- endif -%}
           {%- if buttons_block.settings.button_label_2 != blank -%}
             <a
-              {% if buttons_block.settings.button_link_2 == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ buttons_block.settings.button_link_2 }}"
-              {% endif %}
-              class="button{% if buttons_block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                    {% if buttons_block.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ buttons_block.settings.button_link_2 }}"
+                    {% endif %}
+                    class="button{% if buttons_block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
             >
               {{- buttons_block.settings.button_label_2 | escape -}}
             </a>

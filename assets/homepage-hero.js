@@ -6,8 +6,7 @@ class HomepageHero extends HTMLElement {
   }
 
   connectedCallback() {
-    this.initRotator(this.querySelectorAll('[data-slide]'), Number(this.dataset.slideInterval) || 5000);
-    this.initRotator(this.querySelectorAll('[data-cycle-word]'), Number(this.dataset.cycleInterval) || 2600);
+    this.initShowcaseRotator();
     this.initFlavorSwitcher();
     this.initSubscriptionSwitcher();
   }
@@ -16,14 +15,24 @@ class HomepageHero extends HTMLElement {
     this.timers.forEach((timer) => clearInterval(timer));
   }
 
-  initRotator(items, interval) {
-    if (items.length < 2 || this.reducedMotion) return;
+  initShowcaseRotator() {
+    const slides = this.querySelectorAll('[data-slide]');
+    const cycleWords = this.querySelectorAll('[data-cycle-word]');
+    const itemCount = Math.max(slides.length, cycleWords.length);
+    if (itemCount < 2 || this.reducedMotion) return;
 
+    // Image transition speed is the baseline; the cycle word advances in lockstep with it.
+    const interval = Number(this.dataset.slideInterval) || 5000;
     let index = 0;
+
     const timer = setInterval(() => {
-      items[index].classList.remove('is-active');
-      index = (index + 1) % items.length;
-      items[index].classList.add('is-active');
+      if (slides.length) slides[index % slides.length].classList.remove('is-active');
+      if (cycleWords.length) cycleWords[index % cycleWords.length].classList.remove('is-active');
+
+      index = (index + 1) % itemCount;
+
+      if (slides.length) slides[index % slides.length].classList.add('is-active');
+      if (cycleWords.length) cycleWords[index % cycleWords.length].classList.add('is-active');
     }, interval);
 
     this.timers.push(timer);
