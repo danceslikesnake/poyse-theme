@@ -44,6 +44,7 @@
 
   img, svg {
     border-radius: 10px;
+    opacity: 0.75
   }
 }
 
@@ -70,18 +71,22 @@
 }
 
 .hero-showcase__heading-wrap {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
   z-index: 3;
-  margin: auto 0 0;
-  padding: 0 3rem 12rem;
   text-align: center;
   color: rgb(255, 255, 255);
 }
 
 .hero-showcase__heading {
   margin: 0;
+  font-family: 'SignifierLightItalic', serif;
+  font-weight: 300;
   font-style: italic;
-  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  font-size: 32px;
   line-height: 1.15;
 }
 
@@ -90,38 +95,66 @@
   display: block;
   min-height: 1.3em;
   margin-top: 0.4rem;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 300;
+}
+
+@media screen and (min-width: 1024px) {
+  .hero-showcase__heading, .hero-showcase__cycle {
+    font-size: clamp(2.6rem, 5vw, 4.6rem);
+  }
 }
 
 .hero-showcase__cycle-word {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transform: translateX(-12px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+  visibility: hidden;
 }
 
 .hero-showcase__cycle-word.is-active {
   position: relative;
-  opacity: 1;
-  transform: translateX(0);
+  visibility: visible;
+}
+
+.hero-showcase__cycle-letter {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+}
+
+.hero-showcase__cycle-word.is-active .hero-showcase__cycle-letter {
+  animation: hero-showcase-letter-in 0.45s ease forwards;
+  animation-delay: calc(var(--letter-index) * 0.04s);
+}
+
+@keyframes hero-showcase-letter-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-showcase__cycle-word.is-active .hero-showcase__cycle-letter {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .hero-showcase__content {
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 44rem;
-  padding: 0 3rem;
+  max-width: 60%;
+  padding: 0 0 22px 44px;
   color: rgb(255, 255, 255);
 }
 
 .hero-showcase__eyebrow {
   margin: 0 0 1rem;
   font-size: 1.4rem;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-family: 'EsBuildMedium', sans-serif;
+  font-weight: 300;
   letter-spacing: 0.08rem;
 }
 
@@ -139,16 +172,18 @@
   align-items: center;
   gap: 1.5rem 2rem;
   width: 100%;
-  padding: 0 3rem 3rem;
+  padding: 0 44px 44px;
 }
-
-@media screen and (min-width: 1024px) {
-  .hero-showcase__heading-wrap,
-  .hero-showcase__content,
-  .hero-showcase__buttons {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
+.hero-showcase__buttons .button--primary, .hero-showcase__buttons .button--secondary {
+  padding: 0 12px;
+  margin: 0;
+  line-height: 35px;
+  height: 35px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-family: 'EsBuildBold', sans-serif;
+  text-transform: uppercase;
+  border: none;
 }
 
 /* ---------- Right: product showcase ---------- */

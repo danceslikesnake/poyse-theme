@@ -35,19 +35,19 @@
         "cycle_word_1": {
           "type": "cycle_word",
           "settings": {
-            "text": "Steady momentum"
+            "text": "steady momentum"
           }
         },
         "cycle_word_2": {
           "type": "cycle_word",
           "settings": {
-            "text": "Focused control"
+            "text": "focused control"
           }
         },
         "cycle_word_3": {
           "type": "cycle_word",
           "settings": {
-            "text": "Clear intention"
+            "text": "clear intention"
           }
         },
         "content": {
@@ -61,10 +61,10 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Shop controlled energy",
-            "button_link_1": "",
+            "button_link_1": "/collections/all",
             "button_style_secondary_1": false,
             "button_label_2": "What is paraxanthine?",
-            "button_link_2": "",
+            "button_link_2": "/pages/science",
             "button_style_secondary_2": true
           }
         },

@@ -55,8 +55,14 @@
           {%- if cycle_words.size > 0 -%}
             <span class="hero-showcase__cycle">
               {%- for block in cycle_words -%}
+                {%- assign cycle_letters = block.settings.text | split: '' -%}
                 <span class="hero-showcase__cycle-word{% if forloop.first %} is-active{% endif %}" data-cycle-word {{ block.shopify_attributes }}>
-                  {{- block.settings.text | escape -}}
+                  <span class="visually-hidden">{{- block.settings.text | escape -}}</span>
+                  <span class="hero-showcase__cycle-letters" aria-hidden="true">
+                    {%- for letter in cycle_letters -%}
+                      <span class="hero-showcase__cycle-letter" style="--letter-index: {{ forloop.index0 }}">{{- letter | escape -}}</span>
+                    {%- endfor -%}
+                  </span>
                 </span>
               {%- endfor -%}
             </span>

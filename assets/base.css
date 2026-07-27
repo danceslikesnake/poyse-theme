@@ -81,6 +81,15 @@ collection-component {
 
 /* base */
 
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;
@@ -3609,7 +3618,9 @@ details-disclosure > details {
 
 @font-face {
   font-family: 'SignifierLight';
-  src: url('{{ "signifier-light.woff2" | asset_url }}') format('woff2');
+  src:
+    url('signifier-light.woff2') format('woff2'),
+    url('signifier-light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -3617,7 +3628,9 @@ details-disclosure > details {
 
 @font-face {
   font-family: 'SignifierLightItalic';
-  src: url('{{ "signifier-light-italic.woff2" | asset_url }}') format('woff2');
+  src:
+    url('signifier-light-italic.woff2') format('woff2'),
+    url('signifier-light-italic.woff') format('woff');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -3625,16 +3638,20 @@ details-disclosure > details {
 
 @font-face {
   font-family: 'EsBuildBold';
-  src: url('{{ "ESBuild-Bold.woff2" | asset_url }}') format('woff2');
-  font-weight: 300;
+  src:
+    url('ESBuild-Bold.woff2') format('woff2'),
+    url('ESBuild-Bold.woff') format('woff');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'EsBuildMedium';
-  src: url('{{ "ESBuild-Medium.woff2" | asset_url }}') format('woff2');
-  font-weight: 300;
+  src:
+    url('ESBuild-Medium.woff2') format('woff2'),
+    url('ESBuild-Medium.woff') format('woff');
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
