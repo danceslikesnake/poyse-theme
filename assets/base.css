@@ -80,7 +80,9 @@ collection-component {
 }
 
 /* base */
-
+html {
+  background: #692830;
+}
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

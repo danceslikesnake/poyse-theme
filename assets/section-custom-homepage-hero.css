@@ -272,12 +272,14 @@
 }
 
 .hero-showcase__flavor-btn {
-  padding: 0.8rem 1.6rem;
-  border: 1px solid rgb(var(--color-foreground) / 0.3);
-  border-radius: 5rem;
+  font-family: 'EsBuildMedium', sans-serif;
+  padding: 0 22px;
+  border: 1px solid #392C2D;
+  border-radius: 22px;
   background: transparent;
-  font-size: 1.2rem;
-  letter-spacing: 0.03rem;
+  font-size: 12px;
+  letter-spacing: 1%;
+  line-height: 22px;
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -286,19 +288,18 @@
 }
 
 .hero-showcase__flavor-btn.is-active {
-  border-color: rgb(var(--color-foreground));
-  background-color: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
+  background-color: #FF960E;
 }
 
 .hero-showcase__product-title {
-  margin: 0 0 0.6rem;
-  font-size: 1.8rem;
+  font-family: 'EsBuildMedium', sans-serif;
+  margin: 8px 0 0 0;
+  color: #392C2D;
 }
 
 .hero-showcase__product-subtitle {
-  margin: 0 0 2.4rem;
-  font-size: 1.5rem;
+  margin: 0 0 22px 0;
+  color: #392C2D;
 }
 
 .hero-showcase__subscription {
@@ -307,6 +308,7 @@
   justify-content: center;
   gap: 2.4rem;
   margin-bottom: 2rem;
+  border: none;
 }
 
 .hero-showcase__subscription-option {

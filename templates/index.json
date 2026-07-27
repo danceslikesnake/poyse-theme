@@ -71,7 +71,8 @@
         "flavor_1": {
           "type": "flavor",
           "settings": {
-            "label": "Yuzu Citrus"
+            "label": "Yuzu Citrus",
+            "video": "shopify://files/videos/Poyse_Yuzu_Angle0000_1.mp4"
           }
         },
         "flavor_2": {
