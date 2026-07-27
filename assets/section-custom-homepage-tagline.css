@@ -2,12 +2,20 @@
   display: block;
   overflow: hidden;
   text-align: center;
+  padding: 98px 0 36px 0;
 }
 
 .tagline-banner__content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 0 48px 0;
+  margin: 0 8px;
+  border-bottom: 1px solid var(--poyse-bare-form);
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 0 64px 0;
+  }
 }
 
 .tagline-banner__ornament {
@@ -16,7 +24,6 @@
 
 .tagline-banner__ornament-image {
   display: block;
-  width: 10rem;
   height: auto;
   max-width: 100%;
 }
@@ -27,12 +34,13 @@
 
 .tagline-banner__line {
   margin: 0;
-  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-size: 42px;
   line-height: 1.25;
+  color: white;
 }
 
 .tagline-banner__line--emphasis {
-  font-style: italic;
+  font-family: 'SignifierLightItalic', serif;
 }
 
 .tagline-banner__ticker-list {
@@ -51,7 +59,7 @@
 .tagline-banner__ticker {
   overflow: hidden;
   width: 100%;
-  margin-top: 2.4rem;
+  margin-top: 16px;
   -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
@@ -74,11 +82,10 @@
 
 .tagline-banner__ticker-item {
   flex-shrink: 0;
-  padding: 0 2.4rem;
-  font-size: 1.3rem;
-  letter-spacing: 0.02em;
+  padding: 0 44px;
+  letter-spacing: -1%;
   white-space: nowrap;
-  opacity: 0.85;
+  font-family: 'EsBuildMedium', sans-serif;
 }
 
 @keyframes tagline-banner-scroll {

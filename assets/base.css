@@ -11,6 +11,11 @@ collection-component {
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+
+  /* Brand tokens pulled directly from the Figma nav frame (node 4666:1230). */
+  --poyse-white: #ffffff;
+  --poyse-bare-form: #dbcec4;
+  --poyse-evening-fig: #392c2d;
 }
 
 .product-card-wrapper .card,

@@ -1,9 +1,4 @@
 .site-header {
-  /* Brand tokens pulled directly from the Figma nav frame (node 4666:1230). */
-  --poyse-white: #ffffff;
-  --poyse-bare-form: #dbcec4;
-  --poyse-evening-fig: #392c2d;
-
   /* Widths derived from the old text-based sizes (font-size * logo aspect ratio 663:175) so the scroll animation keeps the same feel now that a logo image replaces the wordmark text. */
   --wordmark-size-large: clamp(22.7rem, 72vw, 166rem);
   --wordmark-size-small: clamp(6rem, 9.8vw, 8.3rem);
@@ -31,7 +26,7 @@
   justify-content: space-between;
   gap: 2rem;
   margin: 18px 22px;
-  background: white;
+  background: var(--poyse-white);
   border-radius: 36px;
 
   @media screen and (min-width: 1024px) {

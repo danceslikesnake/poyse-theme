@@ -11,7 +11,8 @@ class SiteHeader extends HTMLElement {
 
   connectedCallback() {
     if (this.classList.contains('site-header--animated')) {
-      this.heroEl = document.querySelector('.hero-showcase');
+      // Logo color switches to black once we've scrolled past the tagline banner, not the hero itself.
+      this.heroEl = document.querySelector('.tagline-banner');
       window.addEventListener('scroll', this.onScroll, { passive: true });
       this.onScroll();
     }

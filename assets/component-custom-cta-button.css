@@ -1,0 +1,16 @@
+.custom-cta-button {
+    border: none;
+    margin: 0;
+    padding: 0 44px;
+    font-family: 'EsBuildBold', sans-serif;
+    background: var(--poyse-evening-fig);
+    color: var(--poyse-white);
+    border-radius: 8px;
+    line-height: 35px;
+    text-transform: uppercase;
+    letter-spacing: 1%;
+
+    &.full-width-cta {
+        width: 100%;
+    }
+}
