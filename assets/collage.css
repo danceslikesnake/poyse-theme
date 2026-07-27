@@ -15,7 +15,7 @@
   flex-grow: initial;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
   .collage {
     grid-column-gap: var(--grid-mobile-horizontal-spacing);
     grid-row-gap: var(--grid-mobile-vertical-spacing);
@@ -54,7 +54,7 @@
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .collage {
     grid-auto-flow: column;
     grid-column-gap: var(--grid-desktop-horizontal-spacing);

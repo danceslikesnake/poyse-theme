@@ -11,13 +11,13 @@ slider-component.slider-component-full-width {
   --desktop-margin-left-first-item: 1.5rem;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
   slider-component.page-width {
     padding: 0 1.5rem;
   }
 }
 
-@media screen and (min-width: 749px) and (max-width: 990px) {
+@media screen and (min-width: 767px) and (max-width: 1024px) {
   slider-component.page-width {
     padding: 0 5rem;
   }
@@ -32,7 +32,7 @@ slider-component.slider-component-full-width {
   padding-bottom: 0;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
   .slider.slider--mobile {
     position: relative;
     flex-wrap: inherit;
@@ -66,7 +66,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .slider.slider--tablet-up {
     position: relative;
     flex-wrap: inherit;
@@ -82,7 +82,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1023px) {
   .slider.slider--tablet {
     position: relative;
     flex-wrap: inherit;
@@ -132,7 +132,7 @@ slider-component.slider-component-full-width {
   scroll-snap-align: center;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .slider-component-desktop.page-width {
     max-width: none;
   }
@@ -247,7 +247,7 @@ slider-component.slider-component-full-width {
   min-width: 4.4rem;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .slider-counter--dots {
     margin: 0 1.2rem;
   }
@@ -257,7 +257,7 @@ slider-component.slider-component-full-width {
   padding: 1rem;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
   .slider-counter__link {
     padding: 0.7rem;
   }
@@ -317,19 +317,19 @@ slider-component.slider-component-full-width {
   justify-content: center;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
     display: none;
   }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1023px) {
   .slider--desktop:not(.slider--tablet) + .slider-buttons {
     display: none;
   }
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .slider--mobile + .slider-buttons {
     display: none;
   }

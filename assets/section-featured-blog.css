@@ -2,7 +2,7 @@
   height: 100%;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .grid--1-col-desktop .article-card .card__content {
     text-align: center;
   }
@@ -16,7 +16,7 @@
   margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .blog__posts.articles-wrapper {
     margin-bottom: 0;
   }
@@ -26,7 +26,7 @@
   scroll-snap-align: start;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
   .blog__post.article {
     width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
   }
@@ -44,7 +44,7 @@
   margin-top: 3rem;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .blog__button {
     margin-top: 5rem;
   }
@@ -52,7 +52,7 @@
 
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .blog__posts .article + .article {
       margin-left: var(--grid-desktop-horizontal-spacing);
     }

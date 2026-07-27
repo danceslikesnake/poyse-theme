@@ -4,7 +4,7 @@ if (!customElements.get('localization-form')) {
     class LocalizationForm extends HTMLElement {
       constructor() {
         super();
-        this.mql = window.matchMedia('(min-width: 750px)');
+        this.mql = window.matchMedia('(min-width: 768px)');
         this.header = document.querySelector('.header-wrapper');
         this.elements = {
           input: this.querySelector('input[name="locale_code"], input[name="country_code"]'),

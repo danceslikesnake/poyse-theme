@@ -57,7 +57,7 @@
   width: calc(100% - 3rem);
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .quick-add-modal__content {
     --modal-height-offset: 10rem;
     margin-top: var(--modal-height-offset);
@@ -72,7 +72,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .quick-add-modal__content {
     width: 70%;
   }
@@ -101,7 +101,7 @@
   padding-bottom: 2.7rem;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .section-bulk-quick-order-list-padding {
     padding-top: 3.6rem;
     padding-bottom: 3.6rem;
@@ -112,7 +112,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .quick-add-modal__content-info.quick-add-modal__content-info--bulk {
     overflow-y: initial;
   }
@@ -145,7 +145,7 @@
   text-underline-offset: 0.3rem;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .quick-add-modal__content-info--bulk .quick-add__product-media,
   .quick-add-modal__content-info--bulk .quick-add__product-container,
   .quick-add-modal__content-info--bulk .quick-add__info {
@@ -177,7 +177,7 @@
   width: auto;
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1023px) {
   .quick-add-modal__content-info--bulk .quick-add__content-info__media {
     display: flex;
     margin: 0;
@@ -193,7 +193,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .quick-add-modal__content-info--bulk .quick-add__info {
     flex-direction: column;
     position: sticky;
@@ -203,7 +203,7 @@
   }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1023px) {
   .quick-add-modal__content-info--bulk {
     flex-direction: column;
   }
@@ -230,7 +230,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
   quick-add-modal .slider .product__media-item.grid__item {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
@@ -308,7 +308,7 @@ quick-add-modal .product__column-sticky {
   position: relative;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   quick-add-modal .product:not(.product--no-media) .product__media-wrapper {
     max-width: 45%;
     width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
@@ -365,7 +365,7 @@ quick-add-modal .product-media-container.constrain-height {
   --viewport-offset: calc((var(--modal-height-offset) + var(--modal-padding) + var(--popup-border-width)) * 2);
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   quick-add-modal .product-media-container.constrain-height {
     --constrained-min-height: 400px;
   }

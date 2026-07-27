@@ -20,41 +20,35 @@
 
 .site-header__inner {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  padding: 2rem 3rem;
+  margin: 18px 22px;
+  background: white;
+  border-radius: 36px;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   .site-header__inner {
-    padding: 2.4rem 6rem;
+    background: none;
+    border-radius: 0;
+    align-items: flex-start;
   }
 }
 
-/* Below 1024px the nav swaps to its mobile layout, so the wordmark stays at its
-   normal (small) size always — no scroll-driven grow/shrink effect there. */
 .site-header__wordmark {
   position: relative;
   display: block;
   max-width: 60%;
-  width: var(--wordmark-size-small);
+  width: 60px;
   text-decoration: none;
+  margin-left: 12px
 }
 
 @media screen and (min-width: 1024px) {
   .site-header__wordmark {
-    width: calc(var(--wordmark-size-small) + (var(--wordmark-size-large) - var(--wordmark-size-small)) * (1 - var(--header-progress)));
-  }
-
-  /* The homepage hero splits into a 50/50 grid (see .hero-showcase__grid, whose
-     only offset from the viewport is .hero-showcase's 0.8rem padding), so the
-     pre-scroll logo is sized as a fixed proportion of that column's real width —
-     scaling continuously with it at any viewport size, always a bit smaller, with
-     no upper bound. The floor only guards the lower end of this range, where 85%
-     of the column would otherwise dip below a legible minimum. */
-  .site-header {
-    --wordmark-size-large: max(22.7rem, calc((50vw - 0.8rem) * 0.85));
+    width: calc(50vw - 44px);
+    margin-left: 0;
   }
 }
 
@@ -81,6 +75,19 @@
 
 .site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--black {
   opacity: 0;
+}
+
+/* Below desktop the wordmark is a static width and the header always has its
+   white background (see .site-header__inner above), so the white logo variant
+   has no hero image to sit over and would be invisible against that background. */
+@media screen and (max-width: 1023px) {
+  .site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--white {
+    opacity: 0;
+  }
+
+  .site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--black {
+    opacity: 1;
+  }
 }
 
 .site-header__nav {
@@ -134,7 +141,7 @@ main[data-template]:not([data-template='index']) {
   padding-top: 6.2rem;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
   main[data-template]:not([data-template='index']) {
     padding-top: 7rem;
   }

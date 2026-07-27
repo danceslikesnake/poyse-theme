@@ -27,7 +27,7 @@ class MainSearch extends SearchForm {
   }
 
   onInputFocus() {
-    const isSmallScreen = window.innerWidth < 750;
+    const isSmallScreen = window.innerWidth < 768;
     if (isSmallScreen) {
       this.scrollIntoView({ behavior: 'smooth' });
     }

@@ -54,7 +54,7 @@
   line-height: 1.55;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
   .meet-paraxanthine__media {
     aspect-ratio: auto;
     min-height: 56rem;

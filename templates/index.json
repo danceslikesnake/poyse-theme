@@ -14,7 +14,9 @@
       "blocks": {
         "slide_1": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/original_ec4898d8b41033a4da26d0d6a08fde43.jpg_1.png"
+          }
         },
         "slide_2": {
           "type": "slide",
@@ -26,7 +28,9 @@
         },
         "heading": {
           "type": "heading",
-          "settings": {}
+          "settings": {
+            "heading": "Soft energy with"
+          }
         },
         "cycle_word_1": {
           "type": "cycle_word",
@@ -48,11 +52,19 @@
         },
         "content": {
           "type": "content",
-          "settings": {}
+          "settings": {
+            "eyebrow": "Energy You Stay in Control Of",
+            "text": "A drink powder <em>built around paraxanthine</em>, what your body already turns caffeine into. The alertness, without the edge."
+          }
         },
         "buttons": {
           "type": "buttons",
           "settings": {
+            "button_label_1": "Shop controlled energy",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "What is paraxanthine?",
+            "button_link_2": "",
             "button_style_secondary_2": true
           }
         },
@@ -76,11 +88,20 @@
         },
         "product_info": {
           "type": "product_info",
-          "settings": {}
+          "settings": {
+            "title": "Controlled Energy",
+            "subtitle": "with Paraxanthine <em>for Daily Momentum</em>"
+          }
         },
         "subscription": {
           "type": "subscription",
-          "settings": {}
+          "settings": {
+            "monthly_label": "Monthly Subscription",
+            "monthly_price": "$49.00 per month",
+            "onetime_label": "One-Time Purchase",
+            "onetime_price": "$54.00 one-time",
+            "cta_label": "Add to Cart"
+          }
         }
       },
       "block_order": [
@@ -100,6 +121,7 @@
         "subscription"
       ],
       "settings": {
+        "enable_gradient_overlay": true,
         "color_scheme": "scheme-poyse-1"
       }
     },
@@ -108,7 +130,10 @@
       "blocks": {
         "heading": {
           "type": "heading",
-          "settings": {}
+          "settings": {
+            "line_one": "The goal is not to feel more wired.",
+            "line_two": "It is to feel more capable."
+          }
         },
         "ticker_item_1": {
           "type": "ticker_item",
@@ -143,7 +168,11 @@
         "ticker_item_4"
       ],
       "settings": {
-        "color_scheme": "scheme-poyse-1"
+        "color_scheme": "scheme-poyse-1",
+        "show_ornament": true,
+        "ticker_speed": 30,
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "homepage_featured_items": {
@@ -152,18 +181,43 @@
         "feature_item_1": {
           "type": "feature_item",
           "settings": {
-            "show_new_arrival_badge": true
+            "product": "",
+            "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "show_new_arrival_badge": true,
+            "show_best_seller_badge": false,
+            "monthly_label": "Monthly Subscription",
+            "monthly_price": "$49.00 per month",
+            "onetime_label": "One-Time Purchase",
+            "onetime_price": "$54.00 one-time",
+            "cta_label": "Add to Cart"
           }
         },
         "feature_item_2": {
           "type": "feature_item",
-          "settings": {}
+          "settings": {
+            "product": "",
+            "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "show_new_arrival_badge": false,
+            "show_best_seller_badge": false,
+            "monthly_label": "Monthly Subscription",
+            "monthly_price": "$49.00 per month",
+            "onetime_label": "One-Time Purchase",
+            "onetime_price": "$54.00 one-time",
+            "cta_label": "Add to Cart"
+          }
         },
         "feature_item_3": {
           "type": "feature_item",
           "settings": {
+            "product": "",
+            "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
             "show_new_arrival_badge": true,
-            "show_best_seller_badge": true
+            "show_best_seller_badge": true,
+            "monthly_label": "Monthly Subscription",
+            "monthly_price": "$49.00 per month",
+            "onetime_label": "One-Time Purchase",
+            "onetime_price": "$54.00 one-time",
+            "cta_label": "Add to Cart"
           }
         }
       },
@@ -172,32 +226,48 @@
         "feature_item_2",
         "feature_item_3"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "",
+        "card_color_scheme": "",
+        "border_color": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "homepage_meet_paraxanthine": {
       "type": "custom-meet-paraxanthine",
       "blocks": {
         "content": {
           "type": "content",
-          "settings": {}
+          "settings": {
+            "heading": "Meet paraxanthine.",
+            "text": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and the compound responsible for its energy effects. By using paraxanthine directly, you get the energy, alertness, and focus people want from caffeine without the same anxious, jittery, or restless feel often associated with it.</p><p>No harsh edge. No hard crash. Just a cleaner, more controlled energy experience.</p>"
+          }
         },
         "button": {
           "type": "button",
-          "settings": {}
+          "settings": {
+            "label": "Take a Deeper Dive",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "content",
         "button"
       ],
-      "settings": {}
+      "settings": {
+        "border_color": ""
+      }
     },
     "homepage_benefits": {
       "type": "custom-benefits",
       "blocks": {
         "content": {
           "type": "content",
-          "settings": {}
+          "settings": {
+            "heading": "Clarity over noise. <em>In everything.</em>"
+          }
         },
         "stack_image_1": {
           "type": "stack_image",
@@ -277,35 +347,44 @@
       "blocks": {
         "content": {
           "type": "content",
-          "settings": {}
+          "settings": {
+            "heading": "Poyse, in Real Life.",
+            "eyebrow": "Our Community",
+            "text": "<p>Join the countless individuals who have transformed their afternoons with Poyse. As you savor each sip, feel the revitalizing energy wash over you, sharpening your focus and lifting your spirits.</p>"
+          }
         },
         "gallery_item_1": {
           "type": "gallery_item",
           "settings": {
+            "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
         },
         "gallery_item_2": {
           "type": "gallery_item",
           "settings": {
+            "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
         },
         "gallery_item_3": {
           "type": "gallery_item",
           "settings": {
+            "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
         },
         "gallery_item_4": {
           "type": "gallery_item",
           "settings": {
+            "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
         },
         "gallery_item_5": {
           "type": "gallery_item",
           "settings": {
+            "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
         }
@@ -319,7 +398,8 @@
         "gallery_item_5"
       ],
       "settings": {
-        "color_scheme": "scheme-poyse-2"
+        "color_scheme": "scheme-poyse-2",
+        "border_color": ""
       }
     }
   },

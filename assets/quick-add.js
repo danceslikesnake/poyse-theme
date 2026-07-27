@@ -109,7 +109,7 @@ if (!customElements.get('quick-add-modal')) {
         if (!mediaImages.length) return;
 
         let mediaImageSizes =
-          '(min-width: 1000px) 715px, (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)';
+          '(min-width: 1000px) 715px, (min-width: 768px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)';
 
         if (product.classList.contains('product--medium')) {
           mediaImageSizes = mediaImageSizes.replace('715px', '605px');
