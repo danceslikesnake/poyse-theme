@@ -117,90 +117,92 @@
     </div>
 
     <div class="hero-showcase__product">
-      {%- if flavors.size > 0 -%}
-        <div class="hero-showcase__video-wrap">
-          {%- for block in flavors -%}
-            <div class="hero-showcase__video{% if forloop.first %} is-active{% endif %}" data-flavor-video="{{ block.id }}" {{ block.shopify_attributes }}>
-              {%- if block.settings.video != blank -%}
-                {{
+      <div class="hero_showcase__product_inner color-scheme-poyse-2">
+        {%- if flavors.size > 0 -%}
+          <div class="hero-showcase__video-wrap">
+            {%- for block in flavors -%}
+              <div class="hero-showcase__video{% if forloop.first %} is-active{% endif %}" data-flavor-video="{{ block.id }}" {{ block.shopify_attributes }}>
+                {%- if block.settings.video != blank -%}
+                  {{
                   block.settings.video
                   | video_tag:
-                    image_size: '800x',
-                    autoplay: true,
-                    loop: true,
-                    muted: true,
-                    controls: false,
-                    class: 'hero-showcase__video-el'
-                }}
-              {%- elsif block.settings.poster_image != blank -%}
-                {{
+                  image_size: '800x',
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false,
+                  class: 'hero-showcase__video-el'
+                  }}
+                {%- elsif block.settings.poster_image != blank -%}
+                  {{
                   block.settings.poster_image
                   | image_url: width: 800
                   | image_tag: loading: 'lazy', class: 'hero-showcase__video-image'
-                }}
-              {%- else -%}
-                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-              {%- endif -%}
-            </div>
-          {%- endfor -%}
-        </div>
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
 
-        <div class="hero-showcase__flavors" role="group">
-          {%- for block in flavors -%}
-            <button
-              type="button"
-              class="hero-showcase__flavor-btn{% if forloop.first %} is-active{% endif %}"
-              data-flavor-target="{{ block.id }}"
-              aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
-              {{ block.shopify_attributes }}
-            >
-              {{- block.settings.label | escape -}}
+          <div class="hero-showcase__flavors" role="group">
+            {%- for block in flavors -%}
+              <button
+                      type="button"
+                      class="hero-showcase__flavor-btn{% if forloop.first %} is-active{% endif %}"
+                      data-flavor-target="{{ block.id }}"
+                      aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                      {{ block.shopify_attributes }}
+              >
+                {{- block.settings.label | escape -}}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if product_info_block != blank -%}
+          <div {{ product_info_block.shopify_attributes }}>
+            {%- if product_info_block.settings.title != blank -%}
+              <p class="hero-showcase__product-title">{{ product_info_block.settings.title | escape }}</p>
+            {%- endif -%}
+            {%- if product_info_block.settings.subtitle != blank -%}
+              <div class="hero-showcase__product-subtitle inline-richtext">{{ product_info_block.settings.subtitle }}</div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if subscription_block != blank -%}
+          <div {{ subscription_block.shopify_attributes }}>
+            <fieldset class="hero-showcase__subscription">
+              <legend class="visually-hidden">{{ 'sections.custom_homepage_hero.subscription_legend' | t }}</legend>
+              <label class="hero-showcase__subscription-option">
+                <input
+                        type="radio"
+                        name="Subscription-{{ section.id }}"
+                        data-subscription-option
+                        data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price }}"
+                        checked
+                >
+                {{- subscription_block.settings.monthly_label | escape -}}
+              </label>
+              <label class="hero-showcase__subscription-option">
+                <input
+                        type="radio"
+                        name="Subscription-{{ section.id }}"
+                        data-subscription-option
+                        data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.onetime_price }}"
+                >
+                {{- subscription_block.settings.onetime_label | escape -}}
+              </label>
+            </fieldset>
+
+            <button type="button" class="button button--primary hero-showcase__cta" data-cta>
+              {{- subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price -}}
             </button>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-      {%- if product_info_block != blank -%}
-        <div {{ product_info_block.shopify_attributes }}>
-          {%- if product_info_block.settings.title != blank -%}
-            <p class="hero-showcase__product-title">{{ product_info_block.settings.title | escape }}</p>
-          {%- endif -%}
-          {%- if product_info_block.settings.subtitle != blank -%}
-            <div class="hero-showcase__product-subtitle inline-richtext">{{ product_info_block.settings.subtitle }}</div>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
-
-      {%- if subscription_block != blank -%}
-        <div {{ subscription_block.shopify_attributes }}>
-          <fieldset class="hero-showcase__subscription">
-            <legend class="visually-hidden">{{ 'sections.custom_homepage_hero.subscription_legend' | t }}</legend>
-            <label class="hero-showcase__subscription-option">
-              <input
-                type="radio"
-                name="Subscription-{{ section.id }}"
-                data-subscription-option
-                data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price }}"
-                checked
-              >
-              {{- subscription_block.settings.monthly_label | escape -}}
-            </label>
-            <label class="hero-showcase__subscription-option">
-              <input
-                type="radio"
-                name="Subscription-{{ section.id }}"
-                data-subscription-option
-                data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.onetime_price }}"
-              >
-              {{- subscription_block.settings.onetime_label | escape -}}
-            </label>
-          </fieldset>
-
-          <button type="button" class="button button--primary hero-showcase__cta" data-cta>
-            {{- subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price -}}
-          </button>
-        </div>
-      {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </homepage-hero>
