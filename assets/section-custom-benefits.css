@@ -28,9 +28,12 @@
 }
 
 .benefits__heading {
-  margin: 0;
-  font-size: clamp(2.4rem, 3vw, 3.4rem);
+  margin: 0 auto;
+  font-size: 42px;
   line-height: 1.25;
+  color: white;
+  text-align: center;
+  max-width: 340px;
 }
 
 .benefits__body {
@@ -75,6 +78,7 @@
   max-width: 32rem;
   height: 100%;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .benefits__stack-item {
