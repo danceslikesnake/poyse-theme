@@ -119,7 +119,13 @@
 .benefits__card {
   padding: 2.4rem;
   border-radius: 1rem;
-  background: rgb(var(--color-foreground) / 0.08);
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.benefits__card-meta, .benefits__card-eyebrow {
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: 14px;
+  color: white;
 }
 
 .benefits__card-top {
@@ -129,19 +135,19 @@
   align-items: baseline;
   gap: 1rem;
   padding-bottom: 1.2rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgb(var(--color-foreground) / 0.2);
+  margin-bottom: 44px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   font-size: 1.2rem;
   font-weight: 600;
 }
 
 .benefits__card-heading {
   margin: 0 0 0.8rem;
-  font-size: 2.2rem;
+  font-size: 34px;
+  color: white;
 }
 
 .benefits__card-text {
-  font-size: 1.4rem;
   line-height: 1.55;
-  opacity: 0.8;
+  color: white;
 }
