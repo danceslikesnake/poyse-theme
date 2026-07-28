@@ -19,12 +19,14 @@
         {%- if content_block.settings.heading != blank -%}
           <p class="community-gallery__heading inline-richtext">{{ content_block.settings.heading }}</p>
         {%- endif -%}
-        {%- if content_block.settings.eyebrow != blank -%}
-          <p class="community-gallery__eyebrow">{{ content_block.settings.eyebrow | escape }}</p>
-        {%- endif -%}
-        {%- if content_block.settings.text != blank -%}
-          <div class="community-gallery__text rte">{{ content_block.settings.text }}</div>
-        {%- endif -%}
+        <div>
+          {%- if content_block.settings.eyebrow != blank -%}
+            <p class="community-gallery__eyebrow">{{ content_block.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          {%- if content_block.settings.text != blank -%}
+            <div class="community-gallery__text rte">{{ content_block.settings.text }}</div>
+          {%- endif -%}
+        </div>
       </div>
     {%- endif -%}
 

@@ -358,6 +358,7 @@
         "gallery_item_1": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/original_7aa238fdfcf00dc00728adc1b1b4fb0e.jpg_1.jpg",
             "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
@@ -365,6 +366,7 @@
         "gallery_item_2": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.jpg",
             "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
@@ -372,6 +374,7 @@
         "gallery_item_3": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/man-in-white-tank-top-stands-for-camera.jpg",
             "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
@@ -379,6 +382,7 @@
         "gallery_item_4": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/woman-smiles-looking-over-shoulder-holding-a-water-bottle.jpg",
             "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
@@ -386,6 +390,7 @@
         "gallery_item_5": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/original_ec4898d8b41033a4da26d0d6a08fde43.jpg_1.png",
             "tag_text": "@janedoe",
             "product": "the-collection-snowboard-liquid"
           }
