@@ -27,9 +27,20 @@
   <div class="featured-items color-{{ section.settings.color_scheme }} section-{{ section.id }}-border section-{{ section.id }}-padding">
     <div class="featured-items__grid">
       {%- for block in feature_items -%}
+        {%- liquid
+          assign feature_product = block.settings.product
+          assign subtitle_metafield = feature_product.metafields.custom.featured_product_subtitle
+          if subtitle_metafield.type == 'rich_text_field'
+            assign subtitle = subtitle_metafield | metafield_tag
+          elsif subtitle_metafield.value != blank
+            assign subtitle = subtitle_metafield.value
+          else
+            assign subtitle = block.settings.subtitle
+          endif
+        -%}
         {%- render 'custom-feature-item',
-          product: block.settings.product,
-          subtitle: block.settings.subtitle,
+          product: feature_product,
+          subtitle: subtitle,
           show_new_arrival_badge: block.settings.show_new_arrival_badge,
           show_best_seller_badge: block.settings.show_best_seller_badge,
           monthly_label: block.settings.monthly_label,

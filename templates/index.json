@@ -182,7 +182,7 @@
         "feature_item_1": {
           "type": "feature_item",
           "settings": {
-            "product": "",
+            "product": "yuzu-citrus",
             "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
             "show_new_arrival_badge": true,
             "show_best_seller_badge": false,
@@ -196,7 +196,7 @@
         "feature_item_2": {
           "type": "feature_item",
           "settings": {
-            "product": "",
+            "product": "strawberry-watermelon",
             "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
             "show_new_arrival_badge": false,
             "show_best_seller_badge": false,
@@ -210,7 +210,7 @@
         "feature_item_3": {
           "type": "feature_item",
           "settings": {
-            "product": "",
+            "product": "tropical-mango",
             "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
             "show_new_arrival_badge": true,
             "show_best_seller_badge": true,
