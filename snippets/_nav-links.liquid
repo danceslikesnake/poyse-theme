@@ -1,0 +1,37 @@
+{%- doc -%}
+  Renders the shared nav links + cart icon used by the site header and footer.
+  Always uses the 'custom-nav-links' BEM block so both instances share one look.
+
+  @param {object} nav_links - blocks of type 'nav_link'
+  @param {number} cart_count - cart.item_count
+{%- enddoc -%}
+
+{{ 'component-nav-links.css' | asset_url | stylesheet_tag }}
+
+<nav class="custom-nav-links__nav">
+  {%- for block in nav_links -%}
+    {%- liquid
+      assign is_active = false
+      if request.path == block.settings.link
+        assign is_active = true
+      elsif block.settings.link contains '/collections' and template.name == 'collection'
+        assign is_active = true
+      elsif block.settings.link contains '/collections' and template.name == 'product'
+        assign is_active = true
+      endif
+    -%}
+    <a
+      href="{{ block.settings.link }}"
+      class="custom-nav-links__nav-link{% if is_active %} is-active{% endif %}"
+      {% if is_active %}aria-current="page"{% endif %}
+      {{ block.shopify_attributes }}
+    >
+      {{- block.settings.label | escape -}}
+    </a>
+  {%- endfor -%}
+
+  <a href="{{ routes.cart_url }}" class="custom-nav-links__cart" data-cart-count>
+    <span aria-hidden="true">{% if cart_count < 10 %}0{{ cart_count }}{% else %}{{ cart_count }}{% endif %}</span>
+    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart_count }}</span>
+  </a>
+</nav>

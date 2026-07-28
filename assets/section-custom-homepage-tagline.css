@@ -14,7 +14,7 @@
   border-bottom: 1px solid var(--poyse-bare-form);
 
   @media screen and (min-width: 1024px) {
-    padding: 0 0 64px 0;
+    padding: 0 0 98px 0;
   }
 }
 

@@ -15,66 +15,47 @@
 {%- endstyle -%}
 
 <footer class="custom-footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-border">
-  <div class="custom-footer__top">
-    <a href="{{ routes.root_url }}" class="custom-footer__wordmark">
-      {{- section.settings.wordmark_text | escape -}}
-    </a>
+  <div class="custom-footer__inner">
+    <div class="custom-footer__top">
+      <a href="{{ routes.root_url }}" class="custom-footer__wordmark">
+        <img
+          src="{{ 'poyse-logo-white.svg' | asset_url }}"
+          alt="{{ section.settings.wordmark_text | escape }}"
+          class="custom-footer__wordmark-logo"
+          width="663"
+          height="175"
+        >
+      </a>
 
-    {%- if nav_links.size > 0 -%}
-      <nav class="custom-footer__nav">
-        {%- for block in nav_links -%}
-          {%- liquid
-            assign is_active = false
-            if request.path == block.settings.link
-              assign is_active = true
-            elsif block.settings.link contains '/collections' and template.name == 'collection'
-              assign is_active = true
-            elsif block.settings.link contains '/collections' and template.name == 'product'
-              assign is_active = true
-            endif
-          -%}
-          <a
-            href="{{ block.settings.link }}"
-            class="custom-footer__nav-link{% if is_active %} is-active{% endif %}"
-            {% if is_active %}aria-current="page"{% endif %}
-            {{ block.shopify_attributes }}
-          >
-            {{- block.settings.label | escape -}}
-          </a>
-        {%- endfor -%}
+      {%- if nav_links.size > 0 -%}
+        {%- render '_nav-links', nav_links: nav_links, cart_count: cart_count -%}
+      {%- endif -%}
+    </div>
 
-        <a href="{{ routes.cart_url }}" class="custom-footer__cart" data-cart-count>
-          <span aria-hidden="true">{% if cart_count < 10 %}0{{ cart_count }}{% else %}{{ cart_count }}{% endif %}</span>
-          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart_count }}</span>
-        </a>
-      </nav>
-    {%- endif -%}
-  </div>
 
-  <div class="custom-footer__divider" role="presentation"></div>
+    <div class="custom-footer__bottom">
+      <p class="custom-footer__copyright">
+        {{- 'sections.custom_footer.copyright' | t: year: current_year, shop: shop.name -}}
+      </p>
 
-  <div class="custom-footer__bottom">
-    <p class="custom-footer__copyright">
-      {{- 'sections.custom_footer.copyright' | t: year: current_year, shop: shop.name -}}
-    </p>
+      {%- if policy_links.size > 0 -%}
+        <ul class="custom-footer__policies">
+          {%- for block in policy_links -%}
+            <li>
+              <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+                {{- block.settings.label | escape -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
 
-    {%- if policy_links.size > 0 -%}
-      <ul class="custom-footer__policies">
-        {%- for block in policy_links -%}
-          <li>
-            <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
-              {{- block.settings.label | escape -}}
-            </a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
-
-    {%- if disclaimer_block != blank and disclaimer_block.settings.text != blank -%}
-      <div class="custom-footer__disclaimer rte" {{ disclaimer_block.shopify_attributes }}>
-        {{ disclaimer_block.settings.text }}
-      </div>
-    {%- endif -%}
+      {%- if disclaimer_block != blank and disclaimer_block.settings.text != blank -%}
+        <div class="custom-footer__disclaimer rte" {{ disclaimer_block.shopify_attributes }}>
+          {{ disclaimer_block.settings.text }}
+        </div>
+      {%- endif -%}
+    </div>
   </div>
 </footer>
 

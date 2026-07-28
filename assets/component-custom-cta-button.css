@@ -3,14 +3,30 @@
     margin: 0;
     padding: 0 44px;
     font-family: 'EsBuildBold', sans-serif;
+    font-size: 12px;
     background: var(--poyse-evening-fig);
     color: var(--poyse-white);
     border-radius: 8px;
     line-height: 35px;
     text-transform: uppercase;
     letter-spacing: 1%;
+    text-decoration: none;
+
+    &.tan {
+        background: var(--poyse-bare-form);
+        color: var(--poyse-evening-fig);
+    }
+
+    &.transparent-fig {
+        background: rgba(105, 40, 48, 0.25);
+        color: var(--poyse-bare-form);
+    }
 
     &.full-width-cta {
         width: 100%;
+    }
+
+    &.narrow-padding {
+        padding: 0 22px;
     }
 }

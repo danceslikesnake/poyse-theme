@@ -1,0 +1,46 @@
+.custom-nav-links__nav {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.2rem;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background-color: var(--poyse-white);
+  box-shadow: 0 0.2rem 1.2rem rgb(0 0 0 / 8%);
+}
+
+.custom-nav-links__nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.9rem;
+  padding: 0 1.6rem;
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--poyse-evening-fig);
+  font-size: 12px;
+  font-family: 'EsBuildMedium', sans-serif;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.custom-nav-links__nav-link:hover,
+.custom-nav-links__nav-link.is-active {
+  background-color: var(--poyse-bare-form);
+}
+
+.custom-nav-links__cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  background-color: var(--poyse-evening-fig);
+  color: var(--poyse-bare-form);
+  font-family: 'EsBuildMedium', sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+}
