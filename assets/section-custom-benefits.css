@@ -15,7 +15,7 @@
 .benefits__left {
   position: sticky;
   top: 0;
-  max-height: 100vh;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -73,40 +73,29 @@
   flex: 1;
   min-width: 0;
   max-width: 32rem;
+  height: 100%;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
 }
 
-.benefits__stack-track {
-  display: flex;
-  flex-direction: column;
+.benefits__stack-item {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  animation: benefits-stack-scroll 24s linear infinite;
+  height: 30rem;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  animation-duration: var(--stack-duration, 4.5s);
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+
+  /* animation-name is set per item inline (see custom-benefits.liquid) since
+     each card's rise happens in its own dedicated slice of the shared
+     timeline, so the whole set runs through once together before repeating. */
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
-}
-
-.benefits__stack-group {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  width: 100%;
-  gap: 0.8rem;
-  padding-bottom: 0.8rem;
-}
-
-.benefits__stack-item {
-  flex-shrink: 0;
-  width: 100%;
-  height: 9rem;
-  overflow: hidden;
-}
-
-.benefits__stack-item:first-child {
-  height: 30rem;
 }
 
 .benefits__stack-image,
@@ -114,15 +103,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-@keyframes benefits-stack-scroll {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50%);
-  }
 }
 
 .benefits__right {

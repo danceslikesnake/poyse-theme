@@ -1,11 +1,69 @@
 {{ 'section-custom-benefits.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'benefits-progress.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'benefits-stack.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign content_block = section.blocks | where: 'type', 'content' | first
   assign stack_images = section.blocks | where: 'type', 'stack_image'
   assign benefit_blocks = section.blocks | where: 'type', 'benefit'
 -%}
+
+{%- if stack_images.size > 0 -%}
+  {%- liquid
+    # Cards start a fixed, short gap apart (not 1/N of the total timeline),
+    # so with a much longer per-card rise, many cards are mid-rise at once -
+    # a cascade, not a one-at-a-time handoff. The shared duration is exactly
+    # long enough for the last card to finish, so the whole set restarts
+    # together right as it vanishes.
+    assign stack_stagger = 0.6
+    assign stack_card_duration = 4.5
+    assign stack_last_index = stack_images.size | minus: 1
+    assign stack_last_start = stack_last_index | times: stack_stagger
+    assign stack_duration = stack_last_start | plus: stack_card_duration | round: 2
+  -%}
+  {%- style -%}
+    {%- for block in stack_images -%}
+      {%- assign stack_start_time = forloop.index0 | times: stack_stagger -%}
+      {%- assign stack_start_pct = stack_start_time | times: 100.0 | divided_by: stack_duration -%}
+      {%- assign stack_card_pct = stack_card_duration | times: 100.0 | divided_by: stack_duration -%}
+      {%- assign stack_rise_pct = stack_card_pct | times: 0.55 -%}
+      {%- assign stack_hold_pct = stack_card_pct | times: 0.6 -%}
+      {%- assign stack_vanish_pct = stack_card_pct | times: 0.61 -%}
+      {%- assign stack_rise_end = stack_start_pct | plus: stack_rise_pct | round: 2 -%}
+      {%- assign stack_hold_end = stack_start_pct | plus: stack_hold_pct | round: 2 -%}
+      {%- assign stack_vanish_end = stack_start_pct | plus: stack_vanish_pct | round: 2 -%}
+      {%- assign stack_start_pct = stack_start_pct | round: 2 -%}
+      @keyframes benefits-stack-rise-{{ section.id }}-{{ forloop.index0 }} {
+        0% {
+          transform: translateY(var(--stack-travel, 0px)) scale(0.45);
+          opacity: 0;
+          z-index: 1;
+        }
+        {{ stack_start_pct }}% {
+          transform: translateY(var(--stack-travel, 0px)) scale(0.45);
+          opacity: 0;
+          z-index: 1;
+        }
+        {{ stack_rise_end }}% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+          z-index: 10;
+        }
+        {{ stack_hold_end }}% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+          z-index: 10;
+        }
+        {{ stack_vanish_end }}%,
+        100% {
+          transform: translateY(0) scale(1.05);
+          opacity: 0;
+          z-index: 1;
+        }
+      }
+    {%- endfor -%}
+  {%- endstyle -%}
+{%- endif -%}
 
 <benefits-progress class="benefits color-{{ section.settings.color_scheme }} gradient">
   <div class="benefits__grid" data-benefits-grid>
@@ -24,31 +82,29 @@
             </div>
           </div>
 
-          <div class="benefits__stack" aria-hidden="true">
-            <div class="benefits__stack-track">
-              {%- for repeat in (1..2) -%}
-                <div class="benefits__stack-group">
-                  {%- for block in stack_images -%}
-                    <div class="benefits__stack-item">
-                      {%- if block.settings.image != blank -%}
-                        {{
-                          block.settings.image
-                          | image_url: width: 700
-                          | image_tag:
-                            loading: 'lazy',
-                            widths: '300, 500, 700',
-                            sizes: '20vw',
-                            class: 'benefits__stack-image'
-                        }}
-                      {%- else -%}
-                        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg benefits__stack-image' }}
-                      {%- endif -%}
-                    </div>
-                  {%- endfor -%}
-                </div>
-              {%- endfor -%}
-            </div>
-          </div>
+          <benefits-stack class="benefits__stack" aria-hidden="true" style="--stack-duration: {{ stack_duration }}s;">
+            {%- for block in stack_images -%}
+              <div
+                class="benefits__stack-item"
+                data-stack-item
+                style="animation-name: benefits-stack-rise-{{ section.id }}-{{ forloop.index0 }};"
+              >
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 700
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 500, 700',
+                      sizes: '20vw',
+                      class: 'benefits__stack-image'
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg benefits__stack-image' }}
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </benefits-stack>
         </div>
       {%- endif -%}
     </div>
