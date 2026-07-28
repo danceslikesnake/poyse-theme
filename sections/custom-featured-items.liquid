@@ -23,7 +23,7 @@
   }
 {%- endstyle -%}
 
-<div class="featured-items__outer page-width">
+<div class="featured-items__outer{% if request.page_type == 'index' %} is-homepage{% endif %}">
   <div class="featured-items color-{{ section.settings.color_scheme }} section-{{ section.id }}-border section-{{ section.id }}-padding">
     <div class="featured-items__grid">
       {%- for block in feature_items -%}

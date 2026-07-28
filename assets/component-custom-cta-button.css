@@ -11,6 +11,7 @@
     text-transform: uppercase;
     letter-spacing: 1%;
     text-decoration: none;
+    cursor: pointer;
 
     &.tan {
         background: var(--poyse-bare-form);
