@@ -25,13 +25,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  margin: 18px 22px;
+  margin: 18px 16px;
   background: var(--poyse-white);
   border-radius: 36px;
 
   @media screen and (min-width: 1024px) {
     background: none;
     border-radius: 0;
+    margin: 18px 22px;
     align-items: flex-start;
   }
 }
