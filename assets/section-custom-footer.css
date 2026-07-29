@@ -11,7 +11,11 @@
 .custom-footer__inner {
   background: var(--poyse-evening-fig);
   border-radius: 8px;
-  padding: 22px 22px 64px 22px;
+  padding: 8px 8px 64px 8px;
+
+  @media screen and (min-width: 1024px) {
+    padding: 22px 22px 64px 22px;
+  }
 }
 
 .custom-footer__top {
@@ -20,20 +24,63 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1.6rem;
-  border-bottom: 1px solid white;
-  padding-bottom: 22px;
+  background: var(--poyse-white);
+  border-radius: 36px;
+  padding: 0;
   margin-bottom: 11px;
+
+  /* Above 1023px the top row drops the mobile-header-style white bar and
+     goes back to sitting directly on the dark footer background. */
+  @media screen and (min-width: 1024px) {
+    background: none;
+    border-radius: 0;
+    padding: 0 0 22px 0;
+    border-bottom: 1px solid white;
+  }
 }
 
 .custom-footer__wordmark {
   display: block;
-  width: 127px;
+  width: 60px;
+  max-width: 40%;
+  margin-left: 12px;
+
+  @media screen and (min-width: 1024px) {
+    width: 127px;
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+.custom-footer__wordmark--large {
+  @media screen and (min-width: 1024px) {
+    width: 220px;
+  }
 }
 
 .custom-footer__wordmark-logo {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* Below 1024px the top row mirrors the actual site header's mobile state:
+   a white bar with the black logo variant. Above that it reverts to the
+   white logo on the footer's own dark background. */
+.custom-footer__wordmark-logo--white {
+  display: none;
+
+  @media screen and (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.custom-footer__wordmark-logo--black {
+  display: block;
+
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
 }
 
 .custom-footer__divider {
@@ -50,16 +97,23 @@
   font-family: 'EsBuildMedium', sans-serif;
   color: var(--poyse-bare-form);
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     grid-template-columns: 1fr;
     gap: 1.6rem;
     text-align: left;
+    border-top: 1px solid white;
+    margin-top: 11px;
+    padding: 32px 8px 0 8px;
   }
 }
 
 .custom-footer__copyright {
   margin: 0;
   font-size: 1.2rem;
+
+  @media screen and (max-width: 1023px) {
+    order: 3;
+  }
 }
 
 .custom-footer__policies {
@@ -67,12 +121,26 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.4rem 2.4rem;
-  margin: 0;
-  padding: 0;
+  margin: 44px 0 0 0;
+  padding: 0 8px 0 8px;
   list-style: none;
 
   @media screen and (max-width: 767px) {
-    justify-content: flex-start;
+    justify-content: space-between;
+  }
+
+  &.hide-on-desktop {
+    @media screen and (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  &.show-on-desktop {
+    margin: 0;
+    padding: 0;
+    @media screen and (max-width: 1023px) {
+      display: none;
+    }
   }
 }
 
@@ -81,6 +149,8 @@
   font-size: 1.2rem;
   font-weight: 600;
   text-decoration: none;
+  font-family: 'EsBuildMedium', sans-serif;
+  color: var(--poyse-bare-form);
 }
 
 .custom-footer__policies a:hover {
@@ -93,7 +163,8 @@
   text-align: right;
   padding-left: 44px;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     text-align: left;
+    padding-left: 0;
   }
 }

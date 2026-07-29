@@ -17,11 +17,19 @@
 <footer class="custom-footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-border">
   <div class="custom-footer__inner">
     <div class="custom-footer__top">
-      <a href="{{ routes.root_url }}" class="custom-footer__wordmark">
+      <a href="{{ routes.root_url }}" class="custom-footer__wordmark{% if section.settings.large_logo %} custom-footer__wordmark--large{% endif %}">
         <img
           src="{{ 'poyse-logo-white.svg' | asset_url }}"
           alt="{{ section.settings.wordmark_text | escape }}"
-          class="custom-footer__wordmark-logo"
+          class="custom-footer__wordmark-logo custom-footer__wordmark-logo--white"
+          width="663"
+          height="175"
+        >
+        <img
+          src="{{ 'poyse-logo-black.svg' | asset_url }}"
+          alt=""
+          aria-hidden="true"
+          class="custom-footer__wordmark-logo custom-footer__wordmark-logo--black"
           width="663"
           height="175"
         >
@@ -32,6 +40,17 @@
       {%- endif -%}
     </div>
 
+    {%- if policy_links.size > 0 -%}
+      <ul class="custom-footer__policies hide-on-desktop">
+        {%- for block in policy_links -%}
+          <li>
+            <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+              {{- block.settings.label | escape -}}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
 
     <div class="custom-footer__bottom">
       <p class="custom-footer__copyright">
@@ -39,7 +58,7 @@
       </p>
 
       {%- if policy_links.size > 0 -%}
-        <ul class="custom-footer__policies">
+        <ul class="custom-footer__policies show-on-desktop">
           {%- for block in policy_links -%}
             <li>
               <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
@@ -79,6 +98,12 @@
       "type": "color",
       "id": "border_color",
       "label": "t:sections.custom-footer.settings.border_color.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "large_logo",
+      "default": false,
+      "label": "t:sections.custom-footer.settings.large_logo.label"
     }
   ],
   "blocks": [

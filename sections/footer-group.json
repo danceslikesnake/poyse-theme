@@ -42,13 +42,15 @@
         "nav_link_1": {
           "type": "nav_link",
           "settings": {
-            "label": "Shop"
+            "label": "Shop",
+            "link": "shopify://collections/all"
           }
         },
         "nav_link_2": {
           "type": "nav_link",
           "settings": {
-            "label": "Science"
+            "label": "Science",
+            "link": "shopify://pages/science"
           }
         },
         "policy_link_1": {

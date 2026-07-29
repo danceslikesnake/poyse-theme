@@ -923,6 +923,9 @@
         },
         "border_color": {
           "label": "Container border color"
+        },
+        "large_logo": {
+          "label": "Larger logo on desktop"
         }
       },
       "blocks": {
