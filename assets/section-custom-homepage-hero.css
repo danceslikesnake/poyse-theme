@@ -146,9 +146,13 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 65%;
-  padding: 0 0 22px 44px;
+  padding: 22px 12px 0 12px;
   color: rgb(255, 255, 255);
+
+  @media screen and (min-width: 1024px) {
+    max-width: 65%;
+    padding: 0 0 22px 44px;
+  }
 }
 
 .hero-showcase__eyebrow {
@@ -169,12 +173,12 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1.5rem 2rem;
+  gap: 16px;
   width: 100%;
-  padding: 0 44px 44px;
+  padding: 0 12px;
 
   .button--primary, .button--secondary {
-    padding: 0 22px;
+    padding: 0 16px;
     margin: 0;
     line-height: 35px;
     height: 35px;
@@ -195,15 +199,22 @@
   .button--secondary {
     background: rgba(105, 40, 48, 0.25);
   }
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 44px 44px;
+  }
 }
 
 .hero-showcase__contentPosition {
+  margin: 0 0 44px 0;
+
   @media screen and (min-width: 1024px) {
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 4;
     width: 50%;
+    margin: 0;
   }
 }
 
@@ -273,7 +284,7 @@
 
 .hero-showcase__flavor-btn {
   font-family: 'EsBuildMedium', sans-serif;
-  padding: 0 22px;
+  padding: 0 8px;
   border: 1px solid var(--poyse-evening-fig);
   border-radius: 22px;
   background: transparent;
@@ -285,6 +296,10 @@
     background-color 0.2s ease,
     color 0.2s ease,
     border-color 0.2s ease;
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 22px;
+  }
 }
 
 .hero-showcase__flavor-btn.is-active {

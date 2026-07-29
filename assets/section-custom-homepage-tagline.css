@@ -9,13 +9,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 0 48px 0;
+  padding: 0 0 98px 0;
   margin: 0 8px;
   border-bottom: 1px solid var(--poyse-bare-form);
-
-  @media screen and (min-width: 1024px) {
-    padding: 0 0 98px 0;
-  }
 }
 
 .tagline-banner__ornament {
@@ -34,9 +30,14 @@
 
 .tagline-banner__line {
   margin: 0;
-  font-size: 42px;
-  line-height: 1.25;
+  font-size: 32px;
+  line-height: 1.10;
   color: white;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 42px;
+    line-height: 1.25;
+  }
 }
 
 .tagline-banner__line--emphasis {

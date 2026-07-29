@@ -1,7 +1,7 @@
 .custom-cta-button {
     border: none;
     margin: 0;
-    padding: 0 44px;
+    padding: 0 22px;
     font-family: 'EsBuildBold', sans-serif;
     font-size: 12px;
     background: var(--poyse-evening-fig);
@@ -28,6 +28,14 @@
     }
 
     &.narrow-padding {
-        padding: 0 22px;
+        padding: 0 8px;
+    }
+
+    @media screen and (min-width: 1024px) {
+        padding: 0 44px;
+
+        &.narrow-padding {
+            padding: 0 22px;
+        }
     }
 }

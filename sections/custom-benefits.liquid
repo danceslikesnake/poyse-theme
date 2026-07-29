@@ -62,6 +62,57 @@
         }
       }
     {%- endfor -%}
+
+    {%- comment -%}
+      Below 1023px the stack item is exactly as wide as its container (width:
+      100%), so translateX(100%) travels precisely one container-width to the
+      right with no JS measurement needed - unlike the vertical version, which
+      needs --stack-travel because the card's fixed height doesn't match the
+      container's responsive height. Same keyframe names as above, so this
+      simply overrides them when the media query matches.
+    {%- endcomment -%}
+    @media screen and (max-width: 1023px) {
+      {%- for block in stack_images -%}
+        {%- assign stack_start_time = forloop.index0 | times: stack_stagger -%}
+        {%- assign stack_start_pct = stack_start_time | times: 100.0 | divided_by: stack_duration -%}
+        {%- assign stack_card_pct = stack_card_duration | times: 100.0 | divided_by: stack_duration -%}
+        {%- assign stack_rise_pct = stack_card_pct | times: 0.55 -%}
+        {%- assign stack_hold_pct = stack_card_pct | times: 0.6 -%}
+        {%- assign stack_vanish_pct = stack_card_pct | times: 0.61 -%}
+        {%- assign stack_rise_end = stack_start_pct | plus: stack_rise_pct | round: 2 -%}
+        {%- assign stack_hold_end = stack_start_pct | plus: stack_hold_pct | round: 2 -%}
+        {%- assign stack_vanish_end = stack_start_pct | plus: stack_vanish_pct | round: 2 -%}
+        {%- assign stack_start_pct = stack_start_pct | round: 2 -%}
+        @keyframes benefits-stack-rise-{{ section.id }}-{{ forloop.index0 }} {
+          0% {
+            transform: translateX(100%) scale(0.45);
+            opacity: 0;
+            z-index: 1;
+          }
+          {{ stack_start_pct }}% {
+            transform: translateX(100%) scale(0.45);
+            opacity: 0;
+            z-index: 1;
+          }
+          {{ stack_rise_end }}% {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+            z-index: 10;
+          }
+          {{ stack_hold_end }}% {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+            z-index: 10;
+          }
+          {{ stack_vanish_end }}%,
+          100% {
+            transform: translateX(0) scale(1.05);
+            opacity: 0;
+            z-index: 1;
+          }
+        }
+      {%- endfor -%}
+    }
   {%- endstyle -%}
 {%- endif -%}
 

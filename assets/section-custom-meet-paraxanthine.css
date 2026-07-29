@@ -3,6 +3,11 @@
   overflow: hidden;
   padding: 8px;
   background: var(--poyse-deep-current);
+  display: none;
+
+  @media screen and (min-width: 1024px) {
+    display: block;
+  }
 }
 
 .meet-paraxanthine__media {
