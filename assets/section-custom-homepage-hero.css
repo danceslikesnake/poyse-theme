@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  aspect-ratio: 4 / 4;
+  aspect-ratio: 4 / 3;
   background-color: rgb(var(--color-foreground) / 0.05);
 
   @media screen and (min-width: 768px) {
@@ -169,7 +169,7 @@
   position: relative;
   z-index: 3;
   display: flex;
-  gap: 8px;
+  gap: 0;
   width: 100%;
   padding: 0;
 
@@ -177,6 +177,7 @@
     padding: 0 44px 44px;
     flex-wrap: wrap;
     align-items: center;
+    gap: 8px
   }
 }
 
