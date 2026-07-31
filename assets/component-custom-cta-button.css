@@ -12,15 +12,27 @@
     letter-spacing: 1%;
     text-decoration: none;
     cursor: pointer;
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
 
     &.tan {
         background: var(--poyse-bare-form);
         color: var(--poyse-evening-fig);
+
+        &:hover {
+            background: white;
+        }
     }
 
     &.transparent-fig {
         background: rgba(105, 40, 48, 0.25);
         color: var(--poyse-bare-form);
+
+        &:hover {
+            background: var(--poyse-deep-current);
+        }
     }
 
     &.full-width-cta {

@@ -20,11 +20,15 @@
         },
         "slide_2": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/hero-2.png"
+          }
         },
         "slide_3": {
           "type": "slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/hero-3.png"
+          }
         },
         "heading": {
           "type": "heading",

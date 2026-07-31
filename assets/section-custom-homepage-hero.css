@@ -302,8 +302,21 @@
   }
 }
 
+.hero-showcase__flavor-btn:hover {
+  background-color: var(--poyse-evening-fig);
+  color: #fff;
+}
+
 .hero-showcase__flavor-btn.is-active {
   background-color: #FF960E;
+}
+
+.hero-showcase__flavor-btn[data-flavor='tropical-mango'].is-active {
+  background-color: #E2963F;
+}
+
+.hero-showcase__flavor-btn[data-flavor='strawberry-watermelon'].is-active {
+  background-color: #D97170;
 }
 
 .hero-showcase__product-title {

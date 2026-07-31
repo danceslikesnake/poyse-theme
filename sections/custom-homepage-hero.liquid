@@ -152,6 +152,7 @@
                       type="button"
                       class="hero-showcase__flavor-btn{% if forloop.first %} is-active{% endif %}"
                       data-flavor-target="{{ block.id }}"
+                      data-flavor="{{ block.settings.label | handleize }}"
                       aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
                       {{ block.shopify_attributes }}
               >
