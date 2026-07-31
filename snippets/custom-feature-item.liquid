@@ -5,6 +5,8 @@
   Accepts:
   - product: {Object} product resource (image/title/url source)
   - subtitle: {String} rich text subtitle, e.g. "with Paraxanthine <em>for Daily Momentum</em>"
+  - hover_image: {Object} optional image_picker image shown on card hover. Falls back to a
+    flavor-matched asset (hover-1/2/3.png) keyed off product.handle when left blank.
   - show_new_arrival_badge: {Boolean}
   - show_best_seller_badge: {Boolean}
   - monthly_label: {String}
@@ -17,8 +19,24 @@
   - shopify_attributes: {String} optional, pass block.shopify_attributes when called from a block loop
 {%- endcomment -%}
 
+{%- liquid
+  assign hover_image_url = blank
+  if hover_image != blank
+    assign hover_image_url = hover_image | image_url: width: 800
+  elsif product.handle == 'yuzu-citrus'
+    assign hover_image_url = 'hover-1.png' | asset_url
+  elsif product.handle == 'strawberry-watermelon'
+    assign hover_image_url = 'hover-2.png' | asset_url
+  elsif product.handle == 'tropical-mango'
+    assign hover_image_url = 'hover-3.png' | asset_url
+  endif
+-%}
+
 <feature-item class="feature-item" {{ shopify_attributes }}>
-  <div class="feature-item__media color-{{ card_color_scheme }}">
+  <div
+    class="feature-item__media color-{{ card_color_scheme }}"
+    {% if hover_image_url != blank %}style="--feature-item-hover-image: url('{{ hover_image_url | escape }}');"{% endif %}
+  >
     {%- if show_new_arrival_badge or show_best_seller_badge -%}
       <div class="feature-item__badges">
         {%- if show_new_arrival_badge -%}

@@ -1035,6 +1035,13 @@
               "label": "Subtitle",
               "default": "with Paraxanthine <em>for Daily Momentum</em>"
             },
+            "header_hover_image": {
+              "content": "Hover image"
+            },
+            "hover_image": {
+              "label": "Hover background image",
+              "info": "Shown behind the product photo on hover. If left blank, defaults to a flavor-matched image (Yuzu Citrus, Strawberry Watermelon, Tropical Mango)."
+            },
             "header_badges": {
               "content": "Badges"
             },
