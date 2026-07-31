@@ -76,19 +76,21 @@
           "type": "flavor",
           "settings": {
             "label": "Yuzu Citrus",
-            "video": "shopify://files/videos/Poyse_Yuzu_Angle0000_1.mp4"
+            "poster_image": "shopify://shop_images/Poyse_System2.png"
           }
         },
         "flavor_2": {
           "type": "flavor",
           "settings": {
-            "label": "Tropical Mango"
+            "label": "Tropical Mango",
+            "poster_image": "shopify://shop_images/Poyse_System_3.png"
           }
         },
         "flavor_3": {
           "type": "flavor",
           "settings": {
-            "label": "Strawberry Watermelon"
+            "label": "Strawberry Watermelon",
+            "poster_image": "shopify://shop_images/Poyse_System_4.png"
           }
         },
         "product_info": {

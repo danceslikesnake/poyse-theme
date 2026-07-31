@@ -169,37 +169,21 @@
   position: relative;
   z-index: 3;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   gap: 8px;
   width: 100%;
   padding: 0;
 
-  .button--primary, .button--secondary {
-    padding: 0 16px;
-    margin: 0;
-    line-height: 35px;
-    height: 35px;
-    border-radius: 8px;
-    font-size: var(--font-size-xs);
-    font-family: 'EsBuildBold', sans-serif;
-    text-transform: uppercase;
-    border: none;
-    min-height: auto;
-    min-width: auto;
-    letter-spacing: 1%;
-
-    &:before, &:after {
-      content: none;
-    }
-  }
-
-  .button--secondary {
-    background: rgba(105, 40, 48, 0.25);
-  }
-
   @media screen and (min-width: 1024px) {
     padding: 0 44px 44px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.hero-showcase__buttonsWrap {
+  flex: 1;
+  @media screen and (min-width: 1024px) {
+    flex: none;
   }
 }
 
@@ -236,7 +220,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  padding: 0 16px 24px 16px;
+  padding: 0 8px 24px 8px;
   @media screen and (min-width: 1024px) {
     min-height: 100vh;
     justify-content: center;
@@ -249,8 +233,11 @@
   position: relative;
   width: 100%;
   max-width: 34rem;
-  margin: 0 auto 2.4rem;
+  margin: 0 auto 0 auto;
   aspect-ratio: 4 / 5;
+  @media screen and (min-width: 1024px) {
+    margin: 0 auto 2.4rem;
+  }
 }
 
 .hero-showcase__video {
@@ -277,8 +264,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 4px;
   margin-bottom: 2.4rem;
+  @media screen and (min-width: 1024px) {
+    gap: 1rem;
+  }
 }
 
 .hero-showcase__flavor-btn {
@@ -335,7 +325,7 @@
   justify-content: center;
   gap: 16px;
   border: none;
-  padding: 11px 16px 14px 16px;
+  padding: 11px 4px 14px 4px;
   @media screen and (min-width: 1024px) {
     flex-wrap: wrap;
     gap: 2.4rem;

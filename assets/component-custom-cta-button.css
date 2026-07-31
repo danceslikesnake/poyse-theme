@@ -8,6 +8,7 @@
     color: var(--poyse-white);
     border-radius: 8px;
     line-height: 40px;
+    display: inline-block;
     text-transform: uppercase;
     letter-spacing: 1%;
     text-decoration: none;
