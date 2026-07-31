@@ -204,7 +204,7 @@
 }
 
 .hero-showcase__contentPosition {
-  margin: 0 0 24px 0;
+  margin: 12px 0 36px 0;
 
   @media screen and (min-width: 1024px) {
     position: absolute;
@@ -222,7 +222,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   padding: 0;
   text-align: center;
 
@@ -236,11 +235,11 @@
 .hero_showcase__product_inner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   border-radius: 8px;
-  min-height: 100vh;
   padding: 0 16px 24px 16px;
   @media screen and (min-width: 1024px) {
+    min-height: 100vh;
+    justify-content: center;
     min-height: 100%;
     padding: 0 0 0 0;
   }

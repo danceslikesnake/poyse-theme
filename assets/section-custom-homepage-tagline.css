@@ -30,12 +30,13 @@
 
 .tagline-banner__line {
   margin: 0;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   line-height: 1.10;
   color: white;
 
   @media screen and (min-width: 1024px) {
     line-height: 1.25;
+    font-size: var(--font-size-lg);
   }
 }
 

@@ -8,7 +8,7 @@
 
 .featured-items {
   border-radius: 8px;
-  padding: 8px !important;
+  padding: 12px 8px !important;
 
   @media screen and (min-width: 1024px) {
     padding: 7rem 7% !important;
@@ -90,7 +90,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 1.6rem;
-  padding: 0 16px;
+  padding: 0 8px;
 
   @media screen and (min-width: 1024px) {
     padding: 0;
