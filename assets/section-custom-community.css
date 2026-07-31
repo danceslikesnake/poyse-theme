@@ -157,6 +157,12 @@
   border-radius: 12px;
   background: rgb(255, 255, 255);
   box-shadow: 0 0.4rem 1.2rem rgb(0 0 0 / 15%);
+
+  &:hover {
+    .community-gallery__product-plus {
+      background: black;
+    }
+  }
 }
 
 .community-gallery__product-image {

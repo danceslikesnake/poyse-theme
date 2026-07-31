@@ -175,7 +175,7 @@
       "settings": {
         "color_scheme": "scheme-poyse-1",
         "show_ornament": true,
-        "ticker_speed": 30,
+        "ticker_speed": 45,
         "padding_top": 64,
         "padding_bottom": 64
       }
