@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  aspect-ratio: 382 / 427;
+  aspect-ratio: 4 / 4;
   background-color: rgb(var(--color-foreground) / 0.05);
 
   @media screen and (min-width: 768px) {
@@ -87,11 +87,10 @@
   font-family: 'SignifierLightItalic', serif;
   font-weight: 300;
   font-style: italic;
-  font-size: 32px;
+  font-size: var(--font-size-lg);
   line-height: 1.15;
-
   @media screen and (min-width: 1024px) {
-    font-size: clamp(2.6rem, 5vw, 4.6rem);
+    font-size: var(--font-size-xl);
   }
 }
 
@@ -100,12 +99,11 @@
   display: block;
   min-height: 1.3em;
   margin-top: 0.4rem;
-  font-size: 32px;
+  font-size: var(--font-size-lg);
   line-height: 1.15;
   font-weight: 300;
-
   @media screen and (min-width: 1024px) {
-    font-size: clamp(2.6rem, 5vw, 4.6rem);
+    font-size: var(--font-size-xl);
   }
 }
 
@@ -146,7 +144,7 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  padding: 22px 12px 0 12px;
+  padding: 22px 4px 0 4px;
   color: rgb(255, 255, 255);
 
   @media screen and (min-width: 1024px) {
@@ -173,9 +171,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   width: 100%;
-  padding: 0 12px;
+  padding: 0;
 
   .button--primary, .button--secondary {
     padding: 0 16px;
@@ -183,7 +181,7 @@
     line-height: 35px;
     height: 35px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-family: 'EsBuildBold', sans-serif;
     text-transform: uppercase;
     border: none;
@@ -206,7 +204,7 @@
 }
 
 .hero-showcase__contentPosition {
-  margin: 0 0 44px 0;
+  margin: 0 0 24px 0;
 
   @media screen and (min-width: 1024px) {
     position: absolute;
@@ -241,8 +239,10 @@
   justify-content: center;
   border-radius: 8px;
   min-height: 100vh;
+  padding: 0 16px 24px 16px;
   @media screen and (min-width: 1024px) {
     min-height: 100%;
+    padding: 0 0 0 0;
   }
 }
 
@@ -288,9 +288,9 @@
   border: 1px solid var(--poyse-evening-fig);
   border-radius: 22px;
   background: transparent;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   letter-spacing: 1%;
-  line-height: 22px;
+  line-height: 28px;
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -333,18 +333,22 @@
 
 .hero-showcase__subscription {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 2.4rem;
+  gap: 16px;
   border: none;
-  padding: 11px 0 14px 0;
+  padding: 11px 16px 14px 16px;
+  @media screen and (min-width: 1024px) {
+    flex-wrap: wrap;
+    gap: 2.4rem;
+    padding: 11px 0 14px 0;
+  }
 }
 
 .hero-showcase__subscription-option {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   cursor: pointer;
   font-family: 'EsBuildMedium', sans-serif;
   text-transform: uppercase;

@@ -79,7 +79,7 @@
   border: 1px solid var(--poyse-evening-fig);
   border-radius: 999px;
   background: white;
-  font-size: 10px;
+  font-size: var(--font-size-2xs);
   letter-spacing: 1%;
   white-space: nowrap;
   color: var(--poyse-evening-fig);
@@ -98,7 +98,7 @@
 }
 
 .feature-item__title {
-  font-size: 18px;
+  font-size: var(--font-size-sm);
   text-decoration: none;
   color: inherit;
   font-family: 'EsBuildMedium', sans-serif;
@@ -116,7 +116,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1.6rem;
-  margin: 18px 0 18px 0;
+  margin: 20px 0 20px 0;
   padding: 0;
   border: none;
 }
@@ -125,7 +125,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 10px;
+  font-size: var(--font-size-2xs);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-transform: uppercase;

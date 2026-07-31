@@ -18,7 +18,7 @@
   border-radius: 999px;
   background-color: transparent;
   color: var(--poyse-evening-fig);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   font-family: 'EsBuildMedium', sans-serif;
   letter-spacing: -0.01em;
   text-decoration: none;
@@ -41,6 +41,6 @@
   background-color: var(--poyse-evening-fig);
   color: var(--poyse-bare-form);
   font-family: 'EsBuildMedium', sans-serif;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   text-decoration: none;
 }

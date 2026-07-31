@@ -44,21 +44,20 @@
 
 .community-gallery__heading {
   margin: 0 0 4rem;
-  font-size: 42px;
+  font-size: var(--font-size-lg);
   line-height: 1.2;
   color: var(--poyse-evening-fig);
   padding-top: 11px;
 
   @media screen and (max-width: 1023px) {
     margin-bottom: 2.4rem;
-    font-size: 32px;
     line-height: 1.10;
   }
 }
 
 .community-gallery__eyebrow {
   margin: 0 0 0.8rem;
-  font-size: 18px;
+  font-size: var(--font-size-sm);
   color: var(--poyse-evening-fig);
   font-family: 'EsBuildMedium', sans-serif;
 }
@@ -142,7 +141,7 @@
   border-radius: 999px;
   background: rgb(255, 255, 255);
   color: rgb(30, 30, 30);
-  font-size: 1.1rem;
+  font-size: var(--font-size-2xs);
   font-family: 'EsBuildMedium', sans-serif;
 }
 

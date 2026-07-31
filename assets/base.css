@@ -17,6 +17,25 @@ collection-component {
   --poyse-bare-form: #dbcec4;
   --poyse-evening-fig: #392c2d;
   --poyse-deep-current: #692830;
+
+  /* Type scale for custom Poyse sections. Base is anchored to the 16px body
+     copy size; tweak --font-scale-ratio alone to resize every step at once.
+     --font-scale-base itself steps up at the 1024px breakpoint so every
+     token (including ones with no per-rule media query) grows on desktop. */
+  --font-scale-base: 1.6rem;
+  --font-scale-ratio: 1.25;
+
+  @media screen and (min-width: 1024px) {
+    --font-scale-base: 1.8rem; /* 1.6rem * 1.25 ratio — bumps every token up one tier */
+  }
+
+  --font-size-2xs: calc(var(--font-scale-base) / var(--font-scale-ratio) / var(--font-scale-ratio));
+  --font-size-xs: calc(var(--font-scale-base) / var(--font-scale-ratio));
+  --font-size-sm: calc(var(--font-scale-base) * var(--font-scale-ratio));
+  --font-size-md: calc(var(--font-scale-base) * var(--font-scale-ratio) * var(--font-scale-ratio));
+  --font-size-lg: calc(var(--font-scale-base) * var(--font-scale-ratio) * var(--font-scale-ratio) * var(--font-scale-ratio));
+  --font-size-xl: calc(var(--font-scale-base) * var(--font-scale-ratio) * var(--font-scale-ratio) * var(--font-scale-ratio) * var(--font-scale-ratio));
+  --font-size-2xl: calc(var(--font-scale-base) * var(--font-scale-ratio) * var(--font-scale-ratio) * var(--font-scale-ratio) * var(--font-scale-ratio) * var(--font-scale-ratio));
 }
 
 .product-card-wrapper .card,

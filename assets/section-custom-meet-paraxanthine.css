@@ -72,7 +72,7 @@
 
 .meet-paraxanthine__heading {
   margin: 0 0 22px;
-  font-size: 34px;
+  font-size: var(--font-size-lg);
   line-height: 1.2;
 }
 

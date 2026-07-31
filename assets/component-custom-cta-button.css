@@ -3,11 +3,11 @@
     margin: 0;
     padding: 0 22px;
     font-family: 'EsBuildBold', sans-serif;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     background: var(--poyse-evening-fig);
     color: var(--poyse-white);
     border-radius: 8px;
-    line-height: 35px;
+    line-height: 40px;
     text-transform: uppercase;
     letter-spacing: 1%;
     text-decoration: none;
@@ -43,8 +43,15 @@
         width: 100%;
     }
 
+    &.full-width-cta-on-mobile {
+        @media screen and (max-width: 1023px) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
     &.narrow-padding {
-        padding: 0 8px;
+        padding: 0 4px;
     }
 
     @media screen and (min-width: 1024px) {

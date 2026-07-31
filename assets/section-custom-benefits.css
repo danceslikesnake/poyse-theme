@@ -6,6 +6,7 @@
   display: grid;
   grid-template-columns: minmax(26rem, 45%) 1fr;
   align-items: start;
+  padding: 24px 0;
 
   @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
@@ -31,7 +32,7 @@
 
 .benefits__heading {
   margin: 0 auto;
-  font-size: 32px;
+  font-size: var(--font-size-lg);
   line-height: 1.10;
   color: white;
   text-align: center;
@@ -39,7 +40,6 @@
   padding-bottom: 22px;
 
   @media screen and (min-width: 1024px) {
-    font-size: 42px;
     line-height: 1.25;
     padding-bottom: 0;
   }
@@ -133,7 +133,7 @@
   padding: 4rem 8px;
 
   @media screen and (min-width: 1024px) {
-    padding: 0 2.4rem 3.2rem;
+    padding: 3.2rem 2.4rem;
     gap: 2rem;
   }
 }
@@ -150,12 +150,8 @@
 
 .benefits__card-meta, .benefits__card-eyebrow {
   font-family: 'EsBuildBold', sans-serif;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: white;
-
-  @media screen and (min-width: 1024px) {
-    font-size: 14px;
-  }
 }
 
 .benefits__card-top {
@@ -167,18 +163,14 @@
   padding-bottom: 1.2rem;
   margin-bottom: 44px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  font-size: 1.2rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
 }
 
 .benefits__card-heading {
   margin: 0 0 0.8rem;
-  font-size: 28px;
+  font-size: var(--font-size-md);
   color: white;
-
-  @media screen and (min-width: 1024px) {
-    font-size: 34px;
-  }
 }
 
 .benefits__card-text {
