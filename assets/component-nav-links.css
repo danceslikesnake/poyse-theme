@@ -6,7 +6,10 @@
   padding: 0.4rem;
   border-radius: 999px;
   background-color: var(--poyse-white);
-  box-shadow: 0 0.2rem 1.2rem rgb(0 0 0 / 8%);
+  @media screen and (min-width: 1024px) {
+    box-shadow: 0px 2.14px 4.29px 0px #0000001F;
+  }
+
 }
 
 .custom-nav-links__nav-link {

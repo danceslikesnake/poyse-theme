@@ -28,12 +28,14 @@
   margin: 18px 16px;
   background: var(--poyse-white);
   border-radius: 36px;
+  box-shadow: 0px 2.14px 4.29px 0px #0000001F;
 
   @media screen and (min-width: 1024px) {
     background: none;
     border-radius: 0;
     margin: 18px 22px;
     align-items: flex-start;
+    box-shadow: none;
   }
 }
 
