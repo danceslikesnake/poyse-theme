@@ -1,120 +1,94 @@
 {{ 'section-custom-benefits.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'benefits-progress.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'benefits-stack.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'lottie-light.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'benefits-lottie.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign content_block = section.blocks | where: 'type', 'content' | first
-  assign stack_images = section.blocks | where: 'type', 'stack_image'
   assign benefit_blocks = section.blocks | where: 'type', 'benefit'
 -%}
 
-{%- if stack_images.size > 0 -%}
-  {%- liquid
-    # Cards start a fixed, short gap apart (not 1/N of the total timeline),
-    # so with a much longer per-card rise, many cards are mid-rise at once -
-    # a cascade, not a one-at-a-time handoff. The shared duration is exactly
-    # long enough for the last card to finish, so the whole set restarts
-    # together right as it vanishes.
-    assign stack_stagger = 0.6
-    assign stack_card_duration = 4.5
-    assign stack_last_index = stack_images.size | minus: 1
-    assign stack_last_start = stack_last_index | times: stack_stagger
-    assign stack_duration = stack_last_start | plus: stack_card_duration | round: 2
-  -%}
-  {%- style -%}
-    {%- for block in stack_images -%}
-      {%- assign stack_start_time = forloop.index0 | times: stack_stagger -%}
-      {%- assign stack_start_pct = stack_start_time | times: 100.0 | divided_by: stack_duration -%}
-      {%- assign stack_card_pct = stack_card_duration | times: 100.0 | divided_by: stack_duration -%}
-      {%- assign stack_rise_pct = stack_card_pct | times: 0.55 -%}
-      {%- assign stack_hold_pct = stack_card_pct | times: 0.6 -%}
-      {%- assign stack_vanish_pct = stack_card_pct | times: 0.61 -%}
-      {%- assign stack_rise_end = stack_start_pct | plus: stack_rise_pct | round: 2 -%}
-      {%- assign stack_hold_end = stack_start_pct | plus: stack_hold_pct | round: 2 -%}
-      {%- assign stack_vanish_end = stack_start_pct | plus: stack_vanish_pct | round: 2 -%}
-      {%- assign stack_start_pct = stack_start_pct | round: 2 -%}
-      @keyframes benefits-stack-rise-{{ section.id }}-{{ forloop.index0 }} {
-        0% {
-          transform: translateY(var(--stack-travel, 0px)) scale(0.45);
-          opacity: 0;
-          z-index: 1;
-        }
-        {{ stack_start_pct }}% {
-          transform: translateY(var(--stack-travel, 0px)) scale(0.45);
-          opacity: 0;
-          z-index: 1;
-        }
-        {{ stack_rise_end }}% {
-          transform: translateY(0) scale(1);
-          opacity: 1;
-          z-index: 10;
-        }
-        {{ stack_hold_end }}% {
-          transform: translateY(0) scale(1);
-          opacity: 1;
-          z-index: 10;
-        }
-        {{ stack_vanish_end }}%,
-        100% {
-          transform: translateY(0) scale(1.05);
-          opacity: 0;
-          z-index: 1;
-        }
-      }
-    {%- endfor -%}
+{%- comment -%}
+  The Lottie file has exactly 11 baked photo slots (asset ids 0-10), one per
+  merchant-editable setting below - order and count are fixed by the
+  animation itself, not a repeatable block list. Built as a pipe-delimited
+  string and split into an array since Shopify Liquid has no array-push.
+{%- endcomment -%}
+{%- capture photo_url_pipe_list -%}
+  {%- for i in (1..11) -%}
+    {%- assign setting_key = 'lottie_photo_' | append: i -%}
+    {%- assign photo_image = section.settings[setting_key] -%}
+    {%- if photo_image != blank -%}
+      {%- assign photo_url = photo_image | image_url: width: 700 -%}
+    {%- else -%}
+      {%- assign fallback_index = i | minus: 1 -%}
+      {%- assign fallback_file = 'image_' | append: fallback_index | append: '.png' -%}
+      {%- assign photo_url = fallback_file | asset_url -%}
+    {%- endif -%}
+    {{- photo_url -}}
+    {%- unless forloop.last -%}|{%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign photo_url_list = photo_url_pipe_list | split: '|' -%}
 
-    {%- comment -%}
-      Below 1023px the stack item is exactly as wide as its container (width:
-      100%), so translateX(100%) travels precisely one container-width to the
-      right with no JS measurement needed - unlike the vertical version, which
-      needs --stack-travel because the card's fixed height doesn't match the
-      container's responsive height. Same keyframe names as above, so this
-      simply overrides them when the media query matches.
-    {%- endcomment -%}
-    @media screen and (max-width: 1023px) {
-      {%- for block in stack_images -%}
-        {%- assign stack_start_time = forloop.index0 | times: stack_stagger -%}
-        {%- assign stack_start_pct = stack_start_time | times: 100.0 | divided_by: stack_duration -%}
-        {%- assign stack_card_pct = stack_card_duration | times: 100.0 | divided_by: stack_duration -%}
-        {%- assign stack_rise_pct = stack_card_pct | times: 0.55 -%}
-        {%- assign stack_hold_pct = stack_card_pct | times: 0.6 -%}
-        {%- assign stack_vanish_pct = stack_card_pct | times: 0.61 -%}
-        {%- assign stack_rise_end = stack_start_pct | plus: stack_rise_pct | round: 2 -%}
-        {%- assign stack_hold_end = stack_start_pct | plus: stack_hold_pct | round: 2 -%}
-        {%- assign stack_vanish_end = stack_start_pct | plus: stack_vanish_pct | round: 2 -%}
-        {%- assign stack_start_pct = stack_start_pct | round: 2 -%}
-        @keyframes benefits-stack-rise-{{ section.id }}-{{ forloop.index0 }} {
-          0% {
-            transform: translateX(100%) scale(0.45);
-            opacity: 0;
-            z-index: 1;
-          }
-          {{ stack_start_pct }}% {
-            transform: translateX(100%) scale(0.45);
-            opacity: 0;
-            z-index: 1;
-          }
-          {{ stack_rise_end }}% {
-            transform: translateX(0) scale(1);
-            opacity: 1;
-            z-index: 10;
-          }
-          {{ stack_hold_end }}% {
-            transform: translateX(0) scale(1);
-            opacity: 1;
-            z-index: 10;
-          }
-          {{ stack_vanish_end }}%,
-          100% {
-            transform: translateX(0) scale(1.05);
-            opacity: 0;
-            z-index: 1;
-          }
-        }
-      {%- endfor -%}
+{%- comment -%}
+  Mobile-only placeholder for the Lottie's motion until a horizontal
+  version exists: same 11 photos, cascading right to left one at a time
+  (grow in, hold, shrink-and-fade out past the left edge). Directly ports
+  the timing shape of this theme's original benefits-stack effect - cards
+  start a fixed, short gap apart (not 1/N of the total timeline), so with a
+  much longer per-card rise, several cards are mid-rise at once, fanned out
+  overlapping rather than a one-at-a-time handoff.
+{%- endcomment -%}
+{%- liquid
+  assign filmstrip_stagger = 0.6
+  assign filmstrip_card_duration = 4.5
+  assign filmstrip_last_index = photo_url_list.size | minus: 1
+  assign filmstrip_last_start = filmstrip_last_index | times: filmstrip_stagger
+  assign filmstrip_duration = filmstrip_last_start | plus: filmstrip_card_duration | round: 2
+-%}
+{%- style -%}
+  {%- for photo_url in photo_url_list -%}
+    {%- assign filmstrip_start_time = forloop.index0 | times: filmstrip_stagger -%}
+    {%- assign filmstrip_start_pct = filmstrip_start_time | times: 100.0 | divided_by: filmstrip_duration -%}
+    {%- assign filmstrip_card_pct = filmstrip_card_duration | times: 100.0 | divided_by: filmstrip_duration -%}
+    {%- assign filmstrip_rise_pct = filmstrip_card_pct | times: 0.55 -%}
+    {%- assign filmstrip_hold_pct = filmstrip_card_pct | times: 0.6 -%}
+    {%- assign filmstrip_vanish_pct = filmstrip_card_pct | times: 0.61 -%}
+    {%- assign filmstrip_rise_end = filmstrip_start_pct | plus: filmstrip_rise_pct | round: 2 -%}
+    {%- assign filmstrip_hold_end = filmstrip_start_pct | plus: filmstrip_hold_pct | round: 2 -%}
+    {%- assign filmstrip_vanish_end = filmstrip_start_pct | plus: filmstrip_vanish_pct | round: 2 -%}
+    {%- assign filmstrip_start_pct = filmstrip_start_pct | round: 2 -%}
+    @keyframes benefits-filmstrip-cascade-{{ section.id }}-{{ forloop.index0 }} {
+      0% {
+        transform: translateX(100%) scale(0.45);
+        opacity: 0;
+        z-index: 1;
+      }
+      {{ filmstrip_start_pct }}% {
+        transform: translateX(100%) scale(0.45);
+        opacity: 0;
+        z-index: 1;
+      }
+      {{ filmstrip_rise_end }}% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        z-index: 10;
+      }
+      {{ filmstrip_hold_end }}% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        z-index: 10;
+      }
+      {{ filmstrip_vanish_end }}%,
+      100% {
+        transform: translateX(-100%) scale(1.05);
+        opacity: 0;
+        z-index: 1;
+      }
     }
-  {%- endstyle -%}
-{%- endif -%}
+  {%- endfor -%}
+{%- endstyle -%}
 
 <benefits-progress class="benefits color-{{ section.settings.color_scheme }} gradient">
   <div class="benefits__grid" data-benefits-grid>
@@ -125,39 +99,60 @@
         </p>
       {%- endif -%}
 
-      {%- if stack_images.size > 0 -%}
-        <div class="benefits__body">
-          <div class="benefits__progress" data-benefits-progress hidden>
-            <div class="benefits__progress-track" data-benefits-progress-track>
-              <div class="benefits__progress-thumb" data-benefits-progress-thumb>&#8203;</div>
-            </div>
+      <div class="benefits__body">
+        <div class="benefits__progress" data-benefits-progress hidden>
+          <div class="benefits__progress-track" data-benefits-progress-track>
+            <div class="benefits__progress-thumb" data-benefits-progress-thumb>&#8203;</div>
+          </div>
+        </div>
+
+        <benefits-lottie data-animation-url="{{ 'benefits-lottie.json' | asset_url }}">
+          {%- comment -%}
+            Desktop (>=1024px): plays the Lottie's authored crossfade in
+            place. The poster is a plain <img> fallback shown until the
+            player attaches (also covers reduced-motion / JS-disabled).
+          {%- endcomment -%}
+          <div class="benefits__lottie" aria-hidden="true">
+            <img
+              src="{{ photo_url_list.first }}"
+              loading="lazy"
+              width="700"
+              height="700"
+              alt=""
+              class="benefits__lottie-poster"
+              data-lottie-poster
+            >
+            <div class="benefits__lottie-canvas" data-lottie-target></div>
+            <script type="application/json" data-lottie-overrides>{{ photo_url_list | json }}</script>
           </div>
 
-          <benefits-stack class="benefits__stack" aria-hidden="true" style="--stack-duration: {{ stack_duration }}s;">
-            {%- for block in stack_images -%}
-              <div
-                class="benefits__stack-item"
-                data-stack-item
-                style="animation-name: benefits-stack-rise-{{ section.id }}-{{ forloop.index0 }};"
-              >
-                {%- if block.settings.image != blank -%}
-                  {{
-                    block.settings.image
-                    | image_url: width: 700
-                    | image_tag:
-                      loading: 'lazy',
-                      widths: '300, 500, 700',
-                      sizes: '20vw',
-                      class: 'benefits__stack-image'
-                  }}
-                {%- else -%}
-                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg benefits__stack-image' }}
-                {%- endif -%}
-              </div>
-            {%- endfor -%}
-          </benefits-stack>
-        </div>
-      {%- endif -%}
+          {%- comment -%}
+            Mobile (<1024px) placeholder: the Lottie has no native left/right
+            travel to redirect, so until a horizontal version exists, the
+            same 11 photos cascade right to left one at a time via the
+            keyframes generated above.
+          {%- endcomment -%}
+          <div class="benefits__filmstrip" aria-hidden="true">
+            <div class="benefits__filmstrip-track" style="--filmstrip-duration: {{ filmstrip_duration }}s;">
+              {%- for photo_url in photo_url_list -%}
+                <div
+                  class="benefits__filmstrip-item"
+                  style="animation-name: benefits-filmstrip-cascade-{{ section.id }}-{{ forloop.index0 }};"
+                >
+                  <img
+                    src="{{ photo_url }}"
+                    loading="lazy"
+                    width="320"
+                    height="320"
+                    alt=""
+                    class="benefits__filmstrip-image"
+                  >
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </benefits-lottie>
+      </div>
     </div>
 
     {%- if benefit_blocks.size > 0 -%}
@@ -199,6 +194,69 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-3"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-benefits.settings.lottie_header.content"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.custom-benefits.settings.lottie_header.paragraph"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_1",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_1.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_2",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_2.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_3",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_3.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_4",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_4.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_5",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_5.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_6",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_6.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_7",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_7.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_8",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_8.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_9",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_9.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_10",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_10.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "lottie_photo_11",
+      "label": "t:sections.custom-benefits.settings.lottie_photo_11.label"
     }
   ],
   "blocks": [
@@ -212,17 +270,6 @@
           "id": "heading",
           "default": "t:sections.custom-benefits.blocks.content.settings.heading.default",
           "label": "t:sections.custom-benefits.blocks.content.settings.heading.label"
-        }
-      ]
-    },
-    {
-      "type": "stack_image",
-      "name": "t:sections.custom-benefits.blocks.stack_image.name",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "t:sections.custom-benefits.blocks.stack_image.settings.image.label"
         }
       ]
     },
@@ -262,11 +309,6 @@
       "name": "t:sections.custom-benefits.presets.name",
       "blocks": [
         { "type": "content" },
-        { "type": "stack_image" },
-        { "type": "stack_image" },
-        { "type": "stack_image" },
-        { "type": "stack_image" },
-        { "type": "stack_image" },
         {
           "type": "benefit",
           "settings": {
