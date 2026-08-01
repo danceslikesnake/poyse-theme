@@ -47,7 +47,13 @@ class BenefitsLottie extends HTMLElement {
         loop: true,
         autoplay: true,
         animationData,
-        rendererSettings: { preserveAspectRatio: 'xMidYMid slice' },
+        // Top-anchored: when the container is wide enough that "slice"
+        // scales to match width, any leftover vertical overflow gets
+        // trimmed off the bottom only. That's what makes widening
+        // .benefits__lottie's max-width at larger breakpoints actually
+        // crop away the bleed instead of cropping evenly off both ends
+        // (which would eat into the clean top content just as much).
+        rendererSettings: { preserveAspectRatio: 'xMidYMin slice' },
       });
 
       anim.addEventListener('DOMLoaded', () => {
