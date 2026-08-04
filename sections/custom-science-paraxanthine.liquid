@@ -1,0 +1,124 @@
+{{ 'section-custom-science-paraxanthine.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign content_block = section.blocks | where: 'type', 'content' | first
+  assign stat_blocks = section.blocks | where: 'type', 'stat'
+-%}
+
+<div class="science-paraxanthine color-{{ section.settings.color_scheme }}">
+  <div class="science-paraxanthine__grid">
+    {%- if content_block != blank -%}
+      <div class="science-paraxanthine__intro" {{ content_block.shopify_attributes }}>
+        {%- if content_block.settings.eyebrow != blank -%}
+          <p class="science-paraxanthine__eyebrow">{{ content_block.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if content_block.settings.heading != blank -%}
+          <p class="science-paraxanthine__heading">{{ content_block.settings.heading | escape }}</p>
+        {%- endif -%}
+        {%- if content_block.settings.text != blank -%}
+          <div class="science-paraxanthine__text rte">{{ content_block.settings.text }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if stat_blocks.size > 0 -%}
+      <div class="science-paraxanthine__stats">
+        {%- for block in stat_blocks -%}
+          <div class="science-paraxanthine__stat" {{ block.shopify_attributes }}>
+            {%- if block.settings.value != blank -%}
+              <p class="science-paraxanthine__stat-value">{{ block.settings.value | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.label != blank -%}
+              <p class="science-paraxanthine__stat-label">{{ block.settings.label | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.note != blank -%}
+              <p class="science-paraxanthine__stat-note">{{ block.settings.note | escape }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-science-paraxanthine.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-poyse-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "t:sections.custom-science-paraxanthine.blocks.content.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "default": "t:sections.custom-science-paraxanthine.blocks.content.settings.eyebrow.default",
+          "label": "t:sections.custom-science-paraxanthine.blocks.content.settings.eyebrow.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-science-paraxanthine.blocks.content.settings.heading.default",
+          "label": "t:sections.custom-science-paraxanthine.blocks.content.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-science-paraxanthine.blocks.content.settings.text.default",
+          "label": "t:sections.custom-science-paraxanthine.blocks.content.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "t:sections.custom-science-paraxanthine.blocks.stat.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "default": "t:sections.custom-science-paraxanthine.blocks.stat.settings.value.default",
+          "label": "t:sections.custom-science-paraxanthine.blocks.stat.settings.value.label"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "default": "t:sections.custom-science-paraxanthine.blocks.stat.settings.label.default",
+          "label": "t:sections.custom-science-paraxanthine.blocks.stat.settings.label.label"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "default": "t:sections.custom-science-paraxanthine.blocks.stat.settings.note.default",
+          "label": "t:sections.custom-science-paraxanthine.blocks.stat.settings.note.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-science-paraxanthine.presets.name",
+      "blocks": [
+        { "type": "content" },
+        { "type": "stat" },
+        { "type": "stat" },
+        { "type": "stat" },
+        { "type": "stat" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,149 @@
+{{ 'section-custom-science-formula.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign showcase_block = section.blocks | where: 'type', 'showcase' | first
+  assign content_block = section.blocks | where: 'type', 'content' | first
+  assign callout_block = section.blocks | where: 'type', 'callout' | first
+-%}
+
+<div class="science-formula color-{{ section.settings.color_scheme }}">
+  {%- if showcase_block != blank -%}
+    <div class="science-formula__showcase" {{ showcase_block.shopify_attributes }}>
+      {%- if showcase_block.settings.left_text != blank -%}
+        <p class="science-formula__lead science-formula__lead--left">{{ showcase_block.settings.left_text | escape }}</p>
+      {%- endif -%}
+
+      <div class="science-formula__media">
+        {%- if showcase_block.settings.image != blank -%}
+          {{
+            showcase_block.settings.image
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              widths: '400, 600, 750, 900',
+              sizes: '(min-width: 768px) 30vw, 60vw',
+              class: 'science-formula__image'
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg science-formula__image' }}
+        {%- endif -%}
+      </div>
+
+      {%- if showcase_block.settings.right_text != blank -%}
+        <p class="science-formula__lead science-formula__lead--right">{{ showcase_block.settings.right_text | escape }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if content_block != blank or callout_block != blank -%}
+    <div class="science-formula__row">
+      {%- if content_block != blank and content_block.settings.text != blank -%}
+        <div class="science-formula__copy rte" {{ content_block.shopify_attributes }}>{{ content_block.settings.text }}</div>
+      {%- endif -%}
+
+      {%- if callout_block != blank -%}
+        <div class="science-formula__callout color-{{ callout_block.settings.color_scheme }}" {{ callout_block.shopify_attributes }}>
+          {%- if callout_block.settings.heading != blank -%}
+            <p class="science-formula__callout-heading inline-richtext">{{ callout_block.settings.heading }}</p>
+          {%- endif -%}
+          {%- if callout_block.settings.text != blank -%}
+            <div class="science-formula__callout-text rte">{{ callout_block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-science-formula.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-poyse-2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "showcase",
+      "name": "t:sections.custom-science-formula.blocks.showcase.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "left_text",
+          "default": "t:sections.custom-science-formula.blocks.showcase.settings.left_text.default",
+          "label": "t:sections.custom-science-formula.blocks.showcase.settings.left_text.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.custom-science-formula.blocks.showcase.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "right_text",
+          "default": "t:sections.custom-science-formula.blocks.showcase.settings.right_text.default",
+          "label": "t:sections.custom-science-formula.blocks.showcase.settings.right_text.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.custom-science-formula.blocks.content.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-science-formula.blocks.content.settings.text.default",
+          "label": "t:sections.custom-science-formula.blocks.content.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "name": "t:sections.custom-science-formula.blocks.callout.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "scheme-poyse-3"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.custom-science-formula.blocks.callout.settings.heading.default",
+          "label": "t:sections.custom-science-formula.blocks.callout.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-science-formula.blocks.callout.settings.text.default",
+          "label": "t:sections.custom-science-formula.blocks.callout.settings.text.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-science-formula.presets.name",
+      "blocks": [
+        { "type": "showcase" },
+        { "type": "content" },
+        { "type": "callout" }
+      ]
+    }
+  ]
+}
+{% endschema %}

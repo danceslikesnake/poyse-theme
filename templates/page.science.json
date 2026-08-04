@@ -1,0 +1,279 @@
+{
+  "sections": {
+    "science_hero": {
+      "type": "custom-science-hero",
+      "blocks": {
+        "content": {
+          "type": "content",
+          "settings": {
+            "eyebrow": "The Science of Poyse",
+            "heading": "Energy should help you do more, <em>not make you feel worse.</em>",
+            "text": "<p>Poyse was built on the idea that energy should help you do more, not make you feel worse. Too often, traditional energy products come with tradeoffs people have learned to accept. Jitteriness. Restlessness. A harsh, overstimulating feeling. Something that works, but never quite feels good.</p>"
+          }
+        },
+        "approach": {
+          "type": "approach",
+          "settings": {
+            "heading": "We take a different approach.",
+            "text": "<p>By building around paraxanthine, the primary metabolite your body produces from caffeine, POYSE is designed to deliver the energy, alertness, and focus people want in a way that feels more modern, more intentional, and easier to live with. The result is an experience that is better suited for real life.</p>"
+          }
+        },
+        "photo_1": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/original_7aa238fdfcf00dc00728adc1b1b4fb0e.jpg_1.jpg"
+          }
+        },
+        "photo_2": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.jpg"
+          }
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/man-in-white-tank-top-stands-for-camera.jpg"
+          }
+        },
+        "photo_4": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/woman-smiles-looking-over-shoulder-holding-a-water-bottle.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "content",
+        "approach",
+        "photo_1",
+        "photo_2",
+        "photo_3",
+        "photo_4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-poyse-1"
+      }
+    },
+    "science_formula": {
+      "type": "custom-science-formula",
+      "blocks": {
+        "showcase": {
+          "type": "showcase",
+          "settings": {
+            "left_text": "This formula came from",
+            "image": "shopify://shop_images/Poyse_System2.png",
+            "right_text": "a very simple frustration."
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {
+            "text": "<p>We were tired of the crash. Tired of the jitteriness, the restlessness, and the feeling that energy always seemed to come with a downside. Too often, caffeine felt like a tradeoff. You got the boost, but you also got the edge, the comedown, or the feeling that it stayed with you longer than you wanted.</p>"
+          }
+        },
+        "callout": {
+          "type": "callout",
+          "settings": {
+            "color_scheme": "scheme-poyse-3",
+            "heading": "So we decided to <em>take a different approach.</em>",
+            "text": "<p>This formula was developed around paraxanthine with the goal of delivering the energy, alertness, and focus people want, without the same drawbacks people associate with something better in the first place. From there, it was built out with supporting ingredients chosen to make the experience feel more complete, more usable, and better suited for real life.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "showcase",
+        "content",
+        "callout"
+      ],
+      "settings": {
+        "color_scheme": "scheme-poyse-2"
+      }
+    },
+    "science_paraxanthine": {
+      "type": "custom-science-paraxanthine",
+      "blocks": {
+        "content": {
+          "type": "content",
+          "settings": {
+            "eyebrow": "Our Hero Ingredient",
+            "heading": "par·ax·an·thine",
+            "text": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and is responsible for many of the benefits people associate with it, including energy, alertness, focus, and mental stamina. When caffeine is consumed, the body breaks it down into several metabolites, with paraxanthine being the most abundant.</p><p>By isolating Paraxanthine, we are able to deliver many of caffeine's positive effects without the same drawbacks people associate with traditional caffeine, like jitteriness, restlessness, and an overly harsh feel. Because paraxanthine has a shorter half-life than caffeine, it clears the body faster and does not stick around the same way. That makes it well suited for later-day use without disrupting sleep the way caffeine often can.</p>"
+          }
+        },
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "200mg",
+            "label": "Per Serving",
+            "note": "Paraxanthine (via Enfinity®)"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "6-8h",
+            "label": "Half-Life Duration",
+            "note": "Compared to caffeine's 3-5h"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "-34%",
+            "label": "Less Cortisol vs. Caffeine",
+            "note": "At an equivalent dose"
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "92%",
+            "label": "Adenosine Antagonism",
+            "note": "Comparable to caffeine"
+          }
+        }
+      },
+      "block_order": [
+        "content",
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-poyse-1"
+      }
+    },
+    "science_ingredients": {
+      "type": "custom-science-ingredients",
+      "blocks": {
+        "ingredient_1": {
+          "type": "ingredient",
+          "settings": {
+            "heading": "Paraxanthine (Enfinity®)",
+            "badge": "200mg Per Serving",
+            "text": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and is responsible for many of the benefits people associate with it, including energy, alertness, focus, and mental stamina. By isolating paraxanthine, we are able to deliver these effects without the same drawbacks people associate with traditional caffeine, like jitteriness, restlessness, and an overly harsh feel.</p>"
+          }
+        },
+        "ingredient_2": {
+          "type": "ingredient",
+          "settings": {
+            "heading": "Amino Acids",
+            "badge": "Three Compounds, One System",
+            "text": "<p>These amino acids were included to support more than just energy alone. Each one plays a different role in helping shape how the product feels and performs. Together, these amino acids help create a more complete experience by supporting focus, feel, and performance alongside paraxanthine.</p>"
+          }
+        },
+        "sub_item_1": {
+          "type": "sub_item",
+          "settings": {
+            "heading": "L-Tyrosine",
+            "badge": "500mg",
+            "text": "<p>L-Tyrosine is an amino acid involved in the production of key brain chemicals related to focus, alertness, and mental performance. It was included to help support staying sharp, clear-headed, and mentally engaged when a lot is being demanded of you.</p>"
+          }
+        },
+        "sub_item_2": {
+          "type": "sub_item",
+          "settings": {
+            "heading": "L-Theanine",
+            "badge": "200mg",
+            "text": "<p>L-Theanine is an amino acid naturally found in tea leaves and is known for helping promote a calmer, more composed feel. In this product, it helps round out the experience so the energy feels less harsh and more controlled.</p>"
+          }
+        },
+        "sub_item_3": {
+          "type": "sub_item",
+          "settings": {
+            "heading": "L-Citrulline",
+            "badge": "2000mg",
+            "text": "<p>L-Citrulline is an amino acid commonly used in performance products because it helps support nitric oxide production and blood flow. It was included to make the product more functional for real life, movement, training, and sustained physical output.</p>"
+          }
+        },
+        "ingredient_3": {
+          "type": "ingredient",
+          "settings": {
+            "heading": "Electrolytes",
+            "badge": "Balanced Electrolyte Complex",
+            "text": "<p>Electrolytes were included to make the product more functional for real life. Energy is only part of the equation. When you are training, moving through long days, or simply trying to perform at a high level, hydration and fluid balance matter too. Sodium, potassium, and magnesium are essential minerals that help regulate fluid balance, muscle function, and overall performance.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_1",
+        "ingredient_2",
+        "sub_item_1",
+        "sub_item_2",
+        "sub_item_3",
+        "ingredient_3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-poyse-4"
+      }
+    },
+    "featured_items": {
+      "type": "custom-featured-items",
+      "blocks": {
+        "feature_item_1": {
+          "type": "feature_item",
+          "settings": {
+            "product": "yuzu-citrus",
+            "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "show_new_arrival_badge": true,
+            "show_best_seller_badge": false,
+            "monthly_label": "Monthly Subscription",
+            "monthly_price": "$49.00 per month",
+            "onetime_label": "One-Time Purchase",
+            "onetime_price": "$54.00 one-time",
+            "cta_label": "Add to Cart"
+          }
+        },
+        "feature_item_2": {
+          "type": "feature_item",
+          "settings": {
+            "product": "strawberry-watermelon",
+            "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "show_new_arrival_badge": false,
+            "show_best_seller_badge": false,
+            "monthly_label": "Monthly Subscription",
+            "monthly_price": "$49.00 per month",
+            "onetime_label": "One-Time Purchase",
+            "onetime_price": "$54.00 one-time",
+            "cta_label": "Add to Cart"
+          }
+        },
+        "feature_item_3": {
+          "type": "feature_item",
+          "settings": {
+            "product": "tropical-mango",
+            "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "show_new_arrival_badge": true,
+            "show_best_seller_badge": true,
+            "monthly_label": "Monthly Subscription",
+            "monthly_price": "$49.00 per month",
+            "onetime_label": "One-Time Purchase",
+            "onetime_price": "$54.00 one-time",
+            "cta_label": "Add to Cart"
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_1",
+        "feature_item_2",
+        "feature_item_3"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "card_color_scheme": "",
+        "border_color": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "science_hero",
+    "science_formula",
+    "science_paraxanthine",
+    "science_ingredients",
+    "featured_items"
+  ]
+}

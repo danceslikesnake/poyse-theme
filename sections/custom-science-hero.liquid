@@ -1,0 +1,149 @@
+{{ 'section-custom-science-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign content_block = section.blocks | where: 'type', 'content' | first
+  assign approach_block = section.blocks | where: 'type', 'approach' | first
+  assign photo_blocks = section.blocks | where: 'type', 'photo'
+-%}
+
+<div class="science-hero color-{{ section.settings.color_scheme }}">
+  {%- if content_block != blank -%}
+    <div class="science-hero__intro" {{ content_block.shopify_attributes }}>
+      {%- if content_block.settings.eyebrow != blank -%}
+        <p class="science-hero__eyebrow">{{ content_block.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if content_block.settings.heading != blank -%}
+        <p class="science-hero__heading inline-richtext">{{ content_block.settings.heading }}</p>
+      {%- endif -%}
+      {%- if content_block.settings.text != blank -%}
+        <div class="science-hero__text rte">{{ content_block.settings.text }}</div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if approach_block != blank or photo_blocks.size > 0 -%}
+    <div class="science-hero__approach">
+      {%- if approach_block != blank -%}
+        <div class="science-hero__approach-content" {{ approach_block.shopify_attributes }}>
+          {%- if approach_block.settings.heading != blank -%}
+            <p class="science-hero__approach-heading">{{ approach_block.settings.heading | escape }}</p>
+          {%- endif -%}
+          {%- if approach_block.settings.text != blank -%}
+            <div class="science-hero__approach-text rte">{{ approach_block.settings.text }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if photo_blocks.size > 0 -%}
+        <div class="science-hero__photos">
+          {%- for block in photo_blocks -%}
+            <div class="science-hero__photo" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 600
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '200, 300, 450, 600',
+                    sizes: '(min-width: 768px) 12vw, 22vw',
+                    class: 'science-hero__photo-image'
+                }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg science-hero__photo-image' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-science-hero.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-poyse-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "t:sections.custom-science-hero.blocks.content.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "default": "t:sections.custom-science-hero.blocks.content.settings.eyebrow.default",
+          "label": "t:sections.custom-science-hero.blocks.content.settings.eyebrow.label"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.custom-science-hero.blocks.content.settings.heading.default",
+          "label": "t:sections.custom-science-hero.blocks.content.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-science-hero.blocks.content.settings.text.default",
+          "label": "t:sections.custom-science-hero.blocks.content.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "approach",
+      "name": "t:sections.custom-science-hero.blocks.approach.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-science-hero.blocks.approach.settings.heading.default",
+          "label": "t:sections.custom-science-hero.blocks.approach.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-science-hero.blocks.approach.settings.text.default",
+          "label": "t:sections.custom-science-hero.blocks.approach.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "photo",
+      "name": "t:sections.custom-science-hero.blocks.photo.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.custom-science-hero.blocks.photo.settings.image.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-science-hero.presets.name",
+      "blocks": [
+        { "type": "content" },
+        { "type": "approach" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,118 @@
+.science-ingredients {
+  padding: 6.4rem 7%;
+  background: #ffffff;
+
+  @media screen and (max-width: 767px) {
+    padding: 4rem 6%;
+  }
+}
+
+.science-ingredients__list {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.science-ingredients__item {
+  display: grid;
+  grid-template-columns: minmax(24rem, 34rem) 1fr;
+  gap: 3.2rem;
+  padding: 4rem 0;
+  border-top: 1px solid rgba(57, 44, 45, 0.12);
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+    padding: 3.2rem 0;
+  }
+}
+
+.science-ingredients__list .science-ingredients__item:first-child {
+  border-top: none;
+}
+
+.science-ingredients__item-head {
+  display: flex;
+  gap: 1.6rem;
+  align-items: baseline;
+}
+
+.science-ingredients__number {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  opacity: 0.5;
+}
+
+.science-ingredients__item-heading-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.science-ingredients__item-heading {
+  margin: 0;
+  font-size: var(--font-size-md, 2.2rem);
+  font-weight: 600;
+}
+
+.science-ingredients__badge,
+.science-ingredients__sub-badge {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  background: var(--poyse-bare-form);
+  color: var(--poyse-evening-fig);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.science-ingredients__item-text {
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.science-ingredients__sub-list {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  margin-top: 0.8rem;
+  padding-left: calc(34rem + 3.2rem);
+
+  @media screen and (max-width: 900px) {
+    padding-left: 0;
+  }
+}
+
+.science-ingredients__sub-item {
+  display: grid;
+  grid-template-columns: minmax(18rem, 26rem) 1fr;
+  gap: 2.4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(57, 44, 45, 0.08);
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.science-ingredients__sub-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.science-ingredients__sub-item-heading {
+  margin: 0;
+  font-weight: 600;
+}
+
+.science-ingredients__sub-item-text {
+  line-height: 1.6;
+  opacity: 0.85;
+}

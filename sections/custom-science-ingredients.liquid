@@ -1,0 +1,189 @@
+{{ 'section-custom-science-ingredients.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Sub-items (block type "sub_item") nest under whichever "ingredient" block
+  immediately precedes them in block_order. There is no native nested-block
+  support in this section, so grouping is derived from sequence: walking
+  section.blocks, each ingredient starts a new group and consumes every
+  sub_item block that follows it, stopping at the next ingredient.
+{%- endcomment -%}
+{%- liquid
+  assign all_blocks = section.blocks
+  assign total_blocks = all_blocks.size
+  assign ingredient_index = 0
+-%}
+
+<div class="science-ingredients color-{{ section.settings.color_scheme }}">
+  <div class="science-ingredients__list">
+    {%- for block in all_blocks -%}
+      {%- if block.type == 'ingredient' -%}
+        {%- assign ingredient_index = ingredient_index | plus: 1 -%}
+        {%- assign outer_index = forloop.index0 -%}
+        {%- assign next_index = outer_index | plus: 1 -%}
+        {%- assign has_children = false -%}
+        {%- if next_index < total_blocks -%}
+          {%- assign next_block = all_blocks[next_index] -%}
+          {%- if next_block.type == 'sub_item' -%}
+            {%- assign has_children = true -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        <div class="science-ingredients__item" {{ block.shopify_attributes }}>
+          <div class="science-ingredients__item-head">
+            <span class="science-ingredients__number">
+              {%- if ingredient_index < 10 -%}0{{ ingredient_index }}{%- else -%}{{ ingredient_index }}{%- endif -%}
+            </span>
+            <div class="science-ingredients__item-heading-group">
+              {%- if block.settings.heading != blank -%}
+                <p class="science-ingredients__item-heading">{{ block.settings.heading | escape }}</p>
+              {%- endif -%}
+              {%- if block.settings.badge != blank -%}
+                <span class="science-ingredients__badge">{{ block.settings.badge | escape }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+
+          {%- if block.settings.text != blank -%}
+            <div class="science-ingredients__item-text rte">{{ block.settings.text }}</div>
+          {%- endif -%}
+
+          {%- if has_children -%}
+            <div class="science-ingredients__sub-list">
+              {%- for sub_block in all_blocks offset: next_index -%}
+                {%- if sub_block.type != 'sub_item' -%}
+                  {%- break -%}
+                {%- endif -%}
+                <div class="science-ingredients__sub-item" {{ sub_block.shopify_attributes }}>
+                  <div class="science-ingredients__sub-item-head">
+                    {%- if sub_block.settings.heading != blank -%}
+                      <p class="science-ingredients__sub-item-heading">{{ sub_block.settings.heading | escape }}</p>
+                    {%- endif -%}
+                    {%- if sub_block.settings.badge != blank -%}
+                      <span class="science-ingredients__sub-badge">{{ sub_block.settings.badge | escape }}</span>
+                    {%- endif -%}
+                  </div>
+                  {%- if sub_block.settings.text != blank -%}
+                    <div class="science-ingredients__sub-item-text rte">{{ sub_block.settings.text }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-science-ingredients.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-poyse-4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "t:sections.custom-science-ingredients.blocks.ingredient.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-science-ingredients.blocks.ingredient.settings.heading.default",
+          "label": "t:sections.custom-science-ingredients.blocks.ingredient.settings.heading.label"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "default": "t:sections.custom-science-ingredients.blocks.ingredient.settings.badge.default",
+          "label": "t:sections.custom-science-ingredients.blocks.ingredient.settings.badge.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-science-ingredients.blocks.ingredient.settings.text.default",
+          "label": "t:sections.custom-science-ingredients.blocks.ingredient.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "sub_item",
+      "name": "t:sections.custom-science-ingredients.blocks.sub_item.name",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.custom-science-ingredients.blocks.sub_item.settings.paragraph.content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-science-ingredients.blocks.sub_item.settings.heading.default",
+          "label": "t:sections.custom-science-ingredients.blocks.sub_item.settings.heading.label"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "default": "t:sections.custom-science-ingredients.blocks.sub_item.settings.badge.default",
+          "label": "t:sections.custom-science-ingredients.blocks.sub_item.settings.badge.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-science-ingredients.blocks.sub_item.settings.text.default",
+          "label": "t:sections.custom-science-ingredients.blocks.sub_item.settings.text.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-science-ingredients.presets.name",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "heading": "Paraxanthine (Enfinity®)",
+            "badge": "200mg Per Serving"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "heading": "Amino Acids",
+            "badge": "Three Compounds, One System"
+          }
+        },
+        {
+          "type": "sub_item",
+          "settings": { "heading": "L-Tyrosine", "badge": "500mg" }
+        },
+        {
+          "type": "sub_item",
+          "settings": { "heading": "L-Theanine", "badge": "200mg" }
+        },
+        {
+          "type": "sub_item",
+          "settings": { "heading": "L-Citrulline", "badge": "2000mg" }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "heading": "Electrolytes",
+            "badge": "Balanced Electrolyte Complex"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
