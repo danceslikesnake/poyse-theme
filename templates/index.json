@@ -277,36 +277,6 @@
             "heading": "Clarity over noise. <em>In everything.</em>"
           }
         },
-        "stack_image_1": {
-          "type": "stack_image",
-          "settings": {
-            "image": "shopify://shop_images/original_ec4898d8b41033a4da26d0d6a08fde43.jpg_1.png"
-          }
-        },
-        "stack_image_2": {
-          "type": "stack_image",
-          "settings": {
-            "image": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.jpg"
-          }
-        },
-        "stack_image_3": {
-          "type": "stack_image",
-          "settings": {
-            "image": "shopify://shop_images/original_7aa238fdfcf00dc00728adc1b1b4fb0e.jpg_1.jpg"
-          }
-        },
-        "stack_image_4": {
-          "type": "stack_image",
-          "settings": {
-            "image": "shopify://shop_images/man-in-white-tank-top-stands-for-camera.jpg"
-          }
-        },
-        "stack_image_5": {
-          "type": "stack_image",
-          "settings": {
-            "image": "shopify://shop_images/woman-smiles-looking-over-shoulder-holding-a-water-bottle.jpg"
-          }
-        },
         "benefit_1": {
           "type": "benefit",
           "settings": {
@@ -346,18 +316,18 @@
       },
       "block_order": [
         "content",
-        "stack_image_1",
-        "stack_image_2",
-        "stack_image_3",
-        "stack_image_4",
-        "stack_image_5",
         "benefit_1",
         "benefit_2",
         "benefit_3",
         "benefit_4"
       ],
       "settings": {
-        "color_scheme": "scheme-poyse-1"
+        "color_scheme": "scheme-poyse-1",
+        "lottie_photo_1": "shopify://shop_images/original_ec4898d8b41033a4da26d0d6a08fde43.jpg_1.png",
+        "lottie_photo_2": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.jpg",
+        "lottie_photo_3": "shopify://shop_images/original_7aa238fdfcf00dc00728adc1b1b4fb0e.jpg_1.jpg",
+        "lottie_photo_4": "shopify://shop_images/man-in-white-tank-top-stands-for-camera.jpg",
+        "lottie_photo_5": "shopify://shop_images/woman-smiles-looking-over-shoulder-holding-a-water-bottle.jpg"
       }
     },
     "homepage_community": {
