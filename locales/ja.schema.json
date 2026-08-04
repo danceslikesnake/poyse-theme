@@ -1147,7 +1147,185 @@
         "name": "Meet Paraxanthine"
       }
     },
-    "custom-homepage-tagline": {
+    "custom-science-hero": {
+      "name": "Science Hero",
+      "blocks": {
+        "content": {
+          "name": "Content",
+          "settings": {
+            "eyebrow": {
+              "label": "Eyebrow",
+              "default": "The Science of Poyse"
+            },
+            "heading": {
+              "label": "Heading",
+              "default": "Energy should help you do more, <em>not make you feel worse.</em>"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Poyse was built on the idea that energy should help you do more, not make you feel worse. Too often, traditional energy products come with tradeoffs people have learned to accept. Jitteriness. Restlessness. A harsh, overstimulating feeling. Something that works, but never quite feels good.</p>"
+            }
+          }
+        },
+        "approach": {
+          "name": "Approach",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "We take a different approach."
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>By building around paraxanthine, the primary metabolite your body produces from caffeine, POYSE is designed to deliver the energy, alertness, and focus people want in a way that feels more modern, more intentional, and easier to live with. The result is an experience that is better suited for real life.</p>"
+            }
+          }
+        },
+        "photo": {
+          "name": "Photo",
+          "settings": {
+            "image": {
+              "label": "Image"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Science Hero"
+      }
+    },
+    "custom-science-formula": {
+      "name": "Science Formula",
+      "blocks": {
+        "showcase": {
+          "name": "Showcase",
+          "settings": {
+            "left_text": {
+              "label": "Left text",
+              "default": "This formula came from"
+            },
+            "image": {
+              "label": "Product image"
+            },
+            "right_text": {
+              "label": "Right text",
+              "default": "a very simple frustration."
+            }
+          }
+        },
+        "content": {
+          "name": "Content",
+          "settings": {
+            "text": {
+              "label": "Text",
+              "default": "<p>We were tired of the crash. Tired of the jitteriness, the restlessness, and the feeling that energy always seemed to come with a downside. Too often, caffeine felt like a tradeoff. You got the boost, but you also got the edge, the comedown, or the feeling that it stayed with you longer than you wanted.</p>"
+            }
+          }
+        },
+        "callout": {
+          "name": "Callout",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "So we decided to <em>take a different approach.</em>"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>This formula was developed around paraxanthine with the goal of delivering the energy, alertness, and focus people want, without the same drawbacks that can come with something better in the first place. From there, it was built out with supporting ingredients chosen to make the experience feel more complete, more usable, and better suited for real life.</p>"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Science Formula"
+      }
+    },
+    "custom-science-paraxanthine": {
+      "name": "Science Paraxanthine",
+      "blocks": {
+        "content": {
+          "name": "Content",
+          "settings": {
+            "eyebrow": {
+              "label": "Eyebrow",
+              "default": "Our Hero Ingredient"
+            },
+            "heading": {
+              "label": "Heading",
+              "default": "par·ax·an·thine"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and is responsible for many of the benefits people associate with it, including energy, alertness, focus, and mental stamina. When caffeine is consumed, the body breaks it down into several metabolites, with paraxanthine being the most abundant.</p><p>By isolating Paraxanthine, we are able to deliver many of caffeine's positive effects without the same drawbacks people associate with traditional caffeine, like jitteriness, restlessness, and an overly harsh feel. Because paraxanthine has a shorter half-life than caffeine, it clears the body faster and does not stick around the same way. That makes it well suited for later-day use without disrupting sleep the way caffeine often can.</p>"
+            }
+          }
+        },
+        "stat": {
+          "name": "Stat",
+          "settings": {
+            "value": {
+              "label": "Value",
+              "default": "200mg"
+            },
+            "label": {
+              "label": "Label",
+              "default": "Per Serving"
+            },
+            "note": {
+              "label": "Note",
+              "default": "Paraxanthine (via Enfinity®)"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Science Paraxanthine"
+      }
+    },
+    "custom-science-ingredients": {
+      "name": "Science Ingredients",
+      "blocks": {
+        "ingredient": {
+          "name": "Ingredient",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "Ingredient"
+            },
+            "badge": {
+              "label": "Badge",
+              "default": "Detail"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Describe this ingredient and the benefit it provides.</p>"
+            }
+          }
+        },
+        "sub_item": {
+          "name": "Sub item",
+          "settings": {
+            "paragraph": {
+              "content": "Nests under the ingredient block directly above it in the block order."
+            },
+            "heading": {
+              "label": "Heading",
+              "default": "Compound"
+            },
+            "badge": {
+              "label": "Badge",
+              "default": "Amount"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Describe this compound and the role it plays.</p>"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Science Ingredients"
+      }
+    },    "custom-homepage-tagline": {
       "name": "Homepage Tagline",
       "settings": {
         "show_ornament": {
