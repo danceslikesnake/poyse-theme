@@ -42,7 +42,7 @@
 
 .science-ingredients__badge {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 4px 12px;
   background: var(--poyse-deep-current);
   color: white;
   font-size: var(--font-size-2xs);
@@ -54,7 +54,7 @@
 
 .science-ingredients__sub-badge {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 4px 12px;
   background: var(--poyse-bare-form);
   color: var(--poyse-evening-fig);
   font-size: var(--font-size-2xs);
@@ -79,8 +79,9 @@
 .science-ingredients__sub-item {
   background: #392C2D05;
   border: 1px solid #392C2D10;
-  padding: 32px;
+  padding: 24px;
   font-family: 'EsBuildMedium', sans-serif;
+  border-radius: 8px;
 }
 
 .science-ingredients__sub-item-head {
@@ -97,4 +98,5 @@
 
 .science-ingredients__sub-item-text {
   line-height: 1.6;
+  opacity: 0.6;
 }
