@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "science_hero": {
@@ -7,7 +16,7 @@
           "type": "content",
           "settings": {
             "eyebrow": "The Science of Poyse",
-            "heading": "Energy should help you do more, <em>not make you feel worse.</em>",
+            "heading": "<em>Energy should help you do more,</em> not make you feel worse.",
             "text": "<p>Poyse was built on the idea that energy should help you do more, not make you feel worse. Too often, traditional energy products come with tradeoffs people have learned to accept. Jitteriness. Restlessness. A harsh, overstimulating feeling. Something that works, but never quite feels good.</p>"
           }
         },
@@ -21,7 +30,7 @@
         "photo_1": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/original_7aa238fdfcf00dc00728adc1b1b4fb0e.jpg_1.jpg"
+            "image": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.webp"
           }
         },
         "photo_2": {
@@ -33,13 +42,13 @@
         "photo_3": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/man-in-white-tank-top-stands-for-camera.jpg"
+            "image": "shopify://shop_images/original_7aa238fdfcf00dc00728adc1b1b4fb0e.jpg_1.webp"
           }
         },
         "photo_4": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/woman-smiles-looking-over-shoulder-holding-a-water-bottle.jpg"
+            "image": "shopify://shop_images/woman-smiles-looking-over-shoulder-holding-a-water-bottle.webp"
           }
         }
       },
