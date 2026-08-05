@@ -44,29 +44,30 @@
           </div>
 
           {%- if block.settings.text != blank -%}
-            <div class="science-ingredients__item-text rte">{{ block.settings.text }}</div>
-          {%- endif -%}
-
-          {%- if has_children -%}
-            <div class="science-ingredients__sub-list">
-              {%- for sub_block in all_blocks offset: next_index -%}
-                {%- if sub_block.type != 'sub_item' -%}
-                  {%- break -%}
-                {%- endif -%}
-                <div class="science-ingredients__sub-item" {{ sub_block.shopify_attributes }}>
-                  <div class="science-ingredients__sub-item-head">
-                    {%- if sub_block.settings.heading != blank -%}
-                      <p class="science-ingredients__sub-item-heading">{{ sub_block.settings.heading | escape }}</p>
+            <div class="science-ingredients__item-text rte">
+              {{ block.settings.text }}
+              {%- if has_children -%}
+                <div class="science-ingredients__sub-list">
+                  {%- for sub_block in all_blocks offset: next_index -%}
+                    {%- if sub_block.type != 'sub_item' -%}
+                      {%- break -%}
                     {%- endif -%}
-                    {%- if sub_block.settings.badge != blank -%}
-                      <span class="science-ingredients__sub-badge">{{ sub_block.settings.badge | escape }}</span>
-                    {%- endif -%}
-                  </div>
-                  {%- if sub_block.settings.text != blank -%}
-                    <div class="science-ingredients__sub-item-text rte">{{ sub_block.settings.text }}</div>
-                  {%- endif -%}
+                    <div class="science-ingredients__sub-item" {{ sub_block.shopify_attributes }}>
+                      <div class="science-ingredients__sub-item-head">
+                        {%- if sub_block.settings.heading != blank -%}
+                          <p class="science-ingredients__sub-item-heading">{{ sub_block.settings.heading | escape }}</p>
+                        {%- endif -%}
+                        {%- if sub_block.settings.badge != blank -%}
+                          <span class="science-ingredients__sub-badge">{{ sub_block.settings.badge | escape }}</span>
+                        {%- endif -%}
+                      </div>
+                      {%- if sub_block.settings.text != blank -%}
+                        <div class="science-ingredients__sub-item-text rte">{{ sub_block.settings.text }}</div>
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
                 </div>
-              {%- endfor -%}
+              {%- endif -%}
             </div>
           {%- endif -%}
         </div>

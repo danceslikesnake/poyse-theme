@@ -28,12 +28,15 @@
             {%- if block.settings.value != blank -%}
               <p class="science-paraxanthine__stat-value">{{ block.settings.value | escape }}</p>
             {%- endif -%}
-            {%- if block.settings.label != blank -%}
-              <p class="science-paraxanthine__stat-label">{{ block.settings.label | escape }}</p>
-            {%- endif -%}
-            {%- if block.settings.note != blank -%}
-              <p class="science-paraxanthine__stat-note">{{ block.settings.note | escape }}</p>
-            {%- endif -%}
+            <span class="science-paraxanthine__stat-divider" aria-hidden="true"></span>
+            <div class="science-paraxanthine__stat-body">
+              {%- if block.settings.label != blank -%}
+                <p class="science-paraxanthine__stat-label">{{ block.settings.label | escape }}</p>
+              {%- endif -%}
+              {%- if block.settings.note != blank -%}
+                <p class="science-paraxanthine__stat-note">{{ block.settings.note | escape }}</p>
+              {%- endif -%}
+            </div>
           </div>
         {%- endfor -%}
       </div>
