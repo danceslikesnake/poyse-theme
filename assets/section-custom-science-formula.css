@@ -1,55 +1,49 @@
 .science-formula {
-  padding: 6.4rem 7%;
+  padding: 44px 0;
+  margin: 0 8px 8px 8px;
+  border-radius: 8px;
   background: var(--poyse-bare-form);
-
-  @media screen and (max-width: 767px) {
-    padding: 4rem 6%;
-  }
 }
 
 .science-formula__showcase {
-  display: grid;
-  grid-template-columns: 1fr minmax(24rem, 40rem) 1fr;
+  display: flex;
   align-items: center;
-  gap: 3.2rem;
-  max-width: 120rem;
-  margin: 0 auto 4.8rem;
-
-  @media screen and (max-width: 900px) {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 1.6rem;
-  }
+  gap: 16px;
+  margin: 0 auto;
+  padding-bottom: 44px;
 }
 
 .science-formula__lead {
   margin: 0;
-  font-family: 'SignifierLightItalic', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: var(--font-size-md, 2.2rem);
+  font-size: var(--font-size-xl);
   line-height: 1.3;
 }
 
 .science-formula__lead--left {
-  text-align: right;
-
-  @media screen and (max-width: 900px) {
-    text-align: center;
-  }
+  flex: 1;
+  text-align: center;
+  padding: 0 16px;
 }
 
 .science-formula__lead--right {
-  text-align: left;
+  text-align: center;
+  font-family: 'SignifierLightItalic', serif;
+  font-style: italic;
+  color: var(--poyse-evening-fig);
+  flex: 1;
+  padding: 0 16px;
+}
 
-  @media screen and (max-width: 900px) {
-    text-align: center;
-    order: 3;
-  }
+.science-formula__lead--left span, .science-formula__lead--right span {
+  display: inline-block;
+  max-width: 336px;
+  margin: 0 auto;
 }
 
 .science-formula__media {
   position: relative;
+  flex: 1;
+  max-width: 442px;
 }
 
 .science-formula__image {
@@ -59,41 +53,38 @@
 }
 
 .science-formula__row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
-  gap: 3.2rem;
-  max-width: 120rem;
-  margin: 0 auto;
-  padding-top: 4rem;
-  border-top: 1px solid rgba(57, 44, 45, 0.15);
-
-  @media screen and (max-width: 900px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+  display: flex;
+  gap: 24px;
+  border-top: 1px solid var(--poyse-evening-fig);
+  margin: 0 16px;
+  padding-top: 44px;
+  color: var(--poyse-evening-fig);
 }
 
 .science-formula__copy {
   display: flex;
   align-items: center;
   line-height: 1.6;
+  flex: 1;
+  padding: 0 32px;
+  font-size: var(--font-size-sm);
 }
 
 .science-formula__callout {
   padding: 3.2rem;
   border-radius: 1.2rem;
+  flex: 1;
+  color: white;
 }
 
 .science-formula__callout-heading {
-  margin: 0 0 1.2rem;
+  margin: 0 0 24px 0;
   font-family: 'SignifierLightItalic', serif;
   font-style: italic;
-  font-size: var(--font-size-md, 2rem);
+  font-size: var(--font-size-lg);
   line-height: 1.3;
 }
 
 .science-formula__callout-text {
   line-height: 1.6;
-  opacity: 0.9;
 }

@@ -10,7 +10,7 @@
   {%- if showcase_block != blank -%}
     <div class="science-formula__showcase" {{ showcase_block.shopify_attributes }}>
       {%- if showcase_block.settings.left_text != blank -%}
-        <p class="science-formula__lead science-formula__lead--left">{{ showcase_block.settings.left_text | escape }}</p>
+        <p class="science-formula__lead science-formula__lead--left"><span>{{ showcase_block.settings.left_text | escape }}</span></p>
       {%- endif -%}
 
       <div class="science-formula__media">
@@ -30,7 +30,7 @@
       </div>
 
       {%- if showcase_block.settings.right_text != blank -%}
-        <p class="science-formula__lead science-formula__lead--right">{{ showcase_block.settings.right_text | escape }}</p>
+        <p class="science-formula__lead science-formula__lead--right"><span>{{ showcase_block.settings.right_text | escape }}</span></p>
       {%- endif -%}
     </div>
   {%- endif -%}
