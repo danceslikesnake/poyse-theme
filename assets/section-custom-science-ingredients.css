@@ -10,7 +10,7 @@
 
 .science-ingredients__item {
   display: flex;
-  padding: 44px 88px;
+  padding: 88px;
   border-top: 1px solid rgba(57, 44, 45, 0.12);
 }
 
@@ -73,7 +73,7 @@
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
-  margin-top: 0.8rem;
+  margin-top: 44px;
 }
 
 .science-ingredients__sub-item {
