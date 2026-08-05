@@ -1,0 +1,162 @@
+{{ 'section-custom-featured-items.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'feature-item.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="featured-items__outer{% if request.page_type == 'index' %} is-homepage{% endif %}">
+  <div class="featured-items color-{{ section.settings.color_scheme }} section-{{ section.id }}-border section-{{ section.id }}-padding">
+    {%- paginate collection.products by section.settings.products_per_page -%}
+      {%- if collection.products.size == 0 -%}
+        <div class="title-wrapper center">
+          <h2 class="title title--primary">{{ 'sections.collection_template.empty' | t }}</h2>
+        </div>
+      {%- else -%}
+        <div class="featured-items__grid">
+          {%- for product in collection.products -%}
+            {%- liquid
+              assign subtitle_metafield = product.metafields.custom.featured_product_subtitle
+              if subtitle_metafield.type == 'rich_text_field'
+                assign subtitle = subtitle_metafield | metafield_tag
+              elsif subtitle_metafield.value != blank
+                assign subtitle = subtitle_metafield.value
+              else
+                assign subtitle = blank
+              endif
+            -%}
+            {%- render 'custom-feature-item',
+              product: product,
+              subtitle: subtitle,
+              hover_image: blank,
+              show_new_arrival_badge: product.metafields.custom.new_arrival.value,
+              show_best_seller_badge: product.metafields.custom.best_seller.value,
+              monthly_label: section.settings.monthly_label,
+              monthly_price: section.settings.monthly_price,
+              onetime_label: section.settings.onetime_label,
+              onetime_price: section.settings.onetime_price,
+              cta_label: section.settings.cta_label,
+              card_color_scheme: section.settings.card_color_scheme,
+              unique_key: product.id
+            -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          {% render 'pagination', paginate: paginate, anchor: '' %}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-products-grid.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 4,
+      "max": 36,
+      "step": 4,
+      "default": 12,
+      "label": "t:sections.custom-products-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "card_color_scheme",
+      "label": "t:sections.custom-products-grid.settings.card_color_scheme.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-products-grid.settings.header_subscription.content"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.custom-products-grid.settings.paragraph.content"
+    },
+    {
+      "type": "text",
+      "id": "monthly_label",
+      "default": "t:sections.custom-products-grid.settings.monthly_label.default",
+      "label": "t:sections.custom-products-grid.settings.monthly_label.label"
+    },
+    {
+      "type": "text",
+      "id": "monthly_price",
+      "default": "t:sections.custom-products-grid.settings.monthly_price.default",
+      "label": "t:sections.custom-products-grid.settings.monthly_price.label"
+    },
+    {
+      "type": "text",
+      "id": "onetime_label",
+      "default": "t:sections.custom-products-grid.settings.onetime_label.default",
+      "label": "t:sections.custom-products-grid.settings.onetime_label.label"
+    },
+    {
+      "type": "text",
+      "id": "onetime_price",
+      "default": "t:sections.custom-products-grid.settings.onetime_price.default",
+      "label": "t:sections.custom-products-grid.settings.onetime_price.label"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "default": "t:sections.custom-products-grid.settings.cta_label.default",
+      "label": "t:sections.custom-products-grid.settings.cta_label.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-products-grid.presets.name"
+    }
+  ]
+}
+{% endschema %}

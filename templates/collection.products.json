@@ -1,0 +1,72 @@
+{
+  "sections": {
+    "heading": {
+      "type": "custom-collection-heading",
+      "settings": {
+        "heading": "All Products",
+        "show_border": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "custom-products-grid",
+      "settings": {
+        "products_per_page": 12,
+        "color_scheme": "scheme-1",
+        "card_color_scheme": "scheme-2",
+        "monthly_label": "Monthly Subscription",
+        "monthly_price": "$49.00 per month",
+        "onetime_label": "One-Time Purchase",
+        "onetime_price": "$54.00 one-time",
+        "cta_label": "Add to Cart",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "subscriber-gift": {
+      "type": "custom-subscriber-gift",
+      "blocks": {
+        "media": {
+          "type": "media",
+          "settings": {}
+        },
+        "content": {
+          "type": "content",
+          "settings": {
+            "heading": "Premium Subscriber Gift Included",
+            "text": "<p>Your monthly supply, delivered automatically every month. Free shipping. Pause or cancel anytime.</p>"
+          }
+        },
+        "gift_item_1": {
+          "type": "gift_item",
+          "settings": {
+            "title": "Refined Energy Powder",
+            "description": "30 Day Supply, Any Flavor"
+          }
+        },
+        "gift_item_2": {
+          "type": "gift_item",
+          "settings": {
+            "title": "Poyse Movement Cap",
+            "description": "100% Quality Cotton"
+          }
+        },
+        "gift_item_3": {
+          "type": "gift_item",
+          "settings": {
+            "title": "Poyse Power Towel",
+            "description": "100% Quality Cotton"
+          }
+        }
+      },
+      "block_order": ["media", "content", "gift_item_1", "gift_item_2", "gift_item_3"],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "card_color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": ["heading", "product-grid", "subscriber-gift"]
+}

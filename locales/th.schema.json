@@ -1106,6 +1106,111 @@
         "name": "Featured Items"
       }
     },
+    "custom-collection-heading": {
+      "name": "Collection Heading",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "All Products"
+        },
+        "show_border": {
+          "label": "Show bottom border"
+        }
+      },
+      "presets": {
+        "name": "Collection Heading"
+      }
+    },
+    "custom-products-grid": {
+      "name": "Products Grid",
+      "settings": {
+        "products_per_page": {
+          "label": "Products per page"
+        },
+        "card_color_scheme": {
+          "label": "Product image background"
+        },
+        "header_subscription": {
+          "content": "Purchase options"
+        },
+        "paragraph": {
+          "content": "Pricing shown here is shared across every product until subscriptions are connected to real products."
+        },
+        "monthly_label": {
+          "label": "Monthly option label",
+          "default": "Monthly Subscription"
+        },
+        "monthly_price": {
+          "label": "Monthly price",
+          "default": "$49.00 per month"
+        },
+        "onetime_label": {
+          "label": "One-time option label",
+          "default": "One-Time Purchase"
+        },
+        "onetime_price": {
+          "label": "One-time price",
+          "default": "$54.00 one-time"
+        },
+        "cta_label": {
+          "label": "Add to cart button label",
+          "default": "Add to Cart"
+        }
+      },
+      "presets": {
+        "name": "Products Grid"
+      }
+    },
+    "custom-subscriber-gift": {
+      "name": "Subscriber Gift",
+      "settings": {
+        "card_color_scheme": {
+          "label": "Content background"
+        }
+      },
+      "blocks": {
+        "media": {
+          "name": "Image",
+          "settings": {
+            "image": {
+              "label": "Image"
+            }
+          }
+        },
+        "content": {
+          "name": "Content",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "Premium Subscriber Gift Included"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Your monthly supply, delivered automatically every month. Free shipping. Pause or cancel anytime.</p>"
+            }
+          }
+        },
+        "gift_item": {
+          "name": "Gift item",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "title": {
+              "label": "Title",
+              "default": "Gift item"
+            },
+            "description": {
+              "label": "Description",
+              "default": "Description"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Subscriber Gift"
+      }
+    },
     "custom-meet-paraxanthine": {
       "name": "Meet Paraxanthine",
       "settings": {
