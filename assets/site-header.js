@@ -10,9 +10,15 @@ class SiteHeader extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.classList.contains('site-header--animated')) {
-      // Logo color switches to black once we've scrolled past the tagline banner, not the hero itself.
-      this.heroEl = document.querySelector('.tagline-banner');
+    this.hasShrink = this.classList.contains('site-header--shrink');
+    this.hasColorShift = this.classList.contains('site-header--color-shift');
+
+    if (this.hasShrink || this.hasColorShift) {
+      // Logo color switches to black once we've scrolled past the reference section
+      // named in data-hero-selector (set per-template in custom-site-header.liquid).
+      // Logo size shrink (site-header--shrink) is independent and only runs where enabled.
+      const heroSelector = this.dataset.heroSelector || '.tagline-banner';
+      this.heroEl = document.querySelector(heroSelector);
       window.addEventListener('scroll', this.onScroll, { passive: true });
       this.onScroll();
     }
@@ -33,9 +39,11 @@ class SiteHeader extends HTMLElement {
     this.ticking = true;
 
     requestAnimationFrame(() => {
-      const distance = window.innerHeight * 0.6;
-      const progress = Math.min(Math.max(window.scrollY / distance, 0), 1);
-      this.style.setProperty('--header-progress', progress);
+      if (this.hasShrink) {
+        const distance = window.innerHeight * 0.6;
+        const progress = Math.min(Math.max(window.scrollY / distance, 0), 1);
+        this.style.setProperty('--header-progress', progress);
+      }
 
       if (this.heroEl) {
         const pastHero = this.heroEl.getBoundingClientRect().bottom <= 0;

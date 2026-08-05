@@ -16,7 +16,7 @@
   }
 }
 
-.site-header--animated {
+.site-header--shrink {
   --header-progress: 0;
 }
 
@@ -70,7 +70,7 @@
   opacity: 1;
 }
 
-.site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--white {
+.site-header--color-shift:not(.is-past-hero) .site-header__wordmark-logo--white {
   opacity: 1;
 
   /* Below desktop the wordmark is a static width and the header always has its
@@ -81,7 +81,7 @@
   }
 }
 
-.site-header--animated:not(.is-past-hero) .site-header__wordmark-logo--black {
+.site-header--color-shift:not(.is-past-hero) .site-header__wordmark-logo--black {
   opacity: 0;
 
   @media screen and (max-width: 1023px) {
@@ -89,9 +89,10 @@
   }
 }
 
-/* The header is fixed/overlaid, so every page except the homepage (whose hero
-   is designed to sit behind it) needs top padding to clear it. */
-main[data-template]:not([data-template='index']) {
+/* The header is fixed/overlaid, so every page except the homepage and the
+   science page (whose heroes are designed to sit behind it) needs top
+   padding to clear it. */
+main[data-template]:not([data-template='index']):not([data-template-suffix='science']) {
   padding-top: 6.2rem;
 
   @media screen and (min-width: 1024px) {

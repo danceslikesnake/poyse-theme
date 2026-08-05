@@ -1,33 +1,34 @@
 .science-hero {
-  padding: 6.4rem 7% 4.8rem;
+  margin: 8px;
+  padding: 16px;
   background: var(--poyse-deep-current);
+  border-radius: 8px;
+  color: white;
 
   @media screen and (max-width: 767px) {
-    padding: 4.8rem 6% 3.2rem;
+    padding: 16px;
   }
 }
 
 .science-hero__intro {
-  max-width: 72rem;
   margin: 0 auto;
   text-align: center;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .science-hero__eyebrow {
   margin: 0 0 1.2rem;
   font-family: 'EsBuildMedium', sans-serif;
-  font-size: var(--font-size-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.85;
 }
 
 .science-hero__heading {
   margin: 0 0 2.4rem;
-  font-family: 'SignifierLightItalic', serif;
   font-weight: 300;
-  font-style: italic;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   line-height: 1.25;
 }
 
@@ -35,7 +36,6 @@
   max-width: 56rem;
   margin: 0 auto;
   line-height: 1.6;
-  opacity: 0.9;
 }
 
 .science-hero__approach {
@@ -43,8 +43,7 @@
   grid-template-columns: minmax(24rem, 40rem) 1fr;
   align-items: center;
   gap: 4rem;
-  max-width: 120rem;
-  margin: 6.4rem auto 0;
+  margin: 0 auto;
   padding-top: 4rem;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
 

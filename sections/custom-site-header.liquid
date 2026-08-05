@@ -4,10 +4,25 @@
 {%- liquid
   assign nav_links = section.blocks | where: 'type', 'nav_link'
   assign cart_count = cart.item_count
+
+  assign is_shrink = false
+  assign is_color_shift = false
+  assign hero_selector = blank
+  if template.name == 'index'
+    assign is_shrink = true
+    assign is_color_shift = true
+    assign hero_selector = '.tagline-banner'
+  elsif template.suffix == 'science'
+    assign is_color_shift = true
+    assign hero_selector = '.science-hero'
+  endif
 -%}
 
 <site-header
-  class="site-header {% if template.name == 'index' %} site-header--animated{% endif %}"
+  class="site-header{% if is_shrink %} site-header--shrink{% endif %}{% if is_color_shift %} site-header--color-shift{% endif %}"
+  {%- if hero_selector != blank %}
+  data-hero-selector="{{ hero_selector }}"
+  {%- endif %}
 >
   <div class="site-header__inner">
     <a href="{{ routes.root_url }}" class="site-header__wordmark">

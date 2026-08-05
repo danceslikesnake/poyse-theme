@@ -1159,7 +1159,7 @@
             },
             "heading": {
               "label": "Heading",
-              "default": "Energy should help you do more, <em>not make you feel worse.</em>"
+              "default": "<em>Energy should help you do more,</em> not make you feel worse."
             },
             "text": {
               "label": "Text",
