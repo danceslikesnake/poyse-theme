@@ -43,7 +43,7 @@
 }
 
 .subscriber-gift__text {
-  margin: 0 0 2.4rem;
+  margin: 0 0 32px;
 }
 
 .subscriber-gift__items {
@@ -62,11 +62,12 @@
 
 .subscriber-gift__item-media {
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+  width: 84px;
+  height: 84px;
   border-radius: 6px;
   overflow: hidden;
   background: var(--poyse-bare-form, rgba(0, 0, 0, 0.04));
+  padding: 16px;
 }
 
 .subscriber-gift__item-image,

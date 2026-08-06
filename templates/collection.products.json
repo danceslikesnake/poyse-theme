@@ -53,6 +53,7 @@
         "gift_item_1": {
           "type": "gift_item",
           "settings": {
+            "image": "shopify://shop_images/Poyse_System_2.png",
             "title": "Refined Energy Powder",
             "description": "30 Day Supply, Any Flavor"
           }
@@ -60,6 +61,7 @@
         "gift_item_2": {
           "type": "gift_item",
           "settings": {
+            "image": "shopify://shop_images/hat.png",
             "title": "Poyse Movement Cap",
             "description": "100% Quality Cotton"
           }
@@ -67,6 +69,7 @@
         "gift_item_3": {
           "type": "gift_item",
           "settings": {
+            "image": "shopify://shop_images/towel.png",
             "title": "Poyse Power Towel",
             "description": "100% Quality Cotton"
           }
