@@ -20,7 +20,7 @@
   }
 {%- endstyle -%}
 
-<div class="subscriber-gift color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding page-width">
+<div class="subscriber-gift color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="subscriber-gift__grid">
     {%- if media_block != blank -%}
       <div class="subscriber-gift__media" {{ media_block.shopify_attributes }}>
@@ -37,44 +37,44 @@
     {%- endif -%}
 
     <div class="subscriber-gift__content color-{{ section.settings.card_color_scheme }}">
-      {%- if content_block != blank -%}
-        <div {{ content_block.shopify_attributes }}>
+      <div class="subscriber-gift__content-inner">
+        {%- if content_block != blank -%}
           {%- if content_block.settings.heading != blank -%}
             <h2 class="subscriber-gift__heading">{{ content_block.settings.heading | escape }}</h2>
           {%- endif -%}
           {%- if content_block.settings.text != blank -%}
             <div class="subscriber-gift__text rte">{{ content_block.settings.text }}</div>
           {%- endif -%}
-        </div>
-      {%- endif -%}
+        {%- endif -%}
 
-      {%- if gift_item_blocks.size > 0 -%}
-        <ul class="subscriber-gift__items list-unstyled">
-          {%- for block in gift_item_blocks -%}
-            <li class="subscriber-gift__item" {{ block.shopify_attributes }}>
-              <div class="subscriber-gift__item-media">
-                {%- if block.settings.image != blank -%}
-                  {{
+        {%- if gift_item_blocks.size > 0 -%}
+          <ul class="subscriber-gift__items list-unstyled">
+            {%- for block in gift_item_blocks -%}
+              <li class="subscriber-gift__item" {{ block.shopify_attributes }}>
+                <div class="subscriber-gift__item-media">
+                  {%- if block.settings.image != blank -%}
+                    {{
                     block.settings.image
                     | image_url: width: 200
                     | image_tag: loading: 'lazy', sizes: '80px', class: 'subscriber-gift__item-image'
-                  }}
-                {%- else -%}
-                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                {%- endif -%}
-              </div>
-              <div class="subscriber-gift__item-info">
-                {%- if block.settings.title != blank -%}
-                  <p class="subscriber-gift__item-title">{{ block.settings.title | escape }}</p>
-                {%- endif -%}
-                {%- if block.settings.description != blank -%}
-                  <p class="subscriber-gift__item-description">{{ block.settings.description | escape }}</p>
-                {%- endif -%}
-              </div>
-            </li>
-          {%- endfor -%}
-        </ul>
-      {%- endif -%}
+                    }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <div class="subscriber-gift__item-info">
+                  {%- if block.settings.title != blank -%}
+                    <p class="subscriber-gift__item-title">{{ block.settings.title | escape }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.description != blank -%}
+                    <p class="subscriber-gift__item-description">{{ block.settings.description | escape }}</p>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </div>

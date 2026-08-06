@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "heading": {
@@ -5,7 +14,9 @@
       "settings": {
         "heading": "All Products",
         "show_border": true,
-        "color_scheme": "scheme-1"
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 24
       }
     },
     "product-grid": {
@@ -28,7 +39,9 @@
       "blocks": {
         "media": {
           "type": "media",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_76070459.png"
+          }
         },
         "content": {
           "type": "content",
@@ -59,7 +72,13 @@
           }
         }
       },
-      "block_order": ["media", "content", "gift_item_1", "gift_item_2", "gift_item_3"],
+      "block_order": [
+        "media",
+        "content",
+        "gift_item_1",
+        "gift_item_2",
+        "gift_item_3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "card_color_scheme": "scheme-1",
@@ -68,5 +87,9 @@
       }
     }
   },
-  "order": ["heading", "product-grid", "subscriber-gift"]
+  "order": [
+    "heading",
+    "product-grid",
+    "subscriber-gift"
+  ]
 }

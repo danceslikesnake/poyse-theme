@@ -15,11 +15,9 @@
 {%- endstyle -%}
 
 <div class="collection-heading color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding{% if section.settings.show_border %} collection-heading--bordered{% endif %}">
-  <div class="page-width">
-    {%- if section.settings.heading != blank -%}
-      <p class="collection-heading__title inline-richtext">{{ section.settings.heading }}</p>
-    {%- endif -%}
-  </div>
+  {%- if section.settings.heading != blank -%}
+    <p class="collection-heading__title inline-richtext">{{ section.settings.heading }}</p>
+  {%- endif -%}
 </div>
 
 {% schema %}
