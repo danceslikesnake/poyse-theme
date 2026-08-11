@@ -47,7 +47,7 @@
 
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col{% if product.media.size > 0 %} grid--2-col-tablet{% else %} product--no-media{% endif %} product-info">
       <div class="grid__item product__media-wrapper{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
-        {%- render 'product-media-gallery', product: product, variant_images: variant_images -%}
+        {%- render 'product-media-gallery', product: product, variant_images: variant_images, square_media: true -%}
       </div>
 
       <div class="grid__item product__info-wrapper product-info__details">
@@ -253,49 +253,65 @@
                 <ul class="product-benefits list-unstyled">
                     {%- if benefits_block.settings.icon_1_label != blank -%}
                       <li class="product-benefits__item">
-                        {%- if benefits_block.settings.icon_1_image != blank -%}
-                          {{
-                            benefits_block.settings.icon_1_image
-                            | image_url: width: 80
-                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
-                          }}
-                        {%- endif -%}
+                        <span class="product-benefits__icon-circle">
+                          {%- if benefits_block.settings.icon_1_image != blank -%}
+                            {{
+                              benefits_block.settings.icon_1_image
+                              | image_url: width: 80
+                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            }}
+                          {%- else -%}
+                            {{- 'leaf-icon.svg' | inline_asset_content -}}
+                          {%- endif -%}
+                        </span>
                         <span class="product-benefits__label">{{ benefits_block.settings.icon_1_label | escape }}</span>
                       </li>
                     {%- endif -%}
                     {%- if benefits_block.settings.icon_2_label != blank -%}
                       <li class="product-benefits__item">
-                        {%- if benefits_block.settings.icon_2_image != blank -%}
-                          {{
-                            benefits_block.settings.icon_2_image
-                            | image_url: width: 80
-                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
-                          }}
-                        {%- endif -%}
+                        <span class="product-benefits__icon-circle">
+                          {%- if benefits_block.settings.icon_2_image != blank -%}
+                            {{
+                              benefits_block.settings.icon_2_image
+                              | image_url: width: 80
+                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            }}
+                          {%- else -%}
+                            {{- 'beaker-icon.svg' | inline_asset_content -}}
+                          {%- endif -%}
+                        </span>
                         <span class="product-benefits__label">{{ benefits_block.settings.icon_2_label | escape }}</span>
                       </li>
                     {%- endif -%}
                     {%- if benefits_block.settings.icon_3_label != blank -%}
                       <li class="product-benefits__item">
-                        {%- if benefits_block.settings.icon_3_image != blank -%}
-                          {{
-                            benefits_block.settings.icon_3_image
-                            | image_url: width: 80
-                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
-                          }}
-                        {%- endif -%}
+                        <span class="product-benefits__icon-circle">
+                          {%- if benefits_block.settings.icon_3_image != blank -%}
+                            {{
+                              benefits_block.settings.icon_3_image
+                              | image_url: width: 80
+                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            }}
+                          {%- else -%}
+                            {{- 'flag-Icon.svg' | inline_asset_content -}}
+                          {%- endif -%}
+                        </span>
                         <span class="product-benefits__label">{{ benefits_block.settings.icon_3_label | escape }}</span>
                       </li>
                     {%- endif -%}
                     {%- if benefits_block.settings.icon_4_label != blank -%}
                       <li class="product-benefits__item">
-                        {%- if benefits_block.settings.icon_4_image != blank -%}
-                          {{
-                            benefits_block.settings.icon_4_image
-                            | image_url: width: 80
-                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
-                          }}
-                        {%- endif -%}
+                        <span class="product-benefits__icon-circle">
+                          {%- if benefits_block.settings.icon_4_image != blank -%}
+                            {{
+                              benefits_block.settings.icon_4_image
+                              | image_url: width: 80
+                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            }}
+                          {%- else -%}
+                            {{- 'wheat-Icon.svg' | inline_asset_content -}}
+                          {%- endif -%}
+                        </span>
                         <span class="product-benefits__label">{{ benefits_block.settings.icon_4_label | escape }}</span>
                       </li>
                     {%- endif -%}
