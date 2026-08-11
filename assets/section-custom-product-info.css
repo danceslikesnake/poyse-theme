@@ -3,6 +3,7 @@
   /* Flex default (stretch) forces both columns to equal height, which leaves
      a sticky column zero room to actually stick. */
   align-items: flex-start;
+  padding-bottom: 40px;
 }
 
 /* Above this width the page-width container has room to give both PDP
@@ -254,13 +255,19 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 16px 20px;
-  border-radius: 8px;
-  background: var(--poyse-bare-form);
+  padding: 16px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--poyse-evening-fig) 3%, transparent);
+  border: 2px solid color-mix(in srgb, var(--poyse-evening-fig) 10%, transparent);
+  font-family: 'EsBuildMedium', sans-serif;
 }
 
 .product-perks-box__heading {
-  opacity: 0.6;
+  opacity: 0.4;
+  color: var(--poyse-evening-fig);
+  text-transform: uppercase;
+  margin: 0;
+  font-family: 'EsBuildBold', sans-serif;
 }
 
 .product-perks {
@@ -307,6 +314,15 @@
   border-radius: 8px;
 }
 
+.product-reveal-btn {
+  border: 2px solid color-mix(in srgb, var(--poyse-evening-fig) 19%, transparent);
+  text-align: center;
+  padding: 16px 16px;
+  border-radius: 12px;
+  font-size: var(--font-size-xs);
+  font-family: 'EsBuildMedium', sans-serif;
+}
+
 /* Non-collapsible replacement for the old <details>/<summary> accordion:
    same row/border look via the shared .accordion__title + .accordion__content
    classes, just always expanded with a plus icon instead of a toggle caret. */
@@ -327,7 +343,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem 0;
+  padding: 24px 0;
 }
 
 .product-static-section__header svg {
@@ -336,6 +352,7 @@
 
 .product-benefits {
   display: grid;
+  margin-top: 8px;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 

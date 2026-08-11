@@ -72,7 +72,6 @@
             <div class="product-info__subtitle inline-richtext">{{ section.settings.subtitle }}</div>
           {%- endif -%}
 
-          {%- comment -%} TEMP: force-showing with placeholder data to review styling; remove this comment block's fallback once real review data (or a decision to drop it) is confirmed {%- endcomment -%}
           {%- if product.metafields.reviews.rating.value != blank -%}
             <div class="rating-wrapper">
               {%- liquid
@@ -101,13 +100,6 @@
                 | t: rating: product.metafields.reviews.rating.value, count: product.metafields.reviews.rating_count
                 -}}
               </p>
-            </div>
-          {%- else -%}
-            <div class="rating-wrapper">
-              <div class="rating" role="img" aria-label="4.5 out of 5 stars">
-                <span aria-hidden="true" class="rating-star" style="--rating: 4; --rating-max: 5; --rating-decimal: 0.5;"></span>
-              </div>
-              <p class="rating-summary caption">4.5 · 128 Reviews</p>
             </div>
           {%- endif -%}
 
@@ -225,7 +217,7 @@
             <div class="product-info__reveal-triggers">
               {%- if section.settings.supplement_facts_label != blank -%}
                 <details class="product-reveal">
-                  <summary class="custom-cta-button tan full-width-cta">
+                  <summary class="product-reveal-btn">
                     {{- section.settings.supplement_facts_label | escape -}}
                   </summary>
                   <div class="product-reveal__content">
@@ -243,7 +235,7 @@
               {%- endif -%}
               {%- if section.settings.how_to_use_label != blank -%}
                 <details class="product-reveal">
-                  <summary class="custom-cta-button tan full-width-cta">
+                  <summary class="product-reveal-btn">
                     {{- section.settings.how_to_use_label | escape -}}
                   </summary>
                   <div class="product-reveal__content rte">
@@ -264,74 +256,74 @@
                 <h3 class="accordion__title inline-richtext h4">{{ benefits_block.settings.heading | escape }}</h3>
                 {{- 'plus.svg' | inline_asset_content -}}
               </div>
-              <div class="accordion__content" id="ProductAccordionContent-{{ benefits_block.id }}">
-                <ul class="product-benefits list-unstyled">
-                    {%- if benefits_block.settings.icon_1_label != blank -%}
-                      <li class="product-benefits__item">
+            </div>
+            <div class="accordion__content" id="ProductAccordionContent-{{ benefits_block.id }}">
+              <ul class="product-benefits list-unstyled">
+                {%- if benefits_block.settings.icon_1_label != blank -%}
+                  <li class="product-benefits__item">
                         <span class="product-benefits__icon-circle">
                           {%- if benefits_block.settings.icon_1_image != blank -%}
                             {{
-                              benefits_block.settings.icon_1_image
-                              | image_url: width: 80
-                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            benefits_block.settings.icon_1_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
                             }}
                           {%- else -%}
                             {{- 'leaf-icon.svg' | inline_asset_content -}}
                           {%- endif -%}
                         </span>
-                        <span class="product-benefits__label">{{ benefits_block.settings.icon_1_label | escape }}</span>
-                      </li>
-                    {%- endif -%}
-                    {%- if benefits_block.settings.icon_2_label != blank -%}
-                      <li class="product-benefits__item">
+                    <span class="product-benefits__label">{{ benefits_block.settings.icon_1_label | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if benefits_block.settings.icon_2_label != blank -%}
+                  <li class="product-benefits__item">
                         <span class="product-benefits__icon-circle">
                           {%- if benefits_block.settings.icon_2_image != blank -%}
                             {{
-                              benefits_block.settings.icon_2_image
-                              | image_url: width: 80
-                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            benefits_block.settings.icon_2_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
                             }}
                           {%- else -%}
                             {{- 'beaker-icon.svg' | inline_asset_content -}}
                           {%- endif -%}
                         </span>
-                        <span class="product-benefits__label">{{ benefits_block.settings.icon_2_label | escape }}</span>
-                      </li>
-                    {%- endif -%}
-                    {%- if benefits_block.settings.icon_3_label != blank -%}
-                      <li class="product-benefits__item">
+                    <span class="product-benefits__label">{{ benefits_block.settings.icon_2_label | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if benefits_block.settings.icon_3_label != blank -%}
+                  <li class="product-benefits__item">
                         <span class="product-benefits__icon-circle">
                           {%- if benefits_block.settings.icon_3_image != blank -%}
                             {{
-                              benefits_block.settings.icon_3_image
-                              | image_url: width: 80
-                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            benefits_block.settings.icon_3_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
                             }}
                           {%- else -%}
                             {{- 'flag-Icon.svg' | inline_asset_content -}}
                           {%- endif -%}
                         </span>
-                        <span class="product-benefits__label">{{ benefits_block.settings.icon_3_label | escape }}</span>
-                      </li>
-                    {%- endif -%}
-                    {%- if benefits_block.settings.icon_4_label != blank -%}
-                      <li class="product-benefits__item">
+                    <span class="product-benefits__label">{{ benefits_block.settings.icon_3_label | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if benefits_block.settings.icon_4_label != blank -%}
+                  <li class="product-benefits__item">
                         <span class="product-benefits__icon-circle">
                           {%- if benefits_block.settings.icon_4_image != blank -%}
                             {{
-                              benefits_block.settings.icon_4_image
-                              | image_url: width: 80
-                              | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
+                            benefits_block.settings.icon_4_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '24px', class: 'product-benefits__icon', alt: ''
                             }}
                           {%- else -%}
                             {{- 'wheat-Icon.svg' | inline_asset_content -}}
                           {%- endif -%}
                         </span>
-                        <span class="product-benefits__label">{{ benefits_block.settings.icon_4_label | escape }}</span>
-                      </li>
-                    {%- endif -%}
-                  </ul>
-              </div>
+                    <span class="product-benefits__label">{{ benefits_block.settings.icon_4_label | escape }}</span>
+                  </li>
+                {%- endif -%}
+              </ul>
             </div>
           {%- endif -%}
         {%- endif -%}
