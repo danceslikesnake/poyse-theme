@@ -18,27 +18,28 @@
   grid-template-columns: auto 1fr auto;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px 16px;
-  border: 1px solid var(--poyse-bare-form);
+  padding: 16px 16px;
+  border: 2px solid color-mix(in srgb, var(--poyse-evening-fig) 10%, transparent);
   border-radius: 8px;
   cursor: pointer;
 
   &:has(input:checked) {
-    border-color: var(--product-buy-box-accent);
-    background: color-mix(in srgb, var(--product-buy-box-accent) 8%, transparent);
+    border-color: var(--poyse-evening-fig);
+    background: color-mix(in srgb, var(--poyse-evening-fig) 3%, transparent);
   }
 }
 
 .product-buy-box__option-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  margin-top: 2px;
 }
 
 .product-buy-box__option-head {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 12px;
 }
 
 .product-buy-box__option input[type='radio'] {
@@ -68,10 +69,10 @@
 }
 
 .product-buy-box__option:has(input:checked) .product-buy-box__option-indicator {
-  border-color: var(--product-buy-box-accent);
+  border-color: var(--poyse-evening-fig);
 
   &::after {
-    background: var(--product-buy-box-accent);
+    background: var(--poyse-evening-fig);
   }
 }
 
@@ -80,11 +81,12 @@
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
+  font-family: 'EsBuildMedium', sans-serif;
 }
 
 .product-buy-box__option-price-current {
   font-family: 'EsBuildBold', sans-serif;
-  font-size: var(--font-size-sm, 1.4rem);
+  margin-bottom: 8px;
 }
 
 .product-buy-box__option-price-suffix {
@@ -95,38 +97,46 @@
 .product-buy-box__option-price-compare {
   font-size: var(--font-size-2xs, 1.1rem);
   text-decoration: line-through;
-  opacity: 0.5;
 }
 
 .product-buy-box__option-label {
   font-family: 'EsBuildBold', sans-serif;
-  text-transform: uppercase;
   font-size: var(--font-size-xs);
 }
 
 .product-buy-box__option-badge {
-  font-size: var(--font-size-2xs, 1.1rem);
+  font-size: var(--font-size-2xs);
   text-transform: uppercase;
-  color: var(--product-buy-box-accent);
-  background: color-mix(in srgb, var(--product-buy-box-accent) 12%, transparent);
-  border-radius: 4px;
-  padding: 2px 6px;
+  color: var(--poyse-evening-fig);
+  background: var(--poyse-bare-form);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-family: 'EsBuildBold', sans-serif;
 }
 
 .product-buy-box__option-description {
   color: var(--poyse-evening-fig);
-  opacity: 0.7;
   font-size: var(--font-size-xs);
+  font-family: 'EsBuildMedium', sans-serif;
 }
 
 button.product-buy-box__submit {
-  justify-content: space-between;
   gap: 12px;
   background: var(--product-buy-box-accent);
   border-color: var(--product-buy-box-accent);
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  font-family: 'EsBuildBold', sans-serif;
 
   &:hover {
     background: color-mix(in srgb, var(--product-buy-box-accent) 85%, black);
+  }
+
+  &::before, &::after {
+    display: none;
   }
 }
 
@@ -137,11 +147,12 @@ button.product-buy-box__submit {
 
 .product-buy-box__value-link {
   align-self: center;
-  font-size: var(--font-size-xs);
-  font-style: italic;
+  font-size: var(--font-size-2xs);
   text-decoration: none;
   color: var(--poyse-evening-fig);
-  opacity: 0.7;
+  font-family: 'EsBuildMedium', sans-serif;
+  margin: 0;
+  padding: 8px 0;
 
   &::before {
     content: '*';

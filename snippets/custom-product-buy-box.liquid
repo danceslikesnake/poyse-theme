@@ -27,10 +27,6 @@
 
 {%- liquid
   assign product_form_id = 'product-form-' | append: section_id
-  assign is_unavailable = false
-  if product.selected_or_first_available_variant == null or product.selected_or_first_available_variant.available == false
-    assign is_unavailable = true
-  endif
 -%}
 
 <product-buy-box class="product-buy-box">
@@ -92,24 +88,40 @@
 
   {%- if subscriber_gift_heading != blank -%}
     <div class="product-subscriber-gift">
-      {%- if subscriber_gift_image != blank or subscriber_gift_image_2 != blank -%}
-        <span class="product-subscriber-gift__media">
-          {%- if subscriber_gift_image != blank -%}
-            {{
-              subscriber_gift_image
-              | image_url: width: 120
-              | image_tag: loading: 'lazy', sizes: '48px', class: 'product-subscriber-gift__icon'
-            }}
-          {%- endif -%}
-          {%- if subscriber_gift_image_2 != blank -%}
-            {{
-              subscriber_gift_image_2
-              | image_url: width: 120
-              | image_tag: loading: 'lazy', sizes: '48px', class: 'product-subscriber-gift__icon'
-            }}
-          {%- endif -%}
-        </span>
-      {%- endif -%}
+      <span class="product-subscriber-gift__media">
+        {%- if subscriber_gift_image != blank -%}
+          {{
+            subscriber_gift_image
+            | image_url: width: 120
+            | image_tag: loading: 'lazy', sizes: '56px', class: 'product-subscriber-gift__icon'
+          }}
+        {%- else -%}
+          <img
+            src="{{ 'hat.png' | asset_url }}"
+            loading="lazy"
+            width="120"
+            height="120"
+            class="product-subscriber-gift__icon"
+            alt=""
+          >
+        {%- endif -%}
+        {%- if subscriber_gift_image_2 != blank -%}
+          {{
+            subscriber_gift_image_2
+            | image_url: width: 120
+            | image_tag: loading: 'lazy', sizes: '56px', class: 'product-subscriber-gift__icon'
+          }}
+        {%- else -%}
+          <img
+            src="{{ 'towel.png' | asset_url }}"
+            loading="lazy"
+            width="120"
+            height="120"
+            class="product-subscriber-gift__icon"
+            alt=""
+          >
+        {%- endif -%}
+      </span>
       <div class="product-subscriber-gift__content">
         <p class="product-subscriber-gift__heading">{{ subscriber_gift_heading | escape }}</p>
         {%- if subscriber_gift_text != blank -%}
@@ -120,9 +132,9 @@
   {%- endif -%}
 
   {%- if value_link_label != blank -%}
-    <a href="{{ value_link_url | default: '#' }}" class="product-buy-box__value-link">
+    <p class="product-buy-box__value-link">
       {{- value_link_label | escape -}}
-    </a>
+    </p>
   {%- endif -%}
 
   <product-form class="product-buy-box__form" data-section-id="{{ section_id }}">
@@ -135,29 +147,25 @@
         type="hidden"
         name="id"
         value="{{ product.selected_or_first_available_variant.id }}"
-        {% if is_unavailable %}disabled{% endif %}
+        {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
         class="product-variant-id"
       >
       <button
         type="submit"
         name="add"
         class="product-buy-box__submit button button--full-width button--primary"
-        {% if is_unavailable %}disabled{% endif %}
+        {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
       >
         <span data-cta-label>
           {%- if product.selected_or_first_available_variant == null -%}
             {{ 'products.product.unavailable' | t }}
-          {%- elsif is_unavailable -%}
-            {{ 'products.product.sold_out' | t }}
           {%- else -%}
             {{- cta_label | append: ' - ' | append: monthly_price -}}
           {%- endif -%}
         </span>
-        {%- unless is_unavailable -%}
-          <span class="product-buy-box__submit-arrow svg-wrapper">
-            {{- 'icon-arrow.svg' | inline_asset_content -}}
-          </span>
-        {%- endunless -%}
+        <span class="product-buy-box__submit-arrow svg-wrapper">
+          {{- 'icon-arrow.svg' | inline_asset_content -}}
+        </span>
         {%- render 'loading-spinner' -%}
       </button>
     {%- endform -%}

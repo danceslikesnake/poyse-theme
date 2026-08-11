@@ -62,95 +62,99 @@
           </div>
         {%- endif -%}
 
-        <h1 class="product-info__title">{{ section.settings.heading | escape }}</h1>
 
-        {%- if section.settings.subtitle != blank -%}
-          <p class="product-info__subtitle inline-richtext">{{ section.settings.subtitle }}</p>
-        {%- endif -%}
+        <div>
+          <h1 class="product-info__title">{{ section.settings.heading | escape }}</h1>
 
-        {%- comment -%} TEMP: force-showing with placeholder data to review styling; remove this comment block's fallback once real review data (or a decision to drop it) is confirmed {%- endcomment -%}
-        {%- if product.metafields.reviews.rating.value != blank -%}
-          <div class="rating-wrapper">
-            {%- liquid
-              assign rating_decimal = 0
-              assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
-              if decimal >= 0.3 and decimal <= 0.7
-                assign rating_decimal = 0.5
-              elsif decimal > 0.7
-                assign rating_decimal = 1
-              endif
-            -%}
-            <div
-              class="rating"
-              role="img"
-              aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: product.metafields.reviews.rating.value, rating_max: product.metafields.reviews.rating.value.scale_max }}"
-            >
+          {%- if section.settings.subtitle != blank -%}
+            <div class="product-info__subtitle inline-richtext">{{ section.settings.subtitle }}</div>
+          {%- endif -%}
+
+          {%- comment -%} TEMP: force-showing with placeholder data to review styling; remove this comment block's fallback once real review data (or a decision to drop it) is confirmed {%- endcomment -%}
+          {%- if product.metafields.reviews.rating.value != blank -%}
+            <div class="rating-wrapper">
+              {%- liquid
+                assign rating_decimal = 0
+                assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
+                if decimal >= 0.3 and decimal <= 0.7
+                  assign rating_decimal = 0.5
+                elsif decimal > 0.7
+                  assign rating_decimal = 1
+                endif
+              -%}
+              <div
+                      class="rating"
+                      role="img"
+                      aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: product.metafields.reviews.rating.value, rating_max: product.metafields.reviews.rating.value.scale_max }}"
+              >
               <span
-                aria-hidden="true"
-                class="rating-star"
-                style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
+                      aria-hidden="true"
+                      class="rating-star"
+                      style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
               ></span>
-            </div>
-            <p class="rating-summary caption">
-              {{-
+              </div>
+              <p class="rating-summary caption">
+                {{-
                 'sections.custom_product_info.rating_summary'
                 | t: rating: product.metafields.reviews.rating.value, count: product.metafields.reviews.rating_count
-              -}}
-            </p>
-          </div>
-        {%- else -%}
-          <div class="rating-wrapper">
-            <div class="rating" role="img" aria-label="4.5 out of 5 stars">
-              <span aria-hidden="true" class="rating-star" style="--rating: 4; --rating-max: 5; --rating-decimal: 0.5;"></span>
+                -}}
+              </p>
             </div>
-            <p class="rating-summary caption">4.5 · 128 Reviews</p>
-          </div>
-        {%- endif -%}
+          {%- else -%}
+            <div class="rating-wrapper">
+              <div class="rating" role="img" aria-label="4.5 out of 5 stars">
+                <span aria-hidden="true" class="rating-star" style="--rating: 4; --rating-max: 5; --rating-decimal: 0.5;"></span>
+              </div>
+              <p class="rating-summary caption">4.5 · 128 Reviews</p>
+            </div>
+          {%- endif -%}
 
-        {%- if product.description != blank -%}
-          <div class="product-info__description rte">{{ product.description }}</div>
-        {%- endif -%}
+          {%- if product.description != blank -%}
+            <div class="product-info__description rte">{{ product.description }}</div>
+          {%- endif -%}
 
-        {%- liquid
-          assign flavor_collection = section.settings.flavors_collection
-          if flavor_collection == blank
-            assign flavor_collection = collections.all
-          endif
-        -%}
-        {%- if flavor_collection != blank -%}
-          <hr class="product-info__divider">
-          <div class="product-flavor-switcher">
-            <p class="product-flavor-switcher__label caption-with-letter-spacing">
-              {{- section.settings.flavor_label | escape }} &mdash; {{ product.title | escape -}}
-            </p>
-            <div class="product-flavor-switcher__pills" role="list">
-              {%- for flavor_product in flavor_collection.products -%}
-                {%- if flavor_product.id == product.id -%}
-                  <span class="product-flavor-switcher__pill is-active" aria-current="page">
+          {%- liquid
+            assign flavor_collection = section.settings.flavors_collection
+            if flavor_collection == blank
+              assign flavor_collection = collections.all
+            endif
+          -%}
+          {%- if flavor_collection != blank -%}
+            <hr class="product-info__divider">
+            <div class="product-flavor-switcher">
+              <p class="product-flavor-switcher__label caption-with-letter-spacing">
+                {{- section.settings.flavor_label | escape }} &mdash; {{ product.title | escape -}}
+              </p>
+              <div class="product-flavor-switcher__pills" role="list">
+                {%- for flavor_product in flavor_collection.products -%}
+                  {%- if flavor_product.id == product.id -%}
+                    <span class="product-flavor-switcher__pill is-active" data-flavor="{{ flavor_product.handle }}" aria-current="page">
                     {{- flavor_product.title | escape -}}
                   </span>
-                {%- else -%}
-                  <a href="{{ flavor_product.url }}" class="product-flavor-switcher__pill">
-                    {{- flavor_product.title | escape -}}
-                  </a>
-                {%- endif -%}
-              {%- endfor -%}
+                  {%- else -%}
+                    <a href="{{ flavor_product.url }}" class="product-flavor-switcher__pill" data-flavor="{{ flavor_product.handle }}">
+                      {{- flavor_product.title | escape -}}
+                    </a>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              {%- liquid
+                assign flavor_subtitle_metafield = product.metafields.custom.featured_product_subtitle
+                if flavor_subtitle_metafield.type == 'rich_text_field'
+                  assign flavor_subtitle = flavor_subtitle_metafield | metafield_tag
+                elsif flavor_subtitle_metafield.value != blank
+                  assign flavor_subtitle = flavor_subtitle_metafield.value
+                else
+                  assign flavor_subtitle = blank
+                endif
+              -%}
+              {%- if flavor_subtitle != blank -%}
+                <p class="product-flavor-switcher__description">{{ flavor_subtitle }}</p>
+              {%- endif -%}
             </div>
-            {%- liquid
-              assign flavor_subtitle_metafield = product.metafields.custom.featured_product_subtitle
-              if flavor_subtitle_metafield.type == 'rich_text_field'
-                assign flavor_subtitle = flavor_subtitle_metafield | metafield_tag
-              elsif flavor_subtitle_metafield.value != blank
-                assign flavor_subtitle = flavor_subtitle_metafield.value
-              else
-                assign flavor_subtitle = blank
-              endif
-            -%}
-            {%- if flavor_subtitle != blank -%}
-              <p class="product-flavor-switcher__description">{{ flavor_subtitle }}</p>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
+            <hr class="product-info__divider">
+          {%- endif -%}
+        </div>
 
         {%- render 'custom-product-buy-box',
           product: product,

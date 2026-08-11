@@ -60,6 +60,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  color: var(--poyse-evening-fig);
 }
 
 .product-badges {
@@ -81,7 +82,7 @@
 }
 
 .product-info__title {
-  margin: 0;
+  margin: 0 0 8px 0;
   color: var(--product-buy-box-accent);
   font-family: 'EsBuildMedium', sans-serif;
   font-weight: normal;
@@ -89,12 +90,16 @@
 }
 
 .product-info__subtitle {
-  margin: -8px 0 0;
-  opacity: 0.7;
+  margin: 0 0 24px 0;
+}
+.product-info__subtitle p {
+  margin: 0;
 }
 
 .product-info__description {
-  opacity: 0.85;
+  color: var(--poyse-evening-fig);
+  line-height: 1.5;
+  margin-bottom: 24px;
 }
 
 .rating-summary {
@@ -102,18 +107,36 @@
   margin: 0;
 }
 
+.rating-summary.caption {
+  font-family: 'EsBuildMedium', sans-serif;
+  font-size: var(--font-size-xs);
+  opacity: 0.5;
+}
+
+.rating-wrapper {
+  margin-bottom: 24px;
+}
+
+.product-info .rating-star {
+  --color-rating-star: var(--poyse-deep-current);
+  --letter-spacing: 0.3;
+}
+
 .product-info__divider {
   width: 100%;
   height: 1px;
   margin: 0;
   border: none;
-  background: var(--poyse-bare-form);
+  opacity: 0.07;
+  background: #392C2D;
 }
 
 .product-flavor-switcher {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 16px 0 0 0;
+  padding-bottom: 24px;
 }
 
 .product-flavor-switcher__description {
@@ -125,41 +148,72 @@
 
 .product-flavor-switcher__label {
   text-transform: uppercase;
-  opacity: 0.6;
+  font-family: 'EsBuildMedium', sans-serif;
+  font-size: var(--font-size-2xs);
+  margin-bottom: 8px;
 }
 
 .product-flavor-switcher__pills {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
   gap: 8px;
 }
 
 .product-flavor-switcher__pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  border-radius: 100px;
-  border: 1px solid var(--poyse-bare-form);
-  text-decoration: none;
-  color: var(--poyse-evening-fig);
+  font-family: 'EsBuildMedium', sans-serif;
+  padding: 0 8px;
+  border: 1px solid var(--poyse-evening-fig);
+  border-radius: 22px;
+  background: transparent;
   font-size: var(--font-size-xs);
+  letter-spacing: 1%;
+  line-height: 28px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  color: var(--poyse-evening-fig);
+
+  @media screen and (min-width: 1024px) {
+    padding: 0 22px;
+  }
+
+  &:hover {
+    background-color: var(--poyse-evening-fig);
+    color: #fff;
+  }
 
   &.is-active {
-    background: var(--product-buy-box-accent);
+    background-color: var(--product-buy-box-accent);
     border-color: var(--product-buy-box-accent);
     color: var(--poyse-white);
   }
 
-  &:not(.is-active):hover {
-    border-color: var(--product-buy-box-accent);
+  &[data-flavor='strawberry-watermelon'] {
+    flex: 1;
+  }
+
+  &[data-flavor='tropical-mango'].is-active {
+    background-color: #e2963f;
+    border-color: #e2963f;
+  }
+
+  &[data-flavor='strawberry-watermelon'].is-active {
+    background-color: #d97170;
+    border-color: #d97170;
   }
 }
 
 .product-subscriber-gift {
   display: flex;
-  gap: 12px;
+  gap: 24px;
   align-items: flex-start;
-  padding: 16px;
+  padding: 16px 24px 40px 24px;
   border-radius: 8px;
   background: var(--poyse-bare-form);
 }
@@ -186,7 +240,7 @@
 
 .product-subscriber-gift__text {
   font-size: var(--font-size-xs);
-  opacity: 0.8;
+  font-family: 'EsBuildMedium', sans-serif;
 }
 
 .product-perks-box {
