@@ -10,7 +10,7 @@
   - product: {Object} product resource
   - section_id: {String} id of the section that contains this snippet
   - monthly_label / monthly_description / monthly_price / monthly_badge: {String}
-  - onetime_label / onetime_price: {String}
+  - onetime_label / onetime_description / onetime_price: {String}
   - cta_label: {String}
   - value_link_label: {String} optional, e.g. "Value of one-time purchase"
   - value_link_url: {String} optional
@@ -78,6 +78,9 @@
         <span class="product-buy-box__option-head">
           <span class="product-buy-box__option-label">{{ onetime_label | escape }}</span>
         </span>
+        {%- if onetime_description != blank -%}
+          <span class="product-buy-box__option-description">{{ onetime_description | escape }}</span>
+        {%- endif -%}
       </span>
       {%- if onetime_price != blank -%}
         <span class="product-buy-box__option-price">

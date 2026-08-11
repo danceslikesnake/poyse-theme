@@ -1,5 +1,5 @@
 .product-info {
-  --product-buy-box-accent: #e2872e;
+  --product-buy-box-accent: #ff960e;
   /* Flex default (stretch) forces both columns to equal height, which leaves
      a sticky column zero room to actually stick. */
   align-items: flex-start;
@@ -64,21 +64,28 @@
 
 .product-badges {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
 .product-badge {
-  font-size: var(--font-size-2xs, 1.1rem);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  padding: 0.5rem 1.2rem;
   border: 1px solid var(--poyse-evening-fig);
-  border-radius: 100px;
-  padding: 4px 10px;
+  border-radius: 999px;
+  background: white;
+  font-size: var(--font-size-2xs);
+  letter-spacing: 1%;
+  white-space: nowrap;
+  color: var(--poyse-evening-fig);
+  font-family: 'EsBuildMedium', sans-serif;
 }
 
 .product-info__title {
   margin: 0;
   color: var(--product-buy-box-accent);
+  font-family: 'EsBuildMedium', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0;
 }
 
 .product-info__subtitle {

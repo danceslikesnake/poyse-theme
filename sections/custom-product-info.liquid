@@ -68,6 +68,7 @@
           <p class="product-info__subtitle inline-richtext">{{ section.settings.subtitle }}</p>
         {%- endif -%}
 
+        {%- comment -%} TEMP: force-showing with placeholder data to review styling; remove this comment block's fallback once real review data (or a decision to drop it) is confirmed {%- endcomment -%}
         {%- if product.metafields.reviews.rating.value != blank -%}
           <div class="rating-wrapper">
             {%- liquid
@@ -96,6 +97,13 @@
                 | t: rating: product.metafields.reviews.rating.value, count: product.metafields.reviews.rating_count
               -}}
             </p>
+          </div>
+        {%- else -%}
+          <div class="rating-wrapper">
+            <div class="rating" role="img" aria-label="4.5 out of 5 stars">
+              <span aria-hidden="true" class="rating-star" style="--rating: 4; --rating-max: 5; --rating-decimal: 0.5;"></span>
+            </div>
+            <p class="rating-summary caption">4.5 · 128 Reviews</p>
           </div>
         {%- endif -%}
 
@@ -152,6 +160,7 @@
           monthly_price: section.settings.monthly_price,
           monthly_badge: section.settings.monthly_badge,
           onetime_label: section.settings.onetime_label,
+          onetime_description: section.settings.onetime_description,
           onetime_price: section.settings.onetime_price,
           cta_label: section.settings.cta_label,
           value_link_label: section.settings.value_link_label,
@@ -508,6 +517,12 @@
       "id": "onetime_label",
       "default": "t:sections.custom-product-info.settings.onetime_label.default",
       "label": "t:sections.custom-product-info.settings.onetime_label.label"
+    },
+    {
+      "type": "text",
+      "id": "onetime_description",
+      "default": "t:sections.custom-product-info.settings.onetime_description.default",
+      "label": "t:sections.custom-product-info.settings.onetime_description.label"
     },
     {
       "type": "text",

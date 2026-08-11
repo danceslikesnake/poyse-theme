@@ -1235,7 +1235,7 @@
         },
         "subtitle": {
           "label": "Subtitle",
-          "default": "<p>Powered by <em>∞ Paraxanthine</em></p>"
+          "default": "<p>Powered by <em>Enfinity® Paraxanthine</em></p>"
         },
         "header_flavors": {
           "content": "Flavors"
@@ -1275,6 +1275,10 @@
         "onetime_label": {
           "label": "One-time option label",
           "default": "One-Time Purchase"
+        },
+        "onetime_description": {
+          "label": "One-time option description",
+          "default": "A single order shipped to your door. Standard shipping rates apply."
         },
         "onetime_price": {
           "label": "One-time price",
