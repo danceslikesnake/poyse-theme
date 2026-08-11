@@ -122,6 +122,7 @@
         "heading": "<p>What's inside <em>matters</em>.</p>",
         "hint_text": "Swipe to learn more",
         "supplement_facts_label": "View Supplement Facts",
+        "supplement_facts_url": "/",
         "padding_top": 72,
         "padding_bottom": 72
       }

@@ -1,9 +1,6 @@
 class IngredientSlider extends HTMLElement {
   connectedCallback() {
     this.cards = Array.from(this.querySelectorAll('.ingredient-slider__card'));
-    this.dots = Array.from(this.querySelectorAll('.ingredient-slider__dot'));
-    this.prevButton = this.querySelector('.ingredient-slider__arrow--prev');
-    this.nextButton = this.querySelector('.ingredient-slider__arrow--next');
     this.activeIndex = 0;
     this.hasDragged = false;
 
@@ -11,13 +8,6 @@ class IngredientSlider extends HTMLElement {
       this.render();
       return;
     }
-
-    this.prevButton?.addEventListener('click', () => this.go(this.activeIndex - 1));
-    this.nextButton?.addEventListener('click', () => this.go(this.activeIndex + 1));
-
-    this.dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => this.go(index));
-    });
 
     this.cards.forEach((card, index) => {
       card.addEventListener('click', (event) => {
@@ -123,11 +113,6 @@ class IngredientSlider extends HTMLElement {
       card.classList.toggle('is-active', isActive);
       card.setAttribute('aria-hidden', offsetAbs > 2 ? 'true' : 'false');
       card.tabIndex = isActive ? 0 : -1;
-    });
-
-    this.dots.forEach((dot, index) => {
-      dot.classList.toggle('is-active', index === this.activeIndex);
-      dot.setAttribute('aria-selected', index === this.activeIndex ? 'true' : 'false');
     });
   }
 }

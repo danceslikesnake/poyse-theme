@@ -1,121 +1,92 @@
 {{ 'section-custom-product-ingredients.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'ingredient-slider.js' | asset_url }}" defer="defer"></script>
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 768px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
 {%- liquid
   assign cards = section.blocks | where: 'type', 'card'
 -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="page-width">
-    <div class="ingredients__header">
-      <div>
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="ingredients__eyebrow">{{ section.settings.eyebrow | escape }}</p>
-        {%- endif -%}
-        <h2 class="ingredients__heading inline-richtext">{{ section.settings.heading }}</h2>
-      </div>
-      {%- if section.settings.supplement_facts_image != blank -%}
-        <modal-opener data-modal="#IngredientsSupplementFactsModal-{{ section.id }}">
-          <button type="button" class="custom-cta-button tan narrow-padding" aria-haspopup="dialog">
-            {{- section.settings.supplement_facts_label | escape -}}
-          </button>
-        </modal-opener>
+<div class="color-{{ section.settings.color_scheme }} custom-ingredients">
+  <div class="ingredients__header">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ingredients__eyebrow">{{ section.settings.eyebrow | escape }}</p>
       {%- endif -%}
+      <h2 class="ingredients__heading inline-richtext">{{ section.settings.heading }}</h2>
     </div>
-
-    {%- if cards.size > 0 -%}
-      <ingredient-slider class="ingredient-slider">
-        <div
-          class="ingredient-slider__viewport"
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="{{ section.settings.heading | strip_html | escape }}"
-        >
-          <ul class="ingredient-slider__track list-unstyled">
-            {%- for block in cards -%}
-              <li
-                class="ingredient-slider__card{% if forloop.first %} is-active{% endif %}"
-                id="IngredientCard-{{ block.id }}"
-                {{ block.shopify_attributes }}
-                aria-roledescription="slide"
-                aria-label="{{ forloop.index }} {{ 'sections.custom_product_ingredients.of' | t }} {{ cards.size }}"
-                tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
-              >
-                <div class="ingredient-slider__card-media">
-                  {%- if block.settings.image != blank -%}
-                    {{
-                      block.settings.image
-                      | image_url: width: 700
-                      | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 360px, 80vw', class: 'ingredient-slider__image'
-                    }}
-                  {%- else -%}
-                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                  {%- endif -%}
-                </div>
-                <div class="ingredient-slider__card-content">
-                  {%- if block.settings.key_label != blank -%}
-                    <p class="ingredient-slider__key-label">{{ block.settings.key_label | escape }}</p>
-                  {%- endif -%}
-                  {%- if block.settings.heading != blank -%}
-                    <p class="ingredient-slider__card-heading">{{ block.settings.heading | escape }}</p>
-                  {%- endif -%}
-                  {%- if block.settings.text != blank -%}
-                    <div class="ingredient-slider__card-text rte">{{ block.settings.text }}</div>
-                  {%- endif -%}
-                </div>
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
-
-        <div class="ingredient-slider__controls">
-          <button
-            type="button"
-            class="ingredient-slider__arrow ingredient-slider__arrow--prev"
-            aria-label="{{ 'sections.custom_product_ingredients.previous' | t }}"
-          >
-            {{- 'icon-caret.svg' | inline_asset_content -}}
-          </button>
-          <div class="ingredient-slider__dots" role="tablist">
-            {%- for block in cards -%}
-              <button
-                type="button"
-                class="ingredient-slider__dot{% if forloop.first %} is-active{% endif %}"
-                role="tab"
-                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-                aria-label="{{ 'sections.custom_product_ingredients.go_to_slide' | t: index: forloop.index }}"
-              ></button>
-            {%- endfor -%}
-          </div>
-          <button
-            type="button"
-            class="ingredient-slider__arrow ingredient-slider__arrow--next"
-            aria-label="{{ 'sections.custom_product_ingredients.next' | t }}"
-          >
-            {{- 'icon-caret.svg' | inline_asset_content -}}
-          </button>
-        </div>
-
-        {%- if section.settings.hint_text != blank -%}
-          <p class="ingredient-slider__hint">{{ section.settings.hint_text | escape }}</p>
-        {%- endif -%}
-      </ingredient-slider>
+    {%- if section.settings.supplement_facts_image != blank -%}
+      <modal-opener data-modal="#IngredientsSupplementFactsModal-{{ section.id }}">
+        <button type="button" class="custom-cta-button tan narrow-padding" aria-haspopup="dialog">
+          {{- section.settings.supplement_facts_label | escape -}}
+        </button>
+      </modal-opener>
+    {%- elsif section.settings.supplement_facts_url != blank and section.settings.supplement_facts_label != blank -%}
+      <a href="{{ section.settings.supplement_facts_url }}" class="custom-cta-button tan narrow-padding">
+        {{- section.settings.supplement_facts_label | escape -}}
+      </a>
     {%- endif -%}
   </div>
+
+  {%- if cards.size > 0 -%}
+    <ingredient-slider class="ingredient-slider">
+      <div
+              class="ingredient-slider__viewport"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="{{ section.settings.heading | strip_html | escape }}"
+      >
+        <ul class="ingredient-slider__track list-unstyled">
+          {%- for block in cards -%}
+            <li
+                    class="ingredient-slider__card{% if forloop.first %} is-active{% endif %}"
+                    id="IngredientCard-{{ block.id }}"
+                    {{ block.shopify_attributes }}
+                    aria-roledescription="slide"
+                    aria-label="{{ forloop.index }} {{ 'sections.custom_product_ingredients.of' | t }} {{ cards.size }}"
+                    tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+            >
+              <div class="ingredient-slider__card-media">
+                {%- if block.settings.image != blank -%}
+                  {{
+                  block.settings.image
+                  | image_url: width: 700
+                  | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 360px, 80vw', class: 'ingredient-slider__image'
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+              <div class="ingredient-slider__card-content">
+                {%- if block.settings.key_label != blank -%}
+                  <p class="ingredient-slider__key-label">{{ block.settings.key_label | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.heading != blank -%}
+                  <p class="ingredient-slider__card-heading">{{ block.settings.heading | escape }}</p>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="ingredient-slider__card-text rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="ingredient-slider__ornament" aria-hidden="true">
+        <img
+          src="{{ 'swipe-arrow.svg' | asset_url }}"
+          alt=""
+          width="242"
+          height="8"
+          loading="lazy"
+          class="ingredient-slider__ornament-image"
+        >
+      </div>
+
+      {%- if section.settings.hint_text != blank -%}
+        <p class="ingredient-slider__hint">{{ section.settings.hint_text | escape }}</p>
+      {%- endif -%}
+    </ingredient-slider>
+  {%- endif -%}
 
   {%- if section.settings.supplement_facts_image != blank -%}
     <modal-dialog id="IngredientsSupplementFactsModal-{{ section.id }}" class="product-popup-modal">
@@ -189,6 +160,11 @@
       "type": "image_picker",
       "id": "supplement_facts_image",
       "label": "t:sections.custom-product-ingredients.settings.supplement_facts_image.label"
+    },
+    {
+      "type": "url",
+      "id": "supplement_facts_url",
+      "label": "t:sections.custom-product-ingredients.settings.supplement_facts_url.label"
     },
     {
       "type": "header",

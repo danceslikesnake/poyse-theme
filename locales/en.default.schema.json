@@ -1438,6 +1438,9 @@
         },
         "supplement_facts_image": {
           "label": "Supplement facts image"
+        },
+        "supplement_facts_url": {
+          "label": "Button link"
         }
       },
       "blocks": {

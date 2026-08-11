@@ -318,10 +318,7 @@
     },
 
     "custom_product_ingredients": {
-      "previous": "Previous ingredient",
-      "next": "Next ingredient",
-      "of": "of",
-      "go_to_slide": "Go to ingredient {{ index }}"
+      "of": "of"
     },
 
     "header": {
