@@ -15,19 +15,22 @@
         "perk-1": {
           "type": "perk",
           "settings": {
-            "text": "Free shipping always"
+            "text": "Free shipping always",
+            "icon": "truck"
           }
         },
         "perk-2": {
           "type": "perk",
           "settings": {
-            "text": "Pause or cancel anytime"
+            "text": "Pause or cancel anytime",
+            "icon": "pause"
           }
         },
         "perk-3": {
           "type": "perk",
           "settings": {
-            "text": "15-day return policy"
+            "text": "15-day return policy",
+            "icon": "return"
           }
         },
         "accordion-what-is": {
@@ -73,9 +76,9 @@
         "onetime_label": "One-Time Purchase",
         "onetime_price": "$60.00",
         "cta_label": "Add to Cart",
-        "value_link_label": "Value of your subscription",
+        "value_link_label": "Value of one-time purchase",
         "subscriber_gift_heading": "Premium Subscriber Gift Included",
-        "subscriber_gift_text": "<p>Includes a complimentary water bottle and refill of your first shipment.</p>",
+        "subscriber_gift_text": "<p>Includes a complimentary water bottle and towel with your first subscription order.</p>",
         "supplement_facts_label": "View Supplement Facts",
         "how_to_use_label": "How To Use",
         "how_to_use_content": "<p>Mix 1 scoop (8g) with 8-10 oz of cold water. Shake or stir until fully dissolved. For a lighter boost, use less powder; for stronger energy support, use slightly more. Adjust serving size and timing based on your individual needs and tolerance.</p>",

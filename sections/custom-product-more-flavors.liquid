@@ -27,9 +27,15 @@
       {%- endif -%}
     </div>
 
-    {%- if section.settings.flavors_collection != blank -%}
+    {%- liquid
+      assign flavor_collection = section.settings.flavors_collection
+      if flavor_collection == blank
+        assign flavor_collection = collections.all
+      endif
+    -%}
+    {%- if flavor_collection != blank -%}
       <div class="featured-items__grid more-flavors__grid">
-        {%- for flavor_product in section.settings.flavors_collection.products -%}
+        {%- for flavor_product in flavor_collection.products -%}
           {%- unless flavor_product.id == product.id -%}
             {%- render 'custom-feature-item',
               product: flavor_product,

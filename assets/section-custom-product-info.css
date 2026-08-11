@@ -157,10 +157,17 @@
   background: var(--poyse-bare-form);
 }
 
+.product-subscriber-gift__media {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
 .product-subscriber-gift__icon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
   flex-shrink: 0;
 }
 
@@ -173,6 +180,19 @@
 .product-subscriber-gift__text {
   font-size: var(--font-size-xs);
   opacity: 0.8;
+}
+
+.product-perks-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: var(--poyse-bare-form);
+}
+
+.product-perks-box__heading {
+  opacity: 0.6;
 }
 
 .product-perks {

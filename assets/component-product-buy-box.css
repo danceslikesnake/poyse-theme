@@ -14,9 +14,10 @@
 }
 
 .product-buy-box__option {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: 12px;
   padding: 12px 16px;
   border: 1px solid var(--poyse-bare-form);
   border-radius: 8px;
@@ -26,6 +27,12 @@
     border-color: var(--product-buy-box-accent);
     background: color-mix(in srgb, var(--product-buy-box-accent) 8%, transparent);
   }
+}
+
+.product-buy-box__option-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .product-buy-box__option-head {
@@ -39,6 +46,56 @@
   opacity: 0;
   width: 1px;
   height: 1px;
+}
+
+.product-buy-box__option-indicator {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  border: 2px solid var(--poyse-bare-form);
+  border-radius: 50%;
+  background: var(--poyse-white, #fff);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: transparent;
+  }
+}
+
+.product-buy-box__option:has(input:checked) .product-buy-box__option-indicator {
+  border-color: var(--product-buy-box-accent);
+
+  &::after {
+    background: var(--product-buy-box-accent);
+  }
+}
+
+.product-buy-box__option-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.product-buy-box__option-price-current {
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: var(--font-size-sm, 1.4rem);
+}
+
+.product-buy-box__option-price-suffix {
+  font-size: var(--font-size-2xs, 1.1rem);
+  opacity: 0.6;
+}
+
+.product-buy-box__option-price-compare {
+  font-size: var(--font-size-2xs, 1.1rem);
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 
 .product-buy-box__option-label {
@@ -63,6 +120,8 @@
 }
 
 button.product-buy-box__submit {
+  justify-content: space-between;
+  gap: 12px;
   background: var(--product-buy-box-accent);
   border-color: var(--product-buy-box-accent);
 
@@ -71,10 +130,20 @@ button.product-buy-box__submit {
   }
 }
 
+.product-buy-box__submit-arrow svg {
+  width: 14px;
+  height: 10px;
+}
+
 .product-buy-box__value-link {
   align-self: center;
   font-size: var(--font-size-xs);
-  text-decoration: underline;
+  font-style: italic;
+  text-decoration: none;
   color: var(--poyse-evening-fig);
   opacity: 0.7;
+
+  &::before {
+    content: '*';
+  }
 }

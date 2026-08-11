@@ -103,14 +103,20 @@
           <div class="product-info__description rte">{{ product.description }}</div>
         {%- endif -%}
 
-        {%- if section.settings.flavors_collection != blank -%}
+        {%- liquid
+          assign flavor_collection = section.settings.flavors_collection
+          if flavor_collection == blank
+            assign flavor_collection = collections.all
+          endif
+        -%}
+        {%- if flavor_collection != blank -%}
           <hr class="product-info__divider">
           <div class="product-flavor-switcher">
             <p class="product-flavor-switcher__label caption-with-letter-spacing">
               {{- section.settings.flavor_label | escape }} &mdash; {{ product.title | escape -}}
             </p>
             <div class="product-flavor-switcher__pills" role="list">
-              {%- for flavor_product in section.settings.flavors_collection.products -%}
+              {%- for flavor_product in flavor_collection.products -%}
                 {%- if flavor_product.id == product.id -%}
                   <span class="product-flavor-switcher__pill is-active" aria-current="page">
                     {{- flavor_product.title | escape -}}
@@ -149,36 +155,40 @@
           onetime_price: section.settings.onetime_price,
           cta_label: section.settings.cta_label,
           value_link_label: section.settings.value_link_label,
-          value_link_url: section.settings.value_link_url
+          value_link_url: section.settings.value_link_url,
+          subscriber_gift_image: section.settings.subscriber_gift_image,
+          subscriber_gift_image_2: section.settings.subscriber_gift_image_2,
+          subscriber_gift_heading: section.settings.subscriber_gift_heading,
+          subscriber_gift_text: section.settings.subscriber_gift_text
         -%}
 
-        {%- if section.settings.subscriber_gift_heading != blank -%}
-          <div class="product-subscriber-gift">
-            {%- if section.settings.subscriber_gift_image != blank -%}
-              {{
-                section.settings.subscriber_gift_image
-                | image_url: width: 120
-                | image_tag: loading: 'lazy', sizes: '48px', class: 'product-subscriber-gift__icon'
-              }}
-            {%- endif -%}
-            <div class="product-subscriber-gift__content">
-              <p class="product-subscriber-gift__heading">{{ section.settings.subscriber_gift_heading | escape }}</p>
-              {%- if section.settings.subscriber_gift_text != blank -%}
-                <div class="product-subscriber-gift__text rte">{{ section.settings.subscriber_gift_text }}</div>
-              {%- endif -%}
-            </div>
-          </div>
-        {%- endif -%}
-
         {%- if perk_blocks.size > 0 -%}
-          <ul class="product-perks list-unstyled">
-            {%- for block in perk_blocks -%}
-              <li class="product-perks__item" {{ block.shopify_attributes }}>
-                <span class="svg-wrapper">{{- 'icon-checkmark.svg' | inline_asset_content -}}</span>
-                {{- block.settings.text | escape -}}
-              </li>
-            {%- endfor -%}
-          </ul>
+          <div class="product-perks-box">
+            {%- if section.settings.perks_heading != blank -%}
+              <p class="product-perks-box__heading caption-with-letter-spacing">
+                {{- section.settings.perks_heading | escape -}}
+              </p>
+            {%- endif -%}
+            <ul class="product-perks list-unstyled">
+              {%- for block in perk_blocks -%}
+                <li class="product-perks__item" {{ block.shopify_attributes }}>
+                  <span class="svg-wrapper">
+                    {%- case block.settings.icon -%}
+                      {%- when 'truck' -%}
+                        {{- 'truck-Icon.svg' | inline_asset_content -}}
+                      {%- when 'pause' -%}
+                        {{- 'cycle-Icon.svg' | inline_asset_content -}}
+                      {%- when 'return' -%}
+                        {{- 'undo-Icon.svg' | inline_asset_content -}}
+                      {%- else -%}
+                        {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                    {%- endcase -%}
+                  </span>
+                  {{- block.settings.text | escape -}}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
         {%- endif -%}
 
         {%- if accordion_blocks.size > 0 or benefits_block != blank -%}
@@ -516,6 +526,11 @@
       "label": "t:sections.custom-product-info.settings.subscriber_gift_image.label"
     },
     {
+      "type": "image_picker",
+      "id": "subscriber_gift_image_2",
+      "label": "t:sections.custom-product-info.settings.subscriber_gift_image_2.label"
+    },
+    {
       "type": "text",
       "id": "subscriber_gift_heading",
       "default": "t:sections.custom-product-info.settings.subscriber_gift_heading.default",
@@ -526,6 +541,16 @@
       "id": "subscriber_gift_text",
       "default": "t:sections.custom-product-info.settings.subscriber_gift_text.default",
       "label": "t:sections.custom-product-info.settings.subscriber_gift_text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-info.settings.header_perks.content"
+    },
+    {
+      "type": "text",
+      "id": "perks_heading",
+      "default": "t:sections.custom-product-info.settings.perks_heading.default",
+      "label": "t:sections.custom-product-info.settings.perks_heading.label"
     },
     {
       "type": "header",
@@ -588,6 +613,18 @@
           "id": "text",
           "default": "t:sections.custom-product-info.blocks.perk.settings.text.default",
           "label": "t:sections.custom-product-info.blocks.perk.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "default": "checkmark",
+          "label": "t:sections.custom-product-info.blocks.perk.settings.icon.label",
+          "options": [
+            { "value": "checkmark", "label": "t:sections.custom-product-info.blocks.perk.settings.icon.options__1.label" },
+            { "value": "truck", "label": "t:sections.custom-product-info.blocks.perk.settings.icon.options__2.label" },
+            { "value": "pause", "label": "t:sections.custom-product-info.blocks.perk.settings.icon.options__3.label" },
+            { "value": "return", "label": "t:sections.custom-product-info.blocks.perk.settings.icon.options__4.label" }
+          ]
         }
       ]
     },

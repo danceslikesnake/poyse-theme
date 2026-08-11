@@ -304,6 +304,7 @@
 
     "custom_product_info": {
       "subscription_legend": "Choose a purchase option",
+      "per_month_suffix": "/mo",
       "badges": {
         "new_arrival": "New Arrival",
         "best_seller": "Best Seller"

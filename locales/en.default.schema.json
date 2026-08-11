@@ -1286,7 +1286,7 @@
         },
         "value_link_label": {
           "label": "Subscription value link label",
-          "default": "Value of your subscription"
+          "default": "Value of one-time purchase"
         },
         "value_link_url": {
           "label": "Subscription value link"
@@ -1297,13 +1297,23 @@
         "subscriber_gift_image": {
           "label": "Icon"
         },
+        "subscriber_gift_image_2": {
+          "label": "Icon 2 (optional)"
+        },
         "subscriber_gift_heading": {
           "label": "Heading",
           "default": "Premium Subscriber Gift Included"
         },
         "subscriber_gift_text": {
           "label": "Text",
-          "default": "<p>Includes a complimentary water bottle and refill of your first shipment.</p>"
+          "default": "<p>Includes a complimentary water bottle and towel with your first subscription order.</p>"
+        },
+        "header_perks": {
+          "content": "Subscription perks list"
+        },
+        "perks_heading": {
+          "label": "Perks list heading",
+          "default": "Your subscription includes:"
         },
         "header_modals": {
           "content": "Supplement facts & how to use"
@@ -1330,6 +1340,13 @@
             "text": {
               "label": "Text",
               "default": "Free shipping always"
+            },
+            "icon": {
+              "label": "Icon",
+              "options__1": { "label": "Checkmark" },
+              "options__2": { "label": "Truck" },
+              "options__3": { "label": "Pause" },
+              "options__4": { "label": "Return" }
             }
           }
         },
