@@ -22,9 +22,11 @@
   width: 100%;
   border-collapse: collapse;
   min-width: 480px;
+  table-layout: fixed;
 }
 
 .comparison__row-label {
+  width: 33.333%;
   text-align: left;
   font-weight: normal;
   padding: 12px 16px;
@@ -32,6 +34,7 @@
 }
 
 .comparison__col {
+  width: 33.333%;
   text-align: left;
   padding: 12px 16px;
   border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);

@@ -9,9 +9,11 @@
    columns a real 56.8rem floor (matches the 1440px design mockup) without
    overflowing; narrower viewports keep the existing large/medium/small
    percentage split from section-main-product.css. */
+
 @media screen and (min-width: 1280px) {
   .product-info__page-width {
     max-width: 128rem;
+    padding-top: 80px;
   }
 
   .product-info.grid {
@@ -37,14 +39,19 @@
   }
 }
 
+.product-breadcrumb-section {
+  margin: 0 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
 .product-breadcrumb {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 16px 16px;
   font-size: var(--font-size-xs);
-  color: var(--poyse-evening-fig);
-  opacity: 0.6;
-  padding-bottom: 16px;
+  color: var(--poyse-bare-form);
+  font-family: 'EsBuildMedium', sans-serif;
 
   a {
     color: inherit;

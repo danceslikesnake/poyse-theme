@@ -32,8 +32,8 @@
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="page-width product-info__page-width">
-    {%- if section.settings.breadcrumb_label != blank -%}
+  {%- if section.settings.breadcrumb_label != blank -%}
+    <div class="product-breadcrumb-section">
       <nav class="product-breadcrumb" aria-label="{{ 'accessibility.breadcrumbs' | t }}">
         <a href="{{ section.settings.breadcrumb_url | default: routes.all_products_collection_url }}">
           {{- section.settings.breadcrumb_label | escape -}}
@@ -43,8 +43,10 @@
           {{- section.settings.heading | escape }} - {{ product.title | escape -}}
         </span>
       </nav>
-    {%- endif -%}
+    </div>
+  {%- endif -%}
 
+  <div class="page-width product-info__page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col{% if product.media.size > 0 %} grid--2-col-tablet{% else %} product--no-media{% endif %} product-info">
       <div class="grid__item product__media-wrapper{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
         {%- render 'product-media-gallery', product: product, variant_images: variant_images, square_media: true -%}

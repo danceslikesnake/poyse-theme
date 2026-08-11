@@ -18,43 +18,45 @@
 
 <div class="color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width">
-    <div class="more-flavors__header">
-      <h2 class="more-flavors__heading inline-richtext">{{ section.settings.heading }}</h2>
-      {%- if section.settings.shop_all_label != blank -%}
-        <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="custom-cta-button narrow-padding">
-          {{- section.settings.shop_all_label | escape -}}
-        </a>
+    <div class="more-flavors__layout">
+      <div class="more-flavors__header">
+        <h2 class="more-flavors__heading inline-richtext">{{ section.settings.heading }}</h2>
+        {%- if section.settings.shop_all_label != blank -%}
+          <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="custom-cta-button narrow-padding">
+            {{- section.settings.shop_all_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- liquid
+        assign flavor_collection = section.settings.flavors_collection
+        if flavor_collection == blank
+          assign flavor_collection = collections.all
+        endif
+      -%}
+      {%- if flavor_collection != blank -%}
+        <div class="featured-items__grid more-flavors__grid">
+          {%- for flavor_product in flavor_collection.products -%}
+            {%- unless flavor_product.id == product.id -%}
+              {%- render 'custom-feature-item',
+                product: flavor_product,
+                subtitle: flavor_product.metafields.custom.featured_product_subtitle.value,
+                hover_image: blank,
+                show_new_arrival_badge: flavor_product.metafields.custom.new_arrival.value,
+                show_best_seller_badge: flavor_product.metafields.custom.best_seller.value,
+                monthly_label: section.settings.monthly_label,
+                monthly_price: section.settings.monthly_price,
+                onetime_label: section.settings.onetime_label,
+                onetime_price: section.settings.onetime_price,
+                cta_label: section.settings.cta_label,
+                card_color_scheme: section.settings.card_color_scheme,
+                unique_key: flavor_product.id
+              -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
       {%- endif -%}
     </div>
-
-    {%- liquid
-      assign flavor_collection = section.settings.flavors_collection
-      if flavor_collection == blank
-        assign flavor_collection = collections.all
-      endif
-    -%}
-    {%- if flavor_collection != blank -%}
-      <div class="featured-items__grid more-flavors__grid">
-        {%- for flavor_product in flavor_collection.products -%}
-          {%- unless flavor_product.id == product.id -%}
-            {%- render 'custom-feature-item',
-              product: flavor_product,
-              subtitle: flavor_product.metafields.custom.featured_product_subtitle.value,
-              hover_image: blank,
-              show_new_arrival_badge: flavor_product.metafields.custom.new_arrival.value,
-              show_best_seller_badge: flavor_product.metafields.custom.best_seller.value,
-              monthly_label: section.settings.monthly_label,
-              monthly_price: section.settings.monthly_price,
-              onetime_label: section.settings.onetime_label,
-              onetime_price: section.settings.onetime_price,
-              cta_label: section.settings.cta_label,
-              card_color_scheme: section.settings.card_color_scheme,
-              unique_key: flavor_product.id
-            -%}
-          {%- endunless -%}
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
   </div>
 </div>
 
