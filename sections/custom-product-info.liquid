@@ -1,9 +1,9 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 {{ 'section-custom-product-info.css' | asset_url | stylesheet_tag }}
 {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
-{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- if section.settings.image_zoom == 'hover' -%}
@@ -32,7 +32,7 @@
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="page-width">
+  <div class="page-width product-info__page-width">
     {%- if section.settings.breadcrumb_label != blank -%}
       <nav class="product-breadcrumb" aria-label="{{ 'accessibility.breadcrumbs' | t }}">
         <a href="{{ section.settings.breadcrumb_url | default: routes.all_products_collection_url }}">
@@ -90,18 +90,11 @@
                 style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
               ></span>
             </div>
-            <p class="rating-text caption">
-              <span aria-hidden="true">
-                {{- product.metafields.reviews.rating.value }} /
-                {{ product.metafields.reviews.rating.value.scale_max -}}
-              </span>
-            </p>
-            <p class="rating-count caption">
-              <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
-              <span class="visually-hidden">
-                {{- product.metafields.reviews.rating_count }}
-                {{ 'accessibility.total_reviews' | t -}}
-              </span>
+            <p class="rating-summary caption">
+              {{-
+                'sections.custom_product_info.rating_summary'
+                | t: rating: product.metafields.reviews.rating.value, count: product.metafields.reviews.rating_count
+              -}}
             </p>
           </div>
         {%- endif -%}
@@ -111,6 +104,7 @@
         {%- endif -%}
 
         {%- if section.settings.flavors_collection != blank -%}
+          <hr class="product-info__divider">
           <div class="product-flavor-switcher">
             <p class="product-flavor-switcher__label caption-with-letter-spacing">
               {{- section.settings.flavor_label | escape }} &mdash; {{ product.title | escape -}}
@@ -128,6 +122,19 @@
                 {%- endif -%}
               {%- endfor -%}
             </div>
+            {%- liquid
+              assign flavor_subtitle_metafield = product.metafields.custom.featured_product_subtitle
+              if flavor_subtitle_metafield.type == 'rich_text_field'
+                assign flavor_subtitle = flavor_subtitle_metafield | metafield_tag
+              elsif flavor_subtitle_metafield.value != blank
+                assign flavor_subtitle = flavor_subtitle_metafield.value
+              else
+                assign flavor_subtitle = blank
+              endif
+            -%}
+            {%- if flavor_subtitle != blank -%}
+              <p class="product-flavor-switcher__description">{{ flavor_subtitle }}</p>
+            {%- endif -%}
           </div>
         {%- endif -%}
 
@@ -176,47 +183,64 @@
 
         {%- if accordion_blocks.size > 0 or benefits_block != blank -%}
           {%- for block in accordion_blocks -%}
-            <div class="accordion" {{ block.shopify_attributes }}>
-              <details id="ProductAccordion-{{ block.id }}" {% if block.settings.open_by_default %}open{% endif %}>
-                <summary id="ProductAccordionSummary-{{ block.id }}">
-                  <h3 class="accordion__title inline-richtext h4">{{ block.settings.heading | escape }}</h3>
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </summary>
-                <div class="accordion__content rte" id="ProductAccordionContent-{{ block.id }}" role="region">
+            <div class="product-static-section" {{ block.shopify_attributes }}>
+              <div class="product-static-section__header" id="ProductAccordionSummary-{{ block.id }}">
+                <h3 class="accordion__title inline-richtext h4">{{ block.settings.heading | escape }}</h3>
+                {{- 'plus.svg' | inline_asset_content -}}
+              </div>
+              {%- if block.settings.content != blank -%}
+                <div class="accordion__content rte" id="ProductAccordionContent-{{ block.id }}">
                   {{ block.settings.content }}
                 </div>
-              </details>
+              {%- endif -%}
             </div>
           {%- endfor -%}
 
           {%- if section.settings.supplement_facts_label != blank or section.settings.how_to_use_label != blank -%}
-            <div class="product-info__modal-triggers">
+            <div class="product-info__reveal-triggers">
               {%- if section.settings.supplement_facts_label != blank -%}
-                <modal-opener class="product-info__modal-opener" data-modal="#SupplementFactsModal-{{ section.id }}">
-                  <button type="button" class="custom-cta-button tan full-width-cta" aria-haspopup="dialog">
+                <details class="product-reveal">
+                  <summary class="custom-cta-button tan full-width-cta">
                     {{- section.settings.supplement_facts_label | escape -}}
-                  </button>
-                </modal-opener>
+                  </summary>
+                  <div class="product-reveal__content">
+                    {%- if section.settings.supplement_facts_image != blank -%}
+                      {{
+                        section.settings.supplement_facts_image
+                        | image_url: width: 1200
+                        | image_tag: loading: 'lazy', sizes: '(min-width: 1280px) 56.8rem, 90vw'
+                      }}
+                    {%- else -%}
+                      <p>{{ 'sections.custom_product_info.supplement_facts_placeholder' | t }}</p>
+                    {%- endif -%}
+                  </div>
+                </details>
               {%- endif -%}
               {%- if section.settings.how_to_use_label != blank -%}
-                <modal-opener class="product-info__modal-opener" data-modal="#HowToUseModal-{{ section.id }}">
-                  <button type="button" class="custom-cta-button tan full-width-cta" aria-haspopup="dialog">
+                <details class="product-reveal">
+                  <summary class="custom-cta-button tan full-width-cta">
                     {{- section.settings.how_to_use_label | escape -}}
-                  </button>
-                </modal-opener>
+                  </summary>
+                  <div class="product-reveal__content rte">
+                    {%- if section.settings.how_to_use_content != blank -%}
+                      {{ section.settings.how_to_use_content }}
+                    {%- else -%}
+                      <p>{{ 'sections.custom_product_info.how_to_use_placeholder' | t }}</p>
+                    {%- endif -%}
+                  </div>
+                </details>
               {%- endif -%}
             </div>
           {%- endif -%}
 
           {%- if benefits_block != blank -%}
-            <div class="accordion" {{ benefits_block.shopify_attributes }}>
-              <details id="ProductAccordion-{{ benefits_block.id }}" {% if benefits_block.settings.open_by_default %}open{% endif %}>
-                <summary id="ProductAccordionSummary-{{ benefits_block.id }}">
-                  <h3 class="accordion__title inline-richtext h4">{{ benefits_block.settings.heading | escape }}</h3>
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </summary>
-                <div class="accordion__content" id="ProductAccordionContent-{{ benefits_block.id }}" role="region">
-                  <ul class="product-benefits list-unstyled">
+            <div class="product-static-section" {{ benefits_block.shopify_attributes }}>
+              <div class="product-static-section__header" id="ProductAccordionSummary-{{ benefits_block.id }}">
+                <h3 class="accordion__title inline-richtext h4">{{ benefits_block.settings.heading | escape }}</h3>
+                {{- 'plus.svg' | inline_asset_content -}}
+              </div>
+              <div class="accordion__content" id="ProductAccordionContent-{{ benefits_block.id }}">
+                <ul class="product-benefits list-unstyled">
                     {%- if benefits_block.settings.icon_1_label != blank -%}
                       <li class="product-benefits__item">
                         {%- if benefits_block.settings.icon_1_image != blank -%}
@@ -266,8 +290,7 @@
                       </li>
                     {%- endif -%}
                   </ul>
-                </div>
-              </details>
+              </div>
             </div>
           {%- endif -%}
         {%- endif -%}
@@ -276,46 +299,6 @@
   </div>
 
   {%- render 'product-media-modal', variant_images: variant_images -%}
-
-  {%- if section.settings.supplement_facts_label != blank -%}
-    <modal-dialog id="SupplementFactsModal-{{ section.id }}" class="product-popup-modal">
-      <div role="dialog" aria-label="{{ section.settings.supplement_facts_label | escape }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
-        <button type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </button>
-        <div class="product-popup-modal__content-info">
-          <h2 class="h2">{{ section.settings.supplement_facts_label | escape }}</h2>
-          {%- if section.settings.supplement_facts_image != blank -%}
-            {{
-              section.settings.supplement_facts_image
-              | image_url: width: 1200
-              | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 600px, 90vw'
-            }}
-          {%- else -%}
-            <p>{{ 'sections.custom_product_info.supplement_facts_placeholder' | t }}</p>
-          {%- endif -%}
-        </div>
-      </div>
-    </modal-dialog>
-  {%- endif -%}
-
-  {%- if section.settings.how_to_use_label != blank -%}
-    <modal-dialog id="HowToUseModal-{{ section.id }}" class="product-popup-modal">
-      <div role="dialog" aria-label="{{ section.settings.how_to_use_label | escape }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
-        <button type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </button>
-        <div class="product-popup-modal__content-info">
-          <h2 class="h2">{{ section.settings.how_to_use_label | escape }}</h2>
-          {%- if section.settings.how_to_use_content != blank -%}
-            <div class="rte">{{ section.settings.how_to_use_content }}</div>
-          {%- else -%}
-            <p>{{ 'sections.custom_product_info.how_to_use_placeholder' | t }}</p>
-          {%- endif -%}
-        </div>
-      </div>
-    </modal-dialog>
-  {%- endif -%}
 </div>
 
 {% schema %}

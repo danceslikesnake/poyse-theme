@@ -5,6 +5,38 @@
   align-items: flex-start;
 }
 
+/* Above this width the page-width container has room to give both PDP
+   columns a real 56.8rem floor (matches the 1440px design mockup) without
+   overflowing; narrower viewports keep the existing large/medium/small
+   percentage split from section-main-product.css. */
+@media screen and (min-width: 1280px) {
+  .product-info__page-width {
+    max-width: 128rem;
+  }
+
+  .product-info.grid {
+    display: grid;
+    grid-template-columns: minmax(56.8rem, 1fr) minmax(56.8rem, 1fr);
+    align-items: start;
+    column-gap: 6.4rem;
+  }
+
+  /* Matches the specificity of the .product--large/medium/small width rules
+     in section-main-product.css (which load first) so this reset actually
+     wins instead of leaving media/info at 65/35 or 55/45 of the new
+     56.8rem+ column. */
+  .product-info.product--large .product__media-wrapper,
+  .product-info.product--medium .product__media-wrapper,
+  .product-info.product--small .product__media-wrapper,
+  .product-info.product--large .product__info-wrapper,
+  .product-info.product--medium .product__info-wrapper,
+  .product-info.product--small .product__info-wrapper {
+    max-width: none;
+    width: auto;
+    padding: 0;
+  }
+}
+
 .product-breadcrumb {
   display: flex;
   align-items: center;
@@ -58,10 +90,30 @@
   opacity: 0.85;
 }
 
+.rating-summary {
+  display: inline-block;
+  margin: 0;
+}
+
+.product-info__divider {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: none;
+  background: var(--poyse-bare-form);
+}
+
 .product-flavor-switcher {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.product-flavor-switcher__description {
+  margin: 0;
+  font-style: italic;
+  font-size: var(--font-size-xs);
+  opacity: 0.6;
 }
 
 .product-flavor-switcher__label {
@@ -143,10 +195,55 @@
   }
 }
 
-.product-info__modal-triggers {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.product-info__reveal-triggers {
+  display: flex;
+  flex-direction: column;
   gap: 8px;
+}
+
+.product-reveal summary {
+  list-style: none;
+  text-align: center;
+}
+
+.product-reveal summary::-webkit-details-marker {
+  display: none;
+}
+
+.product-reveal__content {
+  padding: 16px 4px 0;
+}
+
+.product-reveal__content img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Non-collapsible replacement for the old <details>/<summary> accordion:
+   same row/border look via the shared .accordion__title + .accordion__content
+   classes, just always expanded with a plus icon instead of a toggle caret. */
+.product-static-section {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.product-static-section + .product-static-section {
+  margin-top: 0;
+  border-top: none;
+}
+
+.product-static-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 0;
+}
+
+.product-static-section__header svg {
+  flex-shrink: 0;
 }
 
 .product-benefits {

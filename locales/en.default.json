@@ -308,6 +308,10 @@
         "new_arrival": "New Arrival",
         "best_seller": "Best Seller"
       },
+      "rating_summary": {
+        "one": "{{ rating }} · {{ count }} Review",
+        "other": "{{ rating }} · {{ count }} Reviews"
+      },
       "supplement_facts_placeholder": "Supplement facts coming soon.",
       "how_to_use_placeholder": "Usage instructions coming soon."
     },
