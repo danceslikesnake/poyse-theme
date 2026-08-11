@@ -72,6 +72,7 @@
     "button_label": "Subscribe"
   },
   "accessibility": {
+    "breadcrumbs": "Breadcrumbs",
     "skip_to_text": "Skip to content",
     "skip_to_product_info": "Skip to product information",
     "close": "Close",
@@ -299,6 +300,23 @@
         "new_arrival": "New Arrival",
         "best_seller": "Best Seller"
       }
+    },
+
+    "custom_product_info": {
+      "subscription_legend": "Choose a purchase option",
+      "badges": {
+        "new_arrival": "New Arrival",
+        "best_seller": "Best Seller"
+      },
+      "supplement_facts_placeholder": "Supplement facts coming soon.",
+      "how_to_use_placeholder": "Usage instructions coming soon."
+    },
+
+    "custom_product_ingredients": {
+      "previous": "Previous ingredient",
+      "next": "Next ingredient",
+      "of": "of",
+      "go_to_slide": "Go to ingredient {{ index }}"
     },
 
     "header": {

@@ -1,0 +1,180 @@
+.product-info {
+  --product-buy-box-accent: #e2872e;
+  /* Flex default (stretch) forces both columns to equal height, which leaves
+     a sticky column zero room to actually stick. */
+  align-items: flex-start;
+}
+
+.product-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--poyse-evening-fig);
+  opacity: 0.6;
+  padding-bottom: 16px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.product-info__details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.product-badge {
+  font-size: var(--font-size-2xs, 1.1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--poyse-evening-fig);
+  border-radius: 100px;
+  padding: 4px 10px;
+}
+
+.product-info__title {
+  margin: 0;
+  color: var(--product-buy-box-accent);
+}
+
+.product-info__subtitle {
+  margin: -8px 0 0;
+  opacity: 0.7;
+}
+
+.product-info__description {
+  opacity: 0.85;
+}
+
+.product-flavor-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-flavor-switcher__label {
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.product-flavor-switcher__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.product-flavor-switcher__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--poyse-bare-form);
+  text-decoration: none;
+  color: var(--poyse-evening-fig);
+  font-size: var(--font-size-xs);
+
+  &.is-active {
+    background: var(--product-buy-box-accent);
+    border-color: var(--product-buy-box-accent);
+    color: var(--poyse-white);
+  }
+
+  &:not(.is-active):hover {
+    border-color: var(--product-buy-box-accent);
+  }
+}
+
+.product-subscriber-gift {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--poyse-bare-form);
+}
+
+.product-subscriber-gift__icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.product-subscriber-gift__heading {
+  margin: 0 0 4px;
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: var(--font-size-xs);
+}
+
+.product-subscriber-gift__text {
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+}
+
+.product-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-perks__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-xs);
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--product-buy-box-accent);
+  }
+}
+
+.product-info__modal-triggers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.product-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.product-benefits__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.product-benefits__icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.product-benefits__label {
+  font-size: var(--font-size-2xs, 1.1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}

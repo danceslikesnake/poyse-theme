@@ -1,0 +1,711 @@
+{{ 'section-custom-product-info.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- if section.settings.image_zoom == 'hover' -%}
+  <script id="EnableZoomOnHover-{{ section.id }}" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign accordion_blocks = section.blocks | where: 'type', 'accordion'
+  assign benefits_block = section.blocks | where: 'type', 'benefits_accordion' | first
+  assign perk_blocks = section.blocks | where: 'type', 'perk'
+  assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src'
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.breadcrumb_label != blank -%}
+      <nav class="product-breadcrumb" aria-label="{{ 'accessibility.breadcrumbs' | t }}">
+        <a href="{{ section.settings.breadcrumb_url | default: routes.all_products_collection_url }}">
+          {{- section.settings.breadcrumb_label | escape -}}
+        </a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">
+          {{- section.settings.heading | escape }} - {{ product.title | escape -}}
+        </span>
+      </nav>
+    {%- endif -%}
+
+    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col{% if product.media.size > 0 %} grid--2-col-tablet{% else %} product--no-media{% endif %} product-info">
+      <div class="grid__item product__media-wrapper{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
+        {%- render 'product-media-gallery', product: product, variant_images: variant_images -%}
+      </div>
+
+      <div class="grid__item product__info-wrapper product-info__details">
+        {%- if product.metafields.custom.new_arrival.value or product.metafields.custom.best_seller.value -%}
+          <div class="product-badges">
+            {%- if product.metafields.custom.new_arrival.value -%}
+              <span class="product-badge">{{ 'sections.custom_product_info.badges.new_arrival' | t }}</span>
+            {%- endif -%}
+            {%- if product.metafields.custom.best_seller.value -%}
+              <span class="product-badge">{{ 'sections.custom_product_info.badges.best_seller' | t }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <h1 class="product-info__title">{{ section.settings.heading | escape }}</h1>
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="product-info__subtitle inline-richtext">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        {%- if product.metafields.reviews.rating.value != blank -%}
+          <div class="rating-wrapper">
+            {%- liquid
+              assign rating_decimal = 0
+              assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
+              if decimal >= 0.3 and decimal <= 0.7
+                assign rating_decimal = 0.5
+              elsif decimal > 0.7
+                assign rating_decimal = 1
+              endif
+            -%}
+            <div
+              class="rating"
+              role="img"
+              aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: product.metafields.reviews.rating.value, rating_max: product.metafields.reviews.rating.value.scale_max }}"
+            >
+              <span
+                aria-hidden="true"
+                class="rating-star"
+                style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
+              ></span>
+            </div>
+            <p class="rating-text caption">
+              <span aria-hidden="true">
+                {{- product.metafields.reviews.rating.value }} /
+                {{ product.metafields.reviews.rating.value.scale_max -}}
+              </span>
+            </p>
+            <p class="rating-count caption">
+              <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
+              <span class="visually-hidden">
+                {{- product.metafields.reviews.rating_count }}
+                {{ 'accessibility.total_reviews' | t -}}
+              </span>
+            </p>
+          </div>
+        {%- endif -%}
+
+        {%- if product.description != blank -%}
+          <div class="product-info__description rte">{{ product.description }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.flavors_collection != blank -%}
+          <div class="product-flavor-switcher">
+            <p class="product-flavor-switcher__label caption-with-letter-spacing">
+              {{- section.settings.flavor_label | escape }} &mdash; {{ product.title | escape -}}
+            </p>
+            <div class="product-flavor-switcher__pills" role="list">
+              {%- for flavor_product in section.settings.flavors_collection.products -%}
+                {%- if flavor_product.id == product.id -%}
+                  <span class="product-flavor-switcher__pill is-active" aria-current="page">
+                    {{- flavor_product.title | escape -}}
+                  </span>
+                {%- else -%}
+                  <a href="{{ flavor_product.url }}" class="product-flavor-switcher__pill">
+                    {{- flavor_product.title | escape -}}
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- render 'custom-product-buy-box',
+          product: product,
+          section_id: section.id,
+          monthly_label: section.settings.monthly_label,
+          monthly_description: section.settings.monthly_description,
+          monthly_price: section.settings.monthly_price,
+          monthly_badge: section.settings.monthly_badge,
+          onetime_label: section.settings.onetime_label,
+          onetime_price: section.settings.onetime_price,
+          cta_label: section.settings.cta_label,
+          value_link_label: section.settings.value_link_label,
+          value_link_url: section.settings.value_link_url
+        -%}
+
+        {%- if section.settings.subscriber_gift_heading != blank -%}
+          <div class="product-subscriber-gift">
+            {%- if section.settings.subscriber_gift_image != blank -%}
+              {{
+                section.settings.subscriber_gift_image
+                | image_url: width: 120
+                | image_tag: loading: 'lazy', sizes: '48px', class: 'product-subscriber-gift__icon'
+              }}
+            {%- endif -%}
+            <div class="product-subscriber-gift__content">
+              <p class="product-subscriber-gift__heading">{{ section.settings.subscriber_gift_heading | escape }}</p>
+              {%- if section.settings.subscriber_gift_text != blank -%}
+                <div class="product-subscriber-gift__text rte">{{ section.settings.subscriber_gift_text }}</div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if perk_blocks.size > 0 -%}
+          <ul class="product-perks list-unstyled">
+            {%- for block in perk_blocks -%}
+              <li class="product-perks__item" {{ block.shopify_attributes }}>
+                <span class="svg-wrapper">{{- 'icon-checkmark.svg' | inline_asset_content -}}</span>
+                {{- block.settings.text | escape -}}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if accordion_blocks.size > 0 or benefits_block != blank -%}
+          {%- for block in accordion_blocks -%}
+            <div class="accordion" {{ block.shopify_attributes }}>
+              <details id="ProductAccordion-{{ block.id }}" {% if block.settings.open_by_default %}open{% endif %}>
+                <summary id="ProductAccordionSummary-{{ block.id }}">
+                  <h3 class="accordion__title inline-richtext h4">{{ block.settings.heading | escape }}</h3>
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </summary>
+                <div class="accordion__content rte" id="ProductAccordionContent-{{ block.id }}" role="region">
+                  {{ block.settings.content }}
+                </div>
+              </details>
+            </div>
+          {%- endfor -%}
+
+          {%- if section.settings.supplement_facts_label != blank or section.settings.how_to_use_label != blank -%}
+            <div class="product-info__modal-triggers">
+              {%- if section.settings.supplement_facts_label != blank -%}
+                <modal-opener class="product-info__modal-opener" data-modal="#SupplementFactsModal-{{ section.id }}">
+                  <button type="button" class="custom-cta-button tan full-width-cta" aria-haspopup="dialog">
+                    {{- section.settings.supplement_facts_label | escape -}}
+                  </button>
+                </modal-opener>
+              {%- endif -%}
+              {%- if section.settings.how_to_use_label != blank -%}
+                <modal-opener class="product-info__modal-opener" data-modal="#HowToUseModal-{{ section.id }}">
+                  <button type="button" class="custom-cta-button tan full-width-cta" aria-haspopup="dialog">
+                    {{- section.settings.how_to_use_label | escape -}}
+                  </button>
+                </modal-opener>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if benefits_block != blank -%}
+            <div class="accordion" {{ benefits_block.shopify_attributes }}>
+              <details id="ProductAccordion-{{ benefits_block.id }}" {% if benefits_block.settings.open_by_default %}open{% endif %}>
+                <summary id="ProductAccordionSummary-{{ benefits_block.id }}">
+                  <h3 class="accordion__title inline-richtext h4">{{ benefits_block.settings.heading | escape }}</h3>
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </summary>
+                <div class="accordion__content" id="ProductAccordionContent-{{ benefits_block.id }}" role="region">
+                  <ul class="product-benefits list-unstyled">
+                    {%- if benefits_block.settings.icon_1_label != blank -%}
+                      <li class="product-benefits__item">
+                        {%- if benefits_block.settings.icon_1_image != blank -%}
+                          {{
+                            benefits_block.settings.icon_1_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
+                          }}
+                        {%- endif -%}
+                        <span class="product-benefits__label">{{ benefits_block.settings.icon_1_label | escape }}</span>
+                      </li>
+                    {%- endif -%}
+                    {%- if benefits_block.settings.icon_2_label != blank -%}
+                      <li class="product-benefits__item">
+                        {%- if benefits_block.settings.icon_2_image != blank -%}
+                          {{
+                            benefits_block.settings.icon_2_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
+                          }}
+                        {%- endif -%}
+                        <span class="product-benefits__label">{{ benefits_block.settings.icon_2_label | escape }}</span>
+                      </li>
+                    {%- endif -%}
+                    {%- if benefits_block.settings.icon_3_label != blank -%}
+                      <li class="product-benefits__item">
+                        {%- if benefits_block.settings.icon_3_image != blank -%}
+                          {{
+                            benefits_block.settings.icon_3_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
+                          }}
+                        {%- endif -%}
+                        <span class="product-benefits__label">{{ benefits_block.settings.icon_3_label | escape }}</span>
+                      </li>
+                    {%- endif -%}
+                    {%- if benefits_block.settings.icon_4_label != blank -%}
+                      <li class="product-benefits__item">
+                        {%- if benefits_block.settings.icon_4_image != blank -%}
+                          {{
+                            benefits_block.settings.icon_4_image
+                            | image_url: width: 80
+                            | image_tag: loading: 'lazy', sizes: '40px', class: 'product-benefits__icon', alt: ''
+                          }}
+                        {%- endif -%}
+                        <span class="product-benefits__label">{{ benefits_block.settings.icon_4_label | escape }}</span>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+                </div>
+              </details>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- render 'product-media-modal', variant_images: variant_images -%}
+
+  {%- if section.settings.supplement_facts_label != blank -%}
+    <modal-dialog id="SupplementFactsModal-{{ section.id }}" class="product-popup-modal">
+      <div role="dialog" aria-label="{{ section.settings.supplement_facts_label | escape }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+        <button type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </button>
+        <div class="product-popup-modal__content-info">
+          <h2 class="h2">{{ section.settings.supplement_facts_label | escape }}</h2>
+          {%- if section.settings.supplement_facts_image != blank -%}
+            {{
+              section.settings.supplement_facts_image
+              | image_url: width: 1200
+              | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 600px, 90vw'
+            }}
+          {%- else -%}
+            <p>{{ 'sections.custom_product_info.supplement_facts_placeholder' | t }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </modal-dialog>
+  {%- endif -%}
+
+  {%- if section.settings.how_to_use_label != blank -%}
+    <modal-dialog id="HowToUseModal-{{ section.id }}" class="product-popup-modal">
+      <div role="dialog" aria-label="{{ section.settings.how_to_use_label | escape }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+        <button type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </button>
+        <div class="product-popup-modal__content-info">
+          <h2 class="h2">{{ section.settings.how_to_use_label | escape }}</h2>
+          {%- if section.settings.how_to_use_content != blank -%}
+            <div class="rte">{{ section.settings.how_to_use_content }}</div>
+          {%- else -%}
+            <p>{{ 'sections.custom_product_info.how_to_use_placeholder' | t }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </modal-dialog>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-product-info.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-info.settings.header_media.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "default": true,
+      "label": "t:sections.custom-product-info.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "select",
+      "id": "media_size",
+      "options": [
+        { "value": "small", "label": "t:sections.custom-product-info.settings.media_size.options__1.label" },
+        { "value": "medium", "label": "t:sections.custom-product-info.settings.media_size.options__2.label" },
+        { "value": "large", "label": "t:sections.custom-product-info.settings.media_size.options__3.label" }
+      ],
+      "default": "large",
+      "label": "t:sections.custom-product-info.settings.media_size.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "constrain_to_viewport",
+      "default": true,
+      "label": "t:sections.custom-product-info.settings.constrain_to_viewport.label"
+    },
+    {
+      "type": "select",
+      "id": "media_fit",
+      "options": [
+        { "value": "contain", "label": "t:sections.custom-product-info.settings.media_fit.options__1.label" },
+        { "value": "cover", "label": "t:sections.custom-product-info.settings.media_fit.options__2.label" }
+      ],
+      "default": "contain",
+      "label": "t:sections.custom-product-info.settings.media_fit.label"
+    },
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "options": [
+        { "value": "stacked", "label": "t:sections.custom-product-info.settings.gallery_layout.options__1.label" },
+        { "value": "columns", "label": "t:sections.custom-product-info.settings.gallery_layout.options__2.label" },
+        { "value": "thumbnail", "label": "t:sections.custom-product-info.settings.gallery_layout.options__3.label" },
+        { "value": "thumbnail_slider", "label": "t:sections.custom-product-info.settings.gallery_layout.options__4.label" }
+      ],
+      "default": "thumbnail",
+      "label": "t:sections.custom-product-info.settings.gallery_layout.label"
+    },
+    {
+      "type": "select",
+      "id": "mobile_thumbnails",
+      "options": [
+        { "value": "columns", "label": "t:sections.custom-product-info.settings.mobile_thumbnails.options__1.label" },
+        { "value": "show", "label": "t:sections.custom-product-info.settings.mobile_thumbnails.options__2.label" },
+        { "value": "hide", "label": "t:sections.custom-product-info.settings.mobile_thumbnails.options__3.label" }
+      ],
+      "default": "show",
+      "label": "t:sections.custom-product-info.settings.mobile_thumbnails.label"
+    },
+    {
+      "type": "select",
+      "id": "image_zoom",
+      "options": [
+        { "value": "lightbox", "label": "t:sections.custom-product-info.settings.image_zoom.options__1.label" },
+        { "value": "hover", "label": "t:sections.custom-product-info.settings.image_zoom.options__2.label" },
+        { "value": "none", "label": "t:sections.custom-product-info.settings.image_zoom.options__3.label" }
+      ],
+      "default": "lightbox",
+      "label": "t:sections.custom-product-info.settings.image_zoom.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_variants",
+      "default": true,
+      "label": "t:sections.custom-product-info.settings.hide_variants.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "default": false,
+      "label": "t:sections.custom-product-info.settings.enable_video_looping.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-info.settings.header_content.content"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_label",
+      "default": "t:sections.custom-product-info.settings.breadcrumb_label.default",
+      "label": "t:sections.custom-product-info.settings.breadcrumb_label.label"
+    },
+    {
+      "type": "url",
+      "id": "breadcrumb_url",
+      "label": "t:sections.custom-product-info.settings.breadcrumb_url.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "t:sections.custom-product-info.settings.heading.default",
+      "label": "t:sections.custom-product-info.settings.heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "default": "t:sections.custom-product-info.settings.subtitle.default",
+      "label": "t:sections.custom-product-info.settings.subtitle.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-info.settings.header_flavors.content"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.custom-product-info.settings.flavors_paragraph.content"
+    },
+    {
+      "type": "collection",
+      "id": "flavors_collection",
+      "label": "t:sections.custom-product-info.settings.flavors_collection.label"
+    },
+    {
+      "type": "text",
+      "id": "flavor_label",
+      "default": "t:sections.custom-product-info.settings.flavor_label.default",
+      "label": "t:sections.custom-product-info.settings.flavor_label.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-info.settings.header_subscription.content"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.custom-product-info.settings.subscription_paragraph.content"
+    },
+    {
+      "type": "text",
+      "id": "monthly_label",
+      "default": "t:sections.custom-product-info.settings.monthly_label.default",
+      "label": "t:sections.custom-product-info.settings.monthly_label.label"
+    },
+    {
+      "type": "text",
+      "id": "monthly_description",
+      "default": "t:sections.custom-product-info.settings.monthly_description.default",
+      "label": "t:sections.custom-product-info.settings.monthly_description.label"
+    },
+    {
+      "type": "text",
+      "id": "monthly_price",
+      "default": "t:sections.custom-product-info.settings.monthly_price.default",
+      "label": "t:sections.custom-product-info.settings.monthly_price.label"
+    },
+    {
+      "type": "text",
+      "id": "monthly_badge",
+      "default": "t:sections.custom-product-info.settings.monthly_badge.default",
+      "label": "t:sections.custom-product-info.settings.monthly_badge.label"
+    },
+    {
+      "type": "text",
+      "id": "onetime_label",
+      "default": "t:sections.custom-product-info.settings.onetime_label.default",
+      "label": "t:sections.custom-product-info.settings.onetime_label.label"
+    },
+    {
+      "type": "text",
+      "id": "onetime_price",
+      "default": "t:sections.custom-product-info.settings.onetime_price.default",
+      "label": "t:sections.custom-product-info.settings.onetime_price.label"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "default": "t:sections.custom-product-info.settings.cta_label.default",
+      "label": "t:sections.custom-product-info.settings.cta_label.label"
+    },
+    {
+      "type": "text",
+      "id": "value_link_label",
+      "default": "t:sections.custom-product-info.settings.value_link_label.default",
+      "label": "t:sections.custom-product-info.settings.value_link_label.label"
+    },
+    {
+      "type": "url",
+      "id": "value_link_url",
+      "label": "t:sections.custom-product-info.settings.value_link_url.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-info.settings.header_gift.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "subscriber_gift_image",
+      "label": "t:sections.custom-product-info.settings.subscriber_gift_image.label"
+    },
+    {
+      "type": "text",
+      "id": "subscriber_gift_heading",
+      "default": "t:sections.custom-product-info.settings.subscriber_gift_heading.default",
+      "label": "t:sections.custom-product-info.settings.subscriber_gift_heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subscriber_gift_text",
+      "default": "t:sections.custom-product-info.settings.subscriber_gift_text.default",
+      "label": "t:sections.custom-product-info.settings.subscriber_gift_text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-info.settings.header_modals.content"
+    },
+    {
+      "type": "text",
+      "id": "supplement_facts_label",
+      "default": "t:sections.custom-product-info.settings.supplement_facts_label.default",
+      "label": "t:sections.custom-product-info.settings.supplement_facts_label.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "supplement_facts_image",
+      "label": "t:sections.custom-product-info.settings.supplement_facts_image.label"
+    },
+    {
+      "type": "text",
+      "id": "how_to_use_label",
+      "default": "t:sections.custom-product-info.settings.how_to_use_label.default",
+      "label": "t:sections.custom-product-info.settings.how_to_use_label.label"
+    },
+    {
+      "type": "richtext",
+      "id": "how_to_use_content",
+      "label": "t:sections.custom-product-info.settings.how_to_use_content.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "t:sections.custom-product-info.blocks.perk.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "t:sections.custom-product-info.blocks.perk.settings.text.default",
+          "label": "t:sections.custom-product-info.blocks.perk.settings.text.label"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "t:sections.custom-product-info.blocks.accordion.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-product-info.blocks.accordion.settings.heading.default",
+          "label": "t:sections.custom-product-info.blocks.accordion.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.custom-product-info.blocks.accordion.settings.content.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "default": false,
+          "label": "t:sections.custom-product-info.blocks.accordion.settings.open_by_default.label"
+        }
+      ]
+    },
+    {
+      "type": "benefits_accordion",
+      "name": "t:sections.custom-product-info.blocks.benefits_accordion.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-product-info.blocks.benefits_accordion.settings.heading.default",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.heading.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "default": true,
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.open_by_default.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_1_image",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_1_image.label"
+        },
+        {
+          "type": "text",
+          "id": "icon_1_label",
+          "default": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_1_label.default",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_1_label.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_2_image",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_2_image.label"
+        },
+        {
+          "type": "text",
+          "id": "icon_2_label",
+          "default": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_2_label.default",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_2_label.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_3_image",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_3_image.label"
+        },
+        {
+          "type": "text",
+          "id": "icon_3_label",
+          "default": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_3_label.default",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_3_label.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_4_image",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_4_image.label"
+        },
+        {
+          "type": "text",
+          "id": "icon_4_label",
+          "default": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_4_label.default",
+          "label": "t:sections.custom-product-info.blocks.benefits_accordion.settings.icon_4_label.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-product-info.presets.name",
+      "blocks": [
+        { "type": "perk" },
+        { "type": "perk" },
+        { "type": "perk" },
+        { "type": "accordion" },
+        { "type": "benefits_accordion" }
+      ]
+    }
+  ]
+}
+{% endschema %}

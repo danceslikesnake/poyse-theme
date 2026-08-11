@@ -1170,6 +1170,421 @@
         "name": "Products Grid"
       }
     },
+    "custom-product-info": {
+      "name": "Product Info",
+      "settings": {
+        "header_media": {
+          "content": "Media"
+        },
+        "enable_sticky_info": {
+          "label": "Sticky content"
+        },
+        "media_size": {
+          "label": "Width",
+          "options__1": { "label": "Small" },
+          "options__2": { "label": "Medium" },
+          "options__3": { "label": "Large" }
+        },
+        "constrain_to_viewport": {
+          "label": "Constrain to screen height"
+        },
+        "media_fit": {
+          "label": "Fit",
+          "options__1": { "label": "Original" },
+          "options__2": { "label": "Fill" }
+        },
+        "gallery_layout": {
+          "label": "Layout",
+          "options__1": { "label": "Stacked" },
+          "options__2": { "label": "2 columns" },
+          "options__3": { "label": "Thumbnails" },
+          "options__4": { "label": "Thumbnail carousel" }
+        },
+        "mobile_thumbnails": {
+          "label": "Mobile layout",
+          "options__1": { "label": "2 columns" },
+          "options__2": { "label": "Show thumbnails" },
+          "options__3": { "label": "Hide thumbnails" }
+        },
+        "image_zoom": {
+          "label": "Zoom",
+          "options__1": { "label": "Open lightbox" },
+          "options__2": { "label": "Click and hover" },
+          "options__3": { "label": "No zoom" }
+        },
+        "hide_variants": {
+          "label": "Hide other variant media after one is selected"
+        },
+        "enable_video_looping": {
+          "label": "Loop video"
+        },
+        "header_content": {
+          "content": "Content"
+        },
+        "breadcrumb_label": {
+          "label": "Breadcrumb label",
+          "default": "Shop All"
+        },
+        "breadcrumb_url": {
+          "label": "Breadcrumb link",
+          "info": "Defaults to the all-products collection if left blank."
+        },
+        "heading": {
+          "label": "Heading",
+          "default": "Refined Energy Powder"
+        },
+        "subtitle": {
+          "label": "Subtitle",
+          "default": "<p>Powered by <em>∞ Paraxanthine</em></p>"
+        },
+        "header_flavors": {
+          "content": "Flavors"
+        },
+        "flavors_paragraph": {
+          "content": "The flavor switcher and \"More Great Flavors\" section both pull from this collection, automatically excluding whichever flavor's page is currently being viewed."
+        },
+        "flavors_collection": {
+          "label": "Flavors collection"
+        },
+        "flavor_label": {
+          "label": "Flavor switcher label",
+          "default": "Flavor"
+        },
+        "header_subscription": {
+          "content": "Purchase options"
+        },
+        "subscription_paragraph": {
+          "content": "Pricing shown here is placeholder text until this is connected to a real subscriptions app."
+        },
+        "monthly_label": {
+          "label": "Monthly option label",
+          "default": "Monthly Delivery"
+        },
+        "monthly_description": {
+          "label": "Monthly option description",
+          "default": "Your monthly supply, automatically delivered every month. Free shipping. Pause or cancel anytime."
+        },
+        "monthly_price": {
+          "label": "Monthly price",
+          "default": "$51.00"
+        },
+        "monthly_badge": {
+          "label": "Monthly option badge",
+          "default": "Save 15%"
+        },
+        "onetime_label": {
+          "label": "One-time option label",
+          "default": "One-Time Purchase"
+        },
+        "onetime_price": {
+          "label": "One-time price",
+          "default": "$60.00"
+        },
+        "cta_label": {
+          "label": "Add to cart button label",
+          "default": "Add to Cart"
+        },
+        "value_link_label": {
+          "label": "Subscription value link label",
+          "default": "Value of your subscription"
+        },
+        "value_link_url": {
+          "label": "Subscription value link"
+        },
+        "header_gift": {
+          "content": "Subscriber gift callout"
+        },
+        "subscriber_gift_image": {
+          "label": "Icon"
+        },
+        "subscriber_gift_heading": {
+          "label": "Heading",
+          "default": "Premium Subscriber Gift Included"
+        },
+        "subscriber_gift_text": {
+          "label": "Text",
+          "default": "<p>Includes a complimentary water bottle and refill of your first shipment.</p>"
+        },
+        "header_modals": {
+          "content": "Supplement facts & how to use"
+        },
+        "supplement_facts_label": {
+          "label": "Supplement facts button label",
+          "default": "View Supplement Facts"
+        },
+        "supplement_facts_image": {
+          "label": "Supplement facts image"
+        },
+        "how_to_use_label": {
+          "label": "How to use button label",
+          "default": "How To Use"
+        },
+        "how_to_use_content": {
+          "label": "How to use content"
+        }
+      },
+      "blocks": {
+        "perk": {
+          "name": "Perk",
+          "settings": {
+            "text": {
+              "label": "Text",
+              "default": "Free shipping always"
+            }
+          }
+        },
+        "accordion": {
+          "name": "Accordion",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "What is POYSE Refined Energy Powder?"
+            },
+            "content": {
+              "label": "Content"
+            },
+            "open_by_default": {
+              "label": "Open by default"
+            }
+          }
+        },
+        "benefits_accordion": {
+          "name": "Icon benefits accordion",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "What's it for?"
+            },
+            "open_by_default": {
+              "label": "Open by default"
+            },
+            "icon_1_image": {
+              "label": "Icon 1 image"
+            },
+            "icon_1_label": {
+              "label": "Icon 1 label",
+              "default": "Naturally Flavored"
+            },
+            "icon_2_image": {
+              "label": "Icon 2 image"
+            },
+            "icon_2_label": {
+              "label": "Icon 2 label",
+              "default": "Zero Artificial Sweeteners"
+            },
+            "icon_3_image": {
+              "label": "Icon 3 image"
+            },
+            "icon_3_label": {
+              "label": "Icon 3 label",
+              "default": "Made In USA"
+            },
+            "icon_4_image": {
+              "label": "Icon 4 image"
+            },
+            "icon_4_label": {
+              "label": "Icon 4 label",
+              "default": "Gluten Free"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Product Info"
+      }
+    },
+    "custom-product-ingredients": {
+      "name": "Ingredients Slider",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow",
+          "default": "Our Ingredients"
+        },
+        "heading": {
+          "label": "Heading",
+          "default": "<p>What's inside <em>matters</em>.</p>"
+        },
+        "hint_text": {
+          "label": "Hint text",
+          "default": "Swipe to learn more"
+        },
+        "header_modal": {
+          "content": "Supplement facts button"
+        },
+        "supplement_facts_label": {
+          "label": "Button label",
+          "default": "View Supplement Facts"
+        },
+        "supplement_facts_image": {
+          "label": "Supplement facts image"
+        }
+      },
+      "blocks": {
+        "card": {
+          "name": "Ingredient card",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "key_label": {
+              "label": "Eyebrow label",
+              "default": "Key Ingredient"
+            },
+            "heading": {
+              "label": "Heading",
+              "default": "Paraxanthine (Enfinity®)"
+            },
+            "text": {
+              "label": "Text",
+              "default": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and the compound responsible for its jitters, anxious, overdue and harsh-feel effects.</p>"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Ingredients Slider"
+      }
+    },
+    "custom-product-faq": {
+      "name": "Product FAQ",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "<p><em>Frequently</em> Asked Questions</p>"
+        },
+        "deeper_dive_label": {
+          "label": "Button label",
+          "default": "Take a Deeper Dive"
+        },
+        "deeper_dive_url": {
+          "label": "Button link"
+        }
+      },
+      "blocks": {
+        "question": {
+          "name": "Question",
+          "settings": {
+            "question": {
+              "label": "Question",
+              "default": "What does POYSE Refined Energy Powder help support?"
+            },
+            "answer": {
+              "label": "Answer",
+              "default": "<p>This product is designed to support energy, alertness, and everyday performance with a more controlled and less overwhelming feel than traditional energy products.</p>"
+            },
+            "open_by_default": {
+              "label": "Open by default"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Product FAQ"
+      }
+    },
+    "custom-product-more-flavors": {
+      "name": "Product More Flavors",
+      "settings": {
+        "card_color_scheme": {
+          "label": "Product image background"
+        },
+        "heading": {
+          "label": "Heading",
+          "default": "<p><em>More Great Flavors</em> for more energy</p>"
+        },
+        "shop_all_label": {
+          "label": "Button label",
+          "default": "Shop All Products"
+        },
+        "shop_all_url": {
+          "label": "Button link"
+        },
+        "header_flavors": {
+          "content": "Flavors"
+        },
+        "flavors_paragraph": {
+          "content": "Loops this collection and skips whichever flavor's page is currently being viewed, so it always shows the other flavors."
+        },
+        "flavors_collection": {
+          "label": "Flavors collection"
+        },
+        "header_subscription": {
+          "content": "Purchase options"
+        },
+        "subscription_paragraph": {
+          "content": "Pricing shown here is shared across every card until subscriptions are connected to real products."
+        },
+        "monthly_label": {
+          "label": "Monthly option label",
+          "default": "Monthly Subscription"
+        },
+        "monthly_price": {
+          "label": "Monthly price",
+          "default": "$49.00 per month"
+        },
+        "onetime_label": {
+          "label": "One-time option label",
+          "default": "One-Time Purchase"
+        },
+        "onetime_price": {
+          "label": "One-time price",
+          "default": "$54.00 one-time"
+        },
+        "cta_label": {
+          "label": "Add to cart button label",
+          "default": "Add to Cart"
+        }
+      },
+      "presets": {
+        "name": "Product More Flavors"
+      }
+    },
+    "custom-product-comparison": {
+      "name": "Product Comparison",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow",
+          "default": "Comparison"
+        },
+        "heading": {
+          "label": "Heading",
+          "default": "How It Compares"
+        },
+        "poyse_column_label": {
+          "label": "Featured column label",
+          "default": "POYSE"
+        },
+        "traditional_column_label": {
+          "label": "Comparison column label",
+          "default": "Traditional Energy Products"
+        }
+      },
+      "blocks": {
+        "row": {
+          "name": "Row",
+          "settings": {
+            "label": {
+              "label": "Row label",
+              "default": "Energy source"
+            },
+            "poyse_check": {
+              "label": "Show checkmark in featured column"
+            },
+            "poyse_value": {
+              "label": "Featured column value",
+              "default": "Paraxanthine"
+            },
+            "traditional_value": {
+              "label": "Comparison column value",
+              "default": "Typically caffeine"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Product Comparison"
+      }
+    },
     "custom-subscriber-gift": {
       "name": "Subscriber Gift",
       "settings": {

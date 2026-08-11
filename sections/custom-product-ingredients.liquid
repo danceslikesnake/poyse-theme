@@ -1,0 +1,260 @@
+{{ 'section-custom-product-ingredients.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'ingredient-slider.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign cards = section.blocks | where: 'type', 'card'
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="ingredients__header">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ingredients__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 class="ingredients__heading inline-richtext">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.supplement_facts_image != blank -%}
+        <modal-opener data-modal="#IngredientsSupplementFactsModal-{{ section.id }}">
+          <button type="button" class="custom-cta-button tan narrow-padding" aria-haspopup="dialog">
+            {{- section.settings.supplement_facts_label | escape -}}
+          </button>
+        </modal-opener>
+      {%- endif -%}
+    </div>
+
+    {%- if cards.size > 0 -%}
+      <ingredient-slider class="ingredient-slider">
+        <div
+          class="ingredient-slider__viewport"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="{{ section.settings.heading | strip_html | escape }}"
+        >
+          <ul class="ingredient-slider__track list-unstyled">
+            {%- for block in cards -%}
+              <li
+                class="ingredient-slider__card{% if forloop.first %} is-active{% endif %}"
+                id="IngredientCard-{{ block.id }}"
+                {{ block.shopify_attributes }}
+                aria-roledescription="slide"
+                aria-label="{{ forloop.index }} {{ 'sections.custom_product_ingredients.of' | t }} {{ cards.size }}"
+                tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+              >
+                <div class="ingredient-slider__card-media">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 700
+                      | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 360px, 80vw', class: 'ingredient-slider__image'
+                    }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <div class="ingredient-slider__card-content">
+                  {%- if block.settings.key_label != blank -%}
+                    <p class="ingredient-slider__key-label">{{ block.settings.key_label | escape }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.heading != blank -%}
+                    <p class="ingredient-slider__card-heading">{{ block.settings.heading | escape }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <div class="ingredient-slider__card-text rte">{{ block.settings.text }}</div>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        <div class="ingredient-slider__controls">
+          <button
+            type="button"
+            class="ingredient-slider__arrow ingredient-slider__arrow--prev"
+            aria-label="{{ 'sections.custom_product_ingredients.previous' | t }}"
+          >
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </button>
+          <div class="ingredient-slider__dots" role="tablist">
+            {%- for block in cards -%}
+              <button
+                type="button"
+                class="ingredient-slider__dot{% if forloop.first %} is-active{% endif %}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-label="{{ 'sections.custom_product_ingredients.go_to_slide' | t: index: forloop.index }}"
+              ></button>
+            {%- endfor -%}
+          </div>
+          <button
+            type="button"
+            class="ingredient-slider__arrow ingredient-slider__arrow--next"
+            aria-label="{{ 'sections.custom_product_ingredients.next' | t }}"
+          >
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </button>
+        </div>
+
+        {%- if section.settings.hint_text != blank -%}
+          <p class="ingredient-slider__hint">{{ section.settings.hint_text | escape }}</p>
+        {%- endif -%}
+      </ingredient-slider>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.supplement_facts_image != blank -%}
+    <modal-dialog id="IngredientsSupplementFactsModal-{{ section.id }}" class="product-popup-modal">
+      <div
+        role="dialog"
+        aria-label="{{ section.settings.supplement_facts_label | escape }}"
+        aria-modal="true"
+        class="product-popup-modal__content"
+        tabindex="-1"
+      >
+        <button type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </button>
+        <div class="product-popup-modal__content-info">
+          <h2 class="h2">{{ section.settings.supplement_facts_label | escape }}</h2>
+          {{
+            section.settings.supplement_facts_image
+            | image_url: width: 1200
+            | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 600px, 90vw'
+          }}
+        </div>
+      </div>
+    </modal-dialog>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-product-ingredients.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "t:sections.custom-product-ingredients.settings.eyebrow.default",
+      "label": "t:sections.custom-product-ingredients.settings.eyebrow.label"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "default": "t:sections.custom-product-ingredients.settings.heading.default",
+      "label": "t:sections.custom-product-ingredients.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "hint_text",
+      "default": "t:sections.custom-product-ingredients.settings.hint_text.default",
+      "label": "t:sections.custom-product-ingredients.settings.hint_text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.custom-product-ingredients.settings.header_modal.content"
+    },
+    {
+      "type": "text",
+      "id": "supplement_facts_label",
+      "default": "t:sections.custom-product-ingredients.settings.supplement_facts_label.default",
+      "label": "t:sections.custom-product-ingredients.settings.supplement_facts_label.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "supplement_facts_image",
+      "label": "t:sections.custom-product-ingredients.settings.supplement_facts_image.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "t:sections.custom-product-ingredients.blocks.card.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.custom-product-ingredients.blocks.card.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "key_label",
+          "default": "t:sections.custom-product-ingredients.blocks.card.settings.key_label.default",
+          "label": "t:sections.custom-product-ingredients.blocks.card.settings.key_label.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.custom-product-ingredients.blocks.card.settings.heading.default",
+          "label": "t:sections.custom-product-ingredients.blocks.card.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "t:sections.custom-product-ingredients.blocks.card.settings.text.default",
+          "label": "t:sections.custom-product-ingredients.blocks.card.settings.text.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-product-ingredients.presets.name",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,104 @@
+{% comment %}
+  Renders the PDP purchase panel: a decorative subscription / one-time toggle above a real
+  add-to-cart form. The toggle is presentational only -- no selling plan app is connected yet,
+  so both options add the same default variant. When subscriptions are wired up, swap the radio
+  values/data-cta-text below for real product.selling_plan_groups entries; the <product-form>
+  add-to-cart mechanics don't need to change.
+
+  Accepts:
+  - product: {Object} product resource
+  - section_id: {String} id of the section that contains this snippet
+  - monthly_label / monthly_description / monthly_price / monthly_badge: {String}
+  - onetime_label / onetime_price: {String}
+  - cta_label: {String}
+  - value_link_label: {String} optional, e.g. "Value of your subscription"
+  - value_link_url: {String} optional
+
+  Usage:
+  {% render 'custom-product-buy-box', product: product, section_id: section.id, ... %}
+{% endcomment %}
+
+{{ 'component-product-buy-box.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-buy-box.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign product_form_id = 'product-form-' | append: section_id
+  assign is_unavailable = false
+  if product.selected_or_first_available_variant == null or product.selected_or_first_available_variant.available == false
+    assign is_unavailable = true
+  endif
+-%}
+
+<product-buy-box class="product-buy-box">
+  <fieldset class="product-buy-box__subscription">
+    <legend class="visually-hidden">{{ 'sections.custom_product_info.subscription_legend' | t }}</legend>
+    <label class="product-buy-box__option">
+      <input
+        type="radio"
+        name="Subscription-{{ product.id }}"
+        data-subscription-option
+        data-cta-text="{{ cta_label | append: ' - ' | append: monthly_price }}"
+        checked
+      >
+      <span class="product-buy-box__option-head">
+        <span class="product-buy-box__option-label">{{ monthly_label | escape }}</span>
+        {%- if monthly_badge != blank -%}
+          <span class="product-buy-box__option-badge">{{ monthly_badge | escape }}</span>
+        {%- endif -%}
+      </span>
+      {%- if monthly_description != blank -%}
+        <span class="product-buy-box__option-description">{{ monthly_description | escape }}</span>
+      {%- endif -%}
+    </label>
+    <label class="product-buy-box__option">
+      <input
+        type="radio"
+        name="Subscription-{{ product.id }}"
+        data-subscription-option
+        data-cta-text="{{ cta_label | append: ' - ' | append: onetime_price }}"
+      >
+      <span class="product-buy-box__option-head">
+        <span class="product-buy-box__option-label">{{ onetime_label | escape }}</span>
+      </span>
+    </label>
+  </fieldset>
+
+  <product-form class="product-buy-box__form" data-section-id="{{ section_id }}">
+    <div class="product-form__error-message-wrapper" role="alert" hidden>
+      <span class="svg-wrapper">{{- 'icon-error.svg' | inline_asset_content -}}</span>
+      <span class="product-form__error-message"></span>
+    </div>
+    {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+        {% if is_unavailable %}disabled{% endif %}
+        class="product-variant-id"
+      >
+      <button
+        type="submit"
+        name="add"
+        class="product-buy-box__submit button button--full-width button--primary"
+        {% if is_unavailable %}disabled{% endif %}
+      >
+        <span data-cta-label>
+          {%- if product.selected_or_first_available_variant == null -%}
+            {{ 'products.product.unavailable' | t }}
+          {%- elsif is_unavailable -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- else -%}
+            {{- cta_label | append: ' - ' | append: monthly_price -}}
+          {%- endif -%}
+        </span>
+        {%- render 'loading-spinner' -%}
+      </button>
+    {%- endform -%}
+  </product-form>
+
+  {%- if value_link_label != blank -%}
+    <a href="{{ value_link_url | default: '#' }}" class="product-buy-box__value-link">
+      {{- value_link_label | escape -}}
+    </a>
+  {%- endif -%}
+</product-buy-box>

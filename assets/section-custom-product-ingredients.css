@@ -1,0 +1,174 @@
+.ingredients__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ingredients__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  margin: 0 0 4px;
+}
+
+.ingredients__heading {
+  margin: 0;
+}
+
+.ingredient-slider {
+  display: block;
+}
+
+.ingredient-slider__viewport {
+  position: relative;
+  perspective: 1400px;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.ingredient-slider__track {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 420px;
+  transform-style: preserve-3d;
+}
+
+.ingredient-slider__card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(360px, 80vw);
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--poyse-evening-fig);
+  transform: translate3d(calc(var(--offset, 0) * 58%), 0, calc(var(--offset-abs, 0) * -180px))
+    scale(calc(1 - var(--offset-abs, 0) * 0.14));
+  z-index: calc(10 - var(--offset-abs, 0));
+  transition: transform 0.5s ease;
+}
+
+.ingredient-slider__card[aria-hidden='true'] {
+  pointer-events: none;
+}
+
+.ingredient-slider.is-dragging .ingredient-slider__card {
+  transition: none;
+}
+
+.ingredient-slider.is-dragging .ingredient-slider__viewport {
+  cursor: grabbing;
+}
+
+.ingredient-slider__card.is-active {
+  cursor: default;
+}
+
+.ingredient-slider__card-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.ingredient-slider__image,
+.ingredient-slider__card-media .placeholder-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ingredient-slider__card-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 70%);
+  color: var(--poyse-white);
+}
+
+.ingredient-slider__key-label {
+  text-transform: uppercase;
+  font-size: var(--font-size-2xs, 1.1rem);
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  margin: 0 0 4px;
+}
+
+.ingredient-slider__card-heading {
+  font-family: 'EsBuildBold', sans-serif;
+  margin: 0 0 8px;
+}
+
+.ingredient-slider__card-text {
+  font-size: var(--font-size-xs);
+  opacity: 0.9;
+}
+
+.ingredient-slider__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.ingredient-slider__arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.ingredient-slider__arrow--prev svg {
+  transform: rotate(90deg);
+}
+
+.ingredient-slider__arrow--next svg {
+  transform: rotate(-90deg);
+}
+
+.ingredient-slider__dots {
+  display: flex;
+  gap: 8px;
+}
+
+.ingredient-slider__dot {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  border: none;
+  background: color-mix(in srgb, currentColor 30%, transparent);
+  cursor: pointer;
+  padding: 0;
+
+  &.is-active {
+    background: currentColor;
+  }
+}
+
+.ingredient-slider__hint {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: var(--font-size-2xs, 1.1rem);
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  margin: 16px 0 0;
+}
+
+@media screen and (max-width: 749px) {
+  .ingredient-slider__track {
+    height: 360px;
+  }
+}

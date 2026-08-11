@@ -1,0 +1,80 @@
+.product-buy-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-buy-box__subscription {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.product-buy-box__option {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  border: 1px solid var(--poyse-bare-form);
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:has(input:checked) {
+    border-color: var(--product-buy-box-accent);
+    background: color-mix(in srgb, var(--product-buy-box-accent) 8%, transparent);
+  }
+}
+
+.product-buy-box__option-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-buy-box__option input[type='radio'] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.product-buy-box__option-label {
+  font-family: 'EsBuildBold', sans-serif;
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+}
+
+.product-buy-box__option-badge {
+  font-size: var(--font-size-2xs, 1.1rem);
+  text-transform: uppercase;
+  color: var(--product-buy-box-accent);
+  background: color-mix(in srgb, var(--product-buy-box-accent) 12%, transparent);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.product-buy-box__option-description {
+  color: var(--poyse-evening-fig);
+  opacity: 0.7;
+  font-size: var(--font-size-xs);
+}
+
+button.product-buy-box__submit {
+  background: var(--product-buy-box-accent);
+  border-color: var(--product-buy-box-accent);
+
+  &:hover {
+    background: color-mix(in srgb, var(--product-buy-box-accent) 85%, black);
+  }
+}
+
+.product-buy-box__value-link {
+  align-self: center;
+  font-size: var(--font-size-xs);
+  text-decoration: underline;
+  color: var(--poyse-evening-fig);
+  opacity: 0.7;
+}

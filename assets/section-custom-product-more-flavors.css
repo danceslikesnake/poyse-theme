@@ -1,0 +1,16 @@
+.more-flavors__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.more-flavors__heading {
+  margin: 0;
+}
+
+.more-flavors__grid {
+  grid-template-columns: repeat(2, 1fr);
+}
