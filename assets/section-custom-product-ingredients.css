@@ -156,7 +156,38 @@
 }
 
 @media screen and (max-width: 749px) {
+  .ingredient-slider__viewport {
+    perspective: none;
+    touch-action: auto;
+    cursor: default;
+  }
+
   .ingredient-slider__track {
-    height: 360px;
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ingredient-slider__card {
+    position: static;
+    width: 100%;
+    aspect-ratio: auto;
+    transform: none;
+    cursor: default;
+  }
+
+  .ingredient-slider__card[aria-hidden='true'] {
+    pointer-events: auto;
+  }
+
+  .ingredient-slider__card-content {
+    overflow: visible;
+  }
+
+  .ingredient-slider__ornament,
+  .ingredient-slider__hint {
+    display: none;
   }
 }

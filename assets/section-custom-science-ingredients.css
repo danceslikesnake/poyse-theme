@@ -12,6 +12,12 @@
   display: flex;
   padding: 88px;
   border-top: 1px solid rgba(57, 44, 45, 0.12);
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 16px;
+  }
 }
 
 .science-ingredients__item-head {
@@ -19,6 +25,10 @@
   flex-direction: column;
   align-items: baseline;
   flex: 2;
+
+  @media screen and (max-width: 767px) {
+    flex: none;
+  }
 }
 
 .science-ingredients__number {
@@ -67,6 +77,10 @@
 .science-ingredients__item-text {
   line-height: 1.6;
   flex: 3;
+
+  @media screen and (max-width: 767px) {
+    flex: none;
+  }
 }
 
 .science-ingredients__sub-list {

@@ -11,6 +11,10 @@
   gap: 16px;
   margin: 0 auto;
   padding-bottom: 44px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .science-formula__lead {
@@ -23,6 +27,10 @@
   flex: 1;
   text-align: center;
   padding: 0 16px;
+
+  @media screen and (max-width: 767px) {
+    flex: none;
+  }
 }
 
 .science-formula__lead--right {
@@ -32,6 +40,10 @@
   color: var(--poyse-evening-fig);
   flex: 1;
   padding: 0 16px;
+
+  @media screen and (max-width: 767px) {
+    flex: none;
+  }
 }
 
 .science-formula__lead--left span, .science-formula__lead--right span {
@@ -44,6 +56,11 @@
   position: relative;
   flex: 1;
   max-width: 442px;
+
+  @media screen and (max-width: 767px) {
+    flex: none;
+    margin: 0 auto;
+  }
 }
 
 .science-formula__image {
@@ -59,6 +76,10 @@
   margin: 0 16px;
   padding-top: 44px;
   color: var(--poyse-evening-fig);
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .science-formula__copy {
@@ -67,6 +88,10 @@
   flex: 1;
   padding: 32px 32px 0 32px;
   font-size: var(--font-size-sm);
+
+  @media screen and (max-width: 767px) {
+    flex: none;
+  }
 }
 
 .science-formula__callout {
@@ -74,6 +99,10 @@
   border-radius: 1.2rem;
   flex: 1;
   color: white;
+
+  @media screen and (max-width: 767px) {
+    flex: none;
+  }
 }
 
 .science-formula__callout-heading {

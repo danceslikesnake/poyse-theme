@@ -40,9 +40,92 @@
   }
 }
 
+/* Repurposes Dawn's gallery thumbnail strip (section-main-product.css) as a
+   row of pagination dots overlaid on the main image, instead of a visible
+   thumbnail list. Reuses the existing thumbnail-slider markup/JS (click to
+   jump, [aria-current] active state) so no template or JS changes are
+   needed — just a visual transform, scoped to this section and mobile only. */
+@media screen and (max-width: 767px) {
+  .product-info .product__media-wrapper {
+    position: relative;
+  }
+
+  .product-info .thumbnail-slider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  .product-info .thumbnail-slider .slider-button {
+    display: none;
+  }
+
+  .product-info .thumbnail-list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    flex: none;
+    pointer-events: auto;
+  }
+
+  .product-info .thumbnail-list__item {
+    position: static;
+    width: 8px;
+    height: 8px;
+    flex: none;
+  }
+
+  .product-info .thumbnail-list__item::before {
+    content: none;
+  }
+
+  .product-info .thumbnail {
+    position: static;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+  }
+
+  .product-info .thumbnail:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .product-info .thumbnail img,
+  .product-info .thumbnail__badge {
+    display: none;
+  }
+
+  .product-info .thumbnail[aria-current] {
+    background: white;
+    box-shadow: none;
+    border-color: transparent;
+  }
+}
+
 .product-breadcrumb-section {
   margin: 0 8px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 }
 
 .product-breadcrumb {

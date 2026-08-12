@@ -8,6 +8,10 @@
 .subscriber-gift__grid {
   display: flex;
   gap: 12px;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .subscriber-gift__media {
@@ -58,6 +62,12 @@
   display: flex;
   align-items: center;
   gap: 1.2rem;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
 }
 
 .subscriber-gift__item-media {
@@ -68,6 +78,11 @@
   overflow: hidden;
   background: var(--poyse-bare-form, rgba(0, 0, 0, 0.04));
   padding: 16px;
+
+  @media screen and (max-width: 767px) {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .subscriber-gift__item-image,
