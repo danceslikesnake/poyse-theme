@@ -56,12 +56,14 @@
                 {%- endif -%}
               </div>
               <div class="ingredient-slider__card-content">
-                {%- if block.settings.key_label != blank -%}
-                  <p class="ingredient-slider__key-label">{{ block.settings.key_label | escape }}</p>
-                {%- endif -%}
-                {%- if block.settings.heading != blank -%}
-                  <p class="ingredient-slider__card-heading">{{ block.settings.heading | escape }}</p>
-                {%- endif -%}
+                <div class="ingredient-slider__card-header">
+                  {%- if block.settings.key_label != blank -%}
+                    <p class="ingredient-slider__key-label">{{ block.settings.key_label | escape }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.heading != blank -%}
+                    <p class="ingredient-slider__card-heading">{{ block.settings.heading | escape }}</p>
+                  {%- endif -%}
+                </div>
                 {%- if block.settings.text != blank -%}
                   <div class="ingredient-slider__card-text rte">{{ block.settings.text }}</div>
                 {%- endif -%}

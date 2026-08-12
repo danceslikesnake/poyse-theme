@@ -1,0 +1,9 @@
+.custom-page-width {
+  max-width: 1344px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
+}

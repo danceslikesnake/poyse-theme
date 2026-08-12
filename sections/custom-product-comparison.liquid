@@ -1,25 +1,11 @@
 {{ 'section-custom-product-comparison.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 768px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
 {%- liquid
   assign rows = section.blocks | where: 'type', 'row'
 -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  <div class="page-width comparison">
+<div class="color-{{ section.settings.color_scheme }} custom-comparison section-{{ section.id }}-padding">
+  <div class="custom-page-width comparison">
     <div class="comparison__header">
       {%- if section.settings.eyebrow != blank -%}
         <p class="comparison__eyebrow">{{ section.settings.eyebrow | escape }}</p>
@@ -44,12 +30,19 @@
               <tr {{ block.shopify_attributes }}>
                 <th scope="row" class="comparison__row-label">{{ block.settings.label | escape }}</th>
                 <td class="comparison__col comparison__col--featured">
-                  {%- if block.settings.poyse_check -%}
-                    <span class="svg-wrapper comparison__check">{{- 'icon-checkmark.svg' | inline_asset_content -}}</span>
-                  {%- endif -%}
-                  {{- block.settings.poyse_value | escape -}}
+                  <span class="comparison__cell">
+                    {%- if block.settings.poyse_check -%}
+                      <span class="svg-wrapper comparison__check">{{- 'check-circle-icon.svg' | inline_asset_content -}}</span>
+                    {%- endif -%}
+                    <span class="comparison__cell-text">{{- block.settings.poyse_value | escape -}}</span>
+                  </span>
                 </td>
-                <td class="comparison__col">{{ block.settings.traditional_value | escape }}</td>
+                <td class="comparison__col">
+                  <span class="comparison__cell">
+                    <span class="svg-wrapper comparison__check comparison__check--times">{{- 'check-times-icon.svg' | inline_asset_content -}}</span>
+                    <span class="comparison__cell-text">{{- block.settings.traditional_value | escape -}}</span>
+                  </span>
+                </td>
               </tr>
             {%- endfor -%}
           </tbody>

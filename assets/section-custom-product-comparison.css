@@ -1,17 +1,25 @@
+.custom-comparison {
+  background: var(--poyse-evening-fig);
+  margin: 0 8px 8px;
+  border-radius: 8px;
+  padding: 80px 40px 104px 40px;
+}
+
 .comparison__header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 .comparison__eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.7;
   margin: 0 0 4px;
+  font-family: 'EsBuildMedium', sans-serif;
+  color: white;
 }
 
 .comparison__heading {
   margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: normal;
 }
 
 .comparison__table-wrapper {
@@ -28,24 +36,31 @@
 .comparison__row-label {
   width: 33.333%;
   text-align: left;
-  font-weight: normal;
+  font-size: var(--font-size-xs);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   padding: 12px 16px;
-  opacity: 0.7;
 }
 
 .comparison__col {
   width: 33.333%;
   text-align: left;
-  padding: 12px 16px;
+  padding: 20px 16px;
   border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  font-size: var(--font-size-xs);
+  font-family: 'EsBuildMedium', sans-serif;
+  opacity: 0.6;
 }
 
 .comparison__col--featured {
-  background: color-mix(in srgb, var(--poyse-deep-current) 25%, transparent);
+  background: var(--poyse-deep-current);
   border-radius: 8px 8px 0 0;
-  font-family: 'EsBuildBold', sans-serif;
+  opacity: 1;
 }
 
+thead .comparison__col {
+  text-align: center;
+  text-transform: uppercase;
+}
 thead .comparison__col--featured {
   border-radius: 8px 8px 0 0;
 }
@@ -54,13 +69,27 @@ tbody tr:last-child .comparison__col--featured {
   border-radius: 0 0 8px 8px;
 }
 
+tbody tr:nth-child(even) .comparison__col--featured {
+  background: color-mix(in srgb, var(--poyse-deep-current) 85%, black);
+}
+
+.comparison__cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
 .comparison__check {
   display: inline-flex;
-  margin-right: 8px;
-  vertical-align: middle;
+  flex-shrink: 0;
+  margin-top: 2px;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 20px;
   }
+}
+
+.comparison__cell-text {
+  margin-top: 2px;
 }

@@ -17,13 +17,17 @@
   gap: 24px;
 
   @media screen and (min-width: 768px) {
-    flex: 0 0 280px;
-    max-width: 280px;
+    flex: 0 0 450px;
+    max-width: 450px;
   }
 }
 
 .more-flavors__heading {
   margin: 0;
+  font-weight: normal;
+  font-size: var(--font-size-lg);
+  letter-spacing: 0;
+  line-height: 1.1;
 }
 
 .more-flavors__grid {

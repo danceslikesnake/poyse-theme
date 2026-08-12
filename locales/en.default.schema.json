@@ -1498,6 +1498,15 @@
             },
             "open_by_default": {
               "label": "Open by default"
+            },
+            "column": {
+              "label": "Column",
+              "options__1": {
+                "label": "Left"
+              },
+              "options__2": {
+                "label": "Right"
+              }
             }
           }
         }
@@ -1514,7 +1523,7 @@
         },
         "heading": {
           "label": "Heading",
-          "default": "<p><em>More Great Flavors</em> for more energy</p>"
+          "default": "<p><em>More Great Flavors</em><br>for more energy</p>"
         },
         "shop_all_label": {
           "label": "Button label",

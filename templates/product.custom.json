@@ -53,9 +53,16 @@
           }
         }
       },
-      "block_order": ["perk-1", "perk-2", "perk-3", "accordion-what-is", "benefits"],
+      "block_order": [
+        "perk-1",
+        "perk-2",
+        "perk-3",
+        "accordion-what-is",
+        "benefits"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
+        "enable_sticky_info": true,
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
@@ -64,10 +71,11 @@
         "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
-        "enable_sticky_info": true,
         "breadcrumb_label": "Shop All",
+        "breadcrumb_url": "",
         "heading": "Refined Energy Powder",
         "subtitle": "<p>Powered by <em>Enfinity® Paraxanthine</em></p>",
+        "flavors_collection": "",
         "flavor_label": "Flavor",
         "monthly_label": "Monthly Delivery",
         "monthly_description": "Your monthly supply, automatically delivered every month. Free shipping. Pause or cancel anytime.",
@@ -78,8 +86,10 @@
         "onetime_price": "$60.00",
         "cta_label": "Add to Cart",
         "value_link_label": "Value of one-time purchase",
+        "value_link_url": "",
         "subscriber_gift_heading": "Premium Subscriber Gift Included",
         "subscriber_gift_text": "<p>Includes a complimentary water bottle and towel with your first subscription order.</p>",
+        "perks_heading": "Your subscription includes:",
         "supplement_facts_label": "View Supplement Facts",
         "how_to_use_label": "How To Use",
         "how_to_use_content": "<p>Mix 1 scoop (8g) with 8-10 oz of cold water. Shake or stir until fully dissolved. For a lighter boost, use less powder; for stronger energy support, use slightly more. Adjust serving size and timing based on your individual needs and tolerance.</p>",
@@ -93,6 +103,7 @@
         "card-1": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_76070460.png",
             "key_label": "Key Ingredient",
             "heading": "Paraxanthine (Enfinity®)",
             "text": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and the compound responsible for the jitters, anxious, restless and harsh-feel effects people often associate with it.</p>"
@@ -101,6 +112,7 @@
         "card-2": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_76070460_2.png",
             "key_label": "Performance & Focus",
             "heading": "Amino Acids (L-Tyrosine, L-Theanine, and L-Citrulline)",
             "text": "<p>These amino acids work together to support focus, performance, and overall feel. L-Tyrosine helps you stay sharp and clear-headed, L-Theanine supports a calmer and more composed experience, and L-Citrulline supports movement, training, and long days ahead.</p>"
@@ -109,13 +121,18 @@
         "card-3": {
           "type": "card",
           "settings": {
+            "image": "shopify://shop_images/Rectangle_76070460_1.png",
             "key_label": "Hydration Support",
             "heading": "Electrolytes (Sodium, Potassium, Magnesium)",
             "text": "<p>Electrolytes help support fluid balance to help you feel more even, hydrated, and steady throughout the day.</p>"
           }
         }
       },
-      "block_order": ["card-1", "card-2", "card-3"],
+      "block_order": [
+        "card-1",
+        "card-2",
+        "card-3"
+      ],
       "settings": {
         "color_scheme": "scheme-4",
         "eyebrow": "Our Ingredients",
@@ -132,34 +149,77 @@
       "blocks": {
         "row-1": {
           "type": "row",
-          "settings": { "label": "Energy source", "poyse_check": true, "poyse_value": "Paraxanthine", "traditional_value": "Typically caffeine" }
+          "settings": {
+            "label": "Energy source",
+            "poyse_check": true,
+            "poyse_value": "Paraxanthine",
+            "traditional_value": "Typically caffeine"
+          }
         },
         "row-2": {
           "type": "row",
-          "settings": { "label": "Feel", "poyse_check": true, "poyse_value": "More controlled and less overwhelming", "traditional_value": "Harsh and overstimulating" }
+          "settings": {
+            "label": "Feel",
+            "poyse_check": true,
+            "poyse_value": "More controlled and less overwhelming",
+            "traditional_value": "Harsh and overstimulating"
+          }
         },
         "row-3": {
           "type": "row",
-          "settings": { "label": "Built for", "poyse_check": true, "poyse_value": "Work, workouts, and busy days", "traditional_value": "Bursts around stimulation" }
+          "settings": {
+            "label": "Built for",
+            "poyse_check": true,
+            "poyse_value": "Work, workouts, and busy days",
+            "traditional_value": "Bursts around stimulation"
+          }
         },
         "row-4": {
           "type": "row",
-          "settings": { "label": "Jitters/Anxiety", "poyse_check": true, "poyse_value": "Designed to help avoid it", "traditional_value": "Commonly associated with it" }
+          "settings": {
+            "label": "Jitters/Anxiety",
+            "poyse_check": true,
+            "poyse_value": "Designed to help avoid it",
+            "traditional_value": "Commonly associated with it"
+          }
         },
         "row-5": {
           "type": "row",
-          "settings": { "label": "Restlessness", "poyse_check": true, "poyse_value": "Shorter half-life than caffeine, so it is likely to linger and disrupt sleep", "traditional_value": "Likely to interfere with sleep" }
+          "settings": {
+            "label": "Restlessness",
+            "poyse_check": true,
+            "poyse_value": "Shorter half-life than caffeine, so it is likely to linger and disrupt sleep",
+            "traditional_value": "Likely to interfere with sleep"
+          }
         },
         "row-6": {
           "type": "row",
-          "settings": { "label": "Focus", "poyse_check": true, "poyse_value": "Supports alertness and clarity", "traditional_value": "Can feel less consistent" }
+          "settings": {
+            "label": "Focus",
+            "poyse_check": true,
+            "poyse_value": "Supports alertness and clarity",
+            "traditional_value": "Can feel less consistent"
+          }
         },
         "row-7": {
           "type": "row",
-          "settings": { "label": "Hydration support", "poyse_check": true, "poyse_value": "Includes electrolytes to better support performance, training, and long days", "traditional_value": "Often not included" }
+          "settings": {
+            "label": "Hydration support",
+            "poyse_check": true,
+            "poyse_value": "Includes electrolytes to better support performance, training, and long days",
+            "traditional_value": "Often not included"
+          }
         }
       },
-      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6", "row-7"],
+      "block_order": [
+        "row-1",
+        "row-2",
+        "row-3",
+        "row-4",
+        "row-5",
+        "row-6",
+        "row-7"
+      ],
       "settings": {
         "color_scheme": "scheme-4",
         "eyebrow": "Comparison",
@@ -173,22 +233,114 @@
     "faq": {
       "type": "custom-product-faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "question": "What does POYSE Refined Energy Powder help support?", "answer": "<p>This product is designed to support energy, alertness, and everyday performance with a more controlled and less overwhelming feel than traditional energy products.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "Can I use this product later in the day?", "answer": "<p>Yes. Because paraxanthine has a shorter half-life than caffeine, it is less likely to linger and disrupt sleep.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "Where are your products manufactured?", "answer": "<p>All POYSE products are manufactured in the USA.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "When will my order ship?", "answer": "<p>Orders ship within 1-2 business days of being placed.</p>" } },
-        "q5": { "type": "question", "settings": { "question": "How long does shipping take?", "answer": "<p>Standard shipping typically takes 3-7 business days.</p>" } },
-        "q6": { "type": "question", "settings": { "question": "Do you offer free shipping?", "answer": "<p>Yes, all subscription orders ship free.</p>" } },
-        "q7": { "type": "question", "settings": { "question": "What is your return policy?", "answer": "<p>We offer a 15-day return policy on unopened products.</p>" } },
-        "q8": { "type": "question", "settings": { "question": "What if my order arrives damaged?", "answer": "<p>Contact us within 48 hours of delivery and we'll make it right.</p>" } },
-        "q9": { "type": "question", "settings": { "question": "When will my order ship?", "answer": "<p>Orders ship within 1-2 business days of being placed.</p>" } },
-        "q10": { "type": "question", "settings": { "question": "Can I cancel or change my order after placing it?", "answer": "<p>Yes, subscriptions can be paused, changed, or cancelled anytime from your account.</p>" } }
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "What does POYSE Refined Energy Powder help support?",
+            "answer": "<p>This product is designed to support energy, alertness, and everyday performance with a more controlled and less overwhelming feel than traditional energy products.</p>",
+            "open_by_default": false,
+            "column": "left"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use this product later in the day?",
+            "answer": "<p>Yes. Because paraxanthine has a shorter half-life than caffeine, it is less likely to linger and disrupt sleep.</p>",
+            "open_by_default": false,
+            "column": "left"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Where are your products manufactured?",
+            "answer": "<p>All POYSE products are manufactured in the USA.</p>",
+            "open_by_default": false,
+            "column": "left"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "When will my order ship?",
+            "answer": "<p>Orders ship within 1-2 business days of being placed.</p>",
+            "open_by_default": false,
+            "column": "left"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard shipping typically takes 3-7 business days.</p>",
+            "open_by_default": false,
+            "column": "left"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer free shipping?",
+            "answer": "<p>Yes, all subscription orders ship free.</p>",
+            "open_by_default": false,
+            "column": "right"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 15-day return policy on unopened products.</p>",
+            "open_by_default": false,
+            "column": "right"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "What if my order arrives damaged?",
+            "answer": "<p>Contact us within 48 hours of delivery and we'll make it right.</p>",
+            "open_by_default": false,
+            "column": "right"
+          }
+        },
+        "q9": {
+          "type": "question",
+          "settings": {
+            "question": "When will my order ship?",
+            "answer": "<p>Orders ship within 1-2 business days of being placed.</p>",
+            "open_by_default": false,
+            "column": "right"
+          }
+        },
+        "q10": {
+          "type": "question",
+          "settings": {
+            "question": "Can I cancel or change my order after placing it?",
+            "answer": "<p>Yes, subscriptions can be paused, changed, or cancelled anytime from your account.</p>",
+            "open_by_default": false,
+            "column": "right"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9",
+        "q10"
+      ],
       "settings": {
         "color_scheme": "scheme-2",
         "heading": "<p><em>Frequently</em> Asked Questions</p>",
         "deeper_dive_label": "Take a Deeper Dive",
+        "deeper_dive_url": "/pages/science",
         "padding_top": 72,
         "padding_bottom": 72
       }
@@ -198,8 +350,10 @@
       "settings": {
         "color_scheme": "scheme-1",
         "card_color_scheme": "scheme-2",
-        "heading": "<p><em>More Great Flavors</em> for more energy</p>",
+        "heading": "<p><em>More Great Flavors</em><br>for more energy</p>",
         "shop_all_label": "Shop All Products",
+        "shop_all_url": "",
+        "flavors_collection": "",
         "monthly_label": "Monthly Subscription",
         "monthly_price": "$49.00 per month",
         "onetime_label": "One-Time Purchase",
@@ -210,5 +364,11 @@
       }
     }
   },
-  "order": ["main", "ingredients", "comparison", "faq", "more-flavors"]
+  "order": [
+    "main",
+    "ingredients",
+    "comparison",
+    "faq",
+    "more-flavors"
+  ]
 }

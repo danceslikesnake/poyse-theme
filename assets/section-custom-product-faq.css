@@ -1,29 +1,111 @@
+.custom-faq {
+  background: var(--poyse-bare-form);
+  margin: 0 8px 8px;
+  border-radius: 8px;
+  padding: 40px 40px 104px 40px;
+}
+
 .product-faq__header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--poyse-evening-fig);
 }
 
 .product-faq__heading {
   margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: normal;
+}
+
+.product-faq__heading p {
+  margin: 0;
 }
 
 .product-faq__columns {
-  columns: 1;
-  column-gap: 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px 24px;
 
   @media screen and (min-width: 768px) {
-    columns: 2;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-.product-faq__item {
-  break-inside: avoid;
-  margin-bottom: 16px;
-  border: 1px solid var(--poyse-bare-form);
+.product-faq__column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-faq__card {
+  background: var(--poyse-white);
   border-radius: 8px;
-  padding: 4px 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.product-faq__card summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.product-faq__card summary::-webkit-details-marker {
+  display: none;
+}
+
+.product-faq__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.product-faq__question {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  font-family: 'EsBuildMedium', sans-serif;
+  color: var(--poyse-evening-fig);
+}
+
+.product-faq__toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.product-faq__toggle::before,
+.product-faq__toggle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--poyse-evening-fig);
+  transform: translate(-50%, -50%);
+}
+
+.product-faq__toggle::before {
+  width: 14px;
+  height: 2px;
+}
+
+.product-faq__toggle::after {
+  width: 2px;
+  height: 14px;
+  transition: opacity 0.15s ease;
+}
+
+details[open] > .product-faq__summary .product-faq__toggle::after {
+  opacity: 0;
+}
+
+.product-faq__answer {
+  padding: 0 20px 18px;
+  color: var(--poyse-evening-fig);
+  font-size: var(--font-size-xs);
 }
