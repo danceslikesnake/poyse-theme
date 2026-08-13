@@ -250,6 +250,10 @@
   justify-content: space-between;
   width: 100%;
   gap: 8px;
+
+  @media screen and (max-width: 767px) {
+    gap: 4px;
+  }
 }
 
 .product-flavor-switcher__pill {
@@ -272,6 +276,10 @@
 
   @media screen and (min-width: 1024px) {
     padding: 0 22px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0 4px;
   }
 
   &:hover {
@@ -307,6 +315,10 @@
   padding: 16px 24px 40px 24px;
   border-radius: 8px;
   background: var(--poyse-bare-form);
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 24px;
+  }
 }
 
 .product-subscriber-gift__media {
@@ -321,6 +333,11 @@
   object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
+
+  @media screen and (max-width: 767px) {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 .product-subscriber-gift__heading {

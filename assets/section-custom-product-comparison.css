@@ -3,6 +3,16 @@
   margin: 0 8px 8px;
   border-radius: 8px;
   padding: 80px 40px 104px 40px;
+  @media screen and (max-width: 767px) {
+    padding: 24px 0;
+  }
+}
+
+.custom-page-width.comparison {
+  @media screen and (max-width: 767px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .comparison__header {
@@ -31,6 +41,10 @@
   border-collapse: collapse;
   min-width: 480px;
   table-layout: fixed;
+
+  @media screen and (max-width: 767px) {
+    min-width: auto;
+  }
 }
 
 .comparison__row-label {
@@ -53,6 +67,10 @@
   font-size: var(--font-size-xs);
   font-family: 'EsBuildMedium', sans-serif;
   opacity: 0.6;
+
+  @media screen and (max-width: 767px) {
+    width: 50%;
+  }
 }
 
 .comparison__col--featured {
