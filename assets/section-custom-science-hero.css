@@ -18,6 +18,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @media screen and (max-width: 767px) {
+    min-height: auto;
+    padding: 104px 0 64px 0;
+  }
 }
 
 .science-hero__eyebrow {
@@ -30,6 +35,10 @@
   font-weight: 300;
   font-size: var(--font-size-2xl);
   line-height: 1.25;
+
+  @media screen and (max-width: 767px) {
+    font-size: var(--font-size-lg);
+  }
 }
 
 .science-hero__heading em {
@@ -53,7 +62,7 @@
   @media screen and (max-width: 767px) {
     flex-direction: column;
     align-items: stretch;
-    padding: 16px;
+    padding: 16px 0;
   }
 }
 
@@ -74,6 +83,7 @@
 
   @media screen and (max-width: 767px) {
     padding-right: 0;
+    padding-bottom: 24px;
   }
 }
 

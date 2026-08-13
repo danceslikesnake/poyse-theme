@@ -3,6 +3,10 @@
   margin: 0 8px 8px 8px;
   border-radius: 8px;
   background: var(--poyse-bare-form);
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 16px;
+  }
 }
 
 .science-formula__showcase {
@@ -21,6 +25,10 @@
   margin: 0;
   font-size: var(--font-size-xl);
   line-height: 1.3;
+
+  @media screen and (max-width: 767px) {
+    font-size: var(--font-size-md);
+  }
 }
 
 .science-formula__lead--left {
@@ -60,6 +68,7 @@
   @media screen and (max-width: 767px) {
     flex: none;
     margin: 0 auto;
+    width: 80%;
   }
 }
 
@@ -91,6 +100,7 @@
 
   @media screen and (max-width: 767px) {
     flex: none;
+    padding: 0 0 24px 0;
   }
 }
 
@@ -109,6 +119,10 @@
   margin: 0 0 24px 0;
   font-size: var(--font-size-lg);
   line-height: 1.3;
+
+  @media screen and (max-width: 767px) {
+    font-size: var(--font-size-md);
+  }
 }
 
 .science-formula__callout-heading em {
