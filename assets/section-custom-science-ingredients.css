@@ -2,6 +2,10 @@
   padding: 44px 0;
   margin: 0 8px;
   background: #ffffff;
+
+  @media screen and (max-width: 767px) {
+    padding: 0 0 44px 0;
+  }
 }
 
 .science-ingredients__list {
@@ -96,6 +100,10 @@
   padding: 24px;
   font-family: 'EsBuildMedium', sans-serif;
   border-radius: 8px;
+
+  @media screen and (max-width: 767px) {
+    padding: 16px;
+  }
 }
 
 .science-ingredients__sub-item-head {
