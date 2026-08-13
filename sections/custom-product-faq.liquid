@@ -8,7 +8,7 @@
   <div class="product-faq__header">
     <h2 class="product-faq__heading inline-richtext">{{ section.settings.heading }}</h2>
     {%- if section.settings.deeper_dive_label != blank -%}
-      <a href="{{ section.settings.deeper_dive_url | default: '#' }}" class="custom-cta-button narrow-padding">
+      <a href="{{ section.settings.deeper_dive_url | default: '#' }}" class="custom-cta-button">
         {{- section.settings.deeper_dive_label | escape -}}
       </a>
     {%- endif -%}

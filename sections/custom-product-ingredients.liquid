@@ -20,7 +20,7 @@
         </button>
       </modal-opener>
     {%- elsif section.settings.supplement_facts_url != blank and section.settings.supplement_facts_label != blank -%}
-      <a href="{{ section.settings.supplement_facts_url }}" class="custom-cta-button tan narrow-padding">
+      <a href="{{ section.settings.supplement_facts_url }}" class="custom-cta-button tan">
         {{- section.settings.supplement_facts_label | escape -}}
       </a>
     {%- endif -%}

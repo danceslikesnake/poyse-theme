@@ -20,6 +20,11 @@
     flex: 0 0 450px;
     max-width: 450px;
   }
+
+  @media screen and (max-width: 767px) {
+    gap: 0;
+    margin-bottom: 24px;
+  }
 }
 
 .more-flavors__heading {
@@ -28,6 +33,12 @@
   font-size: var(--font-size-lg);
   letter-spacing: 0;
   line-height: 1.1;
+
+  @media screen and (max-width: 767px) {
+    p {
+      margin-top: 0;
+    }
+  }
 }
 
 .more-flavors__grid {

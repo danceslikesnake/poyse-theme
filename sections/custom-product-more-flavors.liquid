@@ -22,7 +22,7 @@
       <div class="more-flavors__header">
         <h2 class="more-flavors__heading inline-richtext">{{ section.settings.heading }}</h2>
         {%- if section.settings.shop_all_label != blank -%}
-          <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="custom-cta-button narrow-padding">
+          <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="custom-cta-button">
             {{- section.settings.shop_all_label | escape -}}
           </a>
         {%- endif -%}
