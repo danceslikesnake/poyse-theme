@@ -739,6 +739,10 @@
               "info": "Leave blank to hide",
               "default": "Shop controlled energy"
             },
+            "button_label_1_mobile": {
+              "label": "Label (mobile)",
+              "info": "Leave blank to use the label above on mobile"
+            },
             "button_link_1": {
               "label": "Link"
             },

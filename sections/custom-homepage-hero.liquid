@@ -98,7 +98,12 @@
                     {% endif %}
                     class="custom-cta-button tan narrow-padding full-width-cta-on-mobile"
             >
-              {{- buttons_block.settings.button_label_1 | escape -}}
+              {%- if buttons_block.settings.button_label_1_mobile != blank -%}
+                <span class="custom-cta-button__label-desktop">{{- buttons_block.settings.button_label_1 | escape -}}</span>
+                <span class="custom-cta-button__label-mobile">{{- buttons_block.settings.button_label_1_mobile | escape -}}</span>
+              {%- else -%}
+                {{- buttons_block.settings.button_label_1 | escape -}}
+              {%- endif -%}
             </a>
             </div>
           {%- endif -%}
@@ -305,6 +310,12 @@
           "default": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1.default",
           "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1.label",
           "info": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1_mobile",
+          "label": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1_mobile.label",
+          "info": "t:sections.custom-homepage-hero.blocks.buttons.settings.button_label_1_mobile.info"
         },
         {
           "type": "url",

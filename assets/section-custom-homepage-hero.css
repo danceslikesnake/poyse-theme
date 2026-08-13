@@ -274,7 +274,7 @@
 
 .hero-showcase__flavor-btn {
   font-family: 'EsBuildMedium', sans-serif;
-  padding: 0 8px;
+  padding: 0 6px;
   border: 1px solid var(--poyse-evening-fig);
   border-radius: 22px;
   background: transparent;
@@ -324,9 +324,9 @@
 .hero-showcase__subscription {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 8px;
   border: none;
-  padding: 11px 4px 14px 4px;
+  padding: 11px 0 14px 0;
   @media screen and (min-width: 1024px) {
     flex-wrap: wrap;
     gap: 2.4rem;

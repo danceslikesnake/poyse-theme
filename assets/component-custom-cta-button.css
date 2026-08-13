@@ -55,6 +55,20 @@
         padding: 0 4px;
     }
 
+    .custom-cta-button__label-mobile {
+        display: none;
+    }
+
+    @media screen and (max-width: 1023px) {
+        .custom-cta-button__label-desktop {
+            display: none;
+        }
+
+        .custom-cta-button__label-mobile {
+            display: inline;
+        }
+    }
+
     @media screen and (min-width: 1024px) {
         padding: 0 44px;
 

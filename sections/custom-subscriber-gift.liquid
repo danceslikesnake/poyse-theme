@@ -36,6 +36,17 @@
       </div>
     {%- endif -%}
 
+    {%- if content_block != blank -%}
+      <div class="subscriber-gift__mobile-content">
+        {%- if content_block.settings.heading != blank -%}
+          <h2 class="subscriber-gift__heading">{{ content_block.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if content_block.settings.text != blank -%}
+          <div class="subscriber-gift__text rte">{{ content_block.settings.text }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
     <div class="subscriber-gift__content color-{{ section.settings.card_color_scheme }}">
       <div class="subscriber-gift__content-inner">
         {%- if content_block != blank -%}
