@@ -6,6 +6,18 @@
   padding-bottom: 40px;
 }
 
+.product-info[data-flavor='yuzu-citrus'] {
+  --product-buy-box-accent: #f6e545;
+}
+
+.product-info[data-flavor='tropical-mango'] {
+  --product-buy-box-accent: #e2963f;
+}
+
+.product-info[data-flavor='strawberry-watermelon'] {
+  --product-buy-box-accent: #d97170;
+}
+
 /* Above this width the page-width container has room to give both PDP
    columns a real 56.8rem floor (matches the 1440px design mockup) without
    overflowing; narrower viewports keep the existing large/medium/small
@@ -297,16 +309,7 @@
   }
 
   &[data-flavor='yuzu-citrus'].is-active {
-    background-color: #f6e545;
     color: var(--poyse-evening-fig);
-  }
-
-  &[data-flavor='tropical-mango'].is-active {
-    background-color: #e2963f;
-  }
-
-  &[data-flavor='strawberry-watermelon'].is-active {
-    background-color: #d97170;
   }
 }
 
@@ -478,7 +481,7 @@
   width: 48px;
   height: 48px;
   flex-shrink: 0;
-  border: 2px solid var(--poyse-evening-fig);
+  border: 1px solid var(--poyse-evening-fig);
   border-radius: 50%;
 
   svg {

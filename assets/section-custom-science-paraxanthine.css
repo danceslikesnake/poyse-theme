@@ -20,15 +20,10 @@
 }
 
 .science-paraxanthine__eyebrow {
-  margin: 0 0 1.2rem;
+  margin: 0;
   font-family: 'EsBuildMedium', sans-serif;
-  font-size: var(--font-size-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.85;
 
   @media screen and (max-width: 767px) {
-    text-transform: none;
     font-size: var(--font-scale-base);
     letter-spacing: 0;
     margin-bottom: 0;
@@ -36,15 +31,16 @@
 }
 
 .science-paraxanthine__heading {
-  margin: 0 0 2rem;
+  margin: 0 0 56px;
   font-family: 'SignifierLightItalic', serif;
   font-weight: 300;
   font-style: italic;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-2xl);
   line-height: 1.1;
   letter-spacing: 0.02em;
 
   @media screen and (max-width: 767px) {
+    font-size: var(--font-size-lg);
     margin-bottom: 2.5rem;
   }
 }

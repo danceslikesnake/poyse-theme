@@ -23,6 +23,7 @@ class IngredientSlider extends HTMLElement {
     });
 
     this.setupPointerEvents();
+    this.setupWheelEvents();
     this.render();
   }
 
@@ -89,6 +90,39 @@ class IngredientSlider extends HTMLElement {
     viewport.addEventListener('pointermove', onPointerMove);
     viewport.addEventListener('pointerup', endDrag);
     viewport.addEventListener('pointercancel', endDrag);
+  }
+
+  setupWheelEvents() {
+    const viewport = this.querySelector('.ingredient-slider__viewport');
+    if (!viewport) return;
+
+    // Trackpad swipes and horizontal mouse wheels fire a burst of wheel
+    // events per gesture. Advance once per burst by locking after the first
+    // qualifying event and unlocking once the events stop arriving.
+    const gestureThreshold = 12;
+    const gestureGap = 200;
+    let locked = false;
+    let gestureEndTimer = null;
+
+    viewport.addEventListener(
+      'wheel',
+      (event) => {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+
+        event.preventDefault();
+
+        clearTimeout(gestureEndTimer);
+        gestureEndTimer = setTimeout(() => {
+          locked = false;
+        }, gestureGap);
+
+        if (locked || Math.abs(event.deltaX) < gestureThreshold) return;
+
+        locked = true;
+        this.go(this.activeIndex + (event.deltaX > 0 ? 1 : -1));
+      },
+      { passive: false }
+    );
   }
 
   go(index) {

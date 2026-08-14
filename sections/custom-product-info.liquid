@@ -47,7 +47,7 @@
   {%- endif -%}
 
   <div class="page-width product-info__page-width">
-    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col{% if product.media.size > 0 %} grid--2-col-tablet{% else %} product--no-media{% endif %} product-info">
+    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col{% if product.media.size > 0 %} grid--2-col-tablet{% else %} product--no-media{% endif %} product-info" data-flavor="{{ product.handle }}">
       <div class="grid__item product__media-wrapper{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}">
         {%- render 'product-media-gallery', product: product, variant_images: variant_images, square_media: true -%}
       </div>
