@@ -71,7 +71,8 @@
           "type": "showcase",
           "settings": {
             "left_text": "This formula came from",
-            "image": "shopify://shop_images/Poyse_System2.png",
+            "video_mov_url": "https://cdn.shopify.com/videos/c/o/v/1092b23a58f84736b2e2d2f3ab54cab3.mov",
+            "video_webm_url": "https://cdn.shopify.com/videos/c/o/v/fe63869c15a946cebae4a3b86cfdc7b2.webm",
             "right_text": "a very simple frustration."
           }
         },

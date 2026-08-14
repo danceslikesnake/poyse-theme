@@ -289,7 +289,6 @@
 
   &.is-active {
     background-color: var(--product-buy-box-accent);
-    border-color: var(--product-buy-box-accent);
     color: var(--poyse-white);
   }
 
@@ -297,14 +296,17 @@
     flex: 1;
   }
 
+  &[data-flavor='yuzu-citrus'].is-active {
+    background-color: #f6e545;
+    color: var(--poyse-evening-fig);
+  }
+
   &[data-flavor='tropical-mango'].is-active {
     background-color: #e2963f;
-    border-color: #e2963f;
   }
 
   &[data-flavor='strawberry-watermelon'].is-active {
     background-color: #d97170;
-    border-color: #d97170;
   }
 }
 

@@ -57,33 +57,6 @@ benefits-lottie {
   min-height: 0;
 }
 
-.benefits__progress {
-  position: relative;
-  flex-shrink: 0;
-  width: 1px;
-  background: rgb(255 255 255 / 0.25);
-
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-}
-
-.benefits__progress-track {
-  position: relative;
-  height: 100%;
-}
-
-.benefits__progress-thumb {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 8px;
-  height: 4rem;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: rgb(255, 255, 255);
-}
-
 .benefits__lottie {
   position: relative;
   flex: 1;

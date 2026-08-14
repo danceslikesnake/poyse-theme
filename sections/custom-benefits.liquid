@@ -1,5 +1,4 @@
 {{ 'section-custom-benefits.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'benefits-progress.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'lottie-light.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'benefits-lottie.js' | asset_url }}" defer="defer"></script>
 
@@ -90,9 +89,9 @@
   {%- endfor -%}
 {%- endstyle -%}
 
-<benefits-progress class="benefits color-{{ section.settings.color_scheme }} gradient">
-  <div class="benefits__grid" data-benefits-grid>
-    <div class="benefits__left" data-benefits-left>
+<div class="benefits color-{{ section.settings.color_scheme }} gradient">
+  <div class="benefits__grid">
+    <div class="benefits__left">
       {%- if content_block != blank and content_block.settings.heading != blank -%}
         <p class="benefits__heading inline-richtext" {{ content_block.shopify_attributes }}>
           {{- content_block.settings.heading -}}
@@ -100,12 +99,6 @@
       {%- endif -%}
 
       <div class="benefits__body">
-        <div class="benefits__progress" data-benefits-progress hidden>
-          <div class="benefits__progress-track" data-benefits-progress-track>
-            <div class="benefits__progress-thumb" data-benefits-progress-thumb>&#8203;</div>
-          </div>
-        </div>
-
         <benefits-lottie data-animation-url="{{ 'benefits-lottie.json' | asset_url }}">
           {%- comment -%}
             Desktop (>=1024px): plays the Lottie's authored crossfade in
@@ -178,7 +171,7 @@
       </div>
     {%- endif -%}
   </div>
-</benefits-progress>
+</div>
 
 {% schema %}
 {

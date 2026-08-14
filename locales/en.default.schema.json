@@ -775,6 +775,17 @@
             "video": {
               "label": "Video"
             },
+            "header_video_sources": {
+              "content": "Alpha / transparent video sources"
+            },
+            "video_mov_url": {
+              "label": ".mov file URL",
+              "info": "Upload your .mov file in Settings > Files, then paste its URL here. Plays first, for browsers that support it (e.g. Safari)."
+            },
+            "video_webm_url": {
+              "label": ".webm file URL",
+              "info": "Upload your .webm file in Settings > Files, then paste its URL here. Used as a fallback when the .mov source isn't supported."
+            },
             "poster_image": {
               "label": "Poster image",
               "info": "Shown until the video loads, or if no video is set"
@@ -1770,7 +1781,19 @@
               "default": "This formula came from"
             },
             "image": {
-              "label": "Product image"
+              "label": "Product image",
+              "info": "Used if no video is set below"
+            },
+            "header_video_sources": {
+              "content": "Alpha / transparent video sources"
+            },
+            "video_mov_url": {
+              "label": ".mov file URL",
+              "info": "Upload your .mov file in Content > Files, then paste its URL here. Plays first, for browsers that support it (e.g. Safari)."
+            },
+            "video_webm_url": {
+              "label": ".webm file URL",
+              "info": "Upload your .webm file in Content > Files, then paste its URL here. Used as a fallback when the .mov source isn't supported."
             },
             "right_text": {
               "label": "Right text",

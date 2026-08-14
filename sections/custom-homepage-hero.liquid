@@ -131,7 +131,16 @@
           <div class="hero-showcase__video-wrap">
             {%- for block in flavors -%}
               <div class="hero-showcase__video{% if forloop.first %} is-active{% endif %}" data-flavor-video="{{ block.id }}" {{ block.shopify_attributes }}>
-                {%- if block.settings.video != blank -%}
+                {%- if block.settings.video_mov_url != blank or block.settings.video_webm_url != blank -%}
+                  <video class="hero-showcase__video-el" autoplay loop muted playsinline>
+                    {%- if block.settings.video_mov_url != blank -%}
+                      <source src="{{ block.settings.video_mov_url }}" type="video/quicktime">
+                    {%- endif -%}
+                    {%- if block.settings.video_webm_url != blank -%}
+                      <source src="{{ block.settings.video_webm_url }}" type="video/webm">
+                    {%- endif -%}
+                  </video>
+                {%- elsif block.settings.video != blank -%}
                   {{
                   block.settings.video
                   | video_tag:
@@ -366,6 +375,22 @@
           "type": "video",
           "id": "video",
           "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.video.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.custom-homepage-hero.blocks.flavor.settings.header_video_sources.content"
+        },
+        {
+          "type": "text",
+          "id": "video_mov_url",
+          "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.video_mov_url.label",
+          "info": "t:sections.custom-homepage-hero.blocks.flavor.settings.video_mov_url.info"
+        },
+        {
+          "type": "text",
+          "id": "video_webm_url",
+          "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.video_webm_url.label",
+          "info": "t:sections.custom-homepage-hero.blocks.flavor.settings.video_webm_url.info"
         },
         {
           "type": "image_picker",

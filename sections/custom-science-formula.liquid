@@ -14,7 +14,16 @@
       {%- endif -%}
 
       <div class="science-formula__media">
-        {%- if showcase_block.settings.image != blank -%}
+        {%- if showcase_block.settings.video_mov_url != blank or showcase_block.settings.video_webm_url != blank -%}
+          <video class="science-formula__image" width="1200" height="1500" autoplay loop muted playsinline>
+            {%- if showcase_block.settings.video_mov_url != blank -%}
+              <source src="{{ showcase_block.settings.video_mov_url }}" type="video/quicktime">
+            {%- endif -%}
+            {%- if showcase_block.settings.video_webm_url != blank -%}
+              <source src="{{ showcase_block.settings.video_webm_url }}" type="video/webm">
+            {%- endif -%}
+          </video>
+        {%- elsif showcase_block.settings.image != blank -%}
           {{
             showcase_block.settings.image
             | image_url: width: 900
@@ -86,7 +95,24 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.custom-science-formula.blocks.showcase.settings.image.label"
+          "label": "t:sections.custom-science-formula.blocks.showcase.settings.image.label",
+          "info": "t:sections.custom-science-formula.blocks.showcase.settings.image.info"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.custom-science-formula.blocks.showcase.settings.header_video_sources.content"
+        },
+        {
+          "type": "text",
+          "id": "video_mov_url",
+          "label": "t:sections.custom-science-formula.blocks.showcase.settings.video_mov_url.label",
+          "info": "t:sections.custom-science-formula.blocks.showcase.settings.video_mov_url.info"
+        },
+        {
+          "type": "text",
+          "id": "video_webm_url",
+          "label": "t:sections.custom-science-formula.blocks.showcase.settings.video_webm_url.label",
+          "info": "t:sections.custom-science-formula.blocks.showcase.settings.video_webm_url.info"
         },
         {
           "type": "text",

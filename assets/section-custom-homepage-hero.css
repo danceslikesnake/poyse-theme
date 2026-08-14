@@ -302,6 +302,10 @@
   background-color: #FF960E;
 }
 
+.hero-showcase__flavor-btn[data-flavor='yuzu-citrus'].is-active {
+  background-color: #F6E545;
+}
+
 .hero-showcase__flavor-btn[data-flavor='tropical-mango'].is-active {
   background-color: #E2963F;
 }
