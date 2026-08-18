@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Email",
     "success": "Terima kasih sudah berlangganan",
+    "error": "Terjadi kesalahan, silakan coba lagi.",
     "button_label": "Berlangganan"
   },
   "accessibility": {

@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-mail",
     "success": "Dziękujemy za subskrypcję",
+    "error": "Coś poszło nie tak, spróbuj ponownie.",
     "button_label": "Subskrybuj"
   },
   "accessibility": {

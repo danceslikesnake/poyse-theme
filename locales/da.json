@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Mail",
     "success": "Tak, fordi du har tegnet et abonnement",
+    "error": "Der opstod en fejl. Prøv igen.",
     "button_label": "Abonner"
   },
   "accessibility": {

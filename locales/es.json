@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Correo electrónico",
     "success": "Gracias por suscribirte",
+    "error": "Se ha producido un error. Vuelve a intentarlo.",
     "button_label": "Suscribirse"
   },
   "accessibility": {

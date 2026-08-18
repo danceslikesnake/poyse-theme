@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Email",
     "success": "Ευχαριστούμε για την εγγραφή",
+    "error": "Παρουσιάστηκε σφάλμα, δοκιμάστε ξανά.",
     "button_label": "Εγγραφή"
   },
   "accessibility": {

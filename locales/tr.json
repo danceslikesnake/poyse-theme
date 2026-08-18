@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-posta",
     "success": "Abone olduğunuz için teşekkür ederiz",
+    "error": "Bir şeyler yanlış gitti, lütfen tekrar deneyin.",
     "button_label": "Abone ol"
   },
   "accessibility": {

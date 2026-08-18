@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-mail",
     "success": "Ďakujeme, že ste sa prihlásili na odber správ",
+    "error": "Niečo sa pokazilo, skúste to znova.",
     "button_label": "Prihlásiť sa na odber"
   },
   "accessibility": {

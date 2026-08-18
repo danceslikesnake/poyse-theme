@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "メール",
     "success": "ご登録ありがとうございます",
+    "error": "エラーが発生しました。もう一度お試しください。",
     "button_label": "登録"
   },
   "accessibility": {

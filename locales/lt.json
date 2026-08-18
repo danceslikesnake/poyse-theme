@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "El. pašto adresas",
     "success": "Dėkojame, kad prenumeruojate",
+    "error": "Įvyko klaida, bandykite dar kartą.",
     "button_label": "Prenumeruoti"
   },
   "accessibility": {

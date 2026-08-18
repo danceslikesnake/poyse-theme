@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Email",
     "success": "Thanks for subscribing",
+    "error": "Something went wrong, please try again.",
     "button_label": "Subscribe"
   },
   "accessibility": {

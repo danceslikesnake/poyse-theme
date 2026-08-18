@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Email",
     "success": "Cảm ơn bạn đã đăng ký",
+    "error": "Đã xảy ra lỗi, vui lòng thử lại.",
     "button_label": "Đăng ký"
   },
   "accessibility": {

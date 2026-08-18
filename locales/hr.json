@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Adresa e-pošte",
     "success": "Hvala što ste se pretplatili",
+    "error": "Došlo je do pogreške, pokušajte ponovo.",
     "button_label": "Pretplatite se"
   },
   "accessibility": {

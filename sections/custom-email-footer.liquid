@@ -1,4 +1,5 @@
 {{ 'section-custom-email-footer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'email-footer-klaviyo.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign heading_block = section.blocks | where: 'type', 'heading' | first
@@ -41,52 +42,54 @@
 
     {%- if email_form_block != blank -%}
       <div class="email-footer__form-wrapper" {{ email_form_block.shopify_attributes }}>
-        {% form 'customer', class: 'email-footer__form' %}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="email-footer__field">
-            <label class="visually-hidden" for="EmailFooterForm--{{ section.id }}">
-              {{ 'newsletter.label' | t }}
-            </label>
-            <input
-              id="EmailFooterForm--{{ section.id }}"
-              type="email"
-              name="contact[email]"
-              class="email-footer__input"
-              value="{{ form.email }}"
-              aria-required="true"
-              autocorrect="off"
-              autocapitalize="off"
-              autocomplete="email"
-              {% if form.errors %}
-                autofocus
-                aria-invalid="true"
-                aria-describedby="EmailFooterForm-error--{{ section.id }}"
-              {% elsif form.posted_successfully? %}
-                aria-describedby="EmailFooterForm-success--{{ section.id }}"
-              {% endif %}
-              placeholder="{{ email_form_block.settings.placeholder_text | escape }}"
-              required
+        <email-footer-klaviyo-form
+          data-company-id="VaWq6i"
+          data-list-id="TM8ZVR"
+        >
+          <form class="email-footer__form" data-klaviyo-form novalidate>
+            <div class="email-footer__field">
+              <label class="visually-hidden" for="EmailFooterForm--{{ section.id }}">
+                {{ 'newsletter.label' | t }}
+              </label>
+              <input
+                id="EmailFooterForm--{{ section.id }}"
+                type="email"
+                class="email-footer__input"
+                data-klaviyo-email
+                aria-required="true"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                aria-describedby="EmailFooterForm-success--{{ section.id }} EmailFooterForm-error--{{ section.id }}"
+                placeholder="{{ email_form_block.settings.placeholder_text | escape }}"
+                required
+              >
+              <button
+                type="submit"
+                class="email-footer__button section-{{ section.id }}-button"
+                data-klaviyo-submit
+              >
+                {{- email_form_block.settings.button_label | escape -}}
+              </button>
+            </div>
+            <p
+              class="email-footer__message"
+              id="EmailFooterForm-error--{{ section.id }}"
+              data-klaviyo-error
+              hidden
             >
-            <button
-              type="submit"
-              class="email-footer__button section-{{ section.id }}-button"
-              name="commit"
+              {{- 'newsletter.error' | t -}}
+            </p>
+            <p
+              class="email-footer__message email-footer__message--success"
+              id="EmailFooterForm-success--{{ section.id }}"
+              data-klaviyo-success
+              hidden
             >
-              {{- email_form_block.settings.button_label | escape -}}
-            </button>
-          </div>
-          {%- if form.errors -%}
-            <small class="email-footer__message" id="EmailFooterForm-error--{{ section.id }}">
-              {{- form.errors.translated_fields.email | capitalize }}
-              {{ form.errors.messages.email -}}
-            </small>
-          {%- endif -%}
-          {%- if form.posted_successfully? -%}
-            <p class="email-footer__message email-footer__message--success" id="EmailFooterForm-success--{{ section.id }}" tabindex="-1" autofocus>
               {{- 'newsletter.success' | t -}}
             </p>
-          {%- endif -%}
-        {% endform %}
+          </form>
+        </email-footer-klaviyo-form>
       </div>
     {%- endif -%}
   </div>

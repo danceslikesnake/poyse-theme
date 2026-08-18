@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-mail",
     "success": "Vă mulțumim că v-ați abonat",
+    "error": "Ceva nu a mers bine, încercați din nou.",
     "button_label": "Abonați-vă"
   },
   "accessibility": {

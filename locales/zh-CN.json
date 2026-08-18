@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "电子邮件",
     "success": "感谢您订阅",
+    "error": "出了点问题，请重试。",
     "button_label": "订阅"
   },
   "accessibility": {

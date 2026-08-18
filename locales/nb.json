@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-post",
     "success": "Takk for at du abonnerer",
+    "error": "Noe gikk galt, prøv igjen.",
     "button_label": "Abonner"
   },
   "accessibility": {

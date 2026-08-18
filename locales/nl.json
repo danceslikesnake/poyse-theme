@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E‑mail",
     "success": "Bedankt voor het abonneren",
+    "error": "Er is iets misgegaan, probeer het opnieuw.",
     "button_label": "Abonneren"
   },
   "accessibility": {

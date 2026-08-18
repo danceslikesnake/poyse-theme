@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "Sähköposti",
     "success": "Kiitos tilauksesta",
+    "error": "Jokin meni pieleen, yritä uudelleen.",
     "button_label": "Tilaa"
   },
   "accessibility": {

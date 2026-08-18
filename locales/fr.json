@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-mail",
     "success": "Merci de votre inscription",
+    "error": "Une erreur s'est produite, veuillez réessayer.",
     "button_label": "S'inscrire"
   },
   "accessibility": {

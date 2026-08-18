@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-poštni naslov",
     "success": "Hvala, ker ste se naročili",
+    "error": "Prišlo je do napake, poskusite znova.",
     "button_label": "Naroči"
   },
   "accessibility": {

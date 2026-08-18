@@ -69,6 +69,7 @@
   "newsletter": {
     "label": "E-mail-cím",
     "success": "Köszönjük a feliratkozást",
+    "error": "Hiba történt, próbálja újra.",
     "button_label": "Feliratkozás"
   },
   "accessibility": {
