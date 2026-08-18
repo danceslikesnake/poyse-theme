@@ -124,7 +124,11 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
           document.querySelector('cart-drawer')?.classList.toggle('is-empty', isEmpty);
           document.querySelector('cart-drawer .drawer__inner')?.classList.toggle('is-empty', isEmpty);
 
-          const selectors = ['cart-drawer-items', '.cart-drawer__footer', '.drawer__heading'];
+          // .cart__ctas (the checkout button) is a sibling of .cart-drawer__footer, not a
+          // child of it -- its disabled attribute is baked in server-side from cart==empty
+          // at page load, so it also needs its own swap or it stays stuck disabled after an
+          // external AJAX add to a previously-empty cart.
+          const selectors = ['cart-drawer-items', '.cart-drawer__footer', '.drawer__heading', '.cart__ctas'];
           for (const selector of selectors) {
             const targetElement = document.querySelector(selector);
             const sourceElement = html.querySelector(selector);
