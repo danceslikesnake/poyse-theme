@@ -125,6 +125,12 @@
       "share": "Deli ta izdelek",
       "sold_out": "Razprodano",
       "unavailable": "Ni na voljo",
+      "subscription": {
+        "limit_reached": "Dosegli ste omejitev 3 naročniških okusov v košarici.",
+        "already_subscribed": "Ta okus je že del vaše naročnine.",
+        "already_in_cart": "Ta okus je že v vaši košarici.",
+        "added_to_cart": "Dodano v košarico"
+      },
       "vendor": "Prodajalec",
       "video_exit_message": "{{ title }} odpre celozaslonski videoposnetek v istem oknu.",
       "xr_button": "Prikaži v prostoru",
@@ -298,10 +304,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -310,7 +315,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Obvestilo",
       "menu": "Meni",
@@ -323,6 +327,12 @@
     },
     "cart": {
       "title": "Vaša košarica",
+      "title_with_count": "Vaša košarica ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Brez naročnine",
+      "one_time_upsell_caption": "Prihranite 10 % + brezplačna kapa in brisača",
+      "ships_once_per_month": "Dostava enkrat mesečno",
+      "subtotal": "Delna vsota",
       "caption": "Izdelki v košarici",
       "remove_title": "Odstrani izdelek {{ title }}",
       "note": "Posebna navodila za naročilo",

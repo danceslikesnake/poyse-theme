@@ -77,6 +77,7 @@
           "type": "flavor",
           "settings": {
             "label": "Yuzu Citrus",
+            "product": "yuzu-citrus",
             "video_mov_url": "https://cdn.shopify.com/videos/c/o/v/1092b23a58f84736b2e2d2f3ab54cab3.mov",
             "video_webm_url": "https://cdn.shopify.com/videos/c/o/v/fe63869c15a946cebae4a3b86cfdc7b2.webm"
           }
@@ -85,6 +86,7 @@
           "type": "flavor",
           "settings": {
             "label": "Tropical Mango",
+            "product": "tropical-mango",
             "video_mov_url": "",
             "video_webm_url": "",
             "poster_image": "shopify://shop_images/Poyse_System_3.png"
@@ -94,6 +96,7 @@
           "type": "flavor",
           "settings": {
             "label": "Strawberry Watermelon",
+            "product": "strawberry-watermelon",
             "video_mov_url": "",
             "video_webm_url": "",
             "poster_image": "shopify://shop_images/Poyse_System_4.png"
@@ -110,9 +113,7 @@
           "type": "subscription",
           "settings": {
             "monthly_label": "Monthly Subscription",
-            "monthly_price": "$49.00 per month",
             "onetime_label": "One-Time Purchase",
-            "onetime_price": "$54.00 one-time",
             "cta_label": "Add to Cart"
           }
         }
@@ -199,9 +200,7 @@
             "show_new_arrival_badge": true,
             "show_best_seller_badge": false,
             "monthly_label": "Monthly Subscription",
-            "monthly_price": "$49.00 per month",
             "onetime_label": "One-Time Purchase",
-            "onetime_price": "$54.00 one-time",
             "cta_label": "Add to Cart"
           }
         },
@@ -213,9 +212,7 @@
             "show_new_arrival_badge": false,
             "show_best_seller_badge": false,
             "monthly_label": "Monthly Subscription",
-            "monthly_price": "$49.00 per month",
             "onetime_label": "One-Time Purchase",
-            "onetime_price": "$54.00 one-time",
             "cta_label": "Add to Cart"
           }
         },
@@ -227,9 +224,7 @@
             "show_new_arrival_badge": true,
             "show_best_seller_badge": true,
             "monthly_label": "Monthly Subscription",
-            "monthly_price": "$49.00 per month",
             "onetime_label": "One-Time Purchase",
-            "onetime_price": "$54.00 one-time",
             "cta_label": "Add to Cart"
           }
         }

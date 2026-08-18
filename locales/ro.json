@@ -124,6 +124,12 @@
       "share": "Distribuiți acest produs",
       "sold_out": "Stoc epuizat",
       "unavailable": "Indisponibil",
+      "subscription": {
+        "limit_reached": "Ați atins limita de 3 arome cu abonament în coș.",
+        "already_subscribed": "Această aromă face deja parte din abonamentul dvs.",
+        "already_in_cart": "Această aromă este deja în coșul dvs.",
+        "added_to_cart": "Adăugat în coș"
+      },
       "vendor": "Vânzător",
       "video_exit_message": "{{ title }} deschide videoclipul în ecran complet în aceeași fereastră.",
       "xr_button": "Vizualizați în spațiul dvs.",
@@ -289,10 +295,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -301,7 +306,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Anunț",
       "menu": "Meniu",
@@ -313,6 +317,12 @@
     },
     "cart": {
       "title": "Coșul dvs.",
+      "title_with_count": "Coșul tău ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Fără abonament",
+      "one_time_upsell_caption": "Economisește 10% + șapcă și prosop gratuite",
+      "ships_once_per_month": "Se livrează o dată pe lună",
+      "subtotal": "Subtotal",
       "caption": "Articole din coș",
       "remove_title": "Eliminați {{ title }}",
       "note": "Instrucțiuni speciale legate de comandă",

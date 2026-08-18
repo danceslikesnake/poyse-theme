@@ -1,5 +1,6 @@
 {{ 'section-custom-homepage-hero.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'homepage-hero.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'feature-item.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign slides = section.blocks | where: 'type', 'slide'
@@ -191,34 +192,103 @@
           </div>
         {%- endif -%}
 
-        {%- if subscription_block != blank -%}
-          <div {{ subscription_block.shopify_attributes }}>
-            <fieldset class="hero-showcase__subscription">
-              <legend class="visually-hidden">{{ 'sections.custom_homepage_hero.subscription_legend' | t }}</legend>
-              <label class="hero-showcase__subscription-option">
-                <input
-                        type="radio"
-                        name="Subscription-{{ section.id }}"
-                        data-subscription-option
-                        data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price }}"
-                        checked
-                >
-                {{- subscription_block.settings.monthly_label | escape -}}
-              </label>
-              <label class="hero-showcase__subscription-option">
-                <input
-                        type="radio"
-                        name="Subscription-{{ section.id }}"
-                        data-subscription-option
-                        data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.onetime_price }}"
-                >
-                {{- subscription_block.settings.onetime_label | escape -}}
-              </label>
-            </fieldset>
+        {%- if subscription_block != blank and flavors.size > 0 -%}
+          <div class="hero-showcase__purchase-wrap" {{ subscription_block.shopify_attributes }}>
+            {%- for block in flavors -%}
+              {%- liquid
+                assign flavor_product = block.settings.product
+                assign variant = flavor_product.selected_or_first_available_variant
+                assign selling_plan_group = flavor_product.selling_plan_groups.first
+                assign selling_plan = selling_plan_group.selling_plans.first
 
-            <button type="button" class="custom-cta-button full-width-cta-on-mobile" data-cta>
-              {{- subscription_block.settings.cta_label | append: ' - ' | append: subscription_block.settings.monthly_price -}}
-            </button>
+                assign selling_plan_allocation = blank
+                if selling_plan != blank
+                  for allocation in variant.selling_plan_allocations
+                    if allocation.selling_plan.id == selling_plan.id
+                      assign selling_plan_allocation = allocation
+                      break
+                    endif
+                  endfor
+                endif
+
+                assign onetime_price = variant.price | money
+                if selling_plan_allocation != blank
+                  assign monthly_price = selling_plan_allocation.price | money
+                endif
+              -%}
+              <feature-item
+                class="hero-showcase__purchase{% if forloop.first %} is-active{% endif %}"
+                data-flavor-purchase="{{ block.id }}"
+                data-product-id="{{ flavor_product.id }}"
+                data-message-limit-reached="{{ 'products.product.subscription.limit_reached' | t | escape }}"
+                data-message-already-subscribed="{{ 'products.product.subscription.already_subscribed' | t | escape }}"
+                data-added-to-cart-text="{{ 'products.product.subscription.added_to_cart' | t | escape }}"
+                data-adding-text="{{ 'accessibility.loading' | t | escape }}"
+                data-cart-error-text="{{ 'sections.cart.cart_error' | t | escape }}"
+              >
+                {%- if flavor_product -%}
+                {%- form 'product', flavor_product, class: 'hero-showcase__form', data-type: 'add-to-cart-form' -%}
+                  <input
+                    type="hidden"
+                    name="id"
+                    value="{{ variant.id }}"
+                    {% if variant == null %}disabled{% endif %}
+                  >
+                  <input
+                    type="hidden"
+                    name="selling_plan"
+                    value="{{ selling_plan_allocation.selling_plan.id }}"
+                    data-selling-plan-input
+                    {% if selling_plan_allocation == blank %}disabled{% endif %}
+                  >
+
+                  <fieldset class="hero-showcase__subscription">
+                    <legend class="visually-hidden">{{ 'sections.custom_homepage_hero.subscription_legend' | t }}</legend>
+                    <label class="hero-showcase__subscription-option">
+                      <input
+                        type="radio"
+                        name="Subscription-{{ block.id }}"
+                        data-subscription-option
+                        data-plan-type="subscribe"
+                        data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: monthly_price }}"
+                        {% if selling_plan_allocation == blank %}disabled{% else %}checked{% endif %}
+                      >
+                      {{- subscription_block.settings.monthly_label | escape -}}
+                    </label>
+                    <label class="hero-showcase__subscription-option">
+                      <input
+                        type="radio"
+                        name="Subscription-{{ block.id }}"
+                        data-subscription-option
+                        data-plan-type="one_time"
+                        data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: onetime_price }}"
+                        {% if selling_plan_allocation == blank %}checked{% endif %}
+                      >
+                      {{- subscription_block.settings.onetime_label | escape -}}
+                    </label>
+                  </fieldset>
+
+                  <p class="hero-showcase__subscription-message" data-subscription-message hidden></p>
+
+                  <button
+                    type="submit"
+                    name="add"
+                    class="custom-cta-button full-width-cta-on-mobile"
+                    data-cta
+                    {% if variant == null %}disabled{% endif %}
+                  >
+                    {%- if variant == null -%}
+                      {{- 'products.product.unavailable' | t -}}
+                    {%- elsif selling_plan_allocation != blank -%}
+                      {{- subscription_block.settings.cta_label | append: ' - ' | append: monthly_price -}}
+                    {%- else -%}
+                      {{- subscription_block.settings.cta_label | append: ' - ' | append: onetime_price -}}
+                    {%- endif -%}
+                  </button>
+                {%- endform -%}
+                {%- endif -%}
+              </feature-item>
+            {%- endfor -%}
           </div>
         {%- endif -%}
       </div>
@@ -372,6 +442,11 @@
           "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.label.label"
         },
         {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.product.label"
+        },
+        {
           "type": "video",
           "id": "video",
           "label": "t:sections.custom-homepage-hero.blocks.flavor.settings.video.label"
@@ -436,21 +511,9 @@
         },
         {
           "type": "text",
-          "id": "monthly_price",
-          "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.monthly_price.default",
-          "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.monthly_price.label"
-        },
-        {
-          "type": "text",
           "id": "onetime_label",
           "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_label.default",
           "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_label.label"
-        },
-        {
-          "type": "text",
-          "id": "onetime_price",
-          "default": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_price.default",
-          "label": "t:sections.custom-homepage-hero.blocks.subscription.settings.onetime_price.label"
         },
         {
           "type": "text",
@@ -490,15 +553,15 @@
         },
         {
           "type": "flavor",
-          "settings": { "label": "Yuzu Citrus" }
+          "settings": { "label": "Yuzu Citrus", "product": "yuzu-citrus" }
         },
         {
           "type": "flavor",
-          "settings": { "label": "Tropical Mango" }
+          "settings": { "label": "Tropical Mango", "product": "tropical-mango" }
         },
         {
           "type": "flavor",
-          "settings": { "label": "Strawberry Watermelon" }
+          "settings": { "label": "Strawberry Watermelon", "product": "strawberry-watermelon" }
         },
         { "type": "product_info" },
         { "type": "subscription" }

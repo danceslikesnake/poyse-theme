@@ -142,6 +142,12 @@
       "share": "Dieses Produkt teilen",
       "sold_out": "Ausverkauft",
       "unavailable": "Nicht verfügbar",
+      "subscription": {
+        "limit_reached": "Du hast das Limit von 3 Abo-Sorten in deinem Warenkorb erreicht.",
+        "already_subscribed": "Diese Sorte ist bereits Teil deines Abos.",
+        "already_in_cart": "Diese Sorte ist bereits in deinem Warenkorb.",
+        "added_to_cart": "Zum Warenkorb hinzugefügt"
+      },
       "vendor": "Anbieter",
       "video_exit_message": "{{ title }} öffnet das Video auf derselben Seite im Vollbildmodus.",
       "xr_button": "In deinem Bereich ansehen",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Ankündigung",
       "menu": "Menü",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Dein Warenkorb",
+      "title_with_count": "Ihr Warenkorb ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Ohne Abo",
+      "one_time_upsell_caption": "10 % sparen + gratis Cap + Handtuch",
+      "ships_once_per_month": "Wird einmal im Monat versendet",
+      "subtotal": "Zwischensumme",
       "caption": "Artikel im Warenkorb",
       "remove_title": "{{ title }} entfernen",
       "note": "Spezielle Bestellanweisungen",

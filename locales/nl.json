@@ -142,6 +142,12 @@
       "share": "Dit product delen",
       "sold_out": "Uitverkocht",
       "unavailable": "Niet beschikbaar",
+      "subscription": {
+        "limit_reached": "Je hebt de limiet van 3 abonnementssmaken in je winkelwagen bereikt.",
+        "already_subscribed": "Deze smaak maakt al deel uit van je abonnement.",
+        "already_in_cart": "Deze smaak zit al in je winkelwagen.",
+        "added_to_cart": "Toegevoegd aan winkelwagen"
+      },
       "vendor": "Verkoper",
       "video_exit_message": "{{ title }} opent een video op volledig scherm in hetzelfde venster.",
       "xr_button": "Bekijk in je ruimte",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Aankondiging",
       "menu": "Menu",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Je winkelwagen",
+      "title_with_count": "Jouw winkelwagen ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Zonder abonnement",
+      "one_time_upsell_caption": "Bespaar 10% + gratis pet en handdoek",
+      "ships_once_per_month": "Wordt eenmaal per maand verzonden",
+      "subtotal": "Subtotaal",
       "caption": "Artikelen in winkelwagen",
       "remove_title": "{{ title }} verwijderen",
       "note": "Speciale instructies voor bestelling",

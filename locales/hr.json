@@ -124,6 +124,12 @@
       "share": "Podijelite ovaj proizvod",
       "sold_out": "Rasprodano",
       "unavailable": "Nedostupno",
+      "subscription": {
+        "limit_reached": "Dosegli ste ograničenje od 3 pretplaćena okusa u košarici.",
+        "already_subscribed": "Ovaj okus već je dio vaše pretplate.",
+        "already_in_cart": "Ovaj okus već je u vašoj košarici.",
+        "added_to_cart": "Dodano u košaricu"
+      },
       "vendor": "Prodavač",
       "video_exit_message": "Za {{ title }} otvara se videozapis preko čitavog zaslona u istom prozoru.",
       "xr_button": "Pogledajte u svojem prostoru",
@@ -289,10 +295,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -301,7 +306,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Objava",
       "menu": "Izbornik",
@@ -313,6 +317,12 @@
     },
     "cart": {
       "title": "Vaša košarica",
+      "title_with_count": "Vaša košarica ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Bez pretplate",
+      "one_time_upsell_caption": "Uštedite 10% + besplatna kapa i ručnik",
+      "ships_once_per_month": "Dostavlja se jednom mjesečno",
+      "subtotal": "Međuzbroj",
       "caption": "Artikli u kokšarici",
       "remove_title": "Ukloni {{ title }}",
       "note": "Ostale posebne upute",

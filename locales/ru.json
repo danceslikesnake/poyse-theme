@@ -124,6 +124,12 @@
       "share": "Поделиться этим продуктом",
       "sold_out": "Продано",
       "unavailable": "Недоступно",
+      "subscription": {
+        "limit_reached": "Вы достигли лимита в 3 вкуса по подписке в корзине.",
+        "already_subscribed": "Этот вкус уже включён в вашу подписку.",
+        "already_in_cart": "Этот вкус уже в вашей корзине.",
+        "added_to_cart": "Добавлено в корзину"
+      },
       "vendor": "Продавец",
       "video_exit_message": "{{ title }} – в том же окне открывается полноэкранное видео.",
       "xr_button": "Просматривайте в реальных условиях",
@@ -298,10 +304,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -310,7 +315,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Объявление",
       "menu": "Меню",
@@ -323,6 +327,12 @@
     },
     "cart": {
       "title": "Корзина",
+      "title_with_count": "Ваша корзина ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Без подписки",
+      "one_time_upsell_caption": "Скидка 10% + бесплатная кепка и полотенце",
+      "ships_once_per_month": "Доставка раз в месяц",
+      "subtotal": "Промежуточный итог",
       "caption": "Товары в корзине",
       "remove_title": "Удалить «{{ title }}»",
       "note": "Получить специальные инструкции",

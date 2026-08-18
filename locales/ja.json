@@ -143,6 +143,12 @@
       "share": "この商品を共有する",
       "sold_out": "売り切れ",
       "unavailable": "利用できません",
+      "subscription": {
+        "limit_reached": "カート内の定期購入できるフレーバーの上限（3つ）に達しました。",
+        "already_subscribed": "このフレーバーはすでに定期購入に含まれています。",
+        "already_in_cart": "このフレーバーはすでにカートに入っています。",
+        "added_to_cart": "カートに追加しました"
+      },
       "vendor": "販売元",
       "video_exit_message": "{{ title }}は同じウィンドウの全画面表示ビデオで開きます。",
       "xr_button": "スペースに表示する",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "告知",
       "menu": "メニュー",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "あなたのカート",
+      "title_with_count": "カート ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "サブスクリプションなし",
+      "one_time_upsell_caption": "10%オフ + 帽子とタオルが無料",
+      "ships_once_per_month": "月に一度配送",
+      "subtotal": "小計",
       "caption": "カートアイテム",
       "remove_title": "{{ title }}を削除する",
       "note": "注文に関する特別な指示・備考",

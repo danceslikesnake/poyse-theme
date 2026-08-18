@@ -143,6 +143,12 @@
       "share": "이 제품 공유",
       "sold_out": "품절",
       "unavailable": "사용할 수 없음",
+      "subscription": {
+        "limit_reached": "장바구니에 구독 가능한 맛의 한도(3개)에 도달했습니다.",
+        "already_subscribed": "이 맛은 이미 구독에 포함되어 있습니다.",
+        "already_in_cart": "이 맛은 이미 장바구니에 있습니다.",
+        "added_to_cart": "장바구니에 추가됨"
+      },
       "vendor": "공급업체",
       "video_exit_message": "{{ title }}이(가) 동일한 창에서 전체 화면으로 열립니다.",
       "xr_button": "사용자 공간에서 보기",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "공지",
       "menu": "메뉴",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "카트",
+      "title_with_count": "장바구니 ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "구독 없이",
+      "one_time_upsell_caption": "10% 할인 + 무료 모자 + 타월",
+      "ships_once_per_month": "매월 한 번 배송",
+      "subtotal": "소계",
       "caption": "카트 품목",
       "remove_title": "{{ title }} 제거",
       "note": "주문 특별 지침",

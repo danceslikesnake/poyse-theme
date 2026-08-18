@@ -143,6 +143,12 @@
       "share": "Chia sẻ sản phẩm này",
       "sold_out": "Đã bán hết",
       "unavailable": "Không có sẵn",
+      "subscription": {
+        "limit_reached": "Bạn đã đạt giới hạn 3 hương vị đăng ký trong giỏ hàng.",
+        "already_subscribed": "Hương vị này đã có trong gói đăng ký của bạn.",
+        "already_in_cart": "Hương vị này đã có trong giỏ hàng của bạn.",
+        "added_to_cart": "Đã thêm vào giỏ hàng"
+      },
       "vendor": "Nhà cung cấp",
       "video_exit_message": "{{ title }} mở video toàn màn hình ở cùng một cửa sổ.",
       "xr_button": "Xem tại không gian của bạn",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Thông báo",
       "menu": "Menu",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Giỏ hàng của bạn",
+      "title_with_count": "Giỏ hàng của bạn ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Không đăng ký",
+      "one_time_upsell_caption": "Tiết kiệm 10% + Tặng mũ và khăn",
+      "ships_once_per_month": "Giao hàng một lần mỗi tháng",
+      "subtotal": "Tạm tính",
       "caption": "Các mặt hàng trong giỏ hàng",
       "remove_title": "Xóa {{ title }}",
       "note": "Hướng dẫn đặc biệt của đơn hàng",

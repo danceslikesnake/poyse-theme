@@ -180,6 +180,12 @@
       "share": "Share this product",
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
+      "subscription": {
+        "limit_reached": "You've reached the limit of 3 subscription flavors in your cart.",
+        "already_subscribed": "This flavor is already in your subscription.",
+        "already_in_cart": "This flavor is already in your cart.",
+        "added_to_cart": "Added to Cart"
+      },
       "vendor": "Vendor",
       "value_unavailable": "{{ option_value }} - Unavailable",
       "variant_sold_out_or_unavailable": "Variant sold out or unavailable",
@@ -332,6 +338,12 @@
     },
     "cart": {
       "title": "Your cart",
+      "title_with_count": "Your Cart ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Without Subscription",
+      "one_time_upsell_caption": "Save 10% + Free Hat + Towel",
+      "ships_once_per_month": "Ships Once Per Month",
+      "subtotal": "Subtotal",
       "caption": "Cart items",
       "remove_title": "Remove {{ title }}",
       "estimated_total": "Estimated total",

@@ -19,6 +19,15 @@ cart-items .title-wrapper-with-link {
   display: flex;
 }
 
+/* Each cart line represents one flavor/plan combination that can only ever be quantity 1
+   (see subscription cap rules) -- the +/- stepper doesn't apply, only removing the line does.
+   !important since these are Dawn's own utility/component classes with their own specificity. */
+.quantity-popover-container,
+.quantity-popover__info-button.large-up-hide,
+.cart-items__heading--quantity {
+  display: none !important;
+}
+
 .cart-item__totals {
   position: relative;
 }

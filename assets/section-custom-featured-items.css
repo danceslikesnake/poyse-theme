@@ -192,3 +192,18 @@
   width: 100%;
   margin-top: 1.2rem;
 }
+
+.feature-item__subscription-message {
+  margin: 0.8rem 0 0;
+  font-size: var(--font-size-2xs);
+  color: var(--poyse-evening-fig);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.custom-cta-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

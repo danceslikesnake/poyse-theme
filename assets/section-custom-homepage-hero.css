@@ -314,6 +314,14 @@
   background-color: #D97170;
 }
 
+.hero-showcase__purchase {
+  display: none;
+}
+
+.hero-showcase__purchase.is-active {
+  display: block;
+}
+
 .hero-showcase__product-title {
   font-family: 'EsBuildMedium', sans-serif;
   margin: 8px 0 0 0;
@@ -386,6 +394,22 @@
   &:checked::after {
     opacity: 1;
   }
+}
+
+.hero-showcase__subscription-message {
+  margin: 0 0 0.8rem;
+  text-align: center;
+  font-size: var(--font-size-2xs);
+  color: var(--poyse-evening-fig);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.custom-cta-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .hero-showcase__cta {

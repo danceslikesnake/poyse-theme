@@ -142,6 +142,12 @@
       "share": "Jaa tämä tuote",
       "sold_out": "Loppuunmyyty",
       "unavailable": "Ei käytettävissä",
+      "subscription": {
+        "limit_reached": "Olet saavuttanut tilauskorissa olevien 3 maun rajan.",
+        "already_subscribed": "Tämä maku kuuluu jo tilaukseesi.",
+        "already_in_cart": "Tämä maku on jo ostoskorissasi.",
+        "added_to_cart": "Lisätty ostoskoriin"
+      },
       "vendor": "Myyjä",
       "video_exit_message": "{{ title }} avaa koko näytön videon samassa ikkunassa.",
       "xr_button": "Näytä omassa tilassasi",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Ilmoitus",
       "menu": "Valikko",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Ostoskorisi",
+      "title_with_count": "Ostoskorisi ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Ilman tilausta",
+      "one_time_upsell_caption": "Säästä 10 % + ilmainen lippis ja pyyhe",
+      "ships_once_per_month": "Toimitetaan kerran kuukaudessa",
+      "subtotal": "Välisumma",
       "caption": "Ostoskorin tuotteet",
       "remove_title": "Poista {{ title }}",
       "note": "Tilauksen erityisohjeet",

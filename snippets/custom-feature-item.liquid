@@ -2,6 +2,16 @@
   Renders a single featured-product card (image, title, subtitle, purchase-option
   toggle, CTA). Self-contained and reusable outside of custom-featured-items.liquid.
 
+  The purchase-option radios here are our own markup (kept, unlike the main PDP buy box,
+  which shows Seal Subscriptions' own widget directly). Seal's client-side widget does NOT
+  work here -- confirmed by testing, its JS only ever fetches plan data for the page's own
+  canonical product, so it never populates for a "foreign" product's form embedded in a
+  grid/carousel/the PDP's "More Flavors" section. That's fine: the selling_plan id itself is
+  ordinary Shopify platform data (product.selling_plan_groups), valid for any product
+  regardless of which app manages it, so it's read directly via Liquid below and submitted
+  in our own hidden field -- no Seal JS involvement needed for this to work correctly. Adds
+  to cart via AJAX (no page navigation) since this card can appear many-up in a grid.
+
   Accepts:
   - product: {Object} product resource (image/title/url source)
   - subtitle: {String} rich text subtitle, e.g. "with Paraxanthine <em>for Daily Momentum</em>"
@@ -10,9 +20,7 @@
   - show_new_arrival_badge: {Boolean}
   - show_best_seller_badge: {Boolean}
   - monthly_label: {String}
-  - monthly_price: {String}
   - onetime_label: {String}
-  - onetime_price: {String}
   - cta_label: {String}
   - card_color_scheme: {String} color scheme id for the image tile, e.g. "scheme-2"
   - unique_key: {String} unique id fragment for radio input names/ids
@@ -30,9 +38,37 @@
   elsif product.handle == 'tropical-mango'
     assign hover_image_url = 'hover-3.png' | asset_url
   endif
+
+  assign variant = product.selected_or_first_available_variant
+  assign selling_plan_group = product.selling_plan_groups.first
+  assign selling_plan = selling_plan_group.selling_plans.first
+
+  assign selling_plan_allocation = blank
+  if selling_plan != blank
+    for allocation in variant.selling_plan_allocations
+      if allocation.selling_plan.id == selling_plan.id
+        assign selling_plan_allocation = allocation
+        break
+      endif
+    endfor
+  endif
+
+  assign onetime_price = variant.price | money
+  if selling_plan_allocation != blank
+    assign monthly_price = selling_plan_allocation.price | money
+  endif
 -%}
 
-<feature-item class="feature-item" {{ shopify_attributes }}>
+<feature-item
+  class="feature-item"
+  data-product-id="{{ product.id }}"
+  data-message-limit-reached="{{ 'products.product.subscription.limit_reached' | t | escape }}"
+  data-message-already-subscribed="{{ 'products.product.subscription.already_subscribed' | t | escape }}"
+  data-added-to-cart-text="{{ 'products.product.subscription.added_to_cart' | t | escape }}"
+  data-adding-text="{{ 'accessibility.loading' | t | escape }}"
+  data-cart-error-text="{{ 'sections.cart.cart_error' | t | escape }}"
+  {{ shopify_attributes }}
+>
   <div
     class="feature-item__media color-{{ card_color_scheme }}"
     {% if hover_image_url != blank %}style="--feature-item-hover-image: url('{{ hover_image_url | escape }}');"{% endif %}
@@ -78,31 +114,66 @@
       <div class="feature-item__subtitle inline-richtext">{{ subtitle }}</div>
     {%- endif -%}
 
-    <fieldset class="feature-item__subscription">
-      <legend class="visually-hidden">{{ 'sections.custom_featured_items.subscription_legend' | t }}</legend>
-      <label class="feature-item__subscription-option">
-        <input
-          type="radio"
-          name="Subscription-{{ unique_key }}"
-          data-subscription-option
-          data-cta-text="{{ cta_label | append: ' - ' | append: monthly_price }}"
-          checked
-        >
-        {{- monthly_label | escape -}}
-      </label>
-      <label class="feature-item__subscription-option">
-        <input
-          type="radio"
-          name="Subscription-{{ unique_key }}"
-          data-subscription-option
-          data-cta-text="{{ cta_label | append: ' - ' | append: onetime_price }}"
-        >
-        {{- onetime_label | escape -}}
-      </label>
-    </fieldset>
+    {%- if product -%}
+    {%- form 'product', product, class: 'feature-item__form', data-type: 'add-to-cart-form' -%}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+        {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
+      >
+      <input
+        type="hidden"
+        name="selling_plan"
+        value="{{ selling_plan_allocation.selling_plan.id }}"
+        data-selling-plan-input
+        {% if selling_plan_allocation == blank %}disabled{% endif %}
+      >
 
-    <button type="button" class="custom-cta-button full-width-cta" data-cta>
-      {{- cta_label | append: ' - ' | append: monthly_price -}}
-    </button>
+      <fieldset class="feature-item__subscription">
+        <legend class="visually-hidden">{{ 'sections.custom_featured_items.subscription_legend' | t }}</legend>
+        <label class="feature-item__subscription-option">
+          <input
+            type="radio"
+            name="Subscription-{{ unique_key }}"
+            data-subscription-option
+            data-plan-type="subscribe"
+            data-cta-text="{{ cta_label | append: ' - ' | append: monthly_price }}"
+            {% if selling_plan_allocation == blank %}disabled{% else %}checked{% endif %}
+          >
+          {{- monthly_label | escape -}}
+        </label>
+        <label class="feature-item__subscription-option">
+          <input
+            type="radio"
+            name="Subscription-{{ unique_key }}"
+            data-subscription-option
+            data-plan-type="one_time"
+            data-cta-text="{{ cta_label | append: ' - ' | append: onetime_price }}"
+            {% if selling_plan_allocation == blank %}checked{% endif %}
+          >
+          {{- onetime_label | escape -}}
+        </label>
+      </fieldset>
+
+      <p class="feature-item__subscription-message" data-subscription-message hidden></p>
+
+      <button
+        type="submit"
+        name="add"
+        class="custom-cta-button full-width-cta"
+        data-cta
+        {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
+      >
+        {%- if product.selected_or_first_available_variant == null -%}
+          {{- 'products.product.unavailable' | t -}}
+        {%- elsif selling_plan_allocation != blank -%}
+          {{- cta_label | append: ' - ' | append: monthly_price -}}
+        {%- else -%}
+          {{- cta_label | append: ' - ' | append: onetime_price -}}
+        {%- endif -%}
+      </button>
+    {%- endform -%}
+    {%- endif -%}
   </div>
 </feature-item>

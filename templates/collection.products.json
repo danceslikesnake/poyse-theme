@@ -26,9 +26,7 @@
         "color_scheme": "scheme-1",
         "card_color_scheme": "scheme-2",
         "monthly_label": "Monthly Subscription",
-        "monthly_price": "$49.00 per month",
         "onetime_label": "One-Time Purchase",
-        "onetime_price": "$54.00 one-time",
         "cta_label": "Add to Cart",
         "padding_top": 36,
         "padding_bottom": 36

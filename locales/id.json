@@ -143,6 +143,12 @@
       "share": "Bagikan produk ini",
       "sold_out": "Habis",
       "unavailable": "Tidak Tersedia",
+      "subscription": {
+        "limit_reached": "Anda telah mencapai batas 3 rasa berlangganan di keranjang Anda.",
+        "already_subscribed": "Rasa ini sudah termasuk dalam langganan Anda.",
+        "already_in_cart": "Rasa ini sudah ada di keranjang Anda.",
+        "added_to_cart": "Ditambahkan ke keranjang"
+      },
       "vendor": "Vendor",
       "video_exit_message": "{{ title }} membuka video layar penuh di jendela yang sama.",
       "xr_button": "Lihat di lokasi Anda",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Pengumuman",
       "menu": "Menu",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Keranjang Anda",
+      "title_with_count": "Keranjang Anda ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Tanpa Langganan",
+      "one_time_upsell_caption": "Hemat 10% + Topi & Handuk Gratis",
+      "ships_once_per_month": "Dikirim sekali sebulan",
+      "subtotal": "Subtotal",
       "caption": "Item di keranjang",
       "remove_title": "Hapus {{ title }}",
       "note": "Instruksi khusus pesanan",

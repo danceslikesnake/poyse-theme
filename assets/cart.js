@@ -115,7 +115,16 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
         .then((response) => response.text())
         .then((responseText) => {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
-          const selectors = ['cart-drawer-items', '.cart-drawer__footer'];
+
+          // Swapping in fresh cart-drawer-items/footer markup below doesn't touch the
+          // is-empty class living on the outer <cart-drawer>/.drawer__inner wrappers --
+          // without this, an external AJAX add (e.g. a homepage feature-item card) leaves
+          // the empty-state message showing even though the totals just updated.
+          const isEmpty = html.querySelector('cart-drawer')?.classList.contains('is-empty') ?? false;
+          document.querySelector('cart-drawer')?.classList.toggle('is-empty', isEmpty);
+          document.querySelector('cart-drawer .drawer__inner')?.classList.toggle('is-empty', isEmpty);
+
+          const selectors = ['cart-drawer-items', '.cart-drawer__footer', '.drawer__heading'];
           for (const selector of selectors) {
             const targetElement = document.querySelector(selector);
             const sourceElement = html.querySelector(selector);

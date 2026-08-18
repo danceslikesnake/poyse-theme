@@ -141,6 +141,12 @@
       },
       "share": "Споделяне на този продукт",
       "unavailable": "Неналично",
+      "subscription": {
+        "limit_reached": "Достигнахте лимита от 3 вкуса за абонамент в количката си.",
+        "already_subscribed": "Този вкус вече е включен във вашия абонамент.",
+        "already_in_cart": "Този вкус вече е в количката ви.",
+        "added_to_cart": "Добавено в количката"
+      },
       "vendor": "Доставчик",
       "video_exit_message": "{{ title }} отваря видео на цял екран в същия прозорец.",
       "xr_button": "Преглед във вашето пространство",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Известие",
       "menu": "Меню",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Вашата количка",
+      "title_with_count": "Вашата количка ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Без абонамент",
+      "one_time_upsell_caption": "Спестете 10% + Безплатна шапка + Кърпа",
+      "ships_once_per_month": "Доставя се веднъж месечно",
+      "subtotal": "Междинна сума",
       "caption": "Артикули в количката",
       "remove_title": "Премахване на {{ title }}",
       "checkout": "Преминаване към плащане",

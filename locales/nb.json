@@ -142,6 +142,12 @@
       "share": "Del dette produktet",
       "sold_out": "Utsolgt",
       "unavailable": "Utilgjengelig",
+      "subscription": {
+        "limit_reached": "Du har nådd grensen på 3 abonnementssmaker i handlekurven.",
+        "already_subscribed": "Denne smaken er allerede en del av abonnementet ditt.",
+        "already_in_cart": "Denne smaken er allerede i handlekurven din.",
+        "added_to_cart": "Lagt i handlekurven"
+      },
       "vendor": "Selger",
       "video_exit_message": "{{ title }} åpner en fullskjermvideo i det samme vinduet.",
       "xr_button": "Se på din plass",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Kunngjøring",
       "menu": "Meny",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Handlekurven din",
+      "title_with_count": "Handlekurven din ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Uten abonnement",
+      "one_time_upsell_caption": "Spar 10 % + gratis caps og håndkle",
+      "ships_once_per_month": "Sendes én gang i måneden",
+      "subtotal": "Delsum",
       "caption": "Varer i handlekurven",
       "remove_title": "Fjern {{ title }}",
       "note": "Spesielle instruksjoner for bestillingen",

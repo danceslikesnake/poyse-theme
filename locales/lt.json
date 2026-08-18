@@ -125,6 +125,12 @@
       "share": "Bendrinti šį gaminį",
       "sold_out": "Išparduota",
       "unavailable": "Nėra",
+      "subscription": {
+        "limit_reached": "Pasiekėte 3 prenumeruojamų skonių ribą krepšelyje.",
+        "already_subscribed": "Šis skonis jau yra jūsų prenumeratoje.",
+        "already_in_cart": "Šis skonis jau yra jūsų krepšelyje.",
+        "added_to_cart": "Pridėta į krepšelį"
+      },
       "vendor": "Tiekėjas",
       "video_exit_message": "{{ title }} atveria viso ekrano filmą tame pačiame lange.",
       "xr_button": "Peržiūra savo erdvėje",
@@ -298,10 +304,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -310,7 +315,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Skelbimas",
       "menu": "Meniu",
@@ -323,6 +327,12 @@
     },
     "cart": {
       "title": "Jūsų krepšelis",
+      "title_with_count": "Jūsų krepšelis ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Be prenumeratos",
+      "one_time_upsell_caption": "Sutaupykite 10 % + nemokama kepurė ir rankšluostis",
+      "ships_once_per_month": "Siunčiama kartą per mėnesį",
+      "subtotal": "Tarpinė suma",
       "caption": "Krepšelio turinys",
       "remove_title": "Pašalinti {{ title }}",
       "note": "Specialūs nurodymai dėl užsakymo",

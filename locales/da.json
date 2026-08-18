@@ -142,6 +142,12 @@
       "share": "Del dette produkt",
       "sold_out": "Udsolgt",
       "unavailable": "Ikke tilgængelig",
+      "subscription": {
+        "limit_reached": "Du har nået grænsen på 3 abonnementssmagsvarianter i din kurv.",
+        "already_subscribed": "Denne smag er allerede en del af dit abonnement.",
+        "already_in_cart": "Denne smag er allerede i din kurv.",
+        "added_to_cart": "Tilføjet til kurv"
+      },
       "vendor": "Forhandler",
       "video_exit_message": "{{ title }} åbner video i fuld skærm i samme vindue.",
       "xr_button": "Se den i dit område",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Meddelelse",
       "menu": "Menu",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Din indkøbskurv",
+      "title_with_count": "Din kurv ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Uden abonnement",
+      "one_time_upsell_caption": "Spar 10 % + gratis kasket + håndklæde",
+      "ships_once_per_month": "Sendes én gang om måneden",
+      "subtotal": "Subtotal",
       "caption": "Varer i indkøbskurv",
       "remove_title": "Fjern {{ title }}",
       "note": "Særlige instruktioner til ordre",

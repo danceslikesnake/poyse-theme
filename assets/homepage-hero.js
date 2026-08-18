@@ -8,7 +8,6 @@ class HomepageHero extends HTMLElement {
   connectedCallback() {
     this.initShowcaseRotator();
     this.initFlavorSwitcher();
-    this.initSubscriptionSwitcher();
   }
 
   disconnectedCallback() {
@@ -41,6 +40,10 @@ class HomepageHero extends HTMLElement {
   initFlavorSwitcher() {
     const buttons = this.querySelectorAll('[data-flavor-target]');
     const videos = this.querySelectorAll('[data-flavor-video]');
+    // Each flavor's own real purchase panel (a <feature-item>, same component used in the
+    // product grids) -- it drives its own radios/cart submission internally, this just
+    // shows/hides which flavor's panel is visible, matching the video crossfade above.
+    const purchasePanels = this.querySelectorAll('[data-flavor-purchase]');
     if (!buttons.length || !videos.length) return;
 
     buttons.forEach((button) => {
@@ -66,18 +69,10 @@ class HomepageHero extends HTMLElement {
             mediaEl.pause();
           }
         });
-      });
-    });
-  }
 
-  initSubscriptionSwitcher() {
-    const options = this.querySelectorAll('[data-subscription-option]');
-    const cta = this.querySelector('[data-cta]');
-    if (!options.length || !cta) return;
-
-    options.forEach((option) => {
-      option.addEventListener('change', () => {
-        if (option.checked) cta.textContent = option.dataset.ctaText;
+        purchasePanels.forEach((panel) => {
+          panel.classList.toggle('is-active', panel.dataset.flavorPurchase === targetId);
+        });
       });
     });
   }

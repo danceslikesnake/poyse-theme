@@ -142,6 +142,12 @@
       "share": "Dela den här produkten",
       "sold_out": "Slutsåld",
       "unavailable": "Inte tillgängliga",
+      "subscription": {
+        "limit_reached": "Du har nått gränsen på 3 prenumerationssmaker i din kundvagn.",
+        "already_subscribed": "Den här smaken ingår redan i din prenumeration.",
+        "already_in_cart": "Den här smaken finns redan i din kundvagn.",
+        "added_to_cart": "Tillagd i kundvagnen"
+      },
       "vendor": "Säljare",
       "video_exit_message": "{{ title }} öppnar helskärmsvideo i samma fönster.",
       "xr_button": "Visa i ditt utrymme",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Meddelande",
       "menu": "Meny",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Din varukorg",
+      "title_with_count": "Din varukorg ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Utan prenumeration",
+      "one_time_upsell_caption": "Spara 10 % + gratis keps och handduk",
+      "ships_once_per_month": "Skickas en gång i månaden",
+      "subtotal": "Delsumma",
       "caption": "Varukorgsartiklar",
       "remove_title": "Ta bort {{ title }}",
       "note": "Beställ särskilda instruktioner",

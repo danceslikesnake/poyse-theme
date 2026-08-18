@@ -124,6 +124,12 @@
       "share": "Sdílet tento produkt",
       "sold_out": "Vyprodáno",
       "unavailable": "Není k dispozici",
+      "subscription": {
+        "limit_reached": "Dosáhli jste limitu 3 předplacených příchutí v košíku.",
+        "already_subscribed": "Tato příchuť je již součástí vašeho předplatného.",
+        "already_in_cart": "Tato příchuť je již ve vašem košíku.",
+        "added_to_cart": "Přidáno do košíku"
+      },
       "vendor": "Vendor",
       "video_exit_message": "{{ title }} otevře ve stejném okně video na celé obrazovce.",
       "xr_button": "Zobrazit ve vašem prostoru",
@@ -298,10 +304,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -310,7 +315,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Oznámení",
       "menu": "Nabídka",
@@ -323,6 +327,12 @@
     },
     "cart": {
       "title": "Váš košík",
+      "title_with_count": "Váš košík ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Bez předplatného",
+      "one_time_upsell_caption": "Ušetřete 10 % + dárková čepice + ručník zdarma",
+      "ships_once_per_month": "Odesíláno jednou měsíčně",
+      "subtotal": "Mezisoučet",
       "caption": "Položky košíku",
       "remove_title": "Odebrat: {{ title }}",
       "note": "Zvláštní pokyny k objednávce",

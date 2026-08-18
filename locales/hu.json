@@ -143,6 +143,12 @@
       "share": "A termék megosztása",
       "sold_out": "Elfogyott",
       "unavailable": "Nincs készleten",
+      "subscription": {
+        "limit_reached": "Elérted a kosaradban lévő 3 előfizetéses íz limitjét.",
+        "already_subscribed": "Ez az íz már része az előfizetésednek.",
+        "already_in_cart": "Ez az íz már a kosaradban van.",
+        "added_to_cart": "Kosárba téve"
+      },
       "vendor": "Forgalmazó",
       "video_exit_message": "{{ title }}: a teljes képernyős videó ugyanabban az ablakban nyílik meg.",
       "xr_button": "Megtekintés a saját környezetben",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Közlemény",
       "menu": "Menü",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Kosár",
+      "title_with_count": "Az Ön kosara ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Előfizetés nélkül",
+      "one_time_upsell_caption": "Takarítson meg 10%-ot + ingyenes sapka és törölköző",
+      "ships_once_per_month": "Havonta egyszer szállítva",
+      "subtotal": "Részösszeg",
       "caption": "Kosárban lévő termékek",
       "remove_title": "{{ title }} eltávolítása",
       "note": "Megjegyzések a rendeléssel kapcsolatban",

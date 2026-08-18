@@ -1,16 +1,21 @@
 {% comment %}
-  Renders the PDP purchase panel: a decorative subscription / one-time toggle, an optional
-  subscriber-gift callout, an optional value footnote, and the real add-to-cart form. The toggle
-  is presentational only -- no selling plan app is connected yet, so both options add the same
-  default variant. When subscriptions are wired up, swap the radio values/data-cta-text below for
-  real product.selling_plan_groups entries; the <product-form> add-to-cart mechanics don't need to
-  change.
+  Renders the PDP purchase panel: a subscription / one-time toggle, an optional subscriber-gift
+  callout, an optional value footnote, and the real add-to-cart form. The subscription toggle
+  itself is Seal Subscriptions' own auto-injected widget -- Seal detects the standard
+  input[name="selling_plan"] field in the add-to-cart form below and relocates it into its own
+  DOM to drive it directly, so trying to run a separate custom radio UI in parallel silently
+  fights it for control of that field. Instead, product-buy-box.js moves Seal's widget into the
+  data-subscription-slot placeholder below (so it renders where the old custom toggle used to),
+  reskins it via component-product-buy-box.css, injects the description/compare-price copy Seal's
+  own widget has no slot for, keeps the Add to Cart button's price text synced to Seal's live
+  selection, and enforces the storefront-side cap of 3 subscription lines in cart / 1 subscription
+  per flavor (flavors are separate products) against Seal's own radios by checking /cart.json.
 
   Accepts:
   - product: {Object} product resource
   - section_id: {String} id of the section that contains this snippet
-  - monthly_label / monthly_description / monthly_price / monthly_badge: {String}
-  - onetime_label / onetime_description / onetime_price: {String}
+  - monthly_label / monthly_description / monthly_badge: {String}
+  - onetime_label / onetime_description: {String}
   - cta_label: {String}
   - value_link_label: {String} optional, e.g. "Value of one-time purchase"
   - value_link_url: {String} optional
@@ -27,64 +32,24 @@
 
 {%- liquid
   assign product_form_id = 'product-form-' | append: section_id
+  assign variant = product.selected_or_first_available_variant
+  assign onetime_price = variant.price | money
 -%}
 
-<product-buy-box class="product-buy-box">
-  <fieldset class="product-buy-box__subscription">
-    <legend class="visually-hidden">{{ 'sections.custom_product_info.subscription_legend' | t }}</legend>
-    <label class="product-buy-box__option">
-      <input
-        type="radio"
-        name="Subscription-{{ product.id }}"
-        data-subscription-option
-        data-cta-text="{{ cta_label | append: ' - ' | append: monthly_price }}"
-        checked
-      >
-      <span class="product-buy-box__option-indicator" aria-hidden="true"></span>
-      <span class="product-buy-box__option-body">
-        <span class="product-buy-box__option-head">
-          <span class="product-buy-box__option-label">{{ monthly_label | escape }}</span>
-          {%- if monthly_badge != blank -%}
-            <span class="product-buy-box__option-badge">{{ monthly_badge | escape }}</span>
-          {%- endif -%}
-        </span>
-        {%- if monthly_description != blank -%}
-          <span class="product-buy-box__option-description">{{ monthly_description | escape }}</span>
-        {%- endif -%}
-      </span>
-      {%- if monthly_price != blank -%}
-        <span class="product-buy-box__option-price">
-          <span class="product-buy-box__option-price-current">{{ monthly_price | escape }}</span>
-          {%- if onetime_price != blank -%}
-            <span class="product-buy-box__option-price-suffix">{{ 'sections.custom_product_info.per_month_suffix' | t }}</span>
-            <span class="product-buy-box__option-price-compare">{{ onetime_price | escape }}</span>
-          {%- endif -%}
-        </span>
-      {%- endif -%}
-    </label>
-    <label class="product-buy-box__option">
-      <input
-        type="radio"
-        name="Subscription-{{ product.id }}"
-        data-subscription-option
-        data-cta-text="{{ cta_label | append: ' - ' | append: onetime_price }}"
-      >
-      <span class="product-buy-box__option-indicator" aria-hidden="true"></span>
-      <span class="product-buy-box__option-body">
-        <span class="product-buy-box__option-head">
-          <span class="product-buy-box__option-label">{{ onetime_label | escape }}</span>
-        </span>
-        {%- if onetime_description != blank -%}
-          <span class="product-buy-box__option-description">{{ onetime_description | escape }}</span>
-        {%- endif -%}
-      </span>
-      {%- if onetime_price != blank -%}
-        <span class="product-buy-box__option-price">
-          <span class="product-buy-box__option-price-current">{{ onetime_price | escape }}</span>
-        </span>
-      {%- endif -%}
-    </label>
-  </fieldset>
+<product-buy-box
+  class="product-buy-box"
+  data-product-id="{{ product.id }}"
+  data-cta-label="{{ cta_label | escape }}"
+  data-message-limit-reached="{{ 'products.product.subscription.limit_reached' | t | escape }}"
+  data-message-already-subscribed="{{ 'products.product.subscription.already_subscribed' | t | escape }}"
+  data-message-already-in-cart="{{ 'products.product.subscription.already_in_cart' | t | escape }}"
+  data-monthly-description="{{ monthly_description | escape }}"
+  data-onetime-description="{{ onetime_description | escape }}"
+  data-onetime-price="{{ onetime_price | escape }}"
+  data-per-month-suffix="{{ 'sections.custom_product_info.per_month_suffix' | t | escape }}"
+>
+  <div class="product-buy-box__subscription-slot" data-subscription-slot></div>
+  <p class="product-buy-box__subscription-message" data-subscription-message hidden></p>
 
   {%- if subscriber_gift_heading != blank -%}
     <div class="product-subscriber-gift">
@@ -150,17 +115,19 @@
         {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
         class="product-variant-id"
       >
+      <input type="hidden" name="selling_plan" value="" data-selling-plan-input>
       <button
         type="submit"
         name="add"
         class="product-buy-box__submit button button--full-width button--primary"
+        data-submit-button
         {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
       >
         <span data-cta-label>
           {%- if product.selected_or_first_available_variant == null -%}
             {{ 'products.product.unavailable' | t }}
           {%- else -%}
-            {{- cta_label | append: ' - ' | append: monthly_price -}}
+            {{- cta_label | append: ' - ' | append: onetime_price -}}
           {%- endif -%}
         </span>
         <span class="product-buy-box__submit-arrow svg-wrapper">

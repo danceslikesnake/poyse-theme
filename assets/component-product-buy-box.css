@@ -27,6 +27,21 @@
     border-color: var(--poyse-evening-fig);
     background: color-mix(in srgb, var(--poyse-evening-fig) 3%, transparent);
   }
+
+  &:has(input:disabled) {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.product-buy-box__subscription-message {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--poyse-evening-fig);
+
+  &[hidden] {
+    display: none;
+  }
 }
 
 .product-buy-box__option-body {
@@ -157,4 +172,171 @@ button.product-buy-box__submit {
   &::before {
     content: '*';
   }
+}
+
+/*
+ * Reskin of Seal Subscriptions' auto-injected purchase-option widget
+ * (.sealsubs-* / .sls-* / .seal-* classes are Seal's own markup, not ours --
+ * couples this styling to their current DOM structure, verified 2026-08-18).
+ * Trial pass for side-by-side comparison against .product-buy-box__subscription;
+ * not yet relocated or wired into the cap-enforcement JS.
+ */
+.sealsubs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sls-purchase-options-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sls-purchase-options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sls-option-container {
+  box-shadow: none !important;
+  padding: 16px;
+  border: 2px solid color-mix(in srgb, var(--poyse-evening-fig) 10%, transparent) !important;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &.sls-active {
+    border-color: var(--poyse-evening-fig) !important;
+    background: color-mix(in srgb, var(--poyse-evening-fig) 3%, transparent) !important;
+  }
+}
+
+.sls-option-container .seal-row {
+  display: flex;
+  gap: 8px;
+}
+
+.sls-option-container .seal-col-radio {
+  flex-shrink: 0;
+}
+
+.sls-option-container .sls-label-container {
+  flex: 1;
+}
+
+.sls-option-container .sls-selling-plan-group-first-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/*
+ * Seal's own stylesheet is injected at runtime, after ours -- on equal
+ * specificity it wins the cascade, so overrides here need !important to
+ * reliably stick regardless of load order.
+ */
+input.sls-option[type='radio'] {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+}
+
+.sls-custom-radio {
+  display: block !important;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  border: 2px solid var(--poyse-bare-form) !important;
+  border-radius: 50% !important;
+  background: var(--poyse-white, #fff) !important;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 2px;
+    border-radius: 50%;
+    background: transparent;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+input.sls-option[type='radio']:checked ~ .sls-custom-radio {
+  border-color: var(--poyse-evening-fig) !important;
+
+  &::after {
+    background: var(--poyse-evening-fig);
+    width: 12px !important;
+    height: 12px !important;
+  }
+}
+
+.sls-selling-plan-group-name {
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: var(--font-size-xs) !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sls-savings-badge {
+  font-size: var(--font-size-2xs);
+  text-transform: uppercase;
+  color: var(--poyse-evening-fig);
+  background: var(--poyse-bare-form);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-family: 'EsBuildBold', sans-serif;
+}
+
+.sls-label-container p.product-buy-box__option-description {
+  margin: 4px 80px 0 0;
+}
+
+.sls-price-container {
+  margin-left: auto;
+  text-align: right;
+  font-family: 'EsBuildMedium', sans-serif;
+}
+
+/* Seal sets this to display:none once it finishes its own empty-state cleanup pass; !important forces it visible once we've injected our own compare-price content into it. */
+.sls-price-below {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 8px;
+}
+
+.sls-price .money {
+  font-family: 'EsBuildBold', sans-serif;
+}
+
+.sealsubs-container img,
+.sealsubs-container svg {
+  height: 14px;
+  opacity: 0.5;
+}
+
+.sealsubs-container a {
+  font-size: var(--font-size-2xs);
+  color: var(--poyse-evening-fig);
+  font-family: 'EsBuildMedium', sans-serif;
+}
+.selling-plan-group-options-name-select {
+  display: none;
+}
+
+.sls-more-info-container {
+  display: none;
 }

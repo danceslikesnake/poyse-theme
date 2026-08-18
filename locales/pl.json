@@ -124,6 +124,12 @@
       "share": "Udostępnij ten produkt",
       "sold_out": "Wyprzedane",
       "unavailable": "Niedostępny",
+      "subscription": {
+        "limit_reached": "Osiągnięto limit 3 subskrybowanych smaków w koszyku.",
+        "already_subscribed": "Ten smak jest już częścią Twojej subskrypcji.",
+        "already_in_cart": "Ten smak jest już w Twoim koszyku.",
+        "added_to_cart": "Dodano do koszyka"
+      },
       "vendor": "Dostawca",
       "video_exit_message": "{{ title }} otwiera film w trybie pełnoekranowym w tym samym oknie.",
       "xr_button": "Zobacz w swojej przestrzeni",
@@ -298,10 +304,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -310,7 +315,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Ogłoszenie",
       "menu": "Menu",
@@ -323,6 +327,12 @@
     },
     "cart": {
       "title": "Twój koszyk",
+      "title_with_count": "Twój koszyk ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Bez subskrypcji",
+      "one_time_upsell_caption": "Oszczędź 10% + czapka i ręcznik gratis",
+      "ships_once_per_month": "Wysyłka raz w miesiącu",
+      "subtotal": "Suma częściowa",
       "caption": "Pozycje w koszyku",
       "remove_title": "Usuń {{ title }}",
       "note": "Specjalne instrukcje do zamówienia",

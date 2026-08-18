@@ -143,6 +143,12 @@
       "share": "Compartir este producto",
       "sold_out": "Agotado",
       "unavailable": "No disponible",
+      "subscription": {
+        "limit_reached": "Has alcanzado el límite de 3 sabores en suscripción en tu carrito.",
+        "already_subscribed": "Este sabor ya forma parte de tu suscripción.",
+        "already_in_cart": "Este sabor ya está en tu carrito.",
+        "added_to_cart": "Añadido al carrito"
+      },
       "vendor": "Proveedor",
       "video_exit_message": "{{ title }} abre el video en pantalla completa en la misma ventana.",
       "xr_button": "Ver en tu espacio",
@@ -289,10 +295,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -301,7 +306,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Anuncio",
       "menu": "Menú",
@@ -313,6 +317,12 @@
     },
     "cart": {
       "title": "Tu carrito",
+      "title_with_count": "Tu carrito ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Sin suscripción",
+      "one_time_upsell_caption": "Ahorra 10 % + gorra y toalla gratis",
+      "ships_once_per_month": "Se envía una vez al mes",
+      "subtotal": "Subtotal",
       "caption": "Artículos en el carrito",
       "remove_title": "Eliminar {{ title }}",
       "note": "Instrucciones especiales del pedido",

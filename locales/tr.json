@@ -142,6 +142,12 @@
       "share": "Bu ürünü paylaş",
       "sold_out": "Tükendi",
       "unavailable": "Kullanım dışı",
+      "subscription": {
+        "limit_reached": "Sepetinizde abonelik için 3 tat sınırına ulaştınız.",
+        "already_subscribed": "Bu tat zaten aboneliğinizde mevcut.",
+        "already_in_cart": "Bu tat zaten sepetinizde mevcut.",
+        "added_to_cart": "Sepete eklendi"
+      },
       "vendor": "Satıcı",
       "video_exit_message": "{{ title }} aynı pencerede tam ekran video açar.",
       "xr_button": "Kendi alanınızda görüntüleyin",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Duyuru",
       "menu": "Menü",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Sepetiniz",
+      "title_with_count": "Sepetiniz ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Abonelik Olmadan",
+      "one_time_upsell_caption": "%10 tasarruf + ücretsiz şapka ve havlu",
+      "ships_once_per_month": "Ayda bir kez gönderilir",
+      "subtotal": "Ara Toplam",
       "caption": "Sepet ürünleri",
       "remove_title": "{{ title }} kanalını kaldır",
       "note": "Siparişe özel talimatlar",

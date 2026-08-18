@@ -143,6 +143,12 @@
       "share": "Condividi questo prodotto",
       "sold_out": "Esaurito",
       "unavailable": "Non disponibile",
+      "subscription": {
+        "limit_reached": "Hai raggiunto il limite di 3 gusti in abbonamento nel carrello.",
+        "already_subscribed": "Questo gusto fa già parte del tuo abbonamento.",
+        "already_in_cart": "Questo gusto è già nel tuo carrello.",
+        "added_to_cart": "Aggiunto al carrello"
+      },
       "vendor": "Fornitore",
       "video_exit_message": "{{ title }} apre un video a schermo intero nella stessa finestra.",
       "xr_button": "Visualizza nel tuo spazio",
@@ -289,10 +295,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -301,7 +306,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Annuncio",
       "menu": "Menu",
@@ -313,6 +317,12 @@
     },
     "cart": {
       "title": "Il tuo carrello",
+      "title_with_count": "Il tuo carrello ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Senza abbonamento",
+      "one_time_upsell_caption": "Risparmia il 10% + cappellino e asciugamano gratis",
+      "ships_once_per_month": "Spedito una volta al mese",
+      "subtotal": "Subtotale",
       "caption": "Articoli nel carrello",
       "remove_title": "Rimuovi {{ title }}",
       "note": "Istruzioni speciali per l'ordine",

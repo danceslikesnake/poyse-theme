@@ -7,6 +7,7 @@
 
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-custom-cart-drawer.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
@@ -62,7 +63,7 @@
         </div>
       {%- endif -%}
       <div class="drawer__header">
-        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+        <h2 class="drawer__heading">{{ 'sections.cart.title_with_count' | t: count: cart.item_count }}</h2>
         <button
           class="drawer__close"
           type="button"
@@ -152,6 +153,7 @@
                             <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
                           {%- endif -%}
 
+                          <p class="cart-item__product-line">{{ 'sections.cart.product_line_label' | t }}</p>
                           <div class="cart-item__title">
                             <a href="{{ item.url }}" class="cart-item__name h4 break">
                               {{- item.product.title | escape -}}
@@ -225,7 +227,23 @@
                               {%- endfor -%}
                             </dl>
 
-                            <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                            {%- if item.selling_plan_allocation != null -%}
+                              <p class="product-option cart-item__purchase-type">
+                                {{- item.selling_plan_allocation.selling_plan.name -}}
+                              </p>
+                              <p class="product-option cart-item__ships-caption">
+                                {{- 'sections.cart.ships_once_per_month' | t -}}
+                              </p>
+                            {%- endif -%}
+                          {%- endif -%}
+
+                          {%- if item.selling_plan_allocation == null -%}
+                            <p class="product-option cart-item__purchase-type">
+                              {{- 'sections.cart.one_time_purchase' | t -}}
+                            </p>
+                            <p class="product-option cart-item__upsell-caption">
+                              {{- 'sections.cart.one_time_upsell_caption' | t -}}
+                            </p>
                           {%- endif -%}
 
                           <ul
@@ -527,7 +545,7 @@
           </div>
 
           <div class="totals" role="status">
-            <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+            <h2 class="totals__total">{{ 'sections.cart.subtotal' | t }}</h2>
             <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
           </div>
 

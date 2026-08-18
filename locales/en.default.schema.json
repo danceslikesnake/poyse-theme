@@ -772,6 +772,9 @@
               "label": "Label",
               "default": "Flavor"
             },
+            "product": {
+              "label": "Product"
+            },
             "video": {
               "label": "Video"
             },

@@ -143,6 +143,12 @@
       "share": "Κοινοποιήστε αυτό το προϊόν",
       "sold_out": "Εξαντλήθηκε",
       "unavailable": "Μη διαθέσιμο",
+      "subscription": {
+        "limit_reached": "Έχετε φτάσει το όριο των 3 γεύσεων συνδρομής στο καλάθι σας.",
+        "already_subscribed": "Αυτή η γεύση περιλαμβάνεται ήδη στη συνδρομή σας.",
+        "already_in_cart": "Αυτή η γεύση βρίσκεται ήδη στο καλάθι σας.",
+        "added_to_cart": "Προστέθηκε στο καλάθι"
+      },
       "vendor": "Προμηθευτής",
       "video_exit_message": "Το {{ title }} ανοίγει βίντεο σε πλήρη οθόνη στο ίδιο παράθυρο.",
       "xr_button": "Προβολή στον χώρο σας",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Ανακοίνωση",
       "menu": "Μενού",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "Το καλάθι σας",
+      "title_with_count": "Το καλάθι σας ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Χωρίς συνδρομή",
+      "one_time_upsell_caption": "Εξοικονομήστε 10% + Δωρεάν καπέλο + Πετσέτα",
+      "ships_once_per_month": "Αποστέλλεται μία φορά τον μήνα",
+      "subtotal": "Μερικό σύνολο",
       "caption": "Στοιχεία στο καλάθι",
       "remove_title": "Κατάργηση {{ title }}",
       "note": "Ειδικές οδηγίες παραγγελίας",

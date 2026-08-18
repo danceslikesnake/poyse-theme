@@ -125,6 +125,12 @@
       "share": "Zdieľať tento produkt",
       "sold_out": "Vypredané",
       "unavailable": "Nedostupné",
+      "subscription": {
+        "limit_reached": "Dosiahli ste limit 3 predplatených príchutí v košíku.",
+        "already_subscribed": "Táto príchuť je už súčasťou vášho predplatného.",
+        "already_in_cart": "Táto príchuť je už vo vašom košíku.",
+        "added_to_cart": "Pridané do košíka"
+      },
       "vendor": "Predajca",
       "video_exit_message": "{{ title }} otvorí video na celú obrazovku v rovnakom okne.",
       "xr_button": "Zobraziť vo vašom priestore",
@@ -298,10 +304,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -310,7 +315,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Oznámenie",
       "menu": "Ponuka",
@@ -323,6 +327,12 @@
     },
     "cart": {
       "title": "Váš košík",
+      "title_with_count": "Váš košík ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Bez predplatného",
+      "one_time_upsell_caption": "Ušetrite 10 % + čiapka a uterák zdarma",
+      "ships_once_per_month": "Odosiela sa raz mesačne",
+      "subtotal": "Medzisúčet",
       "caption": "Položky v košíku",
       "remove_title": "Odstrániť {{ title }}",
       "note": "Špeciálne pokyny k objednávke",

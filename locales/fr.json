@@ -144,6 +144,12 @@
       "share": "Partager ce produit",
       "sold_out": "Épuisé",
       "unavailable": "Non disponible(s)",
+      "subscription": {
+        "limit_reached": "Vous avez atteint la limite de 3 saveurs en abonnement dans votre panier.",
+        "already_subscribed": "Cette saveur fait déjà partie de votre abonnement.",
+        "already_in_cart": "Cette saveur est déjà dans votre panier.",
+        "added_to_cart": "Ajouté au panier"
+      },
       "vendor": "Fournisseur",
       "video_exit_message": "{{ title }} ouvre la vidéo en plein écran dans la même fenêtre.",
       "xr_button": "Afficher dans son espace",
@@ -289,10 +295,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -301,7 +306,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "Annonce",
       "menu": "Menu",
@@ -313,6 +317,12 @@
     },
     "cart": {
       "title": "Votre panier",
+      "title_with_count": "Votre panier ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "Sans abonnement",
+      "one_time_upsell_caption": "Économisez 10 % + casquette et serviette offertes",
+      "ships_once_per_month": "Expédié une fois par mois",
+      "subtotal": "Sous-total",
       "caption": "Articles du panier",
       "remove_title": "Supprimer {{ title }}",
       "note": "Instructions spéciales concernant la commande",

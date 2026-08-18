@@ -143,6 +143,12 @@
       "share": "分享此产品",
       "sold_out": "售罄",
       "unavailable": "不可用",
+      "subscription": {
+        "limit_reached": "您的购物车中已达到3种订阅口味的上限。",
+        "already_subscribed": "该口味已包含在您的订阅中。",
+        "already_in_cart": "该口味已在您的购物车中。",
+        "added_to_cart": "已加入购物车"
+      },
       "vendor": "厂商",
       "video_exit_message": "{{ title }} 在同一窗口中打开全屏视频。",
       "xr_button": "在您的空间中查看",
@@ -280,10 +286,9 @@
     "custom_homepage_hero": {
       "subscription_legend": "Choose a purchase option"
     },
-        "custom_footer": {
-      "copyright": "\u00a9 {{ year }} {{ shop }}. All rights reserved."
+    "custom_footer": {
+      "copyright": "© {{ year }} {{ shop }}. All rights reserved."
     },
-
     "custom_featured_items": {
       "subscription_legend": "Choose a purchase option",
       "default_title": "Product",
@@ -292,7 +297,6 @@
         "best_seller": "Best Seller"
       }
     },
-
     "header": {
       "announcement": "公告",
       "menu": "菜单",
@@ -303,6 +307,12 @@
     },
     "cart": {
       "title": "您的购物车",
+      "title_with_count": "您的购物车 ({{ count }})",
+      "product_line_label": "Controlled Energy",
+      "one_time_purchase": "不订阅",
+      "one_time_upsell_caption": "节省10% + 赠送帽子和毛巾",
+      "ships_once_per_month": "每月发货一次",
+      "subtotal": "小计",
       "caption": "购物车商品",
       "remove_title": "删除 {{ title }}",
       "note": "订单特殊说明",

@@ -1,0 +1,188 @@
+/* Reskins Dawn's cart-drawer (snippets/cart-drawer.liquid) into the Poyse floating-card
+   design. All open/close/focus-trap/AJAX behavior is Dawn's own (assets/cart-drawer.js,
+   assets/cart.js) -- this file only restyles the existing markup. */
+
+.drawer__inner {
+  background: var(--poyse-white);
+  color: var(--poyse-evening-fig);
+}
+
+.drawer__header {
+  padding: 20px 0 16px;
+  border-bottom: 1px solid rgba(57, 44, 45, 0.1);
+}
+
+.drawer__heading {
+  font-family: 'SignifierLight', serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+.drawer__close {
+  position: absolute;
+  top: 16px;
+  right: 0;
+  min-width: 3.2rem;
+  min-height: 3.2rem;
+  border-radius: 50%;
+  background-color: var(--poyse-bare-form);
+  color: var(--poyse-evening-fig);
+}
+
+.drawer__close .svg-wrapper {
+  height: 1.4rem;
+  width: 1.4rem;
+}
+
+.cart-drawer .cart-item__product-line {
+  margin: 0 0 0.2rem;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+}
+
+.cart-drawer .cart-item__name {
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: 14px;
+}
+
+.cart-drawer .product-option {
+  opacity: 0.6;
+  font-size: 12px;
+}
+
+.cart-drawer .cart-item__purchase-type {
+  opacity: 0.45;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.cart-drawer .cart-item__ships-caption,
+.cart-drawer .cart-item__upsell-caption {
+  opacity: 0.6;
+  font-size: 9px;
+}
+
+/* Table headers stay in the accessibility tree (screen readers benefit from the
+   column context) but are hidden visually per the Figma design. */
+.cart-drawer .cart-items thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+.cart-drawer .cart-item__image {
+  border-radius: 10px;
+  background-color: var(--poyse-bare-form);
+  object-fit: cover;
+}
+
+.cart-drawer .price {
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: 14px;
+}
+
+/* Trash-can-only remove, matching the /cart page treatment: hide the quantity
+   stepper entirely and keep only the remove button. */
+.cart-drawer .quantity-popover-container,
+.cart-drawer .quantity-popover__info-button {
+  display: none !important;
+}
+
+.cart-drawer .cart-item__quantity {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart-drawer .totals__total {
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: 14px;
+}
+
+.cart-drawer .totals__total-value {
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: 14px;
+}
+
+.cart-drawer .cart__checkout-button {
+  background: var(--poyse-deep-current);
+  color: var(--poyse-white);
+  border: none;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: var(--font-size-xs);
+  letter-spacing: 1%;
+}
+
+.cart-drawer .cart__checkout-button:hover {
+  background: var(--poyse-evening-fig);
+}
+
+@media screen and (min-width: 1024px) {
+  .drawer {
+    background-color: transparent;
+    align-items: flex-start;
+  }
+
+  .drawer__inner {
+    margin-top: 90px;
+    margin-right: 22px;
+    width: 345px;
+    max-width: calc(100vw - 44px);
+    max-height: calc(100vh - 110px);
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    padding: 0 24px;
+    transform: translateY(-8px);
+    opacity: 0;
+    transition:
+      opacity var(--duration-default) ease,
+      transform var(--duration-default) ease;
+  }
+
+  .drawer.active .drawer__inner {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Below 1024px, .site-header__inner is already a white rounded pill (see
+   section-custom-site-header.css); the drawer reads as that same container
+   expanding downward rather than a separate floating panel. */
+@media screen and (max-width: 1023px) {
+  .drawer {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .drawer__inner {
+    margin: 0 16px;
+    margin-top: 6.2rem;
+    width: auto;
+    max-width: none;
+    max-height: calc(100vh - 6.2rem - 20px);
+    border: none;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.12);
+    padding: 0 20px;
+    transform: translateY(-12px);
+    opacity: 0;
+    transition:
+      opacity var(--duration-default) ease,
+      transform var(--duration-default) ease;
+  }
+
+  .drawer.active .drawer__inner {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
