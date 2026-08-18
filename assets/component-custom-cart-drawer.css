@@ -5,6 +5,8 @@
 .drawer__inner {
   background: var(--poyse-white);
   color: var(--poyse-evening-fig);
+  padding: 0 16px;
+  margin-top: 64px !important;
 }
 
 .drawer__header {
@@ -15,6 +17,7 @@
 .drawer__heading {
   font-family: 'SignifierLight', serif;
   font-size: 18px;
+  font-weight: normal;
   margin: 0;
 }
 
@@ -22,11 +25,11 @@
   position: absolute;
   top: 16px;
   right: 0;
-  min-width: 3.2rem;
-  min-height: 3.2rem;
+  min-width: 29px;
+  min-height: 29px;
   border-radius: 50%;
-  background-color: var(--poyse-bare-form);
-  color: var(--poyse-evening-fig);
+  background-color: var(--poyse-evening-fig);
+  color: var(--poyse-bare-form);
 }
 
 .drawer__close .svg-wrapper {
@@ -35,34 +38,55 @@
 }
 
 .cart-drawer .cart-item__product-line {
-  margin: 0 0 0.2rem;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  opacity: 0.6;
+  margin: 0 0 0 0;
+  font-size: var(--font-size-xs);
+  font-family: 'EsBuildMedium', sans-serif;
+}
+
+.cart-item__title {
+  margin-top: 0;
 }
 
 .cart-drawer .cart-item__name {
-  font-family: 'EsBuildBold', sans-serif;
-  font-size: 14px;
+  font-size: var(--font-size-xs);
+  font-family: 'SignifierLight', serif;
+  margin-bottom: 4px;
 }
 
 .cart-drawer .product-option {
-  opacity: 0.6;
-  font-size: 12px;
+  display: none;
+}
+.cart-drawer .product-option.cart-item__purchase-type,
+.cart-drawer .product-option.cart-item__ships-caption,
+.cart-drawer .cart-item__upsell-caption {
+  display: block;
 }
 
 .cart-drawer .cart-item__purchase-type {
-  opacity: 0.45;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  font-size: var(--font-size-2xs);
+  font-family: 'EsBuildBold', sans-serif;
 }
 
 .cart-drawer .cart-item__ships-caption,
 .cart-drawer .cart-item__upsell-caption {
-  opacity: 0.6;
-  font-size: 9px;
+  font-family: 'EsBuildMedium', sans-serif;
+  font-size: var(--font-size-2xs);
+  margin-top: 0;
+  font-weight: normal;
+}
+
+.cart-drawer .cart-item__upsell-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cart-drawer .cart-item__upsell-caption svg {
+  flex-shrink: 0;
+}
+
+.cart-drawer__empty-content {
+  padding: 16px 0;
 }
 
 /* Table headers stay in the accessibility tree (screen readers benefit from the
@@ -78,8 +102,21 @@
   border: 0;
 }
 
+/* Dawn splits the row into 4 equal (1fr) columns; the media column only
+   needs its actual 79px and the price column only needs its own short
+   content, so free that space up for details (spans columns 2-3) instead --
+   otherwise "Save 15% + Free Hat + Towel" wraps. */
+.cart-drawer .cart-item {
+  grid-template-columns: 79px 1fr 1fr max-content;
+}
+
+.cart-drawer .cart-item__media {
+  width: 79px;
+}
+
 .cart-drawer .cart-item__image {
-  border-radius: 10px;
+  border-radius: 8px;
+  padding: 8px;
   background-color: var(--poyse-bare-form);
   object-fit: cover;
 }
@@ -99,6 +136,26 @@
 .cart-drawer .cart-item__quantity {
   display: flex;
   justify-content: flex-end;
+}
+
+/* The remove button lives in .cart-item__totals now (see below) so it sits
+   directly under the price instead of under the whole row; stack them in a
+   column instead of Dawn's price-only row layout. Totals has pointer-events:
+   none so the invisible full-card link (.cart-item__link) still works over
+   the price text, so the button needs it re-enabled to stay clickable. */
+.cart-drawer .cart-item__totals {
+  flex-direction: column;
+  align-items: flex-end;
+  /* Base sets justify-content: flex-end for its row layout; in a column that
+     would push price + button to the bottom of this cell (it's stretched
+     tall to match the details column), so pack them at the top instead. */
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.cart-drawer .cart-item__totals cart-remove-button {
+  margin-left: 0;
+  pointer-events: auto;
 }
 
 .cart-drawer .totals__total {
@@ -126,6 +183,18 @@
   background: var(--poyse-evening-fig);
 }
 
+.cart-drawer .cart-item > td + td {
+  padding-left: 0;
+}
+
+.cart__empty-text {
+  font-weight: normal;
+}
+
+.cart-drawer__empty-content .drawer__close {
+  right: 12px;
+}
+
 @media screen and (min-width: 1024px) {
   .drawer {
     background-color: transparent;
@@ -141,7 +210,7 @@
     border: none;
     border-radius: 16px;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-    padding: 0 24px;
+    padding: 0 16px;
     transform: translateY(-8px);
     opacity: 0;
     transition:
@@ -173,7 +242,7 @@
     border: none;
     border-radius: 0 0 24px 24px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.12);
-    padding: 0 20px;
+    padding: 0 16px;
     transform: translateY(-12px);
     opacity: 0;
     transition:

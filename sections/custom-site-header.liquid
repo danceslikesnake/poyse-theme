@@ -7,21 +7,46 @@
 
   assign is_shrink = false
   assign is_color_shift = false
-  assign hero_selector = blank
+  assign color_zones = blank
+  assign initial_color = blank
   if template.name == 'index'
     assign is_shrink = true
     assign is_color_shift = true
-    assign hero_selector = '.tagline-banner'
+    # Ordered top-to-bottom; each zone's color applies once its selector has
+    # fully scrolled past. Featured Items (black) > Meet Paraxanthine +
+    # Benefits (white) > Community (black) > email footer (white).
+    assign color_zones = '[{"selector":".tagline-banner","color":"black"},{"selector":".featured-items__outer","color":"white"},{"selector":".benefits","color":"black"},{"selector":".community-gallery","color":"white"}]'
   elsif template.suffix == 'science'
     assign is_color_shift = true
-    assign hero_selector = '.science-hero'
+    # Ordered top-to-bottom; each zone's color applies once its selector has
+    # fully scrolled past. Formula (black) > Our Hero Ingredient (white) >
+    # Ingredients + Featured Items (black) > email footer (white).
+    assign color_zones = '[{"selector":".science-hero","color":"black"},{"selector":".science-formula","color":"white"},{"selector":".science-paraxanthine","color":"black"},{"selector":".featured-items__outer","color":"white"}]'
+  elsif template.name == 'collection' and template.suffix == 'products'
+    assign is_color_shift = true
+    # Unlike index/science, this template has no hero under the header, so it
+    # must start black (the shared default) instead of the color-shift JS's
+    # white fallback; white once the Premium Subscriber Gift section is reached.
+    assign initial_color = 'black'
+    assign color_zones = '[{"selector":".featured-items__outer","color":"white"}]'
+  elsif template.name == 'product' and template.suffix == 'custom'
+    assign is_color_shift = true
+    # No hero under the header here either, so start black like the shop page.
+    # Our Ingredients and Comparison have stable classes but the buy-box
+    # section above them doesn't, so these zones trigger on entering
+    # (edge: top) rather than on fully leaving the previous section.
+    assign initial_color = 'black'
+    assign color_zones = '[{"selector":".custom-ingredients","color":"white","edge":"top"},{"selector":".custom-faq","color":"black","edge":"top"}]'
   endif
 -%}
 
 <site-header
   class="site-header{% if is_shrink %} site-header--shrink{% endif %}{% if is_color_shift %} site-header--color-shift{% endif %}"
-  {%- if hero_selector != blank %}
-  data-hero-selector="{{ hero_selector }}"
+  {%- if color_zones != blank %}
+  data-color-zones="{{ color_zones | escape }}"
+  {%- endif %}
+  {%- if initial_color != blank %}
+  data-initial-color="{{ initial_color }}"
   {%- endif %}
 >
   <div class="site-header__inner">

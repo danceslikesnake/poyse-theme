@@ -43,7 +43,7 @@
                   {{- 'icon-close.svg' | inline_asset_content -}}
                 </span>
               </button>
-              <a href="{{ routes.all_products_collection_url }}" class="button">
+              <a href="{{ routes.all_products_collection_url }}" class="cart__checkout-button button">
                 {{ 'general.continue_shopping' | t }}
               </a>
 
@@ -242,6 +242,7 @@
                               {{- 'sections.cart.one_time_purchase' | t -}}
                             </p>
                             <p class="product-option cart-item__upsell-caption">
+                              {{- 'cart-plus.svg' | inline_asset_content -}}
                               {{- 'sections.cart.one_time_upsell_caption' | t -}}
                             </p>
                           {%- endif -%}
@@ -291,6 +292,24 @@
                               %}
                             {%- endif -%}
                           </div>
+                          <cart-remove-button
+                            id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
+                            data-index="{{ item.index | plus: 1 }}"
+                          >
+                            <button
+                              type="button"
+                              class="button button--tertiary cart-remove-button"
+                              aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
+                              data-variant-id="{{ item.variant.id }}"
+                              {% if item.instructions and item.instructions.can_remove == false %}
+                                class="hidden"
+                              {% endif %}
+                            >
+                              <span class="svg-wrapper">
+                                {{- 'icon-remove.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                          </cart-remove-button>
                         </td>
                         {%- liquid
                           assign has_qty_rules = false
@@ -375,24 +394,6 @@
                                   </button>
                                 </quantity-input>
                               </div>
-                              <cart-remove-button
-                                id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
-                                data-index="{{ item.index | plus: 1 }}"
-                              >
-                                <button
-                                  type="button"
-                                  class="button button--tertiary cart-remove-button"
-                                  aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
-                                  data-variant-id="{{ item.variant.id }}"
-                                  {% if item.instructions and item.instructions.can_remove == false %}
-                                    class="hidden"
-                                  {% endif %}
-                                >
-                                  <span class="svg-wrapper">
-                                    {{- 'icon-remove.svg' | inline_asset_content -}}
-                                  </span>
-                                </button>
-                              </cart-remove-button>
                             </div>
                             {%- if has_qty_rules or has_vol_pricing -%}
                               <button

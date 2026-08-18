@@ -14,11 +14,14 @@ class SiteHeader extends HTMLElement {
     this.hasColorShift = this.classList.contains('site-header--color-shift');
 
     if (this.hasShrink || this.hasColorShift) {
-      // Logo color switches to black once we've scrolled past the reference section
-      // named in data-hero-selector (set per-template in custom-site-header.liquid).
+      // Logo color follows an ordered list of zones (data-color-zones, JSON,
+      // set per-template in custom-site-header.liquid). Each zone flips the
+      // logo to its `color` once the element matching `selector` crosses the
+      // top of the viewport at its `edge` ('bottom' scrolled fully past, the
+      // default; 'top' just reached/entered); the last zone triggered wins,
+      // so zones must be listed in top-to-bottom page order.
       // Logo size shrink (site-header--shrink) is independent and only runs where enabled.
-      const heroSelector = this.dataset.heroSelector || '.tagline-banner';
-      this.heroEl = document.querySelector(heroSelector);
+      this.colorZones = this.parseColorZones();
       window.addEventListener('scroll', this.onScroll, { passive: true });
       this.onScroll();
     }
@@ -34,6 +37,18 @@ class SiteHeader extends HTMLElement {
     if (this.cartUpdateUnsubscriber) this.cartUpdateUnsubscriber();
   }
 
+  parseColorZones() {
+    if (!this.dataset.colorZones) return [];
+
+    try {
+      return JSON.parse(this.dataset.colorZones)
+        .map((zone) => ({ el: document.querySelector(zone.selector), color: zone.color, edge: zone.edge }))
+        .filter((zone) => zone.el);
+    } catch (error) {
+      return [];
+    }
+  }
+
   onScroll() {
     if (this.ticking) return;
     this.ticking = true;
@@ -45,9 +60,14 @@ class SiteHeader extends HTMLElement {
         this.style.setProperty('--header-progress', progress);
       }
 
-      if (this.heroEl) {
-        const pastHero = this.heroEl.getBoundingClientRect().bottom <= 0;
-        this.classList.toggle('is-past-hero', pastHero);
+      if (this.hasColorShift) {
+        let color = this.dataset.initialColor || 'white';
+        this.colorZones.forEach((zone) => {
+          const rect = zone.el.getBoundingClientRect();
+          const edgeValue = zone.edge === 'top' ? rect.top : rect.bottom;
+          if (edgeValue <= 0) color = zone.color;
+        });
+        this.dataset.logoColor = color;
       }
 
       this.ticking = false;

@@ -70,7 +70,7 @@
   opacity: 1;
 }
 
-.site-header--color-shift:not(.is-past-hero) .site-header__wordmark-logo--white {
+.site-header--color-shift[data-logo-color='white'] .site-header__wordmark-logo--white {
   opacity: 1;
 
   /* Below desktop the wordmark is a static width and the header always has its
@@ -81,7 +81,7 @@
   }
 }
 
-.site-header--color-shift:not(.is-past-hero) .site-header__wordmark-logo--black {
+.site-header--color-shift[data-logo-color='white'] .site-header__wordmark-logo--black {
   opacity: 0;
 
   @media screen and (max-width: 1023px) {
