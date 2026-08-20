@@ -144,8 +144,6 @@
       "unavailable": "Kullanım dışı",
       "subscription": {
         "limit_reached": "Sepetinizde abonelik için 3 tat sınırına ulaştınız.",
-        "already_subscribed": "Bu tat zaten aboneliğinizde mevcut.",
-        "already_in_cart": "Bu tat zaten sepetinizde mevcut.",
         "added_to_cart": "Sepete eklendi"
       },
       "vendor": "Satıcı",

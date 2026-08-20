@@ -146,8 +146,6 @@
       "unavailable": "Non disponible(s)",
       "subscription": {
         "limit_reached": "Vous avez atteint la limite de 3 saveurs en abonnement dans votre panier.",
-        "already_subscribed": "Cette saveur fait déjà partie de votre abonnement.",
-        "already_in_cart": "Cette saveur est déjà dans votre panier.",
         "added_to_cart": "Ajouté au panier"
       },
       "vendor": "Fournisseur",

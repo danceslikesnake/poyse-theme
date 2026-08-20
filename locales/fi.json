@@ -144,8 +144,6 @@
       "unavailable": "Ei käytettävissä",
       "subscription": {
         "limit_reached": "Olet saavuttanut tilauskorissa olevien 3 maun rajan.",
-        "already_subscribed": "Tämä maku kuuluu jo tilaukseesi.",
-        "already_in_cart": "Tämä maku on jo ostoskorissasi.",
         "added_to_cart": "Lisätty ostoskoriin"
       },
       "vendor": "Myyjä",

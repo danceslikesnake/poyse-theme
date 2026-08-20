@@ -6,7 +6,20 @@
   background: var(--poyse-white);
   color: var(--poyse-evening-fig);
   padding: 0 16px;
-  margin-top: 64px !important;
+  /* Not !important: the min-width:1024px and max-width:1023px blocks below both set their
+     own margin-top and need to win over this base value. This one previously had
+     !important, which silently made it win over BOTH of those at every breakpoint --
+     the actual bug behind the mobile panel floating disconnected from the header instead
+     of sitting flush against it (its media-query-scoped margin-top was never applying). */
+  margin-top: 64px;
+  /* .drawer's align-items: flex-start (set below, replacing Dawn's default "stretch") means
+     .drawer__inner no longer stretches to fill the drawer's height, so Dawn's own
+     height: 100% on this element (component-cart-drawer.css) has nothing to resolve against
+     and the panel just hugs its content instead. A fixed min-height (not height, so it can
+     still grow past this for a longer cart, and still respects max-height below) is what
+     actually reserves space -- confirmed by testing, only a definite length works here, not
+     a percentage. */
+  min-height: 566px;
 }
 
 .drawer__header {
@@ -14,11 +27,16 @@
   border-bottom: 1px solid rgba(57, 44, 45, 0.1);
 }
 
+.drawer__footer {
+  border-top: none;
+}
+
 .drawer__heading {
   font-family: 'SignifierLight', serif;
   font-size: 18px;
   font-weight: normal;
   margin: 0;
+  letter-spacing: -1%;
 }
 
 .drawer__close {
@@ -110,6 +128,10 @@
   grid-template-columns: 79px 1fr 1fr max-content;
 }
 
+.cart-drawer .cart-item:not(:last-child) {
+  border-bottom: 1px solid rgba(57, 44, 45, 0.1);
+}
+
 .cart-drawer .cart-item__media {
   width: 79px;
 }
@@ -183,6 +205,14 @@
   background: var(--poyse-evening-fig);
 }
 
+/* Dawn's base .button:after/:hover::after draw a border-color ring via box-shadow using
+   the theme's global button-label color, independent of this button's own bg/text colors
+   above -- overriding it here is the only way to actually remove that ring. */
+.cart-drawer .cart__checkout-button:after,
+.cart-drawer .cart__checkout-button:hover:after {
+  box-shadow: none;
+}
+
 .cart-drawer .cart-item > td + td {
   padding-left: 0;
 }
@@ -202,7 +232,7 @@
   }
 
   .drawer__inner {
-    margin-top: 90px;
+    margin-top: 64px;
     margin-right: 22px;
     width: 345px;
     max-width: calc(100vw - 44px);
@@ -225,20 +255,47 @@
 }
 
 /* Below 1024px, .site-header__inner is already a white rounded pill (see
-   section-custom-site-header.css); the drawer reads as that same container
-   expanding downward rather than a separate floating panel. */
+   section-custom-site-header.css). cart-drawer.js adds .site-header--cart-open to
+   <site-header> for the lifetime of the open drawer, which raises the pill above this
+   overlay, squares its bottom corners, and drops its own shadow (all in
+   section-custom-site-header.css) so it reads as the top of this same panel rather than
+   a separate floating pill sitting above it. This drawer's own header bar is redundant
+   in that state -- the real site header (logo + the cart link itself acting as the close
+   button, see .custom-nav-links__cart-close in component-nav-links.css) is the visible
+   chrome instead -- so hide it here. */
 @media screen and (max-width: 1023px) {
   .drawer {
     align-items: flex-start;
-    justify-content: center;
+    /* Matches desktop (see @media min-width: 1024px below) -- with the header now
+       merged into the panel's own chrome, a dark scrim behind it just shows through the
+       transparent margin around the header pill and reads as a mismatched rim rather
+       than a deliberate dimming effect. */
+    background-color: transparent;
+  }
+
+  .drawer__header {
+    display: none;
+  }
+
+  /* .drawer (<cart-drawer>) is the flex container, but .drawer__inner is its
+     grandchild, not its direct child -- #CartDrawer sits in between and is a plain,
+     unstyled block box. flex-grow only does anything on a direct flex item, so it has
+     to go here (on the actual flex item) for .drawer__inner's own width: auto below to
+     have full available width to fill via ordinary block sizing, instead of shrinking to
+     its content's preferred width the way #CartDrawer itself would by default. */
+  #CartDrawer {
+    flex-grow: 1;
   }
 
   .drawer__inner {
     margin: 0 16px;
-    margin-top: 6.2rem;
+    /* Flush against the header's real bottom edge, not a hardcoded guess -- see
+       observeHeight() in site-header.js, which keeps this in sync with the header's
+       actual rendered height instead of drifting out of sync with it. */
+    margin-top: var(--site-header-height, 6.2rem);
     width: auto;
     max-width: none;
-    max-height: calc(100vh - 6.2rem - 20px);
+    max-height: calc(100vh - var(--site-header-height, 6.2rem) - 20px);
     border: none;
     border-radius: 0 0 24px 24px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.12);

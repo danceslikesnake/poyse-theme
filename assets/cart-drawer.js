@@ -15,14 +15,17 @@ class CartDrawer extends HTMLElement {
     cartLinks.forEach((cartLink) => {
       cartLink.setAttribute('role', 'button');
       cartLink.setAttribute('aria-haspopup', 'dialog');
+      // On mobile the header's own cart link doubles as the drawer's close button (see
+      // .site-header--cart-open in section-custom-site-header.css) once open, so this
+      // needs to toggle rather than only ever open.
       cartLink.addEventListener('click', (event) => {
         event.preventDefault();
-        this.open(cartLink);
+        this.classList.contains('active') ? this.close() : this.open(cartLink);
       });
       cartLink.addEventListener('keydown', (event) => {
         if (event.code.toUpperCase() === 'SPACE') {
           event.preventDefault();
-          this.open(cartLink);
+          this.classList.contains('active') ? this.close() : this.open(cartLink);
         }
       });
     });
@@ -31,6 +34,10 @@ class CartDrawer extends HTMLElement {
   open(triggeredBy) {
     if (this.classList.contains('active')) return;
     if (triggeredBy) this.setActiveElement(triggeredBy);
+    // Mobile-only visually (gated by CSS media queries in section-custom-site-header.css /
+    // component-nav-links.css / component-custom-cart-drawer.css), but harmless to always
+    // add -- keeps this in sync with .active without duplicating a matchMedia check here.
+    document.querySelector('site-header')?.classList.add('site-header--cart-open');
     const cartDrawerNote = this.querySelector('[id^="Details-"] summary');
     if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
     // here the animation doesn't seem to always get triggered. A timeout seem to help
@@ -60,6 +67,7 @@ class CartDrawer extends HTMLElement {
 
   close() {
     this.classList.remove('active');
+    document.querySelector('site-header')?.classList.remove('site-header--cart-open');
     removeTrapFocus(this.activeElement);
     document.body.classList.remove('overflow-hidden');
   }

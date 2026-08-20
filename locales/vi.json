@@ -145,8 +145,6 @@
       "unavailable": "Không có sẵn",
       "subscription": {
         "limit_reached": "Bạn đã đạt giới hạn 3 hương vị đăng ký trong giỏ hàng.",
-        "already_subscribed": "Hương vị này đã có trong gói đăng ký của bạn.",
-        "already_in_cart": "Hương vị này đã có trong giỏ hàng của bạn.",
         "added_to_cart": "Đã thêm vào giỏ hàng"
       },
       "vendor": "Nhà cung cấp",

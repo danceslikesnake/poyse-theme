@@ -145,8 +145,6 @@
       "unavailable": "利用できません",
       "subscription": {
         "limit_reached": "カート内の定期購入できるフレーバーの上限（3つ）に達しました。",
-        "already_subscribed": "このフレーバーはすでに定期購入に含まれています。",
-        "already_in_cart": "このフレーバーはすでにカートに入っています。",
         "added_to_cart": "カートに追加しました"
       },
       "vendor": "販売元",

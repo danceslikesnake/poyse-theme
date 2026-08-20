@@ -126,8 +126,6 @@
       "unavailable": "Nedostupno",
       "subscription": {
         "limit_reached": "Dosegli ste ograničenje od 3 pretplaćena okusa u košarici.",
-        "already_subscribed": "Ovaj okus već je dio vaše pretplate.",
-        "already_in_cart": "Ovaj okus već je u vašoj košarici.",
         "added_to_cart": "Dodano u košaricu"
       },
       "vendor": "Prodavač",

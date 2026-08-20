@@ -144,8 +144,6 @@
       "unavailable": "Nicht verfügbar",
       "subscription": {
         "limit_reached": "Du hast das Limit von 3 Abo-Sorten in deinem Warenkorb erreicht.",
-        "already_subscribed": "Diese Sorte ist bereits Teil deines Abos.",
-        "already_in_cart": "Diese Sorte ist bereits in deinem Warenkorb.",
         "added_to_cart": "Zum Warenkorb hinzugefügt"
       },
       "vendor": "Anbieter",

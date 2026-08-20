@@ -145,8 +145,6 @@
       "unavailable": "Non disponibile",
       "subscription": {
         "limit_reached": "Hai raggiunto il limite di 3 gusti in abbonamento nel carrello.",
-        "already_subscribed": "Questo gusto fa già parte del tuo abbonamento.",
-        "already_in_cart": "Questo gusto è già nel tuo carrello.",
         "added_to_cart": "Aggiunto al carrello"
       },
       "vendor": "Fornitore",

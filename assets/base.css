@@ -797,7 +797,7 @@ summary::-webkit-details-marker {
 
 /* Dangerous for a11y - Use with care */
 .focus-none {
-  box-shadow: none !important;
+  /*box-shadow: none !important;*/
   outline: 0 !important;
 }
 

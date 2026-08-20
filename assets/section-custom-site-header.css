@@ -20,6 +20,25 @@
   --header-progress: 0;
 }
 
+/* Mobile-only: while the cart drawer is open, the header pill becomes the top of the
+   drawer panel itself (see .drawer__header being hidden, and .drawer__inner's margin-top
+   already matching this header's own clearance, in component-custom-cart-drawer.css) --
+   raise it above the drawer's dark overlay (z-index: 1000, component-cart-drawer.css) so
+   it stays fully opaque instead of getting dimmed along with the rest of the page. */
+@media screen and (max-width: 1023px) {
+  site-header.site-header--cart-open {
+    z-index: 1001;
+  }
+
+  /* Square off the bottom corners and drop this pill's own shadow so it reads as the
+     top of one continuous card with the drawer panel below it, instead of two stacked
+     rounded boxes with a visible seam/shadow line between them. */
+  site-header.site-header--cart-open .site-header__inner {
+    border-radius: 18px 18px 0 0;
+    box-shadow: none;
+  }
+}
+
 .site-header__inner {
   display: flex;
   align-items: center;

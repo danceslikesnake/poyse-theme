@@ -30,11 +30,33 @@ class SiteHeader extends HTMLElement {
       if (!event.cartData || event.cartData.item_count === undefined) return;
       this.updateCartCount(event.cartData.item_count);
     });
+
+    this.observeHeight();
   }
 
   disconnectedCallback() {
     window.removeEventListener('scroll', this.onScroll);
     if (this.cartUpdateUnsubscriber) this.cartUpdateUnsubscriber();
+    if (this.heightObserver) this.heightObserver.disconnect();
+  }
+
+  // On mobile the cart drawer panel (.drawer__inner in component-custom-cart-drawer.css)
+  // sits in a totally separate DOM subtree from <site-header> but needs to butt up flush
+  // against its bottom edge with zero gap (see .site-header--cart-open) -- a hardcoded
+  // rem guess drifts out of sync with the real rendered height (margin + content) the
+  // moment either one changes, so measure it instead and publish it as a --site-header-height
+  // custom property on the root, which the drawer's margin-top reads directly.
+  observeHeight() {
+    const inner = this.querySelector('.site-header__inner');
+    if (!inner) return;
+
+    const setHeight = () => {
+      document.documentElement.style.setProperty('--site-header-height', `${inner.getBoundingClientRect().bottom}px`);
+    };
+
+    setHeight();
+    this.heightObserver = new ResizeObserver(setHeight);
+    this.heightObserver.observe(inner);
   }
 
   parseColorZones() {

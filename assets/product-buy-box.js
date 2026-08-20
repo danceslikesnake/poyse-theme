@@ -9,6 +9,7 @@ class ProductBuyBox extends HTMLElement {
     this.productId = this.dataset.productId;
     this.ctaLabelPrefix = this.dataset.ctaLabel;
     this.productAlreadyInCart = false;
+    this.defaultCtaLabelText = this.ctaLabel.textContent;
 
     this.moveSealWidgetIntoSlot();
     this.watchForSealEnhancements();
@@ -35,9 +36,14 @@ class ProductBuyBox extends HTMLElement {
     if (this.submitButton) this.submitButton.disabled = this.productAlreadyInCart;
 
     if (this.productAlreadyInCart) {
-      this.showMessage(this.dataset.messageAlreadyInCart);
-    } else if (this.message?.textContent === this.dataset.messageAlreadyInCart) {
+      this.ctaLabel.textContent = this.dataset.addedToCartText;
       this.hideMessage();
+    } else if (this.ctaLabel.textContent === this.dataset.addedToCartText) {
+      // Cart line for this product is gone again (e.g. removed on the cart page in another
+      // tab) -- restore the default label, then let syncCtaLabel pick up Seal's real
+      // selection immediately rather than waiting for its next mutation/poll tick.
+      this.ctaLabel.textContent = this.defaultCtaLabelText;
+      this.syncCtaLabel();
     }
   }
 
@@ -134,6 +140,11 @@ class ProductBuyBox extends HTMLElement {
     let lastValue = null;
 
     const handleChange = () => {
+      // Once the flavor is already in cart (or already subscribed), the button is showing
+      // its final disabled "Added to Cart" label -- stop syncing it to Seal's selected
+      // price, or this loop would immediately overwrite that label back to the price text.
+      if (this.productAlreadyInCart) return;
+
       // Cheap and idempotent (no-ops until Seal's price text has rendered for the checked
       // option), so this runs on every tick regardless of whether the selection itself
       // changed -- syncing it only from the value-change branch below missed cases where
@@ -206,11 +217,19 @@ class ProductBuyBox extends HTMLElement {
     if (!state) return true;
 
     const { subscriptionCount, subscribedProductIds } = state;
-    const alreadySubscribed = subscribedProductIds.has(this.productId);
-    const limitReached = subscriptionCount >= SUBSCRIPTION_CAP;
 
-    if (alreadySubscribed || limitReached) {
-      this.showMessage(alreadySubscribed ? this.dataset.messageAlreadySubscribed : this.dataset.messageLimitReached);
+    // A flavor already subscribed is already in the cart, so show the same disabled
+    // "Added to Cart" button state as checkAlreadyInCart rather than a separate message.
+    if (subscribedProductIds.has(this.productId)) {
+      this.productAlreadyInCart = true;
+      if (this.submitButton) this.submitButton.disabled = true;
+      if (this.ctaLabel) this.ctaLabel.textContent = this.dataset.addedToCartText;
+      this.hideMessage();
+      return false;
+    }
+
+    if (subscriptionCount >= SUBSCRIPTION_CAP) {
+      this.showMessage(this.dataset.messageLimitReached);
       return false;
     }
 

@@ -144,8 +144,6 @@
       "unavailable": "Niet beschikbaar",
       "subscription": {
         "limit_reached": "Je hebt de limiet van 3 abonnementssmaken in je winkelwagen bereikt.",
-        "already_subscribed": "Deze smaak maakt al deel uit van je abonnement.",
-        "already_in_cart": "Deze smaak zit al in je winkelwagen.",
         "added_to_cart": "Toegevoegd aan winkelwagen"
       },
       "vendor": "Verkoper",

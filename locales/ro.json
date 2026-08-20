@@ -126,8 +126,6 @@
       "unavailable": "Indisponibil",
       "subscription": {
         "limit_reached": "Ați atins limita de 3 arome cu abonament în coș.",
-        "already_subscribed": "Această aromă face deja parte din abonamentul dvs.",
-        "already_in_cart": "Această aromă este deja în coșul dvs.",
         "added_to_cart": "Adăugat în coș"
       },
       "vendor": "Vânzător",

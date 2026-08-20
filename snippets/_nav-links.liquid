@@ -31,7 +31,20 @@
   {%- endfor -%}
 
   <a href="{{ routes.cart_url }}" class="custom-nav-links__cart" data-cart-count data-cart-drawer-toggle>
-    <span aria-hidden="true">{% if cart_count < 10 %}0{{ cart_count }}{% else %}{{ cart_count }}{% endif %}</span>
+    <span aria-hidden="true" class="custom-nav-links__cart-count">
+      {%- if cart_count < 10 -%}0{{ cart_count }}{%- else -%}{{ cart_count }}{%- endif -%}
+    </span>
+    {%- comment -%}
+      Mobile-only: while the header itself is standing in for the cart drawer's own
+      chrome (see .site-header--cart-open in section-custom-site-header.css /
+      component-nav-links.css), this replaces the count as the visible close affordance.
+      Always rendered (not just on the header instance) since this snippet is shared with
+      the footer -- the swap is purely CSS-driven, scoped to .site-header--cart-open, so
+      the footer's copy never shows it.
+    {%- endcomment -%}
+    <span class="custom-nav-links__cart-close svg-wrapper" aria-hidden="true">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </span>
     <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart_count }}</span>
   </a>
 </nav>

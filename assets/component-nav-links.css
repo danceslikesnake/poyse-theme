@@ -47,3 +47,27 @@
   font-size: var(--font-size-xs);
   text-decoration: none;
 }
+
+.custom-nav-links__cart-close {
+  display: none;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Mobile-only: while the header stands in for the cart drawer's own top chrome (see
+   .site-header--cart-open in section-custom-site-header.css), swap the Shop/Science
+   links and the cart count out for a close affordance. Scoped under site-header so the
+   footer's copy of this shared snippet is never affected. */
+@media screen and (max-width: 1023px) {
+  site-header.site-header--cart-open .custom-nav-links__nav-link {
+    display: none;
+  }
+
+  site-header.site-header--cart-open .custom-nav-links__cart-count {
+    display: none;
+  }
+
+  site-header.site-header--cart-open .custom-nav-links__cart-close {
+    display: flex;
+  }
+}

@@ -145,8 +145,6 @@
       "unavailable": "Tidak Tersedia",
       "subscription": {
         "limit_reached": "Anda telah mencapai batas 3 rasa berlangganan di keranjang Anda.",
-        "already_subscribed": "Rasa ini sudah termasuk dalam langganan Anda.",
-        "already_in_cart": "Rasa ini sudah ada di keranjang Anda.",
         "added_to_cart": "Ditambahkan ke keranjang"
       },
       "vendor": "Vendor",

@@ -68,11 +68,17 @@ class FeatureItem extends HTMLElement {
     const state = await getSubscriptionCartState();
     if (!state) return true;
 
-    const alreadySubscribed = state.subscribedProductIds.has(this.productId);
-    const limitReached = state.subscriptionCount >= SUBSCRIPTION_CAP;
+    // A flavor already subscribed is already in the cart, so show the same disabled
+    // "Added to Cart" button state as checkAlreadyInCart rather than a separate message.
+    if (state.subscribedProductIds.has(this.productId)) {
+      this.ctaButton.disabled = true;
+      this.ctaButton.textContent = this.dataset.addedToCartText;
+      this.hideMessage();
+      return false;
+    }
 
-    if (alreadySubscribed || limitReached) {
-      this.showMessage(alreadySubscribed ? this.dataset.messageAlreadySubscribed : this.dataset.messageLimitReached);
+    if (state.subscriptionCount >= SUBSCRIPTION_CAP) {
+      this.showMessage(this.dataset.messageLimitReached);
       return false;
     }
 

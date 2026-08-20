@@ -144,8 +144,6 @@
       "unavailable": "Inte tillgängliga",
       "subscription": {
         "limit_reached": "Du har nått gränsen på 3 prenumerationssmaker i din kundvagn.",
-        "already_subscribed": "Den här smaken ingår redan i din prenumeration.",
-        "already_in_cart": "Den här smaken finns redan i din kundvagn.",
         "added_to_cart": "Tillagd i kundvagnen"
       },
       "vendor": "Säljare",

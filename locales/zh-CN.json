@@ -145,8 +145,6 @@
       "unavailable": "不可用",
       "subscription": {
         "limit_reached": "您的购物车中已达到3种订阅口味的上限。",
-        "already_subscribed": "该口味已包含在您的订阅中。",
-        "already_in_cart": "该口味已在您的购物车中。",
         "added_to_cart": "已加入购物车"
       },
       "vendor": "厂商",

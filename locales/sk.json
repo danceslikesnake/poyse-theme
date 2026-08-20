@@ -127,8 +127,6 @@
       "unavailable": "Nedostupné",
       "subscription": {
         "limit_reached": "Dosiahli ste limit 3 predplatených príchutí v košíku.",
-        "already_subscribed": "Táto príchuť je už súčasťou vášho predplatného.",
-        "already_in_cart": "Táto príchuť je už vo vašom košíku.",
         "added_to_cart": "Pridané do košíka"
       },
       "vendor": "Predajca",

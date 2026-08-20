@@ -145,8 +145,6 @@
       "unavailable": "사용할 수 없음",
       "subscription": {
         "limit_reached": "장바구니에 구독 가능한 맛의 한도(3개)에 도달했습니다.",
-        "already_subscribed": "이 맛은 이미 구독에 포함되어 있습니다.",
-        "already_in_cart": "이 맛은 이미 장바구니에 있습니다.",
         "added_to_cart": "장바구니에 추가됨"
       },
       "vendor": "공급업체",

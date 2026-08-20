@@ -145,8 +145,6 @@
       "unavailable": "無法供貨",
       "subscription": {
         "limit_reached": "您的購物車已達到3種訂閱口味的上限。",
-        "already_subscribed": "此口味已包含在您的訂閱中。",
-        "already_in_cart": "此口味已在您的購物車中。",
         "added_to_cart": "已加入購物車"
       },
       "vendor": "廠商",

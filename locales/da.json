@@ -144,8 +144,6 @@
       "unavailable": "Ikke tilgængelig",
       "subscription": {
         "limit_reached": "Du har nået grænsen på 3 abonnementssmagsvarianter i din kurv.",
-        "already_subscribed": "Denne smag er allerede en del af dit abonnement.",
-        "already_in_cart": "Denne smag er allerede i din kurv.",
         "added_to_cart": "Tilføjet til kurv"
       },
       "vendor": "Forhandler",

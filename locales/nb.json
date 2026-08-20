@@ -144,8 +144,6 @@
       "unavailable": "Utilgjengelig",
       "subscription": {
         "limit_reached": "Du har nådd grensen på 3 abonnementssmaker i handlekurven.",
-        "already_subscribed": "Denne smaken er allerede en del av abonnementet ditt.",
-        "already_in_cart": "Denne smaken er allerede i handlekurven din.",
         "added_to_cart": "Lagt i handlekurven"
       },
       "vendor": "Selger",

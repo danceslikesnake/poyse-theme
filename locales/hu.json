@@ -145,8 +145,6 @@
       "unavailable": "Nincs készleten",
       "subscription": {
         "limit_reached": "Elérted a kosaradban lévő 3 előfizetéses íz limitjét.",
-        "already_subscribed": "Ez az íz már része az előfizetésednek.",
-        "already_in_cart": "Ez az íz már a kosaradban van.",
         "added_to_cart": "Kosárba téve"
       },
       "vendor": "Forgalmazó",

@@ -145,8 +145,6 @@
       "unavailable": "No disponible",
       "subscription": {
         "limit_reached": "Has alcanzado el límite de 3 sabores en suscripción en tu carrito.",
-        "already_subscribed": "Este sabor ya forma parte de tu suscripción.",
-        "already_in_cart": "Este sabor ya está en tu carrito.",
         "added_to_cart": "Añadido al carrito"
       },
       "vendor": "Proveedor",

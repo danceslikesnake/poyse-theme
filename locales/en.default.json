@@ -182,8 +182,6 @@
       "unavailable": "Unavailable",
       "subscription": {
         "limit_reached": "You've reached the limit of 3 subscription flavors in your cart.",
-        "already_subscribed": "This flavor is already in your subscription.",
-        "already_in_cart": "This flavor is already in your cart.",
         "added_to_cart": "Added to Cart"
       },
       "vendor": "Vendor",

@@ -126,8 +126,6 @@
       "unavailable": "Niedostępny",
       "subscription": {
         "limit_reached": "Osiągnięto limit 3 subskrybowanych smaków w koszyku.",
-        "already_subscribed": "Ten smak jest już częścią Twojej subskrypcji.",
-        "already_in_cart": "Ten smak jest już w Twoim koszyku.",
         "added_to_cart": "Dodano do koszyka"
       },
       "vendor": "Dostawca",

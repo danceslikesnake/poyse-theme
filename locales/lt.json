@@ -127,8 +127,6 @@
       "unavailable": "Nėra",
       "subscription": {
         "limit_reached": "Pasiekėte 3 prenumeruojamų skonių ribą krepšelyje.",
-        "already_subscribed": "Šis skonis jau yra jūsų prenumeratoje.",
-        "already_in_cart": "Šis skonis jau yra jūsų krepšelyje.",
         "added_to_cart": "Pridėta į krepšelį"
       },
       "vendor": "Tiekėjas",
