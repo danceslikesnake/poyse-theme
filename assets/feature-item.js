@@ -1,5 +1,15 @@
 class FeatureItem extends HTMLElement {
   connectedCallback() {
+    this.hoverMedia = this.querySelector('.feature-item__media');
+    this.hoverVideo = this.querySelector('.feature-item__hover-video');
+    if (this.hoverMedia && this.hoverVideo) {
+      this.hoverMedia.addEventListener('mouseenter', () => this.hoverVideo.play());
+      this.hoverMedia.addEventListener('mouseleave', () => {
+        this.hoverVideo.pause();
+        this.hoverVideo.currentTime = 0;
+      });
+    }
+
     this.form = this.querySelector('form');
     this.options = this.querySelectorAll('[data-subscription-option]');
     this.ctaButton = this.querySelector('[data-cta]');

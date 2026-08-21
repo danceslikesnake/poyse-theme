@@ -13,7 +13,18 @@
 
 <div class="meet-paraxanthine section-{{ section.id }}-border">
   <div class="meet-paraxanthine__media">
-    {%- if section.settings.image != blank -%}
+    {%- if section.settings.video != blank -%}
+      {{
+        section.settings.video
+        | video_tag:
+          image_size: '1800x',
+          autoplay: true,
+          loop: true,
+          muted: true,
+          controls: false,
+          class: 'meet-paraxanthine__image'
+      }}
+    {%- elsif section.settings.image != blank -%}
       {{
         section.settings.image
         | image_url: width: 1800
@@ -69,6 +80,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.custom-meet-paraxanthine.settings.image.label"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:sections.custom-meet-paraxanthine.settings.video.label",
+      "info": "t:sections.custom-meet-paraxanthine.settings.video.info"
     },
     {
       "type": "color",

@@ -17,6 +17,7 @@
   - subtitle: {String} rich text subtitle, e.g. "with Paraxanthine <em>for Daily Momentum</em>"
   - hover_image: {Object} optional image_picker image shown on card hover. Falls back to a
     flavor-matched asset (hover-1/2/3.png) keyed off product.handle when left blank.
+  - hover_video: {Object} optional video shown on card hover instead of hover_image, when set.
   - show_new_arrival_badge: {Boolean}
   - show_best_seller_badge: {Boolean}
   - monthly_label: {String}
@@ -99,6 +100,18 @@
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
     </a>
+
+    {%- if hover_video != blank -%}
+      {{
+        hover_video
+        | video_tag:
+          image_size: '800x',
+          loop: true,
+          muted: true,
+          controls: false,
+          class: 'feature-item__hover-video'
+      }}
+    {%- endif -%}
   </div>
 
   <div class="feature-item__info">

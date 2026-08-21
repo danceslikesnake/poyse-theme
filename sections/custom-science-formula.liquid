@@ -23,6 +23,17 @@
               <source src="{{ showcase_block.settings.video_webm_url }}" type="video/webm">
             {%- endif -%}
           </video>
+        {%- elsif showcase_block.settings.video != blank -%}
+          {{
+            showcase_block.settings.video
+            | video_tag:
+              image_size: '900x',
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              class: 'science-formula__image'
+          }}
         {%- elsif showcase_block.settings.image != blank -%}
           {{
             showcase_block.settings.image
@@ -97,6 +108,12 @@
           "id": "image",
           "label": "t:sections.custom-science-formula.blocks.showcase.settings.image.label",
           "info": "t:sections.custom-science-formula.blocks.showcase.settings.image.info"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.custom-science-formula.blocks.showcase.settings.video.label",
+          "info": "t:sections.custom-science-formula.blocks.showcase.settings.video.info"
         },
         {
           "type": "header",

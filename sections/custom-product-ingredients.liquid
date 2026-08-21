@@ -45,7 +45,18 @@
                     tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
             >
               <div class="ingredient-slider__card-media">
-                {%- if block.settings.image != blank -%}
+                {%- if block.settings.video != blank -%}
+                  {{
+                  block.settings.video
+                  | video_tag:
+                    image_size: '700x',
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    controls: false,
+                    class: 'ingredient-slider__image'
+                  }}
+                {%- elsif block.settings.image != blank -%}
                   {{
                   block.settings.image
                   | image_url: width: 700
@@ -202,6 +213,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.custom-product-ingredients.blocks.card.settings.image.label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.custom-product-ingredients.blocks.card.settings.video.label",
+          "info": "t:sections.custom-product-ingredients.blocks.card.settings.video.info"
         },
         {
           "type": "text",

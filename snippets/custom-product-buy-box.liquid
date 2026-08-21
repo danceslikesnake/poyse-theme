@@ -20,6 +20,8 @@
   - value_link_label: {String} optional, e.g. "Value of one-time purchase"
   - value_link_url: {String} optional
   - subscriber_gift_image / subscriber_gift_image_2: {Object} optional images
+  - subscriber_gift_video / subscriber_gift_video_2: {Object} optional videos, take priority
+    over the matching image above when set
   - subscriber_gift_heading: {String} optional
   - subscriber_gift_text: {String} optional, rich text
 
@@ -53,7 +55,18 @@
   {%- if subscriber_gift_heading != blank -%}
     <div class="product-subscriber-gift">
       <span class="product-subscriber-gift__media">
-        {%- if subscriber_gift_image != blank -%}
+        {%- if subscriber_gift_video != blank -%}
+          {{
+            subscriber_gift_video
+            | video_tag:
+              image_size: '120x',
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              class: 'product-subscriber-gift__icon'
+          }}
+        {%- elsif subscriber_gift_image != blank -%}
           {{
             subscriber_gift_image
             | image_url: width: 120
@@ -69,7 +82,18 @@
             alt=""
           >
         {%- endif -%}
-        {%- if subscriber_gift_image_2 != blank -%}
+        {%- if subscriber_gift_video_2 != blank -%}
+          {{
+            subscriber_gift_video_2
+            | video_tag:
+              image_size: '120x',
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              class: 'product-subscriber-gift__icon'
+          }}
+        {%- elsif subscriber_gift_image_2 != blank -%}
           {{
             subscriber_gift_image_2
             | image_url: width: 120

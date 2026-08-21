@@ -24,7 +24,18 @@
   <div class="subscriber-gift__grid">
     {%- if media_block != blank -%}
       <div class="subscriber-gift__media" {{ media_block.shopify_attributes }}>
-        {%- if media_block.settings.image != blank -%}
+        {%- if media_block.settings.video != blank -%}
+          {{
+            media_block.settings.video
+            | video_tag:
+              image_size: '1200x',
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              class: 'subscriber-gift__image'
+          }}
+        {%- elsif media_block.settings.image != blank -%}
           {{
             media_block.settings.image
             | image_url: width: 1200
@@ -63,7 +74,18 @@
             {%- for block in gift_item_blocks -%}
               <li class="subscriber-gift__item" {{ block.shopify_attributes }}>
                 <div class="subscriber-gift__item-media">
-                  {%- if block.settings.image != blank -%}
+                  {%- if block.settings.video != blank -%}
+                    {{
+                    block.settings.video
+                    | video_tag:
+                      image_size: '200x',
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      class: 'subscriber-gift__item-image'
+                    }}
+                  {%- elsif block.settings.image != blank -%}
                     {{
                     block.settings.image
                     | image_url: width: 200
@@ -146,6 +168,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.custom-subscriber-gift.blocks.media.settings.image.label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.custom-subscriber-gift.blocks.media.settings.video.label",
+          "info": "t:sections.custom-subscriber-gift.blocks.media.settings.video.info"
         }
       ]
     },
@@ -177,6 +205,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.custom-subscriber-gift.blocks.gift_item.settings.image.label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.custom-subscriber-gift.blocks.gift_item.settings.video.label",
+          "info": "t:sections.custom-subscriber-gift.blocks.gift_item.settings.video.info"
         },
         {
           "type": "text",

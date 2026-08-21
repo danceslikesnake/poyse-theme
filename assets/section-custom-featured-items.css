@@ -69,6 +69,24 @@
   opacity: 1;
 }
 
+/* Real <video> element (not a ::before background-image -- video can't be a CSS
+   background), played/paused via JS on hover (assets/feature-item.js) rather than
+   autoplaying constantly, since several of these can be in a grid at once. */
+.feature-item__hover-video {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-item__media:hover .feature-item__hover-video {
+  opacity: 1;
+}
+
 .feature-item__media-link {
   display: block;
   width: 100%;

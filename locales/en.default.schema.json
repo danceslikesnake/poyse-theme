@@ -694,6 +694,10 @@
           "settings": {
             "image": {
               "label": "Image"
+            },
+            "video": {
+              "label": "Video",
+              "info": "Optional, replaces the image above when set. Cropped to match the image's aspect ratio."
             }
           }
         },
@@ -949,6 +953,10 @@
             "image": {
               "label": "Image"
             },
+            "video": {
+              "label": "Video",
+              "info": "Optional, replaces the image above when set. Cropped to match the image's aspect ratio."
+            },
             "tag_text": {
               "label": "Tag text",
               "default": "@janedoe"
@@ -1090,6 +1098,10 @@
             "hover_image": {
               "label": "Hover background image",
               "info": "Shown behind the product photo on hover. If left blank, defaults to a flavor-matched image (Yuzu Citrus, Strawberry Watermelon, Tropical Mango)."
+            },
+            "hover_video": {
+              "label": "Hover video",
+              "info": "Optional, plays behind the product photo on hover instead of the image above when set."
             },
             "header_badges": {
               "content": "Badges"
@@ -1319,8 +1331,16 @@
         "subscriber_gift_image": {
           "label": "Icon"
         },
+        "subscriber_gift_video": {
+          "label": "Icon video",
+          "info": "Optional, replaces the icon above when set. Cropped to match the icon's aspect ratio."
+        },
         "subscriber_gift_image_2": {
           "label": "Icon 2 (optional)"
+        },
+        "subscriber_gift_video_2": {
+          "label": "Icon 2 video",
+          "info": "Optional, replaces icon 2 above when set. Cropped to match the icon's aspect ratio."
         },
         "subscriber_gift_heading": {
           "label": "Heading",
@@ -1467,6 +1487,10 @@
           "settings": {
             "image": {
               "label": "Image"
+            },
+            "video": {
+              "label": "Video",
+              "info": "Optional, replaces the image above when set. Cropped to match the image's aspect ratio."
             },
             "key_label": {
               "label": "Eyebrow label",
@@ -1649,6 +1673,10 @@
           "settings": {
             "image": {
               "label": "Image"
+            },
+            "video": {
+              "label": "Video",
+              "info": "Optional, replaces the image above when set. Cropped to match the image's aspect ratio."
             }
           }
         },
@@ -1671,6 +1699,10 @@
             "image": {
               "label": "Image"
             },
+            "video": {
+              "label": "Video",
+              "info": "Optional, replaces the image above when set. Cropped to match the image's aspect ratio."
+            },
             "title": {
               "label": "Title",
               "default": "Gift item"
@@ -1691,6 +1723,10 @@
       "settings": {
         "image": {
           "label": "Background image"
+        },
+        "video": {
+          "label": "Background video",
+          "info": "Optional, replaces the image above when set. Cropped to match the image's aspect ratio."
         },
         "border_color": {
           "label": "Container border color"
@@ -1765,6 +1801,10 @@
           "settings": {
             "image": {
               "label": "Image"
+            },
+            "video": {
+              "label": "Video",
+              "info": "Optional, replaces the image above when set. Cropped to match the image's aspect ratio."
             }
           }
         }
@@ -1786,6 +1826,10 @@
             "image": {
               "label": "Product image",
               "info": "Used if no video is set below"
+            },
+            "video": {
+              "label": "Video",
+              "info": "Optional, uploaded directly. Used if no .mov/.webm URL is set below; replaces the image above when set."
             },
             "header_video_sources": {
               "content": "Alpha / transparent video sources"

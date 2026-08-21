@@ -39,7 +39,18 @@
                 <span class="community-gallery__tag">{{ block.settings.tag_text | escape }}</span>
               {%- endif -%}
 
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.video != blank -%}
+                {{
+                  block.settings.video
+                  | video_tag:
+                    image_size: '1000x',
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    controls: false,
+                    class: 'community-gallery__image'
+                }}
+              {%- elsif block.settings.image != blank -%}
                 {{
                   block.settings.image
                   | image_url: width: 1000
@@ -135,6 +146,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "t:sections.custom-community.blocks.gallery_item.settings.image.label"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "t:sections.custom-community.blocks.gallery_item.settings.video.label",
+          "info": "t:sections.custom-community.blocks.gallery_item.settings.video.info"
         },
         {
           "type": "text",
