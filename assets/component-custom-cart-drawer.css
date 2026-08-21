@@ -53,6 +53,14 @@
 .drawer__close .svg-wrapper {
   height: 1.4rem;
   width: 1.4rem;
+  margin-top: 1px;
+}
+
+.drawer__close .icon-close path {
+  /* icon-close.svg's X is a filled 1px-wide shape; adding a stroke fattens it to ~2px
+     to visually match the weight of the totals__total (EsBuildBold) text next to it. */
+  stroke: currentColor;
+  stroke-width: 1px;
 }
 
 .cart-drawer .cart-item__product-line {
@@ -103,6 +111,16 @@
   flex-shrink: 0;
 }
 
+.cart-drawer .cart-item__upsell-caption--button {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 .cart-drawer__empty-content {
   padding: 16px 0;
 }
@@ -148,16 +166,12 @@
   font-size: 14px;
 }
 
-/* Trash-can-only remove, matching the /cart page treatment: hide the quantity
-   stepper entirely and keep only the remove button. */
-.cart-drawer .quantity-popover-container,
-.cart-drawer .quantity-popover__info-button {
-  display: none !important;
-}
-
+/* One-time lines get a compact "- 1 +" stepper stacked above the remove button (see
+   .cart-item__quantity-stepper below); monthly lines don't render one at all (always
+   qty 1) -- see snippets/cart-drawer.liquid. The old .cart-item__quantity column this
+   used to live in is now always empty, kept only for the table's header/cell parity. */
 .cart-drawer .cart-item__quantity {
-  display: flex;
-  justify-content: flex-end;
+  display: none;
 }
 
 /* The remove button lives in .cart-item__totals now (see below) so it sits
@@ -178,6 +192,43 @@
 .cart-drawer .cart-item__totals cart-remove-button {
   margin-left: 0;
   pointer-events: auto;
+}
+
+/* Compact "- 1 +" stepper for one-time lines only, sized to sit quietly above the
+   remove button rather than Dawn's full-size bordered pill control. */
+.cart-drawer .cart-item__quantity-stepper {
+  width: auto;
+  min-height: auto;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+.cart-drawer .cart-item__quantity-stepper:after,
+.cart-drawer .cart-item__quantity-stepper:before {
+  content: none;
+}
+
+.cart-drawer .cart-item__quantity-stepper .quantity__button {
+  width: auto;
+  font-size: 10px;
+  color: var(--poyse-evening-fig);
+}
+
+.cart-drawer .cart-item__quantity-stepper .quantity__button:first-child,
+.cart-drawer .cart-item__quantity-stepper .quantity__button:last-child {
+  margin: 0;
+}
+
+.cart-drawer .cart-item__quantity-stepper .quantity__button .svg-wrapper {
+  width: 10px;
+}
+
+.cart-drawer .cart-item__quantity-stepper .quantity__input {
+  width: 1.4rem;
+  padding: 0;
+  font-family: 'EsBuildBold', sans-serif;
+  font-size: 14px;
+  opacity: 1;
 }
 
 .cart-drawer .totals__total {
