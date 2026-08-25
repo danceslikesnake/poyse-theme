@@ -218,22 +218,14 @@
                   {%- if section.settings.supplement_facts_label != blank or section.settings.how_to_use_label != blank -%}
                     <div class="product-info__reveal-triggers">
                       {%- if section.settings.supplement_facts_label != blank -%}
-                        <details class="product-reveal">
-                          <summary class="product-reveal-btn">
-                            {{- section.settings.supplement_facts_label | escape -}}
-                          </summary>
-                          <div class="product-reveal__content">
-                            {%- if section.settings.supplement_facts_image != blank -%}
-                              {{
-                                section.settings.supplement_facts_image
-                                | image_url: width: 1200
-                                | image_tag: loading: 'lazy', sizes: '(min-width: 1280px) 56.8rem, 90vw'
-                              }}
-                            {%- else -%}
-                              <p>{{ 'sections.custom_product_info.supplement_facts_placeholder' | t }}</p>
-                            {%- endif -%}
-                          </div>
-                        </details>
+                        {%- assign supplement_facts_modal_id = 'SupplementFactsModal-' | append: section.id -%}
+                        {%- render 'product-supplement-facts-modal',
+                          product: product,
+                          label: section.settings.supplement_facts_label,
+                          fallback_image: section.settings.supplement_facts_image,
+                          modal_id: supplement_facts_modal_id,
+                          button_class: 'product-reveal-btn'
+                        -%}
                       {%- endif -%}
                       {%- if section.settings.how_to_use_label != blank -%}
                         <details class="product-reveal">

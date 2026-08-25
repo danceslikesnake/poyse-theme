@@ -7,7 +7,7 @@
 }
 
 .product-info[data-flavor='yuzu-citrus'] {
-  --product-buy-box-accent: #f6e545;
+  --product-buy-box-accent: #E3CD40;
 }
 
 .product-info[data-flavor='tropical-mango'] {
@@ -401,6 +401,38 @@
   gap: 8px;
 }
 
+.product-info__reveal-triggers .product-supplement-facts-opener {
+  display: block;
+}
+
+.product-info__reveal-triggers .product-supplement-facts-opener .product-reveal-btn {
+  width: 100%;
+}
+
+.product-supplement-facts-opener .product-reveal-btn:hover {
+  background-color: var(--poyse-white);
+  cursor: pointer;
+}
+
+.product-supplement-facts-modal .product-popup-modal__content {
+  max-width: 500px;
+  height: auto;
+  max-height: 90vh;
+  padding: 1.5rem;
+}
+
+.product-supplement-facts-modal .product-popup-modal__content-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 0;
+}
+
+.product-supplement-facts-modal .product-popup-modal__content-info img {
+  width: auto;
+  max-width: 100%;
+}
+
 .product-reveal summary {
   list-style: none;
   text-align: center;
@@ -426,6 +458,7 @@
   border-radius: 12px;
   font-size: var(--font-size-xs);
   font-family: 'EsBuildMedium', sans-serif;
+  background: white;
 }
 
 .product-static-section {

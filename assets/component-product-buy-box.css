@@ -135,6 +135,10 @@
   font-family: 'EsBuildMedium', sans-serif;
 }
 
+.product-buy-box__quantity {
+  margin-bottom: 12px;
+}
+
 button.product-buy-box__submit {
   gap: 12px;
   background: var(--product-buy-box-accent);

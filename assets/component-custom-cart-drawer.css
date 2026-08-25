@@ -285,7 +285,7 @@
   .drawer__inner {
     margin-top: 64px;
     margin-right: 22px;
-    width: 345px;
+    width: 355px;
     max-width: calc(100vw - 44px);
     max-height: calc(100vh - 110px);
     border: none;

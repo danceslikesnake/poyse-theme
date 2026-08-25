@@ -1,0 +1,82 @@
+{% comment %}
+  Renders a "View Supplement Facts" trigger that opens a modal with an image, instead of
+  linking out. Prefers a per-flavor image asset named "<product.handle>-supplemental-facts"
+  (flavors are separate products, so this picks the right label per product) and falls back
+  to a merchant-configured image, then a plain link, when no per-flavor asset exists.
+
+  Accepts:
+  - product: {Object} current product, used to resolve the per-flavor image
+  - label: {String} trigger label
+  - fallback_image: {Object} optional image_picker image
+  - fallback_url: {String} optional URL, used only when no image is available at all
+  - modal_id: {String} unique id for this modal instance -- build with `assign` before
+    calling render, since render tag arguments can't have filters applied inline
+  - button_class: {String} CSS class(es) for the trigger button/link
+
+  Usage:
+  {% assign supplement_facts_modal_id = 'SupplementFactsModal-' | append: section.id %}
+  {% render 'product-supplement-facts-modal',
+    product: product,
+    label: section.settings.supplement_facts_label,
+    fallback_image: section.settings.supplement_facts_image,
+    fallback_url: section.settings.supplement_facts_url,
+    modal_id: supplement_facts_modal_id,
+    button_class: 'product-reveal-btn'
+  %}
+{% endcomment %}
+
+{%- liquid
+  assign flavor_image = null
+  case product.handle
+    when 'strawberry-watermelon'
+      assign flavor_image = 'strawberry-watermelon-supplemental-facts.png' | asset_url
+    when 'tropical-mango'
+      assign flavor_image = 'tropical-mango-supplemental-facts.png' | asset_url
+    when 'yuzu-citrus'
+      assign flavor_image = 'yuzu-citrus-supplemental-facts.png' | asset_url
+  endcase
+-%}
+
+{%- if label != blank -%}
+  {%- if flavor_image != blank or fallback_image != blank -%}
+    <modal-opener data-modal="#{{ modal_id }}" class="product-supplement-facts-opener">
+      <button type="button" class="{{ button_class }}" aria-haspopup="dialog">
+        {{- label | escape -}}
+      </button>
+    </modal-opener>
+    <modal-dialog id="{{ modal_id }}" class="product-popup-modal product-supplement-facts-modal">
+      <div
+        role="dialog"
+        aria-label="{{ label | escape }}"
+        aria-modal="true"
+        class="product-popup-modal__content"
+        tabindex="-1"
+      >
+        <button
+          id="ModalClose-{{ modal_id }}"
+          type="button"
+          class="product-popup-modal__toggle"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </button>
+        <div class="product-popup-modal__content-info">
+          <h2 class="h2">{{ label | escape }}</h2>
+          {%- if flavor_image != blank -%}
+            <img src="{{ flavor_image }}" loading="lazy" alt="{{ label | escape }}">
+          {%- else -%}
+            {{
+              fallback_image
+              | image_url: width: 1200
+              | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 600px, 90vw'
+            }}
+          {%- endif -%}
+        </div>
+      </div>
+    </modal-dialog>
+  {%- elsif fallback_url != blank -%}
+    <a href="{{ fallback_url }}" class="{{ button_class }}">
+      {{- label | escape -}}
+    </a>
+  {%- endif -%}
+{%- endif -%}

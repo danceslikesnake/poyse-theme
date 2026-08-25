@@ -3,6 +3,7 @@
 
 {%- liquid
   assign cards = section.blocks | where: 'type', 'card'
+  assign supplement_facts_modal_id = 'SupplementFactsModal-' | append: section.id
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} custom-ingredients">
@@ -13,17 +14,14 @@
       {%- endif -%}
       <h2 class="ingredients__heading inline-richtext">{{ section.settings.heading }}</h2>
     </div>
-    {%- if section.settings.supplement_facts_image != blank -%}
-      <modal-opener data-modal="#IngredientsSupplementFactsModal-{{ section.id }}">
-        <button type="button" class="custom-cta-button tan narrow-padding" aria-haspopup="dialog">
-          {{- section.settings.supplement_facts_label | escape -}}
-        </button>
-      </modal-opener>
-    {%- elsif section.settings.supplement_facts_url != blank and section.settings.supplement_facts_label != blank -%}
-      <a href="{{ section.settings.supplement_facts_url }}" class="custom-cta-button tan">
-        {{- section.settings.supplement_facts_label | escape -}}
-      </a>
-    {%- endif -%}
+    {%- render 'product-supplement-facts-modal',
+      product: product,
+      label: section.settings.supplement_facts_label,
+      fallback_image: section.settings.supplement_facts_image,
+      fallback_url: section.settings.supplement_facts_url,
+      modal_id: supplement_facts_modal_id,
+      button_class: 'custom-cta-button tan narrow-padding'
+    -%}
   </div>
 
   {%- if cards.size > 0 -%}
@@ -101,29 +99,6 @@
     </ingredient-slider>
   {%- endif -%}
 
-  {%- if section.settings.supplement_facts_image != blank -%}
-    <modal-dialog id="IngredientsSupplementFactsModal-{{ section.id }}" class="product-popup-modal">
-      <div
-        role="dialog"
-        aria-label="{{ section.settings.supplement_facts_label | escape }}"
-        aria-modal="true"
-        class="product-popup-modal__content"
-        tabindex="-1"
-      >
-        <button type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </button>
-        <div class="product-popup-modal__content-info">
-          <h2 class="h2">{{ section.settings.supplement_facts_label | escape }}</h2>
-          {{
-            section.settings.supplement_facts_image
-            | image_url: width: 1200
-            | image_tag: loading: 'lazy', sizes: '(min-width: 768px) 600px, 90vw'
-          }}
-        </div>
-      </div>
-    </modal-dialog>
-  {%- endif -%}
 </div>
 
 {% schema %}

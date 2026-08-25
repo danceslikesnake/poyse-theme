@@ -139,6 +139,34 @@
         class="product-variant-id"
       >
       <input type="hidden" name="selling_plan" value="" data-selling-plan-input>
+      <div class="product-buy-box__quantity" data-quantity-wrapper hidden>
+        <quantity-input class="quantity">
+          <button class="quantity__button" name="minus" type="button">
+            <span class="visually-hidden">
+              {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+            </span>
+            <span class="svg-wrapper">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+          </button>
+          <input
+            class="quantity__input"
+            type="number"
+            name="quantity"
+            value="{{ variant.quantity_rule.min }}"
+            min="{{ variant.quantity_rule.min }}"
+            {% if variant.quantity_rule.max != null %}
+              max="{{ variant.quantity_rule.max }}"
+            {% endif %}
+            step="{{ variant.quantity_rule.increment }}"
+            aria-label="{{ 'products.product.quantity.input_label' | t }}"
+          >
+          <button class="quantity__button" name="plus" type="button">
+            <span class="visually-hidden">
+              {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+            </span>
+            <span class="svg-wrapper">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+          </button>
+        </quantity-input>
+      </div>
       <button
         type="submit"
         name="add"
