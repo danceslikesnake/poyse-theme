@@ -1417,6 +1417,10 @@
             "open_by_default": {
               "label": "Open by default"
             },
+            "highlights_content": {
+              "label": "Highlights list",
+              "default": "<ul><li>Built for work, workouts, and long days</li><li>Amino acids to support performance and mental output</li><li>Electrolytes for added daily support</li><li>Shorter half-life than caffeine for a less lingering feel</li></ul>"
+            },
             "icon_1_image": {
               "label": "Icon 1 image"
             },

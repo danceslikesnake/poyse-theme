@@ -428,9 +428,6 @@
   font-family: 'EsBuildMedium', sans-serif;
 }
 
-/* Non-collapsible replacement for the old <details>/<summary> accordion:
-   same row/border look via the shared .accordion__title + .accordion__content
-   classes, just always expanded with a plus icon instead of a toggle caret. */
 .product-static-section {
   margin-top: 2.5rem;
   margin-bottom: 0;
@@ -449,10 +446,42 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 24px 0;
+  cursor: pointer;
+  list-style: none;
 }
 
-.product-static-section__header svg {
+.product-static-section__header::-webkit-details-marker {
+  display: none;
+}
+
+.product-static-section .accordion__content {
+  overflow: visible;
+}
+
+.product-static-section__icon {
+  display: flex;
   flex-shrink: 0;
+}
+
+.product-static-section__icon svg {
+  flex-shrink: 0;
+}
+
+.product-static-section__icon svg:last-child {
+  display: none;
+}
+
+.product-static-section[open] > .product-static-section__header .product-static-section__icon svg:first-child {
+  display: none;
+}
+
+.product-static-section[open] > .product-static-section__header .product-static-section__icon svg:last-child {
+  display: block;
+}
+
+.product-benefits-highlights {
+  margin: 0 0 16px 0;
+  padding-left: 20px;
 }
 
 .product-benefits {

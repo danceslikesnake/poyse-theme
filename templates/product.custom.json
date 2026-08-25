@@ -46,6 +46,7 @@
           "settings": {
             "heading": "What's it for?",
             "open_by_default": true,
+            "highlights_content": "<ul><li>Built for work, workouts, and long days</li><li>Amino acids to support performance and mental output</li><li>Electrolytes for added daily support</li><li>Shorter half-life than caffeine for a less lingering feel</li></ul>",
             "icon_1_label": "Naturally Flavored",
             "icon_2_label": "Zero Artificial Sweeteners",
             "icon_3_label": "Made In USA",
@@ -89,6 +90,7 @@
         "subscriber_gift_text": "<p>Includes a complimentary water bottle and towel with your first subscription order.</p>",
         "perks_heading": "Your subscription includes:",
         "supplement_facts_label": "View Supplement Facts",
+        "supplement_facts_image": "shopify://shop_images/SW.png",
         "how_to_use_label": "How To Use",
         "how_to_use_content": "<p>Mix 1 scoop (8g) with 8-10 oz of cold water. Shake or stir until fully dissolved. For a lighter boost, use less powder; for stronger energy support, use slightly more. Adjust serving size and timing based on your individual needs and tolerance.</p>",
         "padding_top": 36,
@@ -101,7 +103,7 @@
         "card-1": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_76070460.png",
+            "image": "shopify://shop_images/Science_03_774ab54c-dc06-4411-a1b5-0c3d579c4338.png",
             "key_label": "Key Ingredient",
             "heading": "Paraxanthine (Enfinity®)",
             "text": "<p>Paraxanthine is the primary metabolite your body produces from caffeine and the compound responsible for the jitters, anxious, restless and harsh-feel effects people often associate with it.</p>"
@@ -110,7 +112,7 @@
         "card-2": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_76070460_2.png",
+            "image": "shopify://shop_images/Science_02.png",
             "key_label": "Performance & Focus",
             "heading": "Amino Acids (L-Tyrosine, L-Theanine, and L-Citrulline)",
             "text": "<p>These amino acids work together to support focus, performance, and overall feel. L-Tyrosine helps you stay sharp and clear-headed, L-Theanine supports a calmer and more composed experience, and L-Citrulline supports movement, training, and long days ahead.</p>"
@@ -119,7 +121,7 @@
         "card-3": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_76070460_1.png",
+            "image": "shopify://shop_images/Science_01_07925201-39c9-45e0-b295-d511bf6ded3e.png",
             "key_label": "Hydration Support",
             "heading": "Electrolytes (Sodium, Potassium, Magnesium)",
             "text": "<p>Electrolytes help support fluid balance to help you feel more even, hydrated, and steady throughout the day.</p>"
