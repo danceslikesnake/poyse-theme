@@ -17,6 +17,10 @@ class ProductBuyBox extends HTMLElement {
     this.watchForSealSelection();
     this.checkAlreadyInCart();
 
+    // The quantity stepper is ours, not Seal's, so changing it doesn't produce any DOM
+    // mutation watchForSealSelection would see -- resync the price label directly.
+    this.quantityWrapper?.addEventListener('change', () => this.syncCtaLabel());
+
     // Other components on the same page (e.g. the "More Flavors" cards on this same PDP)
     // can add/remove cart lines via AJAX without a reload -- re-check whenever any of them
     // report a cart change, not just once on load.
@@ -224,11 +228,18 @@ class ProductBuyBox extends HTMLElement {
       ?.closest('.sls-option-container')
       ?.querySelector('.sls-price .money');
     if (!priceEl || !this.ctaLabelPrefix) return;
+
+    let price = priceEl.textContent.trim();
+    if (this.getActiveSellingPlanValue() === 'one_time') {
+      const quantity = parseInt(this.quantityWrapper?.querySelector('.quantity__input')?.value, 10) || 1;
+      if (quantity > 1) price = scaleMoneyString(price, quantity);
+    }
+
     // ctaLabel is inside the observed subtree, so writing its textContent is itself a
     // mutation the MutationObserver above would otherwise react to again -- even assigning
     // an identical string still fires a mutation record, which drove an infinite observer
     // loop and froze the tab. Only write when the text is actually changing.
-    const text = `${this.ctaLabelPrefix} - ${priceEl.textContent.trim()}`;
+    const text = `${this.ctaLabelPrefix} - ${price}`;
     if (this.ctaLabel.textContent !== text) this.ctaLabel.textContent = text;
   }
 
@@ -261,6 +272,28 @@ class ProductBuyBox extends HTMLElement {
     if (!this.message) return;
     this.message.setAttribute('hidden', '');
   }
+}
+
+// Scales a Shopify `| money`-formatted price string (e.g. "$12.34" or "1.234,56 €") by a
+// quantity, preserving whatever currency symbol/placement and decimal separator the
+// original string used. There's no money-formatting JS helper in this theme (prices are
+// normally rendered server-side), so this reuses the server-rendered unit price as a
+// template instead of hardcoding a currency/locale.
+function scaleMoneyString(formatted, quantity) {
+  const match = formatted.match(/\d[\d.,]*\d|\d/);
+  if (!match) return formatted;
+
+  const numeric = match[0];
+  const decimalSeparator = /,\d{1,2}$/.test(numeric) ? ',' : '.';
+  const thousandsSeparator = decimalSeparator === ',' ? '.' : ',';
+
+  const amount = parseFloat(numeric.split(thousandsSeparator).join('').replace(decimalSeparator, '.'));
+  if (Number.isNaN(amount)) return formatted;
+
+  const [whole, decimals] = (amount * quantity).toFixed(2).split('.');
+  const wholeWithThousands = whole.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator);
+
+  return formatted.replace(numeric, `${wholeWithThousands}${decimalSeparator}${decimals}`);
 }
 
 customElements.define('product-buy-box', ProductBuyBox);

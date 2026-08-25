@@ -142,9 +142,8 @@
 button.product-buy-box__submit {
   gap: 12px;
   background: var(--product-buy-box-accent);
-  border-color: var(--product-buy-box-accent);
   border-radius: 12px;
-  border: none;
+  border: 1px solid var(--poyse-evening-fig);
   outline: none;
   font-size: var(--font-size-xs);
   text-transform: uppercase;

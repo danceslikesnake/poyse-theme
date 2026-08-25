@@ -10,6 +10,11 @@
   --product-buy-box-accent: #E3CD40;
 }
 
+.product-info[data-flavor='yuzu-citrus'] .product-buy-box__submit [data-cta-label],
+.product-info[data-flavor='yuzu-citrus'] .product-buy-box__submit .product-buy-box__submit-arrow {
+  color: var(--poyse-evening-fig);
+}
+
 .product-info[data-flavor='tropical-mango'] {
   --product-buy-box-accent: #e2963f;
 }
@@ -264,6 +269,8 @@
   gap: 8px;
 
   @media screen and (max-width: 767px) {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     gap: 4px;
   }
 }
@@ -279,6 +286,7 @@
   line-height: 28px;
   text-decoration: none;
   text-align: center;
+  white-space: nowrap;
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -287,7 +295,7 @@
   color: var(--poyse-evening-fig);
 
   @media screen and (min-width: 1024px) {
-    padding: 0 22px;
+    padding: 0 12px;
   }
 
   @media screen and (max-width: 767px) {
@@ -306,6 +314,10 @@
 
   &[data-flavor='strawberry-watermelon'] {
     flex: 1;
+
+    @media screen and (max-width: 767px) {
+      flex: 0 0 auto;
+    }
   }
 
   &[data-flavor='yuzu-citrus'].is-active {
