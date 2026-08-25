@@ -526,7 +526,11 @@
 
 .product-benefits-highlights {
   margin: 0 0 16px 0;
-  padding-left: 20px;
+}
+
+.product-benefits-highlights ul,
+.product-benefits-highlights ol {
+  list-style-position: outside;
 }
 
 .product-benefits {
