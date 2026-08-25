@@ -15,19 +15,19 @@
         "slide_1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/original_ec4898d8b41033a4da26d0d6a08fde43.jpg_1.webp"
+            "image": "shopify://shop_images/Hero_-_03.png"
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/hero-2.webp"
+            "image": "shopify://shop_images/Hero_-_02.png"
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/hero-3.webp"
+            "image": "shopify://shop_images/Carousel_-_06.png"
           }
         },
         "heading": {
@@ -184,7 +184,7 @@
       "settings": {
         "color_scheme": "scheme-poyse-1",
         "show_ornament": true,
-        "ticker_speed": 45,
+        "ticker_speed": 55,
         "padding_top": 64,
         "padding_bottom": 64
       }
@@ -197,6 +197,7 @@
           "settings": {
             "product": "yuzu-citrus",
             "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "hover_image": "shopify://shop_images/Hover_YC.png",
             "show_new_arrival_badge": true,
             "show_best_seller_badge": false,
             "monthly_label": "Monthly Subscription",
@@ -209,6 +210,7 @@
           "settings": {
             "product": "strawberry-watermelon",
             "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "hover_image": "shopify://shop_images/Hover_Sw.png",
             "show_new_arrival_badge": false,
             "show_best_seller_badge": false,
             "monthly_label": "Monthly Subscription",
@@ -221,6 +223,7 @@
           "settings": {
             "product": "tropical-mango",
             "subtitle": "with Paraxanthine <em>for Daily Momentum</em>",
+            "hover_image": "shopify://shop_images/Hover_TM.png",
             "show_new_arrival_badge": true,
             "show_best_seller_badge": true,
             "monthly_label": "Monthly Subscription",
@@ -265,7 +268,7 @@
         "button"
       ],
       "settings": {
-        "image": "shopify://shop_images/Screenshot_2026-06-13_at_10.47.11_PM_2.jpg",
+        "image": "shopify://shop_images/Poyse_-_HP.png",
         "border_color": ""
       }
     },
@@ -324,7 +327,17 @@
       ],
       "settings": {
         "color_scheme": "scheme-poyse-1",
-        "lottie_photo_2": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.jpg"
+        "lottie_photo_1": "shopify://shop_images/Carousel_-_10.png",
+        "lottie_photo_2": "shopify://shop_images/Carousel_-_08.png",
+        "lottie_photo_3": "shopify://shop_images/Carousel_-_07.png",
+        "lottie_photo_4": "shopify://shop_images/Science_02.png",
+        "lottie_photo_5": "shopify://shop_images/Carousel_-_09.png",
+        "lottie_photo_6": "shopify://shop_images/Carousel_-_01.png",
+        "lottie_photo_7": "shopify://shop_images/Carousel_-_02.png",
+        "lottie_photo_8": "shopify://shop_images/Carousel_-_06.png",
+        "lottie_photo_9": "shopify://shop_images/Science_03_774ab54c-dc06-4411-a1b5-0c3d579c4338.png",
+        "lottie_photo_10": "shopify://shop_images/Carousel_-_05.png",
+        "lottie_photo_11": "shopify://shop_images/Science_05.png"
       }
     },
     "homepage_community": {

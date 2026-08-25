@@ -30,25 +30,25 @@
         "photo_1": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.webp"
+            "image": "shopify://shop_images/Carousel_-_06.png"
           }
         },
         "photo_2": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/original_2ba5876eb17fe98166ee2e63f9e844f9.jpg_3.jpg"
-          }
-        },
-        "photo_3": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/original_7aa238fdfcf00dc00728adc1b1b4fb0e.jpg_1.webp"
+            "image": "shopify://shop_images/Science_03_774ab54c-dc06-4411-a1b5-0c3d579c4338.png"
           }
         },
         "photo_4": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/woman-smiles-looking-over-shoulder-holding-a-water-bottle.webp"
+            "image": "shopify://shop_images/Science_04.png"
+          }
+        },
+        "photo_3": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Carousel_-_07.png"
           }
         }
       },
@@ -57,8 +57,8 @@
         "approach",
         "photo_1",
         "photo_2",
-        "photo_3",
-        "photo_4"
+        "photo_4",
+        "photo_3"
       ],
       "settings": {
         "color_scheme": "scheme-poyse-1"
@@ -114,7 +114,7 @@
         "stat_1": {
           "type": "stat",
           "settings": {
-            "value": "200mg",
+            "value": "150mg",
             "label": "Per Serving",
             "note": "Paraxanthine (via Enfinity®)"
           }
