@@ -87,9 +87,8 @@
           "settings": {
             "label": "Tropical Mango",
             "product": "tropical-mango",
-            "video_mov_url": "",
-            "video_webm_url": "",
-            "poster_image": "shopify://shop_images/Poyse_System_3.png"
+            "video_mov_url": "https://cdn.shopify.com/videos/c/o/v/4c9c946a9bc14d00a4e0f9edc7bb41f5.mov",
+            "video_webm_url": "https://cdn.shopify.com/videos/c/o/v/723d25afbf094b449610a3e1093ab47d.webm"
           }
         },
         "flavor_3": {
@@ -97,9 +96,8 @@
           "settings": {
             "label": "Strawberry Watermelon",
             "product": "strawberry-watermelon",
-            "video_mov_url": "",
-            "video_webm_url": "",
-            "poster_image": "shopify://shop_images/Poyse_System_4.png"
+            "video_mov_url": "https://cdn.shopify.com/videos/c/o/v/b72772162b6148618700eeb088d0a502.mov",
+            "video_webm_url": "https://cdn.shopify.com/videos/c/o/v/22309327ffd9404bb69310fb6577bbfc.webm"
           }
         },
         "product_info": {

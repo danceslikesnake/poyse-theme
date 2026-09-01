@@ -36,12 +36,18 @@
   assign product_form_id = 'product-form-' | append: section_id
   assign variant = product.selected_or_first_available_variant
   assign onetime_price = variant.price | money
+
+  assign zero_inventory = false
+  if variant != null and variant.inventory_management == 'shopify' and variant.inventory_quantity <= 0
+    assign zero_inventory = true
+  endif
 -%}
 
 <product-buy-box
   class="product-buy-box"
   data-product-id="{{ product.id }}"
   data-cta-label="{{ cta_label | escape }}"
+  data-out-of-stock="{{ zero_inventory }}"
   data-message-limit-reached="{{ 'products.product.subscription.limit_reached' | t | escape }}"
   data-added-to-cart-text="{{ 'products.product.subscription.added_to_cart' | t | escape }}"
   data-monthly-description="{{ monthly_description | escape }}"
@@ -135,7 +141,7 @@
         type="hidden"
         name="id"
         value="{{ product.selected_or_first_available_variant.id }}"
-        {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
+        {% if product.selected_or_first_available_variant == null or zero_inventory %}disabled{% endif %}
         class="product-variant-id"
       >
       <input type="hidden" name="selling_plan" value="" data-selling-plan-input>
@@ -172,11 +178,13 @@
         name="add"
         class="product-buy-box__submit button button--full-width button--primary"
         data-submit-button
-        {% if product.selected_or_first_available_variant == null %}disabled{% endif %}
+        {% if product.selected_or_first_available_variant == null or zero_inventory %}disabled{% endif %}
       >
         <span data-cta-label>
           {%- if product.selected_or_first_available_variant == null -%}
             {{ 'products.product.unavailable' | t }}
+          {%- elsif zero_inventory -%}
+            {{ 'products.product.inventory_out_of_stock' | t }}
           {%- else -%}
             {{- cta_label | append: ' - ' | append: onetime_price -}}
           {%- endif -%}

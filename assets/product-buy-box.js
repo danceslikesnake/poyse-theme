@@ -9,6 +9,7 @@ class ProductBuyBox extends HTMLElement {
 
     this.productId = this.dataset.productId;
     this.ctaLabelPrefix = this.dataset.ctaLabel;
+    this.outOfStock = this.dataset.outOfStock === 'true';
     this.productAlreadyInCart = false;
     this.defaultCtaLabelText = this.ctaLabel.textContent;
 
@@ -50,6 +51,11 @@ class ProductBuyBox extends HTMLElement {
   // whether it's currently blocked, so callers can skip work (like re-syncing the price
   // label) that would otherwise stomp on the "Added to Cart" state.
   refreshBlockedState() {
+    // Out-of-stock is a permanent server-rendered state (button disabled, "Out of stock"
+    // label) -- treat it as blocked without touching disabled/text, so cart-driven or
+    // selection-driven re-checks can't stomp on it by re-enabling the button.
+    if (this.outOfStock) return true;
+
     const isOneTime = this.getActiveSellingPlanValue() === 'one_time';
     const shouldBlock = !isOneTime && (this.subscribedProductIds?.has(this.productId) ?? false);
 

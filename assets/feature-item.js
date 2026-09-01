@@ -18,6 +18,7 @@ class FeatureItem extends HTMLElement {
     if (!this.form || !this.options.length || !this.ctaButton) return;
 
     this.productId = this.dataset.productId;
+    this.outOfStock = this.dataset.outOfStock === 'true';
     this.defaultCtaText = this.ctaButton.textContent;
 
     this.options.forEach((option) => {
@@ -60,6 +61,10 @@ class FeatureItem extends HTMLElement {
   // Re-run on every cart change rather than sticking permanently, since the cart can also
   // lose this line (removed on the cart page, in another tab, etc).
   async checkAlreadyInCart() {
+    // Out-of-stock is a permanent server-rendered state (button disabled, "Out of stock"
+    // label) -- don't let cart-driven re-checks stomp on it by re-enabling the button.
+    if (this.outOfStock) return;
+
     const state = await getSubscriptionCartState();
     if (!state) return;
 

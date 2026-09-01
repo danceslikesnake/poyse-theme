@@ -226,6 +226,11 @@
                 if selling_plan_allocation != blank
                   assign monthly_price = selling_plan_allocation.price | money
                 endif
+
+                assign zero_inventory = false
+                if variant != null and variant.inventory_management == 'shopify' and variant.inventory_quantity <= 0
+                  assign zero_inventory = true
+                endif
               -%}
               <feature-item
                 class="hero-showcase__purchase{% if forloop.first %} is-active{% endif %}"
@@ -235,6 +240,7 @@
                 data-added-to-cart-text="{{ 'products.product.subscription.added_to_cart' | t | escape }}"
                 data-adding-text="{{ 'accessibility.loading' | t | escape }}"
                 data-cart-error-text="{{ 'sections.cart.cart_error' | t | escape }}"
+                data-out-of-stock="{{ zero_inventory }}"
               >
                 {%- if flavor_product -%}
                 {%- form 'product', flavor_product, class: 'hero-showcase__form', data-type: 'add-to-cart-form' -%}
@@ -242,14 +248,14 @@
                     type="hidden"
                     name="id"
                     value="{{ variant.id }}"
-                    {% if variant == null %}disabled{% endif %}
+                    {% if variant == null or zero_inventory %}disabled{% endif %}
                   >
                   <input
                     type="hidden"
                     name="selling_plan"
                     value="{{ selling_plan_allocation.selling_plan.id }}"
                     data-selling-plan-input
-                    {% if selling_plan_allocation == blank %}disabled{% endif %}
+                    {% if selling_plan_allocation == blank or zero_inventory %}disabled{% endif %}
                   >
 
                   <fieldset class="hero-showcase__subscription">
@@ -261,7 +267,7 @@
                         data-subscription-option
                         data-plan-type="subscribe"
                         data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: monthly_price }}"
-                        {% if selling_plan_allocation == blank %}disabled{% else %}checked{% endif %}
+                        {% if selling_plan_allocation == blank or zero_inventory %}disabled{% else %}checked{% endif %}
                       >
                       {{- subscription_block.settings.monthly_label | escape -}}
                     </label>
@@ -272,6 +278,7 @@
                         data-subscription-option
                         data-plan-type="one_time"
                         data-cta-text="{{ subscription_block.settings.cta_label | append: ' - ' | append: onetime_price }}"
+                        {% if zero_inventory %}disabled{% endif %}
                         {% if selling_plan_allocation == blank %}checked{% endif %}
                       >
                       {{- subscription_block.settings.onetime_label | escape -}}
@@ -285,10 +292,12 @@
                     name="add"
                     class="custom-cta-button full-width-cta-on-mobile"
                     data-cta
-                    {% if variant == null %}disabled{% endif %}
+                    {% if variant == null or zero_inventory %}disabled{% endif %}
                   >
                     {%- if variant == null -%}
                       {{- 'products.product.unavailable' | t -}}
+                    {%- elsif zero_inventory -%}
+                      {{- 'products.product.inventory_out_of_stock' | t -}}
                     {%- elsif selling_plan_allocation != blank -%}
                       {{- subscription_block.settings.cta_label | append: ' - ' | append: monthly_price -}}
                     {%- else -%}
