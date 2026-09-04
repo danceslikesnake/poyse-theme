@@ -8,13 +8,8 @@ async function getSubscriptionCartState() {
     if (!response.ok) return null;
     const cart = await response.json();
 
-    const subscriptionLines = cart.items.filter((item) => item.selling_plan_allocation);
-    return {
-      cart,
-      subscriptionCount: subscriptionLines.length,
-      subscribedProductIds: new Set(subscriptionLines.map((item) => String(item.product_id))),
-      productIdsInCart: new Set(cart.items.map((item) => String(item.product_id))),
-    };
+    const subscriptionCount = cart.items.filter((item) => item.selling_plan_allocation).length;
+    return { cart, subscriptionCount };
   } catch (error) {
     return null;
   }

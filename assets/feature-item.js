@@ -25,13 +25,6 @@ class FeatureItem extends HTMLElement {
       option.addEventListener('change', () => this.onOptionChange(option));
     });
     this.form.addEventListener('submit', (event) => this.onSubmit(event));
-
-    this.checkAlreadyInCart();
-
-    // Other feature-item cards (or the main PDP buy box, if this renders in its
-    // "More Flavors" section) can change the cart via their own AJAX adds -- re-check
-    // whenever any of them report a change, not just once on load.
-    subscribe(PUB_SUB_EVENTS.cartUpdate, () => this.checkAlreadyInCart());
   }
 
   async onOptionChange(option) {
@@ -55,42 +48,20 @@ class FeatureItem extends HTMLElement {
     }
   }
 
-  // A flavor can only be added once total -- whether as a subscription or a one-time
-  // purchase -- so once this product has any line in the cart at all, block Add to Cart
-  // outright and show "Added to Cart" on the button itself rather than a separate message.
-  // Re-run on every cart change rather than sticking permanently, since the cart can also
-  // lose this line (removed on the cart page, in another tab, etc).
-  async checkAlreadyInCart() {
-    // Out-of-stock is a permanent server-rendered state (button disabled, "Out of stock"
-    // label) -- don't let cart-driven re-checks stomp on it by re-enabling the button.
+  // Re-enables the button and syncs its label to the currently selected option. Out-of-stock
+  // is a permanent server-rendered state (button disabled, "Out of stock" label), so leave it
+  // alone rather than re-enabling it.
+  resetCtaState() {
     if (this.outOfStock) return;
 
-    const state = await getSubscriptionCartState();
-    if (!state) return;
-
-    const alreadyInCart = state.productIdsInCart.has(this.productId);
-    this.ctaButton.disabled = alreadyInCart;
-
-    if (alreadyInCart) {
-      this.ctaButton.textContent = this.dataset.addedToCartText;
-    } else {
-      const checked = [...this.options].find((option) => option.checked);
-      this.ctaButton.textContent = checked?.dataset.ctaText ?? this.defaultCtaText;
-    }
+    this.ctaButton.disabled = false;
+    const checked = [...this.options].find((option) => option.checked);
+    this.ctaButton.textContent = checked?.dataset.ctaText ?? this.defaultCtaText;
   }
 
   async applySubscriptionCap() {
     const state = await getSubscriptionCartState();
     if (!state) return true;
-
-    // A flavor already subscribed is already in the cart, so show the same disabled
-    // "Added to Cart" button state as checkAlreadyInCart rather than a separate message.
-    if (state.subscribedProductIds.has(this.productId)) {
-      this.ctaButton.disabled = true;
-      this.ctaButton.textContent = this.dataset.addedToCartText;
-      this.hideMessage();
-      return false;
-    }
 
     if (state.subscriptionCount >= SUBSCRIPTION_CAP) {
       this.showMessage(this.dataset.messageLimitReached);
@@ -127,15 +98,10 @@ class FeatureItem extends HTMLElement {
 
       const cart = await fetch(`${window.routes.cart_url}.json`).then((res) => res.json());
       await publish(PUB_SUB_EVENTS.cartUpdate, { source: 'feature-item', cartData: cart });
-      // The flavor is now in cart, so the finally block's checkAlreadyInCart() below sets
-      // the button to its final disabled "Added to Cart" state -- no separate success flash
-      // needed since that's the permanent end state, not a temporary one.
     } catch (error) {
       this.showMessage(this.dataset.cartErrorText);
-      const checked = [...this.options].find((option) => option.checked);
-      this.ctaButton.textContent = checked?.dataset.ctaText ?? this.defaultCtaText;
     } finally {
-      await this.checkAlreadyInCart();
+      this.resetCtaState();
     }
   }
 

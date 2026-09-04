@@ -3,77 +3,25 @@ class ProductBuyBox extends HTMLElement {
     this.ctaLabel = this.querySelector('[data-cta-label]');
     this.message = this.querySelector('[data-subscription-message]');
     this.subscriptionSlot = this.querySelector('[data-subscription-slot]');
-    this.submitButton = this.querySelector('[data-submit-button]');
     this.quantityWrapper = this.querySelector('[data-quantity-wrapper]');
     if (!this.ctaLabel) return;
 
     this.productId = this.dataset.productId;
     this.ctaLabelPrefix = this.dataset.ctaLabel;
     this.outOfStock = this.dataset.outOfStock === 'true';
-    this.productAlreadyInCart = false;
     this.defaultCtaLabelText = this.ctaLabel.textContent;
 
     this.moveSealWidgetIntoSlot();
     this.watchForSealEnhancements();
     this.watchForSealSelection();
-    this.checkAlreadyInCart();
 
     // The quantity stepper is ours, not Seal's, so changing it doesn't produce any DOM
     // mutation watchForSealSelection would see -- resync the price label directly.
     this.quantityWrapper?.addEventListener('change', () => this.syncCtaLabel());
-
-    // Other components on the same page (e.g. the "More Flavors" cards on this same PDP)
-    // can add/remove cart lines via AJAX without a reload -- re-check whenever any of them
-    // report a cart change, not just once on load.
-    subscribe(PUB_SUB_EVENTS.cartUpdate, () => this.checkAlreadyInCart());
-  }
-
-  // A flavor can only be subscribed to once -- one-time purchases of an already-in-cart
-  // flavor are still allowed (e.g. buying more of a flavor already in the cart as a
-  // one-time purchase), so this only blocks Add to Cart when the CURRENTLY selected option
-  // is a subscription and this flavor already has a subscription line in the cart (that's
-  // also applySubscriptionCap's job when switching to a subscription option directly; this
-  // covers the case where the cart changes elsewhere, e.g. the cart page in another tab).
-  async checkAlreadyInCart() {
-    const state = await getSubscriptionCartState();
-    if (!state) return;
-
-    this.subscribedProductIds = state.subscribedProductIds;
-    if (!this.refreshBlockedState()) this.syncCtaLabel();
   }
 
   getActiveSellingPlanValue() {
     return this.querySelector('input.sls-option:checked')?.value ?? null;
-  }
-
-  // Recomputes whether Add to Cart should be blocked from the current selection plus the
-  // last-known subscribed flavors, and applies the resulting button/label state. Returns
-  // whether it's currently blocked, so callers can skip work (like re-syncing the price
-  // label) that would otherwise stomp on the "Added to Cart" state.
-  refreshBlockedState() {
-    // Out-of-stock is a permanent server-rendered state (button disabled, "Out of stock"
-    // label) -- treat it as blocked without touching disabled/text, so cart-driven or
-    // selection-driven re-checks can't stomp on it by re-enabling the button.
-    if (this.outOfStock) return true;
-
-    const isOneTime = this.getActiveSellingPlanValue() === 'one_time';
-    const shouldBlock = !isOneTime && (this.subscribedProductIds?.has(this.productId) ?? false);
-
-    if (shouldBlock !== this.productAlreadyInCart) {
-      this.productAlreadyInCart = shouldBlock;
-      if (this.submitButton) this.submitButton.disabled = shouldBlock;
-
-      if (shouldBlock) {
-        this.ctaLabel.textContent = this.dataset.addedToCartText;
-        this.hideMessage();
-      } else {
-        // Let syncCtaLabel (called by whichever caller unblocked this) pick up Seal's
-        // real selection immediately rather than waiting for its next mutation/poll tick.
-        this.ctaLabel.textContent = this.defaultCtaLabelText;
-      }
-    }
-
-    return shouldBlock;
   }
 
   // Seal Subscriptions injects its purchase-option widget as a child of the raw <form>
@@ -167,13 +115,9 @@ class ProductBuyBox extends HTMLElement {
     let lastValue = null;
 
     const handleChange = () => {
-      // Recomputed fresh every tick since the block now depends on the current selection,
-      // not just whether this flavor has ever been in the cart. While it's genuinely
-      // blocked (a subscription is selected and this flavor is already subscribed), the
-      // button is showing its final disabled "Added to Cart" label -- stop syncing it to
-      // Seal's selected price, or this loop would immediately overwrite that label back to
-      // the price text.
-      if (this.refreshBlockedState()) return;
+      // Out-of-stock is a permanent server-rendered state (button disabled, "Out of stock"
+      // label) -- don't let selection-driven re-checks stomp on it by re-syncing the label.
+      if (this.outOfStock) return;
 
       // Cheap and idempotent (no-ops until Seal's price text has rendered for the checked
       // option), so this runs on every tick regardless of whether the selection itself
@@ -252,12 +196,6 @@ class ProductBuyBox extends HTMLElement {
   async applySubscriptionCap() {
     const state = await getSubscriptionCartState();
     if (!state) return true;
-
-    this.subscribedProductIds = state.subscribedProductIds;
-
-    // A flavor already subscribed shows the same disabled "Added to Cart" button state
-    // as refreshBlockedState's other callers rather than a separate message.
-    if (this.refreshBlockedState()) return false;
 
     if (state.subscriptionCount >= SUBSCRIPTION_CAP) {
       this.showMessage(this.dataset.messageLimitReached);
