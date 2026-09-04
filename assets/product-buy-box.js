@@ -1,7 +1,6 @@
 class ProductBuyBox extends HTMLElement {
   connectedCallback() {
     this.ctaLabel = this.querySelector('[data-cta-label]');
-    this.message = this.querySelector('[data-subscription-message]');
     this.subscriptionSlot = this.querySelector('[data-subscription-slot]');
     this.quantityWrapper = this.querySelector('[data-quantity-wrapper]');
     if (!this.ctaLabel) return;
@@ -18,10 +17,6 @@ class ProductBuyBox extends HTMLElement {
     // The quantity stepper is ours, not Seal's, so changing it doesn't produce any DOM
     // mutation watchForSealSelection would see -- resync the price label directly.
     this.quantityWrapper?.addEventListener('change', () => this.syncCtaLabel());
-  }
-
-  getActiveSellingPlanValue() {
-    return this.querySelector('input.sls-option:checked')?.value ?? null;
   }
 
   // Seal Subscriptions injects its purchase-option widget as a child of the raw <form>
@@ -100,8 +95,8 @@ class ProductBuyBox extends HTMLElement {
   }
 
   // Keeps the Add to Cart button's price text synced to whichever Seal option is actually
-  // selected, and enforces the subscription cap against Seal's real radios -- the ones that
-  // actually drive the relocated selling_plan field -- instead of a separate custom toggle.
+  // selected, against Seal's real radios -- the ones that actually drive the relocated
+  // selling_plan field -- instead of a separate custom toggle.
   //
   // Seal drives its own selection via its own click handling on the option card (not the
   // native radio directly) and sets .checked programmatically, which never dispatches a
@@ -112,8 +107,6 @@ class ProductBuyBox extends HTMLElement {
   // NOT set when a prior selection is restored from Seal's own persistence on page load,
   // while .checked is reliably accurate in both cases.
   watchForSealSelection() {
-    let lastValue = null;
-
     const handleChange = () => {
       // Out-of-stock is a permanent server-rendered state (button disabled, "Out of stock"
       // label) -- don't let selection-driven re-checks stomp on it by re-syncing the label.
@@ -121,15 +114,8 @@ class ProductBuyBox extends HTMLElement {
 
       // Cheap and idempotent (no-ops until Seal's price text has rendered for the checked
       // option), so this runs on every tick regardless of whether the selection itself
-      // changed -- syncing it only from the value-change branch below missed cases where
-      // the radio was already checked before its price text existed yet (multi-pass
-      // rendering again), since the dedup below would then never re-fire for that value.
+      // changed.
       this.syncCtaLabel();
-
-      const currentValue = this.getActiveSellingPlanValue();
-      if (currentValue === null || currentValue === lastValue) return;
-      lastValue = currentValue;
-      this.onSealSelectionChange(currentValue);
     };
 
     handleChange();
@@ -148,31 +134,6 @@ class ProductBuyBox extends HTMLElement {
     }, 200);
   }
 
-  async onSealSelectionChange(value) {
-    const isOneTime = value === 'one_time';
-    if (this.quantityWrapper) this.quantityWrapper.hidden = !isOneTime;
-
-    if (isOneTime) {
-      if (this.suppressNextMessageClear) {
-        this.suppressNextMessageClear = false;
-      } else {
-        this.hideMessage();
-      }
-      return;
-    }
-
-    const canSubscribe = await this.applySubscriptionCap();
-    if (!canSubscribe) {
-      const onetimeContainer = [...this.querySelectorAll('.sls-option-container')].find(
-        (container) => container.querySelector('input.sls-option')?.value === 'one_time'
-      );
-      // The revert triggers its own selection-change pass (the isOneTime branch above),
-      // which would otherwise clear the message we just showed explaining the block.
-      this.suppressNextMessageClear = true;
-      onetimeContainer?.click();
-    }
-  }
-
   syncCtaLabel() {
     const priceEl = this.querySelector('input.sls-option:checked')
       ?.closest('.sls-option-container')
@@ -180,10 +141,8 @@ class ProductBuyBox extends HTMLElement {
     if (!priceEl || !this.ctaLabelPrefix) return;
 
     let price = priceEl.textContent.trim();
-    if (this.getActiveSellingPlanValue() === 'one_time') {
-      const quantity = parseInt(this.quantityWrapper?.querySelector('.quantity__input')?.value, 10) || 1;
-      if (quantity > 1) price = scaleMoneyString(price, quantity);
-    }
+    const quantity = parseInt(this.quantityWrapper?.querySelector('.quantity__input')?.value, 10) || 1;
+    if (quantity > 1) price = scaleMoneyString(price, quantity);
 
     // ctaLabel is inside the observed subtree, so writing its textContent is itself a
     // mutation the MutationObserver above would otherwise react to again -- even assigning
@@ -191,30 +150,6 @@ class ProductBuyBox extends HTMLElement {
     // loop and froze the tab. Only write when the text is actually changing.
     const text = `${this.ctaLabelPrefix} - ${price}`;
     if (this.ctaLabel.textContent !== text) this.ctaLabel.textContent = text;
-  }
-
-  async applySubscriptionCap() {
-    const state = await getSubscriptionCartState();
-    if (!state) return true;
-
-    if (state.subscriptionCount >= SUBSCRIPTION_CAP) {
-      this.showMessage(this.dataset.messageLimitReached);
-      return false;
-    }
-
-    this.hideMessage();
-    return true;
-  }
-
-  showMessage(text) {
-    if (!this.message || !text) return;
-    this.message.textContent = text;
-    this.message.removeAttribute('hidden');
-  }
-
-  hideMessage() {
-    if (!this.message) return;
-    this.message.setAttribute('hidden', '');
   }
 }
 

@@ -27,25 +27,10 @@ class FeatureItem extends HTMLElement {
     this.form.addEventListener('submit', (event) => this.onSubmit(event));
   }
 
-  async onOptionChange(option) {
+  onOptionChange(option) {
     if (option.checked) this.ctaButton.textContent = option.dataset.ctaText;
-
     if (this.sellingPlanInput) this.sellingPlanInput.disabled = option.dataset.planType !== 'subscribe';
-
-    if (option.dataset.planType !== 'subscribe') {
-      this.hideMessage();
-      return;
-    }
-
-    const canSubscribe = await this.applySubscriptionCap();
-    if (!canSubscribe) {
-      const onetimeOption = [...this.options].find((candidate) => candidate.dataset.planType !== 'subscribe');
-      if (onetimeOption) {
-        onetimeOption.checked = true;
-        this.ctaButton.textContent = onetimeOption.dataset.ctaText;
-        if (this.sellingPlanInput) this.sellingPlanInput.disabled = true;
-      }
-    }
+    this.hideMessage();
   }
 
   // Re-enables the button and syncs its label to the currently selected option. Out-of-stock
@@ -59,28 +44,9 @@ class FeatureItem extends HTMLElement {
     this.ctaButton.textContent = checked?.dataset.ctaText ?? this.defaultCtaText;
   }
 
-  async applySubscriptionCap() {
-    const state = await getSubscriptionCartState();
-    if (!state) return true;
-
-    if (state.subscriptionCount >= SUBSCRIPTION_CAP) {
-      this.showMessage(this.dataset.messageLimitReached);
-      return false;
-    }
-
-    this.hideMessage();
-    return true;
-  }
-
   async onSubmit(event) {
     event.preventDefault();
     if (this.ctaButton.disabled) return;
-
-    const subscribeOption = [...this.options].find((option) => option.dataset.planType === 'subscribe');
-    if (subscribeOption?.checked) {
-      const canSubscribe = await this.applySubscriptionCap();
-      if (!canSubscribe) return;
-    }
 
     this.ctaButton.disabled = true;
     this.ctaButton.textContent = this.dataset.addingText;

@@ -34,16 +34,6 @@
   }
 }
 
-.product-buy-box__subscription-message {
-  margin: 0;
-  font-size: var(--font-size-xs);
-  color: var(--poyse-evening-fig);
-
-  &[hidden] {
-    display: none;
-  }
-}
-
 .product-buy-box__option-body {
   display: flex;
   flex-direction: column;

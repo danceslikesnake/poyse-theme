@@ -166,10 +166,10 @@
   font-size: 14px;
 }
 
-/* One-time lines get a compact "- 1 +" stepper stacked above the remove button (see
-   .cart-item__quantity-stepper below); monthly lines don't render one at all (always
-   qty 1) -- see snippets/cart-drawer.liquid. The old .cart-item__quantity column this
-   used to live in is now always empty, kept only for the table's header/cell parity. */
+/* Every line (one-time or subscription) gets a compact "- 1 +" stepper stacked above
+   the remove button (see .cart-item__quantity-stepper below) -- see snippets/cart-drawer.liquid.
+   The old .cart-item__quantity column this used to live in is now always empty, kept
+   only for the table's header/cell parity. */
 .cart-drawer .cart-item__quantity {
   display: none;
 }
@@ -194,8 +194,8 @@
   pointer-events: auto;
 }
 
-/* Compact "- 1 +" stepper for one-time lines only, sized to sit quietly above the
-   remove button rather than Dawn's full-size bordered pill control. */
+/* Compact "- 1 +" stepper, sized to sit quietly above the remove button rather than
+   Dawn's full-size bordered pill control. */
 .cart-drawer .cart-item__quantity-stepper {
   width: auto;
   min-height: auto;

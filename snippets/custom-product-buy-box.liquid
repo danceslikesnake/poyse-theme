@@ -7,9 +7,8 @@
   fights it for control of that field. Instead, product-buy-box.js moves Seal's widget into the
   data-subscription-slot placeholder below (so it renders where the old custom toggle used to),
   reskins it via component-product-buy-box.css, injects the description/compare-price copy Seal's
-  own widget has no slot for, keeps the Add to Cart button's price text synced to Seal's live
-  selection, and enforces the storefront-side cap of 3 subscription lines in cart / 1 subscription
-  per flavor (flavors are separate products) against Seal's own radios by checking /cart.json.
+  own widget has no slot for, and keeps the Add to Cart button's price text synced to Seal's live
+  selection and the quantity stepper (shared by both plans, so either can be bought in bulk).
 
   Accepts:
   - product: {Object} product resource
@@ -48,7 +47,6 @@
   data-product-id="{{ product.id }}"
   data-cta-label="{{ cta_label | escape }}"
   data-out-of-stock="{{ zero_inventory }}"
-  data-message-limit-reached="{{ 'products.product.subscription.limit_reached' | t | escape }}"
   data-added-to-cart-text="{{ 'products.product.subscription.added_to_cart' | t | escape }}"
   data-monthly-description="{{ monthly_description | escape }}"
   data-onetime-description="{{ onetime_description | escape }}"
@@ -56,7 +54,6 @@
   data-per-month-suffix="{{ 'sections.custom_product_info.per_month_suffix' | t | escape }}"
 >
   <div class="product-buy-box__subscription-slot" data-subscription-slot></div>
-  <p class="product-buy-box__subscription-message" data-subscription-message hidden></p>
 
   {%- if subscriber_gift_heading != blank -%}
     <div class="product-subscriber-gift">
@@ -145,7 +142,7 @@
         class="product-variant-id"
       >
       <input type="hidden" name="selling_plan" value="" data-selling-plan-input>
-      <div class="product-buy-box__quantity" data-quantity-wrapper hidden>
+      <div class="product-buy-box__quantity" data-quantity-wrapper>
         <quantity-input class="quantity">
           <button class="quantity__button" name="minus" type="button">
             <span class="visually-hidden">

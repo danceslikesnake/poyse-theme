@@ -259,7 +259,6 @@
                                 id="CartDrawer-Subscribe-{{ item.index | plus: 1 }}"
                                 data-index="{{ item.index | plus: 1 }}"
                                 data-selling-plan-id="{{ upsell_selling_plan_allocation.selling_plan.id }}"
-                                data-message-limit-reached="{{ 'products.product.subscription.limit_reached' | t | escape }}"
                               >
                                 <button type="button" class="product-option cart-item__upsell-caption cart-item__upsell-caption--button">
                                   <span class="svg-wrapper">
@@ -322,86 +321,79 @@
                             {%- endif -%}
                           </div>
 
-                          {%- if item.selling_plan_allocation == null -%}
-                            {%- comment -%}
-                              Only one-time lines get a quantity stepper -- a monthly line is always
-                              qty 1, converting one-time -> monthly always resets to qty 1 too (see
-                              updateSellingPlan in cart.js), so subscriptions never need one.
-                            {%- endcomment -%}
-                            <quantity-input class="quantity cart-quantity cart-item__quantity-stepper">
-                              <button
-                                class="quantity__button"
-                                name="minus"
-                                type="button"
-                                {% if item.instructions and item.instructions.can_update_quantity == false %}
-                                  disabled
-                                {% endif %}
-                              >
-                                <span class="visually-hidden">
-                                  {{-
-                                    'products.product.quantity.decrease'
-                                    | t: product: item.product.title
-                                    | escape
-                                  -}}
-                                </span>
-                                <span class="svg-wrapper">
-                                  {{- 'icon-minus.svg' | inline_asset_content -}}
-                                </span>
-                              </button>
-                              <input
-                                class="quantity__input"
-                                type="number"
-                                data-quantity-variant-id="{{ item.variant.id }}"
-                                data-quantity-line-key="{{ item.key }}"
-                                name="updates[]"
-                                value="{{ item.quantity }}"
-                                {% # theme-check-disable %}
-                                data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
-                                min="0"
-                                data-min="{{ item.variant.quantity_rule.min }}"
-                                {% if item.variant.quantity_rule.max != null %}
-                                  max="{{ item.variant.quantity_rule.max }}"
-                                {% endif %}
-                                step="{{ item.variant.quantity_rule.increment }}"
-                                {% # theme-check-enable %}
-                                aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
-                                id="Drawer-quantity-{{ item.index | plus: 1 }}"
-                                data-index="{{ item.index | plus: 1 }}"
-                                {% if item.instructions and item.instructions.can_update_quantity == false %}
-                                  disabled
-                                {% endif %}
-                              >
-                              <button
-                                class="quantity__button"
-                                name="plus"
-                                type="button"
-                                {% if item.instructions and item.instructions.can_update_quantity == false %}
-                                  disabled
-                                {% endif %}
-                              >
-                                <span class="visually-hidden">
-                                  {{-
-                                    'products.product.quantity.increase'
-                                    | t: product: item.product.title
-                                    | escape
-                                  -}}
-                                </span>
-                                <span class="svg-wrapper">
-                                  {{- 'icon-plus.svg' | inline_asset_content -}}
-                                </span>
-                              </button>
-                            </quantity-input>
-                            <div
-                              id="CartDrawer-LineItemError-{{ item.index | plus: 1 }}"
-                              class="cart-item__error"
-                              role="alert"
+                          <quantity-input class="quantity cart-quantity cart-item__quantity-stepper">
+                            <button
+                              class="quantity__button"
+                              name="minus"
+                              type="button"
+                              {% if item.instructions and item.instructions.can_update_quantity == false %}
+                                disabled
+                              {% endif %}
                             >
-                              <small class="cart-item__error-text"></small>
-                              <span class="svg-wrapper">
-                                {{- 'icon-error.svg' | inline_asset_content -}}
+                              <span class="visually-hidden">
+                                {{-
+                                  'products.product.quantity.decrease'
+                                  | t: product: item.product.title
+                                  | escape
+                                -}}
                               </span>
-                            </div>
-                          {%- endif -%}
+                              <span class="svg-wrapper">
+                                {{- 'icon-minus.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                            <input
+                              class="quantity__input"
+                              type="number"
+                              data-quantity-variant-id="{{ item.variant.id }}"
+                              data-quantity-line-key="{{ item.key }}"
+                              name="updates[]"
+                              value="{{ item.quantity }}"
+                              {% # theme-check-disable %}
+                              data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                              min="0"
+                              data-min="{{ item.variant.quantity_rule.min }}"
+                              {% if item.variant.quantity_rule.max != null %}
+                                max="{{ item.variant.quantity_rule.max }}"
+                              {% endif %}
+                              step="{{ item.variant.quantity_rule.increment }}"
+                              {% # theme-check-enable %}
+                              aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                              id="Drawer-quantity-{{ item.index | plus: 1 }}"
+                              data-index="{{ item.index | plus: 1 }}"
+                              {% if item.instructions and item.instructions.can_update_quantity == false %}
+                                disabled
+                              {% endif %}
+                            >
+                            <button
+                              class="quantity__button"
+                              name="plus"
+                              type="button"
+                              {% if item.instructions and item.instructions.can_update_quantity == false %}
+                                disabled
+                              {% endif %}
+                            >
+                              <span class="visually-hidden">
+                                {{-
+                                  'products.product.quantity.increase'
+                                  | t: product: item.product.title
+                                  | escape
+                                -}}
+                              </span>
+                              <span class="svg-wrapper">
+                                {{- 'icon-plus.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                          </quantity-input>
+                          <div
+                            id="CartDrawer-LineItemError-{{ item.index | plus: 1 }}"
+                            class="cart-item__error"
+                            role="alert"
+                          >
+                            <small class="cart-item__error-text"></small>
+                            <span class="svg-wrapper">
+                              {{- 'icon-error.svg' | inline_asset_content -}}
+                            </span>
+                          </div>
 
                           <cart-remove-button
                             id="CartDrawer-Remove-{{ item.index | plus: 1 }}"

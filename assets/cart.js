@@ -13,24 +13,15 @@ class CartRemoveButton extends HTMLElement {
 customElements.define('cart-remove-button', CartRemoveButton);
 
 // The little cart-plus upsell badge on a one-time line: converts that line to the
-// product's monthly selling plan in place. Same subscription cap enforced everywhere
-// else (SUBSCRIPTION_CAP / getSubscriptionCartState from subscription-cart.js) applies
-// here too, checked at click-time since converting this line raises subscriptionCount.
+// product's monthly selling plan in place.
 class CartUpgradeSubscriptionButton extends HTMLElement {
   constructor() {
     super();
 
-    this.addEventListener('click', async (event) => {
+    this.addEventListener('click', (event) => {
       event.preventDefault();
       const cartItems = this.closest('cart-items') || this.closest('cart-drawer-items');
       if (!cartItems) return;
-
-      const state = await getSubscriptionCartState();
-      if (state && state.subscriptionCount >= SUBSCRIPTION_CAP) {
-        const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
-        if (errors) errors.textContent = this.dataset.messageLimitReached;
-        return;
-      }
 
       cartItems.updateSellingPlan(this.dataset.index, this.dataset.sellingPlanId, event);
     });
@@ -309,20 +300,21 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
   }
 
   // Converts an existing one-time line to the given (monthly) selling plan in place --
-  // /cart/change.js accepts a selling_plan alongside line/quantity. Quantity is forced to 1:
-  // a one-time line can be incremented past 1 (its own quantity-input), but a subscription
-  // line never can, so any accumulated increments are dropped rather than carried over as
-  // multiple monthly subscriptions.
+  // /cart/change.js accepts a selling_plan alongside line/quantity. Carries over the line's
+  // current quantity rather than resetting it, since subscription lines get the same
+  // quantity stepper as one-time lines and can hold more than 1.
   updateSellingPlan(line, sellingPlanId, event) {
     const cartPerformanceUpdateMarker = CartPerformance.createStartingMarker('subscribe:user-action');
 
     this.enableLoading(line);
 
     const sectionsToRender = this.getSectionsToRender();
+    const quantityInput = this.querySelector(`#Quantity-${line}`) || this.querySelector(`#Drawer-quantity-${line}`);
+    const quantity = parseInt(quantityInput?.value, 10) || 1;
 
     const body = JSON.stringify({
       line,
-      quantity: 1,
+      quantity,
       selling_plan: sellingPlanId,
       sections: sectionsToRender.map((section) => section.section),
       sections_url: window.location.pathname,
